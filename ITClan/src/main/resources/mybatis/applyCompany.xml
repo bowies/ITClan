@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="applycompany">
+		
+	<insert id="create" parameterType="ApplyCompanyDTO">
+	<selectKey order="BEFORE" keyProperty="applycode" resultType="int">
+	SELECT NVL(MAX(applycode), 0) + 1 as applycode FROM applycompany
+	</selectKey>
+	insert into applycompany(applycode,memberid,applydate,offernum)
+	values(#{applycode},#{memberid},sysdate,#{offernum})
+	
+	</insert>
+	<delete id="delete_personal" parameterType="String">
+	delete from applycompany
+	where memberid =#{memberid}
+	</delete>
+	
+	<select id="read_personal" parameterType="int" resultType="OfferDTO">
+	select * from offer
+	where offernum = #{offernum}
+	</select>
+	<select id="total_personal" parameterType="String" resultType="int">
+		select count(*)
+		from applycompany a, offer o
+		where a.offernum = o.offernum
+		and a.memberid = #{memberid}
+	</select>
+<resultMap type="ApplyCompanyDTO" id="manyMap">
+<result property="applyDate" column="applydate"/>
+<result property="applyCode" column="applycode"/>
+<result property="memberID" column="memberid"/>
+<result property="offerNum" column="offernum"/>
+<collection property="offerList" column="offernum" javaType="List" ofType="OfferDTO"
+ resultMap="applycompany.OfferDTOListMap"/>
+<collection property="resumeInfoList" column="memberid" javaType="List" ofType="ResumeInfoDTO"
+ resultMap="applycompany.ResumeInfoDTOListMap"/>
+</resultMap>
+<resultMap type="OfferDTO" id="OfferDTOListMap">
+<result property="offerNum" column="offernum"/>
+<result property="title" column="title"/>
+<result property="companyName" column="companyname"/>
+<result property="recruitment" column="recruitment"/>
+</resultMap>
+<resultMap type="ResumeInfoDTO" id="ResumeInfoDTOListMap">
+<result property="memberID" column="memberid"/>
+<result property="education" column="education"/>
+<result property="career" column="career"/>
+<result property="employmentType" column="employmenttype"/>
+<result property="exSalary" column="exsalary"/>
+<result property="disableGrade" column="disablegrade"/>
+<result property="picture" column="picture"/>
+<result property="exArea" column="exarea"/>
+<result property="exField" column="exfield"/>
+</resultMap>
+	<select id="list_personal" parameterType="Map" resultMap = "manyMap">
+		select applydate , memberid,offernum , title,companyname,recruitment,
+		r
+		from(
+		select applydate , memberid,offernum , title,companyname,recruitment,rownum
+		r
+		from(
+		select a.applydate , a.memberid,a.offernum ,
+		o.title,o.companyname,o.recruitment
+		from applycompany a,offer o
+		where o.offernum = a.offernum
+		and a.memberid=#{memberid}
+		)
+		)
+	<![CDATA[
+	where r >=#{sno} and r<=#{eno}
+	]]>
+	</select>
+
+
+	<select id="list_company" parameterType="Map" resultMap="manyMap">
+	select memberid , education,career,employmenttype,exsalary,disablegrade,picture,
+	exarea,exfield,military,title,applydate,r2
+	from(
+	select memberid , education,career,employmenttype,exsalary,disablegrade,picture,
+	exarea,exfield,military,title,applydate , rownum r2
+	from(
+	select r.memberid , r.education,r.career,r.employmenttype,r.exsalary,r.disablegrade,r.picture,
+	r.exarea,r.exfield,r.military,o.title,a.applydate
+	from resumeinfo r ,applycompany a , offer o
+	where  r.memberid = a.memberid
+	and o.offernum = a.offernum
+	and a.offernum = #{offernum}
+	)
+	)
+	<![CDATA[
+	where r2 >=#{sno} and r2<=#{eno}
+	]]>
+	</select>
+	
+	<select id="total_company" parameterType="int" resultType="int">
+	 select count(*) 
+ from applycompany a , offer o 
+ where a.offernum = o.offernum
+ and a.offernum = #{offernum}
+	
+	</select>
+	
+	<delete id="delete_company">
+	delete from applycompany
+where offernum =#{offernum}
+	</delete>
+	<!-- resumedetail (list/read) -->
+	<select id="list_resumedetail" parameterType="Map" resultType="ResumeDetailDTO" >
+	select * from resumedetail
+	where memberid = #{memberid} and resumenum = #{resumenum}
+	</select>
+	<select id="list_License" parameterType="String" resultType="LicenseDTO" >
+	select * from license
+where memberid = #{memberid}
+	</select>
+	<select id="list_externalactivity" parameterType="String" resultType="externalactivityDTO" >
+	select * from externalactivity
+where memberid = #{memberid}
+	</select>
+	
+</mapper>

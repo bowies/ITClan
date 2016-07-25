@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="personalmember">
+	<insert id="create" parameterType="PersonalMemberDTO">
+		insert into	personalmember(memberid,name,birth,email,phone,passwd,address,address2)
+		values(#{memberid},#{name},#{birth},#{email},#{phone},#{passwd},#{address},#{address2})
+	</insert>
+	<delete id="delete" parameterType="String">
+	delete from personalmember
+where memberid = #{memberid}
+	</delete>
+	
+	<select id="pwFind" parameterType="Map" resultType="String">
+	select passwd from personalmember
+	where memberid = #{memberid} and email = #{email}
+	</select>
+	<select id="idFind" parameterType="Map" resultType="String">
+	select memberid from personalmember
+	where name = #{name} and email = #{email}
+	</select>
+	<select id="emailCheck" parameterType="String" resultType="int">
+	select count(email) from personalmember
+	where email=#{email}
+	</select>
+	<select id="idCheck" parameterType="String" resultType="int">
+	select count(memberid) from personalmember
+	where memberid=#{memberid}
+	</select>
+	<select id="passwdCheck" parameterType="Map" resultType="int">
+	select count(passwd) from personalmember
+	where memberid = #{memberid} and passwd = #{passwd}
+	</select>
+	<select id="read" parameterType="String" resultType="PersonalMemberDTO">
+	select MemberId,name,birth,email,phone,address,address2
+	from personalmember
+	where memberid = #{memberid}
+	</select>
+	<update id="update" parameterType="PersonalMemberDTO">
+	update personalmember 
+	set  
+	name =#{name}, 
+	phone=#{phone}, 
+	address = #{address}, 
+	address2 = #{address2}
+	where MemberId =#{memberid}
+	</update>
+	<update id="updatePw" parameterType="Map">
+	update personalmember
+	set
+	passwd =#{passwd}
+	where memberid = #{memberid}
+	</update>
+	
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from personalmember
+		<where>
+			<if test="col == 'memberid'">
+				memberid like '%' || #{word} || '%'
+			</if>
+			<if test="col == 'name'">
+				name like '%' || #{word} || '%'
+			</if>
+		</where>
+	</select>
+	
+	
+	<select id="list" parameterType="Map" resultType="PersonalMemberDTO">
+		select memberid,name,birth,email,phone,r
+		from(
+		select memberid,name,birth,email,phone,rownum r
+		from(
+		select memberid,name,birth,email,phone
+		from personalmember
+		<where>
+			<if test="col == 'memberid'">
+				memberid like '%' || #{word} || '%'
+			</if>
+			<if test="col == 'name'">
+				name like '%' || #{word} || '%'
+			</if>
+		</where>
+		order by memberid desc
+		)
+		) 
+	<![CDATA[
+	where r >= #{sno} and r <= #{eno}
+	]]>
+	</select>
+</mapper>

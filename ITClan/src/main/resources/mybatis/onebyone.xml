@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="onebyone"> 
+
+<insert id="create" parameterType="OneByOneDTO">
+
+INSERT INTO OneByOne(oneByOneNum , title, content,mail, filename, id,regdate )
+values((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne)
+,#{title}, #{content}, #{mail}, #{filename}, #{id}, sysdate)  
+
+</insert>
+
+
+
+
+<select id="list" resultType="OneByOneDTO" parameterType="Map">
+	select oneByOneNum, id, mail, title,content,regdate,   r  
+		from(                                                                  
+			select oneByOneNum,  id, mail, title,content,regdate,   rownum r 
+			from(                                                                
+			select oneByOneNum, id, mail, title,content,regdate   
+			from OneByOne                                                                                                              
+            <where>
+            <choose>
+            <when test="col=='id'">
+            id like '%'||#{word}||'%'
+            </when>
+            <when test="col=='mail'">
+            mail like '%'||#{word}||'%'
+            </when>
+            <when test="col=='title'">
+            title like '%'||#{word}||'%'
+            </when>           
+            <when test="col=='content'">
+            content like '%'||#{word}||'%'
+            </when>           
+            </choose>      
+            </where>                                                                 
+         ORDER BY oneByOneNum                                             
+        
+        )
+    )                                                                            
+   <![CDATA[                                                                        
+   where r>=#{sno} and r<=#{eno}  
+   ]]>                                                           
+  </select>
+
+
+
+ <select id="read" resultType="OneByOneDTO" parameterType="int" >
+ SELECT oneByOneNum, id, mail,title, content, filename, regdate
+ FROM OneByOne            
+  WHERE oneByOneNum = #{oneByOneNum}                                                              
+ </select>
+      
+
+<update id="update" parameterType="OneByOneDTO">
+UPDATE OneByOne                 
+SET title=#{title}, content=#{content}  
+WHERE oneByOneNum = #{oneByOneNum}             
+</update>     
+      
+  
+<delete id="delete" parameterType="int">
+DELETE FROM OneByOne
+WHERE oneByOneNum = #{oneByOneNum}
+</delete>
+
+
+<select id="total" parameterType="Map" resultType="int">
+ select count(*) from OneByOne         
+<where>
+<choose>
+	  <when test="col=='id'">
+	   id like '%'||#{word}||'%'
+	   </when>
+	   <when test="col=='mail'">
+	   mail like '%'||#{word}||'%'
+	   </when>
+	   <when test="col=='title'">
+	   title like '%'||#{word}||'%'
+	   </when>           
+	   <when test="col=='content'">
+	   content like '%'||#{word}||'%'
+	   </when>        
+</choose>
+</where>       
+</select>
+
+
+</mapper>

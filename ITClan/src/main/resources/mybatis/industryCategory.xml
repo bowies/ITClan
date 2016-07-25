@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="industrycategory">
+<insert id="create" parameterType="IndustryCategoryDTO">
+insert into IndustryCategory(CategoryCode, CategoryName, UpperCode)
+values(#{categoryCode}, #{categoryName}, #{upperCode});
+</insert>
+
+<select id="read" resultType="IndustryCategoryDTO" parameterType="String">
+select CategoryCode, CategoryName, UpperCode
+from IndustryCategory
+where CategoryCode = #{categoryCode}
+</select>
+
+<delete id="delete" parameterType="string">
+delete from IndustryCategory
+where CategoryCode = #{categoryCode}
+</delete>
+
+</mapper>

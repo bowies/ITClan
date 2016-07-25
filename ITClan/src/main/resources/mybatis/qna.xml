@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="qna"> 
+
+<insert id="create" parameterType="QnADTO">
+INSERT INTO QnA(qnANum , title, content,name, regdate)
+values((SELECT NVL(MAX(qnANum), 0) + 1 as qnANum FROM QnA),  
+#{title}, #{content}, #{name}, sysdate);                                       
+     
+</insert>
+
+<select id="list" resultType="QnADTO" parameterType="Map">
+	select qnANum, title, content,name ,regdate ,  r       
+		from(                                                                  
+			select qnANum, title, content,name, regdate,   rownum r  
+			from(                                                                
+			select qnANum, title, content,name, regdate   
+			from QnA                                                                                                              
+            <where>
+            <choose>
+            <when test="col=='title'">
+            title like '%'||#{word}||'%'
+            </when>
+            <when test="col=='content'">
+            content like '%'||#{word}||'%'
+            </when>
+            <when test="col=='name'">
+            name like '%'||#{word}||'%'
+            </when>           
+            </choose>      
+            </where>                                                                 
+         ORDER BY qnANum                                             
+        
+        )
+    )                                                                            
+   <![CDATA[                                                                        
+   where r>=#{sno} and r<=#{eno}  
+   ]]>                                                           
+  </select>
+
+
+ <select id="read" resultType="QnADTO" parameterType="int" >
+ SELECT qnANum, name, title, content, regdate
+ FROM QnA                                        
+ WHERE qnANum = #{qnANum}                                                                        
+  </select>
+      
+
+<update id="update" parameterType="QnADTO">
+UPDATE QnA                 
+SET title=#{title}, content=#{content}  
+WHERE qnANum = #{qnANum}             
+</update>     
+      
+  
+<delete id="delete" parameterType="int">
+DELETE FROM QnA
+WHERE qnANum = #{qnANum}
+</delete>
+
+
+<select id="total" parameterType="Map" resultType="int">
+ select count(*) from QnA         
+<where>
+<choose>
+	<when test="col=='title'">
+	title like '%' || #{word} || '%'
+	</when>
+	<when test="col =='content'">
+	content like '%' || #{word} || '%'
+	</when>
+	<when test="col =='name'">
+	name like '%' || #{word} || '%'
+	</when>
+</choose>
+</where>       
+</select>
+
+
+</mapper>

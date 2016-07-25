@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="companymember">
+
+
+	<insert id="create" parameterType="CompanyMemberDTO">
+		insert into
+		CompanyMember(companyID, name, passwd, phone, email,
+		companyNumber, companyName)
+		values(#{companyID}, #{name}, #{passwd}, #{phone},
+		#{email}, #{companyNumber}, #{companyName})
+	</insert>
+	
+
+
+
+	<select id="read" resultType="CompanyMemberDTO" parameterType="String">
+		SELECT
+		companyID, name, passwd, phone, email, companyNumber, companyName
+		FROM
+		CompanyMember
+		WHERE companyID = #{companyID}
+	</select>
+
+	<update id="update" parameterType="CompanyMemberDTO">
+		UPDATE CompanyMember
+		SET
+		companyNumber = #{companyNumber}, name = #{name}, phone = #{phone}
+		WHERE companyID = #{companyID}
+	</update>
+
+
+	<delete id="delete" parameterType="String">
+		delete from CompanyMember
+		where companyID = #{companyID}
+	</delete>
+
+
+	<select id="list" resultType="CompanyMemberDTO" parameterType="Map">
+
+		select companyID, name, phone, email, companyNumber, companyName, r
+		from(
+		select companyID, name, phone, email, companyNumber, companyName,
+		rownum r
+		from(
+		select companyID, name, phone, email, companyNumber,
+		companyName
+		from CompanyMember
+		<where>
+			<choose>
+				<when test="col=='name'">
+					name like '%'||#{word}||'%'
+				</when>
+				<when test="col=='companyID'">
+					companyID like '%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>
+		ORDER BY companyID DESC
+
+		)
+		)                                                                            
+   <![CDATA[                                                                        
+   where r>=#{sno} and r<=#{eno}  
+   ]]>
+	</select>
+
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from CompanyMember
+		<where>
+			<choose>
+				<when test="col=='name'">
+					name LIKE '%' || #{word} || '%'
+				</when>
+
+			</choose>
+		</where>
+	</select>
+
+</mapper>

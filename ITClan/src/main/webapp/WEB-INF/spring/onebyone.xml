@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE  tiles-definitions PUBLIC 
+    "-//Aapche Software Foundation//DTD Tiles Configuration 2.0//EN" 
+    "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+
+	<definition name="main" template="/WEB-INF/views/templates/template.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/templates/top.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/templates/bottom.jsp" />
+	</definition>
+	
+	
+	<!-- definition의 이름은 onebyonecontroller에서 리턴되는 뷰의 이름 -->	
+	<definition name="/onebyone/home" extends="main">
+		<put-attribute name="title" value="Default Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+	</definition>
+	
+	<definition name="/onebyone/reply" extends="main">
+		<put-attribute name="title" value="onebyone agreement!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/onebyone/replyForm.jsp" />
+	</definition>
+
+	<definition name="/onebyone/create" extends="main">
+		<put-attribute name="title" value="onebyone Join Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/onebyone/createForm.jsp" />
+	</definition>
+
+
+
+	<definition name="/onebyone/read" extends="main">
+		<put-attribute name="title" value="onebyone Join Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/onebyone/read.jsp" />
+	</definition>
+
+	<definition name="/onebyone/delete" extends="main">
+		<put-attribute name="title" value="onebyone information delete Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/onebyone/deleteForm.jsp" />
+	</definition>
+
+	<definition name="/onebyone/update" extends="main">
+		<put-attribute name="title" value="onebyone update Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/onebyone/updateForm.jsp" />
+	</definition>
+	
+	
+	
+	<definition name="/onebyone/list" extends="main">
+		<put-attribute name="title" value="onebyone password change Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/onebyone/list.jsp" />
+	</definition>
+	
+</tiles-definitions> 
+

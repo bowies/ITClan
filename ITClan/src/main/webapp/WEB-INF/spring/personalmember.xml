@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE  tiles-definitions PUBLIC 
+    "-//Aapche Software Foundation//DTD Tiles Configuration 2.0//EN" 
+    "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+
+	<definition name="main" template="/WEB-INF/views/templates/template.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/templates/top.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/templates/bottom.jsp" />
+	</definition>
+	
+	
+	<!--  관리자 admin -->	
+	<definition name="/admin/list" extends="main">
+		<put-attribute name="title" value="Default Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/admin/list.jsp" />
+	</definition>
+	
+	<definition name="/personalmember/agree" extends="main">
+		<put-attribute name="title" value="개인회원 agreement!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/personalmember/agreement.jsp" />
+	</definition>
+
+	<definition name="/personalmember/create" extends="main">
+		<put-attribute name="title" value="개인회원 가입"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/personalmember/createForm.jsp" />
+	</definition>
+	<definition name="/personalmember/createProc" extends="main">
+		<put-attribute name="title" value="개인회원 가입 축하"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/personalmember/createPoc.jsp" />
+	</definition>
+
+
+
+	<definition name="/personalmember/read" extends="main">
+		<put-attribute name="title" value="개인회원 Join Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/personalmember/read.jsp" />
+	</definition>
+	<definition name="/personalmember/information" extends="main">
+		<put-attribute name="title" value="개인회원 정보 Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/personalmember/information.jsp" />
+	</definition>
+
+	<definition name="/personalmember/delete" extends="main">
+		<put-attribute name="title" value="개인회원 delete Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/bbs/deleteForm.jsp" />
+	</definition>
+
+	<definition name="/personalmember/pictureUpdate" extends="main">
+		<put-attribute name="title" value="개인회원 update Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/personalmember/pictureUpdateForm.jsp" />
+	</definition>
+	<definition name="/personalmember/pictureDelete" extends="main">
+		<put-attribute name="title" value="개인회원 delete Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/bbs/pictureDeleteForm.jsp" />
+	</definition>
+
+	<definition name="/personalmember/update" extends="main">
+		<put-attribute name="title" value="개인회원 update Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/personalmember/updateForm.jsp" />
+	</definition>
+	<definition name="/personalmember/idFind" extends="main">
+		<put-attribute name="title" value="개인회원 아이디찾기 Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/personalmember/idFind.jsp" />
+	</definition>
+	<definition name="/personalmember/pwFind" extends="main">
+		<put-attribute name="title" value="개인회원 패스워드 찾기 Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/personalmember/pwFind.jsp" />
+	</definition>
+	
+	
+	
+	<definition name="/personalmember/login" extends="main">
+		<put-attribute name="title" value="Bbs password change Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/personalmember/loginForm.jsp" />
+	</definition>
+	
+</tiles-definitions> 
+

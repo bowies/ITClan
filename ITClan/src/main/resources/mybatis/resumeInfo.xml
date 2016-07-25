@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="resumeinfo"> 
+
+<resultMap type="ResumeInfoDTO" id="oneMap">
+	<result property="memberID" column="memberID"/>
+	<result property="education" column="education"/>
+	<result property="career" column="career"/>
+	<result property="employmentType" column="employmentType"/>
+	<result property="exSalary" column="exSalary"/>
+	<result property="disableGrade" column="disableGrade"/>
+	<result property="picture" column="picture"/>
+	<result property="exArea" column="exArea"/>
+	<result property="exField" column="exField"/>
+	<result property="military" column="military"/>
+	<result property="pmdto.memberID" column="memberID"/>
+	<result property="pmdto.name" column="name"/>
+	<result property="pmdto.birth" column="birth"/>
+	<result property="pmdto.email" column="email"/>
+	<result property="pmdto.phone" column="phone"/>
+	<result property="pmdto.address" column="address"/>
+	<result property="pmdto.address2" column="address2"/>
+</resultMap>
+
+<select id="read" parameterType="String" resultMap="oneMap">
+select r.memberID, r.education, r.career, r.employmentType, r.exSalary,
+		r.disableGrade, r.picture, r.exArea, r.exField, r.military,
+		p.memberID, p.name, p.birth, p.email, p.phone, p.address, p.address2
+from ResumeInfo r, PersonalMember p 
+where r.memberID = p.memberID
+and r.memberID = #{memberID}
+</select>
+
+<insert id="create" parameterType="ResumeInfoDTO">
+insert into ResumeInfo (memberID, education, career, employmentType, exSalary,
+						disableGrade, picture, exArea, exField, military)
+		values (#{memberID}, #{education}, #{career}, #{employmentType}, #{exSalary}, 
+				#{disableGrade}, #{picture}, #{exArea}, #{exField}, #{military})
+</insert>
+
+<update id="update" parameterType="ResumeInfoDTO">
+update ResumeInfo
+set
+education = #{education}, 
+career = #{career},
+employmentType = #{employmentType},
+exSalary = #{exSalary},
+disableGrade = #{disableGrade},
+picture = #{picture},
+exArea = #{exArea},
+exField = #{exField},
+military = #{military}
+where memberID = #{memberID}
+</update>
+
+<delete id="delete" parameterType="String">
+delete from ResumeInfo
+where memberID = #{memberID}
+</delete>
+
+</mapper>
