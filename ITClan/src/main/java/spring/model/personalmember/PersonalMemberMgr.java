@@ -14,7 +14,7 @@ public class PersonalMemberMgr {
     public void delete(String memberID , Object pk) throws Exception{
     	 
         mgr.delete(memberID , pk);
-        dao.delete(memberID);
+        dao.delete(pk);
  }
 
 }
