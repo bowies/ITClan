@@ -50,9 +50,9 @@ where r>=#{sno} and r<=#{eno}
 ]]>
 </select>
 
-<select id="read" parameterType="Map" resultType="ExternalActivityDTO">
+<select id="read" parameterType="int" resultType="ExternalActivityDTO">
 select * from ExternalActivity
-where actNum = #{actNum} and memberID = #{memberID}
+where actNum = #{actNum}
 </select>
 
 <insert id="create" parameterType="ExternalActivityDTO">
@@ -66,11 +66,16 @@ set
 actPeriod = #{actPeriod},
 actSector = #{actSector},
 actContent = #{actContent}
-where actNum = #{actNum} and memberID = #{memberID}
+where actNum = #{actNum}
 </update>
 
-<delete id="delete" parameterType="Map">
+<delete id="delete" parameterType="int">
 delete from ExternalActivity
-where actNum = #{actNum} and memberID = #{memberID}
+where actNum = #{actNum}
+</delete>
+
+<delete id="deleteinfo" parameterType="String">
+delete from ExternalActivity
+where memberID = #{memberID}
 </delete>
 </mapper>

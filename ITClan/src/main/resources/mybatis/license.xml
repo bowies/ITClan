@@ -48,9 +48,9 @@ where r>=#{sno} and r<=#{eno}
 ]]>
 </select>
 
-<select id="read" parameterType="Map" resultType="LicenseDTO">
+<select id="read" parameterType="int" resultType="LicenseDTO">
 select * from license
-where licenseNum = #{licenseNum} and memberID = #{memberID}
+where licenseNum = #{licenseNum}
 </select>
 
 <insert id="create" parameterType="LicenseDTO">
@@ -63,11 +63,16 @@ update license
 set
 qualification = #{qualification},
 takeDate = #{takeDate}
-where licenseNum = #{licenseNum} and memberID = #{memberID}
+where licenseNum = #{licenseNum}
 </update>
 
-<delete id="delete" parameterType="Map">
+<delete id="delete" parameterType="int">
 delete from license
-where licenseNum = #{licenseNum} and memberID = #{memberID}
+where licenseNum = #{licenseNum}
+</delete>
+
+<delete id="deleteinfo" parameterType="String">
+delete from license
+where memberID = #{memberID}
 </delete>
 </mapper>
