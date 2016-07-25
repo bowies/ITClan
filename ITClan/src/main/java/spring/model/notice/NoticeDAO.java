@@ -22,7 +22,6 @@ public class NoticeDAO implements DAOMyBatisInter {
 	@Override                                                                        
 	public int create(Object dto) throws Exception {
 		return mybatis.insert("notice.create", dto);
-
 	}
 
 	@Override
