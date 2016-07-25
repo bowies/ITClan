@@ -5,11 +5,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="onebyone"> 
 
+<select id="readReply" parameterType="int" resultType="OneByOneDTO">
+SELECT oneByOneNum,title,grpno,indent,ansnum 
+FROM OneByOne                           
+WHERE oneByOneNum = #{oneByOneNum}                  
+
+</select>
+
+
+
 <insert id="create" parameterType="OneByOneDTO">
 
-INSERT INTO OneByOne(oneByOneNum , title, content,mail, filename, id,regdate )
-values((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne)
-,#{title}, #{content}, #{mail}, #{filename}, #{id}, sysdate)  
+INSERT INTO OneByOne(oneByOneNum , title,name, content,mail, filename, id,regdate,grpno)
+values((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
+#{title},#{name}, #{content}, #{mail}, #{filename}, #{id}, sysdate,
+(select nvl(max(grpno),0)+1 as grpno from OneByOne))  
 
 </insert>
 
