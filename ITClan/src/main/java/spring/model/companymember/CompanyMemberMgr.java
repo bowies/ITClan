@@ -8,14 +8,14 @@ import spring.model.companyinfo.CompanyInfoDAO;
 @Service
 public class CompanyMemberMgr {
 	@Autowired
-	private CompanyMemberDAO cdao;
+	private CompanyMemberDAO cmdao;
 
 	@Autowired
 	private CompanyInfoDAO cidao;
 
 	public void delete(String CompanyID) throws Exception {
 
-		cdao.delete(CompanyID);
+		cmdao.delete(CompanyID);
 		cidao.delete(CompanyID);
 	}
 }
