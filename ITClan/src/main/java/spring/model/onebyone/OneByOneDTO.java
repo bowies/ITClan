@@ -7,7 +7,7 @@ public class OneByOneDTO {
 	private String mail;
 	private String title;
 	private String filename;
-
+	private String name;
 	private String id;
 	private int viewcnt;
 	private String regdate;
@@ -102,6 +102,14 @@ public class OneByOneDTO {
 
 	public void setOneByOneNum(int oneByOneNum) {
 		this.oneByOneNum = oneByOneNum;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
