@@ -1,6 +1,6 @@
 package spring.test.resumedetail;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,8 +17,8 @@ import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
-import spring.model.desumedetail.ResumeDetailDAO;
-import spring.model.desumedetail.ResumeDetailDTO;
+import spring.model.resumedetail.ResumeDetailDAO;
+import spring.model.resumedetail.ResumeDetailDTO;
 
 public class ResumeDetailDAOTest {
 
@@ -26,7 +26,7 @@ public class ResumeDetailDAOTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		Resource resource = new ClassPathResource("kbc.xml");
+		Resource resource = new ClassPathResource("itclan.xml");
 		beans = new XmlBeanFactory(resource);
 	}
 
@@ -43,7 +43,7 @@ public class ResumeDetailDAOTest {
 	}
 
 	@Test //@Ignore
-	public void testList() {
+	public void testList() throws Exception {
 		ResumeDetailDAO dao = (ResumeDetailDAO)beans.getBean("resumedetaildao");
 		Map map = new HashMap();
 		map.put("memberID", "bbb");
@@ -54,7 +54,7 @@ public class ResumeDetailDAOTest {
 	}
 
 	@Test //@Ignore
-	public void testCreate() {
+	public void testCreate() throws Exception {
 		ResumeDetailDAO dao = (ResumeDetailDAO)beans.getBean("resumedetaildao");
 		ResumeDetailDTO dto = new ResumeDetailDTO();
 		dto.setMemberID("aaa");
@@ -64,9 +64,15 @@ public class ResumeDetailDAOTest {
 	}
 
 	@Test //@Ignore
-	public void testDelete() {
+	public void testDelete() throws Exception {
 		ResumeDetailDAO dao = (ResumeDetailDAO)beans.getBean("resumedetaildao");
-		dao.delete(6, "aaa");
+		dao.delete(4);
+	}
+	
+	@Test @Ignore
+	public void testDeleteinfo() throws Exception {
+		ResumeDetailDAO dao = (ResumeDetailDAO)beans.getBean("resumedetaildao");
+		dao.delete("aaa");
 	}
 
 }

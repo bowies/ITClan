@@ -28,7 +28,7 @@ public class LicenseDAOTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		Resource resource = new ClassPathResource("kbc.xml");
+		Resource resource = new ClassPathResource("itclan.xml");
 		beans = new XmlBeanFactory(resource);
 	}
 
@@ -45,7 +45,7 @@ public class LicenseDAOTest {
 	}
 
 	@Test //@Ignore
-	public void testList() {
+	public void testList() throws Exception {
 		LicenseDAO dao = (LicenseDAO)beans.getBean("licensedao");
 		Map map = new HashMap();
 		map.put("memberID", "aaa");
@@ -56,15 +56,14 @@ public class LicenseDAOTest {
 	}
 
 	@Test //@Ignore
-	public void testRead() {
+	public void testRead() throws Exception {
 		LicenseDAO dao = (LicenseDAO)beans.getBean("licensedao");
-		int licenseNum = 1;
-		String memberID = "aaa";
-		LicenseDTO dto = dao.read(licenseNum, memberID);
+		int pk = 1;
+		LicenseDTO dto = (LicenseDTO) dao.read(pk);
 	}
 
 	@Test //@Ignore
-	public void testCreate() {
+	public void testCreate() throws Exception {
 		LicenseDAO dao = (LicenseDAO)beans.getBean("licensedao");
 		LicenseDTO dto = new LicenseDTO();
 		dto.setQualification("정보처리산업기사");
@@ -74,20 +73,25 @@ public class LicenseDAOTest {
 	}
 
 	@Test //@Ignore
-	public void testUpdate() {
+	public void testUpdate() throws Exception {
 		LicenseDAO dao = (LicenseDAO)beans.getBean("licensedao");
-		int licenseNum = 1;
-		String memberID = "aaa";
-		LicenseDTO dto = dao.read(licenseNum, memberID);
+		int pk = 1;
+		LicenseDTO dto = (LicenseDTO) dao.read(pk);
 		dto.setQualification("네트워크관리사");
 		dto.setTakeDate("2015년07월20일");
 		assertEquals(1, dao.update(dto));
 	}
 
 	@Test //@Ignore
-	public void testDelete() {
+	public void testDelete() throws Exception {
 		LicenseDAO dao = (LicenseDAO)beans.getBean("licensedao");
-		dao.delete(4, "bbb");
+		dao.delete(4);
+	}
+	
+	@Test @Ignore
+	public void testDeleteinfo() throws Exception {
+		LicenseDAO dao = (LicenseDAO)beans.getBean("licensedao");
+		dao.deleteinfo("bbb");
 	}
 
 }

@@ -22,7 +22,7 @@ public class ResumeInfoDAOTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		Resource resource = new ClassPathResource("kbc.xml");
+		Resource resource = new ClassPathResource("itclan.xml");
 		beans = new XmlBeanFactory(resource);
 	}
 
@@ -39,15 +39,15 @@ public class ResumeInfoDAOTest {
 	}
 
 	@Test  @Ignore
-	public void testRead() {
-		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumeinfodao");
+	public void testRead() throws Exception {
+		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumedao");
 		String memberID = "aaa";
-		ResumeInfoDTO dto = dao.read(memberID);
+		ResumeInfoDTO dto = (ResumeInfoDTO) dao.read(memberID);
 	}
 
-	@Test //@Ignore
-	public void testCreate() {
-		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumeinfodao");
+	@Test @Ignore
+	public void testCreate() throws Exception {
+		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumedao");
 		ResumeInfoDTO dto = new ResumeInfoDTO();
 		dto.setMemberID("ccc");
 		dto.setEducation("고등학교 졸업");
@@ -62,9 +62,9 @@ public class ResumeInfoDAOTest {
 		assertEquals(1, dao.create(dto));
 	}
 	
-	@Test //@Ignore
-	public void testUpdate() {
-		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumeinfodao");
+	@Test @Ignore
+	public void testUpdate() throws Exception {
+		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumedao");
 		
 		ResumeInfoDTO dto = new ResumeInfoDTO();
 		
@@ -82,9 +82,11 @@ public class ResumeInfoDAOTest {
 	}
 
 	@Test //@Ignore
-	public void testDelete() {
-		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumeinfodao");
-		assertEquals(1, dao.delete("ccc"));
+	public void testDelete() throws Exception {
+		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumedao");
+		
+		String pk = "bbb";
+		dao.delete(pk);
 	}
 
 }

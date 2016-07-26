@@ -44,26 +44,26 @@ public class ExternalActivityDAOTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test //@Ignore
+	@Test @Ignore
 	public void testList() throws Exception {
 		ExternalActivityDAO dao = (ExternalActivityDAO)beans.getBean("externalactivitydao");
 		Map map = new HashMap();
-		map.put("memberID", "aaa");
+		map.put("memberID", "bbb");
 		map.put("sno", 1);
 		map.put("eno", 5);
 		List<ExternalActivityDTO> list = dao.list(map);
 		assertEquals(2, list.size());
 	}
 
-	@Test //@Ignore
+	@Test @Ignore
 	public void testRead() throws Exception {
 		ExternalActivityDAO dao = (ExternalActivityDAO)beans.getBean("externalactivitydao");
-		int pk = 1;
+		int pk = 3;
 		ExternalActivityDTO dto = (ExternalActivityDTO) dao.read(pk);
 		assertEquals("아르바이트", dto.getActSector());
 	}
 
-	@Test //@Ignore
+	@Test @Ignore
 	public void testCreate() throws Exception {
 		ExternalActivityDAO dao = (ExternalActivityDAO)beans.getBean("externalactivitydao");
 		ExternalActivityDTO dto = new ExternalActivityDTO();
@@ -74,10 +74,10 @@ public class ExternalActivityDAOTest {
 		assertEquals(1, dao.create(dto));
 	}
 
-	@Test //@Ignore
+	@Test @Ignore
 	public void testUpdate() throws Exception {
 		ExternalActivityDAO dao = (ExternalActivityDAO)beans.getBean("externalactivitydao");
-		int pk = 1;
+		int pk = 4;
 		ExternalActivityDTO dto = (ExternalActivityDTO) dao.read(pk);
 		dto.setActPeriod("2015.09~2016.04");
 		dto.setActSector("아르바이트");
@@ -88,7 +88,12 @@ public class ExternalActivityDAOTest {
 	@Test //@Ignore
 	public void testDelete() throws Exception {
 		ExternalActivityDAO dao = (ExternalActivityDAO)beans.getBean("externalactivitydao");
-		dao.delete(4);
+		dao.delete(3);
 	}
 
+	@Test @Ignore
+	public void testDeleteinfo() throws Exception {
+		ExternalActivityDAO dao = (ExternalActivityDAO)beans.getBean("externalactivitydao");
+		dao.deleteinfo("aaa");
+	}
 }
