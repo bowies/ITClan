@@ -19,6 +19,28 @@ import spring.utility.itclan.*;
 public class PersonalmemberController {
 	@Autowired
 	private PersonalMemberDAO dao;
+	
+	
+	@RequestMapping(value="/personal/update",method=RequestMethod.POST)
+	public String update(PersonalMemberDTO dto) throws Exception{
+		if(dao.update(dto)>0){
+			return "redirect:/personal/read";
+		}else{
+			return "/error/error";
+		}
+		
+		
+	}
+	@RequestMapping(value="/personal/update",method=RequestMethod.GET)
+	public String update(PersonalMemberDTO dto,String memberID
+			,Model model) throws Exception{
+		dto = (PersonalMemberDTO) dao.read(memberID);
+		model.addAttribute("dto", dto);
+
+		
+		return "/personal/updateform";
+	}
+	
 	@RequestMapping("/admin/list")
 	public String list(HttpServletRequest request,Model model) throws Exception{
 		String col = Utility.nullCheck(request.getParameter("col"));
