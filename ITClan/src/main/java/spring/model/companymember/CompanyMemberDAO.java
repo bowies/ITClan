@@ -20,6 +20,44 @@ public class CompanyMemberDAO implements DAOMyBatisInter {
 	public void setMybatis(SqlSessionTemplate mybatis) {
 		this.mybatis = mybatis;
 	}
+	
+	public String pwFind(String companyID , String email){
+		Map map = new HashMap();
+		map.put("companyID", companyID);
+		map.put("email", email);
+		return mybatis.selectOne("companymember.pwFind", map);
+		
+	}
+	public String idFind(String name , String email){
+		Map map = new HashMap();
+		map.put("name", name);
+		map.put("email", email);
+		return mybatis.selectOne("companymember.idFind", map);
+		
+	}
+	public int EmailCheck(String email){
+		return mybatis.selectOne("companymember.emailCheck", email);
+	}
+	
+	public int idCheck(String companyID){
+		return mybatis.selectOne("companymember.idCheck", companyID);
+	}
+	
+	public int passwdCheck(String companyID , String passwd){
+		Map map = new HashMap();
+		map.put("companyID", companyID);
+		map.put("passwd", passwd);
+		return mybatis.selectOne("companymember.passwdCheck", map);
+	}
+	
+
+	public int updatePw(String passwd,String companyID){
+		Map map = new HashMap();
+		map.put("passwd", passwd);
+		map.put("companyID", companyID);
+		return mybatis.update("companymember.updatePw", map);
+	}	
+	
 
 //	InterFace에서 implements 한 메소드 구현
 	@Override
