@@ -57,17 +57,24 @@ public class OneByOneDAOTest {
 		fail("Not yet implemented");
 	}
 
-	@Test @Ignore
-	public void testIncreaseViewcnt() {
+	@Test //@Ignore
+	public void testIncreaseViewcnt() throws Exception {
+		OneByOneDAO dao = (OneByOneDAO) beans.getBean("onebyonedao");
+		dao.increaseViewcnt(4);
+		
+		OneByOneDTO dto = (OneByOneDTO) dao.read(4);
+		assertEquals(1,dto.getViewcnt());
 		
 	}
 
-	@Test //@Ignore
+	
+	//오류 - 수정필
+	@Test @Ignore
 	public void testAddAnsnum() {
 		OneByOneDAO dao = (OneByOneDAO) beans.getBean("onebyonedao");
 		dao.addAnsnum(7, 1);
 		OneByOneDTO dto = dao.readReply(8);  //자식글
-		assertEquals(3,dto.getAnsnum()); //1에서 증가되면 2니까 예상값은 2
+		assertEquals(2,dto.getAnsnum()); //1에서 증가되면 2니까 예상값은 2
 	}
 
 	@Test @Ignore

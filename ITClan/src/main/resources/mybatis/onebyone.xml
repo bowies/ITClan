@@ -13,6 +13,19 @@ WHERE oneByOneNum = #{oneByOneNum}
 </select>
 
 
+<update id="increaseViewcnt" parameterType="int">
+UPDATE OneByOne            
+SET viewcnt = viewcnt + 1
+WHERE oneByOneNum = #{oneByOneNum}       
+</update>
+
+<update id="addAnsnum" parameterType="Map">
+UPDATE OneByOne           
+SET ansnum = ansnum + 1  
+WHERE grpno=#{grpno} AND ansnum > #{ansnum}
+
+</update>
+
 
 <insert id="create" parameterType="OneByOneDTO">
 
