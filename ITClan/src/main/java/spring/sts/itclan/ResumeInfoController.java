@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import spring.model.personalmember.PersonalMemberDAO;
+import spring.model.personalmember.PersonalMemberDTO;
 import spring.model.resumeinfo.ResumeInfoDAO;
 import spring.model.resumeinfo.ResumeInfoDTO;
 
@@ -15,9 +17,16 @@ public class ResumeInfoController {
 	@Autowired
 	private ResumeInfoDAO resumedao;
 	
+	@Autowired
+	private PersonalMemberDAO personalmemberdao;
+	
 	@RequestMapping(value="/resumeInfo/create",method=RequestMethod.GET)
-	public String create() {
-		PersonalMemberDTO dto = dao.
+	public String create(String pk, Model model) throws Exception {
+		
+		PersonalMemberDTO personalmemberdto = (PersonalMemberDTO) personalmemberdao.read(pk);
+		
+		model.addAttribute("personalmemberdto", personalmemberdto);
+		
 		return "/resumeInfo/create";
 	}
 	
@@ -35,9 +44,9 @@ public class ResumeInfoController {
 	@RequestMapping("/resumeInfo/read")
 	public String read(String pk, Model model) throws Exception{
 		
-		ResumeInfoDTO dto = (ResumeInfoDTO) resumedao.read(pk);
+		ResumeInfoDTO resumedto = (ResumeInfoDTO) resumedao.read(pk);
 		
-		model.addAttribute("dto",dto);
+		model.addAttribute("resumedto",resumedto);
 		
 		return "/resumeInfo/read";
 	}
