@@ -21,10 +21,35 @@ public class PersonalmemberController {
 	private PersonalMemberDAO dao;
 	
 	
+	
+	
+	@RequestMapping("/personal/EmailCheckForm")
+	public String emailCheckF(){
+		return "/personalmember/emailCheckForm";
+	}
+	
+	@RequestMapping("/personal/EmailCheckProc")
+	public String emailCheckP(String email,Model model){
+		int cnt = dao.EmailCheck(email);
+		model.addAttribute("cnt", cnt);
+		return "/personalmember/emailCheckProc";
+	}
+	@RequestMapping("/personal/idCheckForm")
+	public String idCheckF(){
+		return "/personalmember/idCheckForm";
+	}
+	
+	@RequestMapping("/personal/idCheckProc")
+	public String idCheckP(String memberID,Model model){
+		int cnt = dao.idCheck(memberID);
+		model.addAttribute("cnt", cnt);
+		return "/personalmember/idCheckProc";
+	}
+	
 	@RequestMapping(value="/personal/update",method=RequestMethod.POST)
 	public String update(PersonalMemberDTO dto) throws Exception{
 		if(dao.update(dto)>0){
-			return "redirect:/personal/read";
+			return "redirect:/personalmember/read";
 		}else{
 			return "/error/error";
 		}
@@ -38,7 +63,16 @@ public class PersonalmemberController {
 		model.addAttribute("dto", dto);
 
 		
-		return "/personal/updateform";
+		return "/personalmember/update";
+	}
+	@RequestMapping("/personal/updatePassC")
+	public String UpdatePassC(String memberID,String passwd){
+		if(dao.passwdCheck(memberID, passwd)>0){
+			return "redirect:/personalmember/update";
+		}else{
+			return "/error/passwderror";
+		}
+		
 	}
 	
 	@RequestMapping("/admin/list")
@@ -80,7 +114,7 @@ public class PersonalmemberController {
 		model.addAttribute("nowPage", nowPage);
 		
 		
-	return "/personal/list";
+	return "/personalmember/list";
 	}
 	
 	@RequestMapping("/personal/read")
@@ -96,7 +130,7 @@ public class PersonalmemberController {
 			e.printStackTrace();
 		}
 		model.addAttribute("dto",dto);
-		return "/personal/read";
+		return "/personalmember/read";
 	}
 	
 	@RequestMapping(value="/personal/create",method=RequestMethod.POST)
@@ -106,16 +140,16 @@ public class PersonalmemberController {
 			cnt = dao.create(dto);
 		
 		model.addAttribute("cnt",cnt);
-		return "/personal/createProc";
+		return "/personalmember/createProc";
 	}
 	@RequestMapping(value="/personal/create",method=RequestMethod.GET)
 	public String create(){
 
 		
-		return "/personal/createform";
+		return "/personalmember/create";
 	}
 	@RequestMapping("/personal/agree")
 	public String agree(){
-		return "/personal/agreement";
+		return "/personalmember/agree";
 	}
 }
