@@ -21,6 +21,26 @@ public class PersonalmemberController {
 	@Autowired
 	private PersonalMemberDAO dao;
 	
+	@RequestMapping("/personal/deletePwC")
+	public String deletePwC(String memberID , String passwd){
+		if(dao.passwdCheck(memberID, passwd)>0){
+			return "/personalmember/delete";
+		}else{
+			return "/error/passwderror";
+		}
+		
+	}
+	
+	@RequestMapping("/personal/delete")
+	public String delete(String memberID) throws Exception{
+		if(dao.delete(memberID)>0){
+			return "redirect:/";
+		}else{
+			return "error/error";
+		}
+		
+	}
+	
 	@RequestMapping(value="/personal/pwFind",method=RequestMethod.POST)
 	public String pwFind(Model model,String memberID , String email){
 		String passwd = dao.pwFind(memberID, email);
