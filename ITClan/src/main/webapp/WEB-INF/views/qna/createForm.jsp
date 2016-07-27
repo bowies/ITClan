@@ -13,7 +13,7 @@
 
 <div class="center">
 <h1>Q & A </h1>
-<form name="helpdeskForm" method="post" action="createProc" >
+<form name="qnaform" method="post" action="createProc" >
 <table width="680" border="0" cellspacing="0" cellpadding="0" align="center"> 
 
 <!-- 			<input type="hidden" name="mode" value="write_ok"> -->
