@@ -8,9 +8,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="readReply" parameterType="int" resultType="OneByOneDTO">
 SELECT oneByOneNum,title,grpno,indent,ansnum 
 FROM OneByOne                           
-WHERE oneByOneNum = #{oneByOneNum}                  
+WHERE oneByOneNum = #{oneByOneNum}                 
 
 </select>
+
+<select id="checkId" parameterType="Map" resultType="int">
+SELECT COUNT(oneByOneNum) as cnt
+FROM OneByOne             
+WHERE oneByOneNum= #{oneByOneNum} AND id=#{id}
+</select>
+
+<insert id="reply" parameterType="BbsDTO">
+INSERT INTO OneByOne(oneByOneNum, name, title, content,  regdate, grpno, indent, ansnum)
+VALUES((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
+ #{name}, #{title}, #{content},
+  sysdate, #{grpno}, #{indent}+1, #{ansnum}+1)
+</insert>
+
 
 
 <update id="increaseViewcnt" parameterType="int">
