@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import spring.model.personalmember.*;
 import spring.utility.itclan.*;
@@ -20,15 +21,40 @@ public class PersonalmemberController {
 	@Autowired
 	private PersonalMemberDAO dao;
 	@RequestMapping(value="/personal/login",method=RequestMethod.POST)
-	public String login(String memberID, String passwd){
+	public String login(String memberID, String passwd,String c_id,
+		HttpSession session,HttpServletResponse response,Model model){
 		int cnt = 0;
 		String grade = "";
 		
 		cnt = dao.loginCheck(memberID, passwd);
 		if(cnt ==1){
+			grade = dao.getGrade(memberID);
+			session.setAttribute("memberID", memberID);
+			session.setAttribute("grade", grade);
 			
+			Cookie cookie = null;
+			if(c_id != null){
+				cookie = new Cookie("c_id","Y");
+				cookie.setMaxAge(300); // 5분유지
+				response.addCookie(cookie);
+				
+				cookie = new Cookie("c_id_val",memberID);
+				cookie.setMaxAge(300); // 5분유지
+				response.addCookie(cookie);
+			}else{
+				cookie = new Cookie("c_id","");
+				cookie.setMaxAge(0); // 5분유지
+				response.addCookie(cookie);
+				
+				cookie = new Cookie("c_id_val","");
+				cookie.setMaxAge(0); // 5분유지
+				response.addCookie(cookie);
+			}
+			return "redirect:/";
+		}else{
+			return "/error/passwderror";
 		}
-		return "redirect:/";
+		
 	}
 	
 	@RequestMapping(value="/personal/login",method=RequestMethod.GET)
