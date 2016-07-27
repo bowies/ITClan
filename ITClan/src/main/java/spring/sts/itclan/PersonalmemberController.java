@@ -20,6 +20,47 @@ import spring.utility.itclan.*;
 public class PersonalmemberController {
 	@Autowired
 	private PersonalMemberDAO dao;
+	
+	@RequestMapping(value="/personal/pwFind",method=RequestMethod.POST)
+	public String pwFind(Model model,String memberID , String email){
+		String passwd = dao.pwFind(memberID, email);
+		model.addAttribute("memberID",memberID);
+		return "/personalmember/pwFindProc"; 
+	}
+	
+	@RequestMapping(value="/personal/pwFind",method=RequestMethod.GET)
+	public String pwFind(){
+		return "/personalmember/pwFind";
+	}
+	@RequestMapping(value="/personal/idFind",method=RequestMethod.POST)
+	public String idFind(Model model,String name , String email){
+		String memberID = dao.idFind(name, email);
+		model.addAttribute("memberID",memberID);
+		return "/personalmember/idFindProc"; 
+	}
+	
+	@RequestMapping(value="/personal/idFind",method=RequestMethod.GET)
+	public String idFind(){
+		return "/personalmember/idFind";
+	}
+	@RequestMapping(value="/personal/updatePw",method=RequestMethod.POST)
+	public String updatePw(Model model,String passwd ,String memberID){
+		
+		
+		if(dao.updatePw(passwd, memberID)>0){
+			return "redirect:/personalmember/read";
+		}else{
+			return "/error/error";
+		}
+	}
+	@RequestMapping(value="/personal/updatePw",method=RequestMethod.GET)
+	public String updatePw(String memberID,HttpSession session){
+		if(memberID == null){
+			memberID = (String)session.getAttribute("memberID");
+		}
+		return "/personalmember/updatePw";
+	}
+	
 	@RequestMapping(value="/personal/login",method=RequestMethod.POST)
 	public String login(String memberID, String passwd,String c_id,
 		HttpSession session,HttpServletResponse response,Model model){
