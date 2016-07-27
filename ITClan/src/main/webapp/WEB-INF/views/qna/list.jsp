@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="uti" uri="/ELFunctions" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -165,92 +169,161 @@ for (i = 0; i < acc.length; i++) {
 <tbody><tr><td height="50" align="center">
 <table width="680" border="0" cellspacing="0" cellpadding="0">
 <h2> 질문과 답변</h2>
-<tbody><tr><td align="right"><a href="javascript:if(confirm('글쓰기를 하시려면     \n\n로그인하셔야 합니다.     \n\n로그인하시겠습니까?     ')) location.href='/zf_user/auth?m_code=5&amp;url='+escape(location);" "=""><img src="http://www.saraminimage.co.kr/buttons/default/qnalist_write.gif" width="114" height="18" border="0" alt="Q&amp;A게시판에 글쓰기"></a></td></tr>
+${fn:substring(dto.regdate,0,10)}
+
+<tbody><tr><td align="right">
+<a href="${pageContext.request.contextPath}/qna/create">
+<img src="http://www.saraminimage.co.kr/buttons/default/qnalist_write.gif" width="114" height="18" border="0" alt="Q&amp;A게시판에 글쓰기">
+</a></td></tr>
 <tr><td height="5"></td></tr>
 <tr><td>
 
 <div class="helpdesk-qna-list">
 <table class="padding3" width="680" border="0" cellspacing="0" cellpadding="3">
-<tbody><tr bgcolor="62B5DF"><td height="1" colspan="5" style="padding:0"></td></tr>
+<tbody>
+<tr bgcolor="62B5DF"><td height="1" colspan="5" style="padding:0"></td></tr>
 <tr>
 <td width="50" height="25" align="center"><b>번호</b></td>
 <td width="360" height="25" align="center"><b>주제</b></td>
 <td width="120" height="25" align="center"><b>작성자</b></td>
 <td width="80" height="25" align="center"><b>등록일시</b></td>
-<td width="70" height="25" align="center"><b>조회수</b></td>
 </tr>
-<tr bgcolor="ebebeb"><td height="1" colspan="5" style="padding:0"></td></tr>
 
-<tr>
-<td align="center" height="25">14287</td>
-<td><a href="">//자주찾는질문// 공고 깜박거림 현상 어떻게 해야 할까요?</a></td>
-<td align="center" height="25">운영자</td>
-<td align="center" height="25">09-17 13:18</td>
-<td align="center" height="25">379</td>
-</tr>
-<tr bgcolor="ebebeb"><td height="1" colspan="5" valign="top" style="padding:0"></td></tr>
+<!--   <TR> -->
+<!--       <th>번호</th> -->
+<!--       <th width = "25%">제목</th> -->
+<!--       <th>이름</th> -->
+<!--       <th>등록일</th> -->
 
-<tr>
-<td align="center" height="25">2535</td>
-<td><a href="">//자주찾는질문// 입사지원 한 이력서 수정/삭제</a></td>
-<td align="center" height="25">운영자</td>
-<td align="center" height="25">11-05 11:36</td>
-<td align="center" height="25">11351</td>
-</tr>
-<tr bgcolor="ebebeb"><td height="1" colspan="5" valign="top" style="padding:0"></td></tr>
+<!--     </TR> -->
+  <c:choose>
+  <c:when test="${empty list}">
+  <tr>
+	  <td colspan="8" align="center">등록된 글이 없습니다.</td>
+	  </tr>
+  </c:when>
+  <c:otherwise>
+  <c:forEach var="dto" items="${list}">
+  <tr>
+    <td>${dto.qnANum}</td>
+    <td>
+    <a href="javascript:read('${dto.qnANum }')">${dto.title }</a>
+     <c:if test="${uti:newImg(fn:substring(dto.regdate,0,10)) }">
+     <img src="../images/new.gif">
+     </c:if>
+      </td>
+    <td>${dto.name }</td>
+    <td>${fn:substring(dto.regdate,0,10)}</td>
+    </tr>
+     
+  </c:forEach>
+  </c:otherwise>
+  </c:choose>   
+
+<!-- <tr bgcolor="ebebeb"><td height="1" colspan="5" style="padding:0"></td></tr> -->
+
+<!-- <tr> -->
+<!-- <td align="center" height="25">14287</td> -->
+<!-- <td><a href="">//자주찾는질문// 공고 깜박거림 현상 어떻게 해야 할까요?</a></td> -->
+<!-- <td align="center" height="25">운영자</td> -->
+<!-- <td align="center" height="25">09-17 13:18</td> -->
+<!-- </tr> -->
+<!-- <tr bgcolor="ebebeb"><td height="1" colspan="5" valign="top" style="padding:0"></td></tr> -->
+
+<!-- <tr> -->
+<!-- <td align="center" height="25">2535</td> -->
+<!-- <td><a href="">//자주찾는질문// 입사지원 한 이력서 수정/삭제</a></td> -->
+<!-- <td align="center" height="25">운영자</td> -->
+<!-- <td align="center" height="25">11-05 11:36</td> -->
+<!-- </tr> -->
+<!-- <tr bgcolor="ebebeb"><td height="1" colspan="5" valign="top" style="padding:0"></td></tr> -->
 
 
-<tr>
-<td align="center" height="25">2533</td>
-<td><a href="">//자주찾는질문// 아이디와 비밀번호를 모르겠어요.</a></td>
-<td align="center" height="25">운영자</td>
-<td align="center" height="25">11-05 11:35</td>
-<td align="center" height="25">4180</td>
-</tr>
-<tr bgcolor="ebebeb"><td height="1" colspan="5" valign="top" style="padding:0"></td></tr>
+<!-- <tr> -->
+<!-- <td align="center" height="25">2533</td> -->
+<!-- <td><a href="">//자주찾는질문// 아이디와 비밀번호를 모르겠어요.</a></td> -->
+<!-- <td align="center" height="25">운영자</td> -->
+<!-- <td align="center" height="25">11-05 11:35</td> -->
+<!-- </tr> -->
+<!-- <tr bgcolor="ebebeb"><td height="1" colspan="5" valign="top" style="padding:0"></td></tr> -->
 
-<tr>
-<td align="center" height="25">2532</td>
-<td><b><a href="">//자주찾는질문//개명을 했는데, 이름변경은 어디서 하나요?</a></b> <img src=""></td>
-<td align="center" height="25">운영자</td>
-<td align="center" height="25">11-05 11:33</td>
-<td align="center" height="25">4812</td>
-</tr>
-<tr bgcolor="ebebeb"><td height="1" colspan="5" valign="top" style="padding:0"></td></tr>
+<!-- <tr> -->
+<!-- <td align="center" height="25">2532</td> -->
+<!-- <td><b><a href="">//자주찾는질문//개명을 했는데, 이름변경은 어디서 하나요?</a></b> <img src=""></td> -->
+<!-- <td align="center" height="25">운영자</td> -->
+<!-- <td align="center" height="25">11-05 11:33</td> -->
+<!-- </tr> -->
+<!-- <tr bgcolor="ebebeb"><td height="1" colspan="5" valign="top" style="padding:0"></td></tr> -->
 
-<tr>
-<td align="center" height="25">165</td>
-<td><a href="">사람인에 대한 궁금한 점을 묻고 답하는 곳입니다.</a></td>
-<td align="center" height="25">운영자</td>
-<td align="center" height="25">02-01 11:37</td>
-<td align="center" height="25">12156</td>
-</tr>
-<tr bgcolor="ebebeb"><td height="1" colspan="5" valign="top" style="padding:0"></td></tr>
+<!-- <tr> -->
+<!-- <td align="center" height="25">165</td> -->
+<!-- <td><a href="">사람인에 대한 궁금한 점을 묻고 답하는 곳입니다.</a></td> -->
+<!-- <td align="center" height="25">운영자</td> -->
+<!-- <td align="center" height="25">02-01 11:37</td> -->
+<!-- </tr> -->
+<!-- <tr bgcolor="ebebeb"><td height="1" colspan="5" valign="top" style="padding:0"></td></tr> -->
+</tbody>
+<DIV class="title">게시판 목록</DIV>
+ <div class="search">
+	<form action="./list" method="post">
+		<select name="col">
+			<option value="name"
+			<c:if test="${col =='name' }">selected</c:if>
+			>성명</option>
+			<option value="title"
+			<c:if test="${col =='title' }">selected</c:if>
+			>제목</option>
+			<option value="content"
+			<c:if test="${col =='content' }">selected</c:if>
+			>내용</option>
+			<option value="total"
+			<c:if test="${col =='total' }">selected</c:if>
+			>전체출력</option>
+		</select>
+	<input type="text" name="word" value="${word }">
+	<input type="submit" value="검색">
+	</form>
+ </div>
 
 
-</tbody></table>
+  
+
+  
+  <DIV class='bottom'>
+  	${paging}<br>
+  	    <input type='button' value='등록' onclick="location.href='create'">
+  </DIV>
+
+
+
+
+
+
+</table>
 </div>
 
 </td></tr>
 <tr>
 <td height="30" align="center">
 <!-- 페이지  -->
-|<font color="ff8400"> <b>1</b> </font>
-|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=2">
- <b>2</b> </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=3"> <b>3</b>
-  </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=4"> <b>4</b>
-   </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=5"> <b>5</b>
-    </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=6"> <b>6</b>
-     </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=7"> <b>7</b>
-      </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=8"> <b>8</b>
-       </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=9"> <b>9</b>
-        </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=10"> <b>10</b>
-         </a>| <a href="qna.php?default=0&amp;get_total_count=33406&amp;page=11">다음 
-         <img src="http://www.saraminimage.co.kr/recruit/upjikjong/point_04.gif" width="5" height="7" border="0" align="absmiddle">
-         </a></td></tr>
+
+
+<!-- |<font color="ff8400"> <b>1</b> </font> -->
+<!-- |<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=2"> -->
+<!--  <b>2</b> </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=3"> <b>3</b> -->
+<!--   </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=4"> <b>4</b> -->
+<!--    </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=5"> <b>5</b> -->
+<!--     </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=6"> <b>6</b> -->
+<!--      </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=7"> <b>7</b> -->
+<!--       </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=8"> <b>8</b> -->
+<!--        </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=9"> <b>9</b> -->
+<!--         </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=10"> <b>10</b> -->
+<!--          </a>| <a href="qna.php?default=0&amp;get_total_count=33406&amp;page=11">다음  -->
+<!--          <img src="http://www.saraminimage.co.kr/recruit/upjikjong/point_04.gif" width="5" height="7" border="0" align="absmiddle"> -->
+<!--          </a></td></tr> -->
 <!-- 페이지  -->
 
-<tr><td align="right"><a href="javascript:if(confirm('글쓰기를 하시려면     \n\n로그인하셔야 합니다.     \n\n로그인하시겠습니까?     ')) location.href='/zf_user/auth?m_code=5&amp;url='+escape(location);" "="">
+<tr><td align="right"><a href="${pageContext.request.contextPath}/qna/create">
 <img src="http://www.saraminimage.co.kr/buttons/default/qnalist_write.gif" width="114" height="18" border="0" alt="Q&amp;A게시판에 글쓰기"></a></td></tr>
 <tr><td>&nbsp;</td></tr>
 <form name="helpdeskSearchForm" method="get" action="qna.php?default=0&amp;get_total_count=33406" onsubmit="return helpdeskSearchCheck(this);"></form>
@@ -267,6 +340,86 @@ for (i = 0; i < acc.length; i++) {
 
 
 </div>
+<!-- ================================= -->
+<!-- <DIV class="title">게시판 목록</DIV> -->
+<!--  <div class="search"> -->
+<!-- 	<form action="./list" method="post"> -->
+<!-- 		<select name="col"> -->
+<!-- 			<option value="name" -->
+<%-- 			<c:if test="${col =='name' }">selected</c:if> --%>
+<!-- 			>성명</option> -->
+<!-- 			<option value="title" -->
+<%-- 			<c:if test="${col =='title' }">selected</c:if> --%>
+<!-- 			>제목</option> -->
+<!-- 			<option value="content" -->
+<%-- 			<c:if test="${col =='content' }">selected</c:if> --%>
+<!-- 			>내용</option> -->
+<!-- 			<option value="total" -->
+<%-- 			<c:if test="${col =='total' }">selected</c:if> --%>
+<!-- 			>전체출력</option> -->
+<!-- 		</select> -->
+<%-- 	<input type="text" name="word" value="${word }"> --%>
+<!-- 	<input type="submit" value="검색"> -->
+<!-- 	</form> -->
+<!--  </div> -->
+
+<!--   <TABLE> -->
+<!--     <TR> -->
+<!--       <th>번호</th> -->
+<!--       <th width = "25%">제목</th> -->
+<!--       <th>이름</th> -->
+<!--       <th>조회수</th> -->
+<!--       <th>등록일</th> -->
+<!-- <!--       <th>grpno</th> --> -->
+<!-- <!--       <th>indent</th> --> -->
+<!-- <!--       <th>ansnum</th>       --> -->
+<!--     </TR> -->
+<%--   <c:choose> --%>
+<%--   <c:when test="${empty list}"> --%>
+<!--   <tr> -->
+<!-- 	  <td colspan="8" align="center">등록된 글이 없습니다.</td> -->
+<!-- 	  </tr> -->
+<%--   </c:when> --%>
+<%--   <c:otherwise> --%>
+<%--   <c:forEach var="dto" items="${list}"> --%>
+<!--   <tr> -->
+<%--     <td>${dto.qnANum}</td> --%>
+<!--     <td> -->
+<%--     <c:forEach begin="1" end="${dto.indent }" > --%>
+<!--     &nbsp;&nbsp; -->
+<%--     </c:forEach> --%>
+<%--     <c:if test="${dto.indent >0 }"> --%>
+<!--     [답변] -->
+<%--     </c:if> --%>
+<%--     <c:set var="rcount" value="${uti:rcount(dto.qnANum,rdao) }"/> --%>
+<%--     <a href="javascript:read('${dto.qnANum }')">${dto.title }</a> --%>
+<%--      <c:if test="${rcount>0 }"> --%>
+<%--      <span style="color:red;">(${rcount})</span> --%>
+<%--      </c:if> --%>
+<%--      <c:if test="${uti:newImg(fn:substring(dto.wdate,0,10)) }"> --%>
+<!--      <img src="../images/new.gif"> -->
+<%--      </c:if> --%>
+<!--       </td> -->
+<%--     <td>${dto.wname }</td> --%>
+<%--     <td>${dto.viewcnt }</td> --%>
+<%--     <td>${fn:substring(dto.wdate,0,10)  }</td> --%>
+<%--     <td>${dto.grpno }</td> --%>
+<%--     <td>${dto.indent }</td> --%>
+<%--     <td>${dto.ansnum }</td> --%>
+<!--     </tr> -->
+     
+<%--   </c:forEach> --%>
+<%--   </c:otherwise> --%>
+<%--   </c:choose>    --%>
+<!--   </TABLE> -->
+  
+<!--   <DIV class='bottom'> -->
+<%--   	${paging}<br> --%>
+<!--   	    <input type='button' value='등록' onclick="location.href='create'"> -->
+<!--   </DIV> -->
+
+
+<!-- ================================= -->
 
 
 <style type="text/css">
