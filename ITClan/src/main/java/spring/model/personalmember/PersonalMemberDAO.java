@@ -15,6 +15,10 @@ public class PersonalMemberDAO implements DAOMyBatisInter{
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
+	public String getGrade(String memberID){
+		return mybatis.selectOne("personalmember.getGrade", memberID);
+	}
+	
 	public int loginCheck(String memberID ,String passwd){
 		Map map = new HashMap();
 		map.put("memberID", memberID);

@@ -20,11 +20,14 @@ public class PersonalmemberController {
 	@Autowired
 	private PersonalMemberDAO dao;
 	@RequestMapping(value="/personal/login",method=RequestMethod.POST)
-	public String login(){
+	public String login(String memberID, String passwd){
 		int cnt = 0;
 		String grade = "";
 		
-		
+		cnt = dao.loginCheck(memberID, passwd);
+		if(cnt ==1){
+			
+		}
 		return "redirect:/";
 	}
 	

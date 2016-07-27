@@ -46,6 +46,11 @@ public class PersonalmemberDAOTest {
 	}
 
 	@Test @Ignore
+	public void testGetGrade() {
+		PersonalMemberDAO dao = (PersonalMemberDAO)beans.getBean("personalmemberdao");
+		assertEquals("P", dao.getGrade("bbb"));
+	}
+	@Test @Ignore
 	public void testLoginCheck() {
 		PersonalMemberDAO dao = (PersonalMemberDAO)beans.getBean("personalmemberdao");
 		assertEquals(1, dao.loginCheck("bbb", "1234"));
