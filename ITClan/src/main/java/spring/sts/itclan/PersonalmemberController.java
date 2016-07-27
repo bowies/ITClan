@@ -254,15 +254,22 @@ public class PersonalmemberController {
 	}
 	
 	@RequestMapping(value="/personal/create",method=RequestMethod.POST)
-	public String create(Model model ,PersonalMemberDTO dto, HttpServletRequest request) throws Exception{
+	public String create(Model model ,PersonalMemberDTO dto, HttpServletRequest request,String memberID) throws Exception{
 		int cnt = 0;
+		
 	String m_em1 = request.getParameter("m_em1");
 	String m_em2 = request.getParameter("m_em2");
 	String email = m_em1 + "@"+ m_em2;
 	dto.setEmail(email);
+	boolean flag = false;
+	if(dao.idCheck(memberID)>0 || dao.EmailCheck(email)>0){
+		flag = true;
+	}
+	if(!flag){
 	cnt = dao.create(dto);
-		
+	}
 		model.addAttribute("cnt",cnt);
+		model.addAttribute("flag",flag);
 		return "/personalmember/createProc";
 	}
 	@RequestMapping(value="/personal/create",method=RequestMethod.GET)

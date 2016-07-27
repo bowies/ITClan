@@ -31,7 +31,7 @@
 	</definition>
 	<definition name="/personalmember/createProc" extends="main">
 		<put-attribute name="title" value="개인회원 가입 축하"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/personalmember/createPoc.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/personalmember/createProc.jsp" />
 	</definition>
 
 
@@ -50,14 +50,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/bbs/deleteForm.jsp" />
 	</definition>
 
-	<definition name="/personalmember/pictureUpdate" extends="main">
-		<put-attribute name="title" value="개인회원 update Page"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/personalmember/pictureUpdateForm.jsp" />
-	</definition>
-	<definition name="/personalmember/pictureDelete" extends="main">
-		<put-attribute name="title" value="개인회원 delete Page"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/bbs/pictureDeleteForm.jsp" />
-	</definition>
+
 
 	<definition name="/personalmember/update" extends="main">
 		<put-attribute name="title" value="개인회원 update Page"></put-attribute>
