@@ -15,7 +15,7 @@
       alert('회원 약관에 동의해야 회원 가입이 가능합니다.'); 
       return false; // 서브밋 중지 
     }else{ 
-      location.href = "/personal/create";
+      location.href = "./create";
     } 
   } 
 </script> 
