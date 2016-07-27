@@ -20,6 +20,55 @@
 		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
 	</definition>
 	
+		<definition name="/login" extends="main">
+		<put-attribute name="title" value="Member Login Page"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/companymember/loginForm.jsp" />
+	</definition>
+
+	<definition name="/loginProc" extends="main">
+		<put-attribute name="title" value="Member Login Page!"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/companymember/loginProc.jsp" />
+	</definition>
+	
+	<definition name="/agree" extends="main">
+		<put-attribute name="title" value="Member agreement!"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/companymember/agreement.jsp" />
+	</definition>
+	
+		<definition name="/updatePw" extends="main">
+		<put-attribute name="title" value="Member password change Page"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/companymember/updatePwForm.jsp" />
+	</definition>
+
+	<definition name="/idFind" extends="main">
+		<put-attribute name="title" value="Member id change Page"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/companymember/idFindForm.jsp" />
+	</definition>
+
+	<definition name="/idFindProc" extends="main">
+		<put-attribute name="title" value="Member id change Page"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/companymember/idFindProc.jsp" />
+	</definition>
+
+	<definition name="/pwFind" extends="main">
+		<put-attribute name="title" value="Member password change Page"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/companymember/pwFindForm.jsp" />
+	</definition>
+
+	<definition name="/pwFindProc" extends="main">
+		<put-attribute name="title" value="Member password change Page"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/companymember/pwFindProc.jsp" />
+	</definition>
+	
+	
 	
 	
 	<!-- definition의 이름은controller에서 리턴되는 뷰의 이름 -->	
