@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE  tiles-definitions PUBLIC 
+    "-//Aapche Software Foundation//DTD Tiles Configuration 2.0//EN" 
+    "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+
+	<definition name="main" template="/WEB-INF/views/templates/template.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/templates/top.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/templates/bottom.jsp" />
+	</definition>
+	
+	
+	<!-- definition의 이름은controller에서 리턴되는 뷰의 이름 -->	
+	<definition name="/home" extends="main">
+		<put-attribute name="title" value="Default Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+	</definition>
+	
+		<definition name="/companymember/login" extends="main">
+		<put-attribute name="title" value="Member Login Page"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/companymember/loginForm.jsp" />
+	</definition>
+
+	<definition name="/companymember/loginProc" extends="main">
+		<put-attribute name="title" value="Member Login Page!"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/companymember/loginProc.jsp" />
+	</definition>
+	
+	<definition name="/companymember/agree" extends="main">
+		<put-attribute name="title" value="Member agreement!"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/companymember/agreement.jsp" />
+	</definition>
+	
+		<definition name="/companymember/updatePw" extends="main">
+		<put-attribute name="title" value="Member password change Page"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/companymember/updatePwForm.jsp" />
+	</definition>
+
+	<definition name="/companymember/idFind" extends="main">
+		<put-attribute name="title" value="Member id change Page"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/companymember/idFindForm.jsp" />
+	</definition>
+
+	<definition name="/companymember/idFindProc" extends="main">
+		<put-attribute name="title" value="Member id change Page"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/companymember/idFindProc.jsp" />
+	</definition>
+
+	<definition name="/companymember/pwFind" extends="main">
+		<put-attribute name="title" value="Member password change Page"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/companymember/pwFindForm.jsp" />
+	</definition>
+
+	<definition name="/companymember/pwFindProc" extends="main">
+		<put-attribute name="title" value="Member password change Page"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/companymember/pwFindProc.jsp" />
+	</definition>
+	
+	
+	
+	
+	<!-- definition의 이름은controller에서 리턴되는 뷰의 이름 -->	
+	<definition name="/companymember/home" extends="main">
+		<put-attribute name="title" value="Default Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+	</definition>
+	
+	<definition name="/companymember/reply" extends="main">
+		<put-attribute name="title" value="CompanyMember agreement!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/companymember/replyForm.jsp" />
+	</definition>
+
+	<definition name="/companymember/create" extends="main">
+		<put-attribute name="title" value="CompanyMember Join Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/companymember/createForm.jsp" />
+	</definition>
+
+
+
+	<definition name="/companymember/read" extends="main">
+		<put-attribute name="title" value="CompanyMember Join Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/companymember/read.jsp" />
+	</definition>
+
+	<definition name="/companymember/delete" extends="main">
+		<put-attribute name="title" value="CompanyMember information delete Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/companymember/deleteForm.jsp" />
+	</definition>
+
+	<definition name="/companymember/update" extends="main">
+		<put-attribute name="title" value="CompanyMember update Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/companymember/updateForm.jsp" />
+	</definition>
+	
+	
+	
+	<definition name="/companymember/list" extends="main">
+		<put-attribute name="title" value="CompanyMember password change Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/companymember/list.jsp" />
+	</definition>
+	
+</tiles-definitions> 

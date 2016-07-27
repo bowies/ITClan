@@ -3,7 +3,7 @@ package spring.model.companymember;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import spring.model.companyinfo.CompanyInfoDAO;
+import spring.model.companyinfo.*;
 
 @Service
 public class CompanyMemberMgr {

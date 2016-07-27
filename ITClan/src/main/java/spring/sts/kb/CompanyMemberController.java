@@ -32,13 +32,13 @@ public class CompanyMemberController {
 
 		String passwd = dao.pwFind(companyID, name);
 		model.addAttribute("passwd", passwd);
-		return "/pwFindProc";
+		return "/companymember/pwFindProc";
 	}
 
 	@RequestMapping(value = "/companymember/pwFind", method = RequestMethod.GET)
 	public String pwFind() {
 
-		return "/pwFind";
+		return "/companymember/pwFind";
 	}
 
 	@RequestMapping(value = "/companymember/idFind", method = RequestMethod.POST)
@@ -46,13 +46,13 @@ public class CompanyMemberController {
 
 		String companyID = dao.idFind(name, email);
 		model.addAttribute("companyID", companyID);
-		return "/idFindProc";
+		return "/companymember/idFindProc";
 	}
 
 	@RequestMapping(value = "/companymember/idFind", method = RequestMethod.GET)
 	public String companyIDFind() {
 
-		return "/idFind";
+		return "/companymember/idFind";
 	}
 
 	@RequestMapping(value = "/companymember/delete", method = RequestMethod.POST)
@@ -76,7 +76,7 @@ public class CompanyMemberController {
 	
 		model.addAttribute("companyID", companyID);
 
-		return "/delete";
+		return "/companymember/delete";
 	}
 
 	@RequestMapping(value = "/companymember/updatePw", method = RequestMethod.POST)
@@ -93,7 +93,7 @@ public class CompanyMemberController {
 	@RequestMapping(value = "/companymember/updatePw", method = RequestMethod.GET)
 	public String updatePw() {
 
-		return "/updatePw";
+		return "/companymember/updatePw";
 	}
 
 	
@@ -105,7 +105,7 @@ public class CompanyMemberController {
 			return "redirect:/";
 		}
 
-		return "/update";
+		return "/companymember/update";
 	}
 
 	@RequestMapping(value = "/companymember/update", method = RequestMethod.GET)
@@ -118,7 +118,7 @@ public class CompanyMemberController {
 
 		model.addAttribute("dto", dto);
 
-		return "/update";
+		return "/companymember/update";
 	}
 
 	@RequestMapping(value = "/companymember/read")
@@ -131,7 +131,7 @@ public class CompanyMemberController {
 
 		model.addAttribute("dto", dto);
 
-		return "/read";
+		return "/companymember/read";
 	}
 
 	@RequestMapping("/companymember/logout")
@@ -219,7 +219,7 @@ public class CompanyMemberController {
 		request.setAttribute("nowPage", nowPage);
 		request.setAttribute("nPage", nPage);
 		request.setAttribute("companyNumber", companyNumber);
-		return "/login";
+		return "/companymember/login";
 	}
 
 	@RequestMapping(value = "/companymember/email_form")
@@ -266,19 +266,19 @@ public class CompanyMemberController {
 		model.addAttribute("cnt", cnt);
 		model.addAttribute("flag", flag);
 
-		return "/createProc";
+		return "/companymember/createProc";
 
 	}
 
 	@RequestMapping(value = "/companymember/create")
 	public String create() {
 
-		return "/create";
+		return "/companymember/create";
 	}
 
 	@RequestMapping(value = "/companymember/agree")
 	public String agree() {
-		return "/agree";
+		return "/companymember/agree";
 	}
 
 	@RequestMapping(value = "/companymember/list")
@@ -317,7 +317,7 @@ public class CompanyMemberController {
 		model.addAttribute("word", word);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("list", list);
-		return "member/list";
+		return "/companymember/list";
 	}
 
 }

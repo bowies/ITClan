@@ -4,9 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Component;
 
 import spring.model.itclan.DAOMyBatisInter;
-
+@Component
 public class CompanyInfoDAO implements DAOMyBatisInter {
 
 	

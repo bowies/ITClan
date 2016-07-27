@@ -6,16 +6,13 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import spring.model.itclan.DAOMyBatisInter;
-
+@Component
 public class CompanyMemberDAO implements DAOMyBatisInter {
 	@Autowired
 	private SqlSessionTemplate mybatis;
-
-	public SqlSessionTemplate getMybatis() {
-		return mybatis;
-	}
 
 	public void setMybatis(SqlSessionTemplate mybatis) {
 		this.mybatis = mybatis;
