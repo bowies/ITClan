@@ -269,7 +269,7 @@ public class PersonalmemberController {
 	cnt = dao.create(dto);
 	}
 		model.addAttribute("cnt",cnt);
-		model.addAttribute("flag",flag);
+		model.addAttribute("flag",flag); 
 		return "/personalmember/createProc";
 	}
 	@RequestMapping(value="/personal/create",method=RequestMethod.GET)
