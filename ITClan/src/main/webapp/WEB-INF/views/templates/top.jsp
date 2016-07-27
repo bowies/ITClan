@@ -54,13 +54,16 @@ padding-right: 30px
      </c:otherwise>
      </c:choose>
         
-     <li><a href="${pageContext.request.contextPath}/bbs/list">글목록</a></li>
-     <li><a href="${pageContext.request.contextPath}/bbs/create">글생성</a></li>
-     <li><a href="${pageContext.request.contextPath}/memo/list">메모목록</a></li>
-     <li><a href="${pageContext.request.contextPath}/memo/create">메모생성</a></li>
-     <li><a href="${pageContext.request.contextPath}/image/list">이미지목록</a></li>
-     <li><a href="${pageContext.request.contextPath}/image/create">이미지생성</a></li>
+<%--      <li><a href="${pageContext.request.contextPath}/bbs/list">글목록</a></li> --%>
+<%--      <li><a href="${pageContext.request.contextPath}/bbs/create">글생성</a></li> --%>
+<%--      <li><a href="${pageContext.request.contextPath}/memo/list">메모목록</a></li> --%>
+<%--      <li><a href="${pageContext.request.contextPath}/memo/create">메모생성</a></li> --%>
+<%--      <li><a href="${pageContext.request.contextPath}/image/list">이미지목록</a></li> --%>
+<%--      <li><a href="${pageContext.request.contextPath}/image/create">이미지생성</a></li> --%>
      <li><a href="${pageContext.request.contextPath}/cal/calendar">일정관리</a></li>
+     <li><a href="${pageContext.request.contextPath}/qna/create">qna생성</a></li>
+     <li><a href="${pageContext.request.contextPath}/qna/list">qna목록</a></li>
+     
      
      <c:if test="${not empty sessionScope.id and sessionScope.grade == 'A'}">
      <li id="admin"><a href="${pageContext.request.contextPath}/admin/list">회원목록</a></li>
