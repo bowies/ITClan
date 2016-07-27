@@ -15,6 +15,13 @@ public class PersonalMemberDAO implements DAOMyBatisInter{
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
+	public int loginCheck(String memberID ,String passwd){
+		Map map = new HashMap();
+		map.put("memberID", memberID);
+		map.put("passwd", passwd);
+		return mybatis.selectOne("personalmember.login", map);
+	}
+	
 	public void setMybatis(SqlSessionTemplate mybatis) {
 		this.mybatis = mybatis;
 	}

@@ -46,6 +46,11 @@ public class PersonalmemberDAOTest {
 	}
 
 	@Test @Ignore
+	public void testLoginCheck() {
+		PersonalMemberDAO dao = (PersonalMemberDAO)beans.getBean("personalmemberdao");
+		assertEquals(1, dao.loginCheck("bbb", "1234"));
+	}
+	@Test @Ignore
 	public void testDelete() throws Exception {
 		PersonalMemberDAO dao = (PersonalMemberDAO)beans.getBean("personalmemberdao");
 		assertEquals(1, dao.delete("usesr1"));

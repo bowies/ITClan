@@ -19,9 +19,39 @@ import spring.utility.itclan.*;
 public class PersonalmemberController {
 	@Autowired
 	private PersonalMemberDAO dao;
+	@RequestMapping(value="/personal/login",method=RequestMethod.POST)
+	public String login(){
+		int cnt = 0;
+		String grade = "";
+		
+		
+		return "redirect:/";
+	}
 	
-	
-	
+	@RequestMapping(value="/personal/login",method=RequestMethod.GET)
+	public String login(HttpServletRequest request){
+		String c_id = "";
+		String c_id_val = "";
+		
+		Cookie[] cookies = request.getCookies();
+		Cookie cookie = null;
+		
+		if(cookie != null){
+			for(int i = 0; i < cookies.length ; i++){
+				cookie = cookies[i];
+				if(cookie.getName().equals("c_id")){
+					c_id = cookie.getValue();
+				}else if(cookie.getName().equals("c_id_val")){
+						c_id_val = cookie.getValue();
+				}
+			}
+		}
+			
+			request.setAttribute("c_id", c_id);
+			request.setAttribute("c_id_val", c_id_val);
+		
+		return "/personalmember/login"; 
+	}
 	
 	@RequestMapping("/personal/EmailCheckForm")
 	public String emailCheckF(){
