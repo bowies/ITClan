@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="companyinfo">
 <insert id="create" parameterType="CompanyInfoDTO">
-insert into CompanyInfo(CompanyID, CompanyName, CompanyScale, BossName, CompanyNumber, CI, CategoryCode)
-values(#{companyID},#{companyName}, #{companyName}, #{companyScale}, #{bossName}, #{companyNumber},#{ci},#{categoryCode});
+insert into CompanyInfo(companyID, companyName,companyScale, bossName, companyNumber, ci, categoryCode)
+values(#{companyID},#{companyName}, #{companyScale}, #{bossName}, #{companyNumber},#{ci},#{categoryCode})
 
 
 </insert>

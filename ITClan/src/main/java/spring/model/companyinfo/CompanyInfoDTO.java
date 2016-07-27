@@ -5,7 +5,7 @@ public class CompanyInfoDTO {
 	private String companyName;
 	private String companyScale;
 	private String bossName;
-	private int companyNumber;
+	private long companyNumber;
 	private String ci;
 	private String categoryCode;
 	
@@ -35,10 +35,10 @@ public class CompanyInfoDTO {
 	public void setBossName(String bossName) {
 		this.bossName = bossName;
 	}
-	public int getCompanyNumber() {
+	public long getCompanyNumber() {
 		return companyNumber;
 	}
-	public void setCompanyNumber(int companyNumber) {
+	public void setCompanyNumber(long companyNumber) {
 		this.companyNumber = companyNumber;
 	}
 	public String getCi() {

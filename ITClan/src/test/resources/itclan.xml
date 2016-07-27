@@ -63,7 +63,7 @@
 		p:mybatis-ref="sqlSession" />
 		
 	<!-- CompanyInfoDAO 객체 생성 -->
-	<bean id="companyinfodao" class="spring.model.companyinfo"
+	<bean id="companyinfodao" class="spring.model.companyinfo.CompanyInfoDAO"
 		p:mybatis-ref="sqlSession" />
 
 	<!-- IndustryCategoryDTO 객체 생성 -->
