@@ -262,7 +262,7 @@ public class PersonalmemberController {
 	String email = m_em1 + "@"+ m_em2;
 	dto.setEmail(email);
 	boolean flag = false;
-	if(dao.idCheck(memberID)>0 || dao.EmailCheck(email)>0){
+	if(dao.idCheck(memberID)>0 || dao.EmailCheck(email)>0 ){
 		flag = true;
 	}
 	if(!flag){
