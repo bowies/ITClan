@@ -6,7 +6,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="companymember">
 
 
+	<select id="getGrade" parameterType="String" resultType="String">
+		SELECT
+		grade FROM CompanyMember
+		WHERE companyID = #{companyID}
+	</select>
 
+	<select id="loginCheck" parameterType="Map" resultType="int">
+		select
+		count(companyID) from CompanyMember
+		where companyID = #{companyID} and passwd = #{passwd}
+	</select>
+
+	<select id="duplicateEmail" parameterType="String" resultType="int">
+		select count(email) From CompanyMember
+		where email = #{email}
+	</select>
+
+	<select id="duplicateID" parameterType="String" resultType="int">
+		select count(companyID) From CompanyMember
+		where companyID = #{companyID}
+	</select>
 
 
 <select id="pwFind" parameterType="Map" resultType="String">

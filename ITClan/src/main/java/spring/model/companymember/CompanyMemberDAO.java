@@ -21,6 +21,32 @@ public class CompanyMemberDAO implements DAOMyBatisInter {
 		this.mybatis = mybatis;
 	}
 	
+
+
+	public String getGrade(String companyID) {
+		
+		return mybatis.selectOne("companymember.getGrade", companyID);
+	}
+
+	public int loginCheck(String companyID, String passwd) {
+		Map map = new HashMap();
+		map.put("companyID", companyID);
+		map.put("passwd", passwd);
+
+		return mybatis.selectOne("companymember.loginCheck", map);
+	}
+
+
+	public int duplicateEmail(String email) {
+		return mybatis.selectOne("companymember.duplicateEmail", email);
+	}
+
+	public int duplicateID(String companyID) {
+
+		return mybatis.selectOne("companymember.duplicateID", companyID);
+	}
+
+	
 	public String pwFind(String companyID , String email){
 		Map map = new HashMap();
 		map.put("companyID", companyID);
