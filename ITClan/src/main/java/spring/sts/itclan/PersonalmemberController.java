@@ -256,8 +256,11 @@ public class PersonalmemberController {
 	@RequestMapping(value="/personal/create",method=RequestMethod.POST)
 	public String create(Model model ,PersonalMemberDTO dto, HttpServletRequest request) throws Exception{
 		int cnt = 0;
-	
-			cnt = dao.create(dto);
+	String m_em1 = request.getParameter("m_em1");
+	String m_em2 = request.getParameter("m_em2");
+	String email = m_em1 + "@"+ m_em2;
+	dto.setEmail(email);
+	cnt = dao.create(dto);
 		
 		model.addAttribute("cnt",cnt);
 		return "/personalmember/createProc";
