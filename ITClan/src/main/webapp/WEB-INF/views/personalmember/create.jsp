@@ -14,9 +14,9 @@
   function inputCheck(frm){ 
 	    var f = document.frm; // <FORM>태그 객체 
 	     
-	    if(f.id.value == ""){ 
+	    if(f.memberID.value == ""){ 
 	      alert("아이디를 입력해 주세요."); 
-	      f.id.focus(); // 폼이름.input 태그명.커서 셋팅    
+	      f.memberID.focus(); // 폼이름.input 태그명.커서 셋팅    
 	 
 	      return;       // 프로그램 종료, 값을 돌려줌 
 	    } 
@@ -45,22 +45,23 @@
 	    } 
 	
 	 
+	    if(f.birth.value == ""){ 
+	      alert("생년월일(숫자)을 입력해 주세요."); 
+	      f.birth.focus(); 
+	      return; 
+	    } 
 	    if(f.phone.value == ""){ 
 	      alert("전화번호을 입력해 주세요."); 
 	      f.phone.focus(); 
 	      return; 
 	    } 
 	 
-	    if(f.e_em1.value == ""){ 
+	    if(f.email.value == ""){ 
 	      alert("이메일을 입력해 주세요."); 
-	      f.e_em1.focus(); 
+	      f.email.focus(); 
 	      return; 
 	    } 
-	    if(f.e_em2.value == ""){ 
-	      alert("이메일을 입력해 주세요."); 
-	      f.e_em2.focus(); 
-	      return; 
-	    } 
+	    
 	    if(f.address.value == ""){ 
 	      alert("이메일을 입력해 주세요."); 
 	      f.address.focus(); 
@@ -73,7 +74,7 @@
 	 
 	       // Form onsubmit 이벤트일경우 
 	    // return false; 
-	     
+	  
 	    f.submit(); 
 	  } 
 	 
@@ -124,42 +125,7 @@
 			}
 		});
 	});
-  var addressList = new Array("naver.com","hanmail.net","nate.com","daum.net","gmail.com");
-  window.onload = function(){
-	    var v_sidoSelect = document.getElementById("sideSelect"); // SELECT TAG
-	        
-	    for (i =0 ; i<addressList.length; i++){// 0 ~ 3   
-	        // 새로운 <option value=''>값</option> 태그 생성
-	        var optionEl = document.createElement("option");
-	    
-	        // option태그에 value 속성 값으로 저장
-	        optionEl.value = addressList[i];
-	        
-	        // text 문자열을 새로 생성한 <option> 태그의 값으로 추가
-	        optionEl.appendChild (document.createTextNode(addressList[i]));
-	        
-	        // 만들어진 option 태그를 <select>태그에 추가
-	        v_sidoSelect.appendChild(optionEl);
-	    }
-  }
-  $(document).ready(function(){
-	  $("#sideSelect").change(function(){
-	  	var value = $(".selectBox option:selected").text();
-	  	if(value!="선택하세요" && value!="직접입력"){
-	  		$("#m_em2").val(value);
-	  		$("#m_em2").attr("disabled",true);
-	  	}else{
-	  		$("#m_em2").val("");
-	  		$("#m_em2").attr("disabled",false);
-	  	}
-	  });
-	  });
-  $(document).ready(function(){
-		$("#join").hide();
-	    $("#joinTitle").click(function(){
-	        $("#join").slideToggle();
-	    });
-	}); 
+  
   </script>
 <style type="text/css">
 input[type=text] {
@@ -226,29 +192,38 @@ table tr td {
 <h2>회원가입</h2>
 </div>
 
-<form action="./create" name="frm">
+<form method="post" action="./create" name="frm">
 <div style=" margin: auto;width: 550px; background-color: #C4DEFF;" align="center">
+<div id="ID" style="width: 500px"> 
+<div id="ID_sub1" style="width: 100px; float: left; margin-left:  30px">
+memberID 
+</div>
+<div id="ID_sub2"><input type="text" name="memberID" style="width: 300px; ">
+<input type="button" value="ID중복확인"  onclick="idCheck(document.frm.id.value)" style="height: 23px"/>
+</div>
 <div id="name" style="width: 500px;padding-top: 23px; "> 
 <div id="name_sub1" style="width: 100px; float: left; margin-left:  30px">
 Name 
 </div>
 <div id="name_sub2"><input type="text" name="name" style="width: 300px; ">
-<input type="button" value="ID중복확인"  onclick="idCheck(document.frm.id.value)" style="height: 23px"/>
+
 </div>
 <hr style="border-color: #2478FF; ">
 </div>
-<div id="MemberID" style="width: 500px"> 
-<div id="ID_sub1" style="width: 100px; float: left; margin-left:  30px">
-memberID 
+<div id="birth" style="width: 500px;padding-top: 23px; "> 
+<div id="birth_sub1" style="width: 100px; float: left; margin-left:  30px">
+Birth 
 </div>
-<div id="ID_sub2"><input type="text" name="id" style="width: 300px; "></div>
+<div id="birth_sub2"><input type="text" name="birth" style="width: 300px; ">
+
+</div>
 <hr style="border-color: #2478FF;">
 </div>
 <div id="pw" style="width: 500px"> 
 <div id="pw_sub1" style="width: 100px; float: left; margin-left:  30px">
 Pw 
 </div>
-<div id="pw_sub2"><input id="passwd" type="text" style="width: 300px; "></div>
+<div id="pw_sub2"><input id="passwd" name="passwd" type="password" style="width: 300px; "></div>
 
 </div>
 <div id="passwdCheck" style="width: 500px"> 
@@ -262,10 +237,7 @@ Pw Check
 <div id="email_sub1" style="width: 100px; float: left; margin-left:  30px">
 Email
 </div>
-<div id="pwc_sub2"><input id="m_em1" name="m_em1" type="text" size="10">&nbsp;@&nbsp;<input type="text" size="12"  name="m_em2" id="m_em2" value="">
-	<select onchange="select()" id="sideSelect" class="selectBox">
-	<option value="">선택하세요</option>
-	</select>
+<div id="pwc_sub2"><input type="email" name="email" style="width: 300px;">
 	<input type="button" value="email중복확인"  onclick="EmailCheck(document.frm.email.value)"/>
 	</div>
 <hr style="border-color: #2478FF;">
