@@ -5,9 +5,11 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import spring.model.itclan.DAOMyBatisInter;
 
+@Component
 public class OfferDAO implements DAOMyBatisInter {
 	
 	@Autowired

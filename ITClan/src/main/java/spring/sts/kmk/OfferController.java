@@ -48,7 +48,7 @@ public class OfferController {
 	@RequestMapping(value="offer/create", method=RequestMethod.GET)
 	public String create(){
 		
-		return "/offer/createForm";
+		return "/offer/create";
 	}
 	
 	@RequestMapping(value="/offer/update", method=RequestMethod.POST)
@@ -97,13 +97,13 @@ public class OfferController {
 		
 		//dao.upViewcnt(offerNum);//조회수 증가
 		Object dto=dao.read(offerNum);//한건의 레코드 가져오기
-		String title= ((OfferDTO) dto).getTitle().replaceAll("\r\n","<br>");
+		String title= ((OfferDTO) dto).getTitle();
 		((OfferDTO) dto).setTitle(title);		
 		String offerdate=((OfferDTO) dto).getOfferDate().substring(0,10);
 		((OfferDTO) dto).setOfferDate(offerdate);
-		String recruitment= ((OfferDTO) dto).getRecruitment().replaceAll("\r\n","<br>");
+		String recruitment= ((OfferDTO) dto).getRecruitment();
 		((OfferDTO) dto).setRecruitment(recruitment);
-		String Salary= ((OfferDTO) dto).getSalary().replaceAll("\r\n","<br>");
+		String Salary= ((OfferDTO) dto).getSalary();
 		((OfferDTO) dto).setSalary(Salary);
 		
 		model.addAttribute("dto", dto);
