@@ -43,9 +43,9 @@ function input(f) {
  
 <FORM name='frm'
 	  method='POST'
-	  action='./updatePw'
+	  action='./updatepw'
 	  onsubmit="return input(this)">
-<input type="hidden" name="memberID" value="${param.memberID}">
+<input type="hidden" name="memberID" value="${memberID}">
   <TABLE class='table'>
     <TR>
       <TH>패스워드</TH>

@@ -36,14 +36,12 @@ table tr td{
 </style> 
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 <script type="text/javascript">
-function deleteM(id){
+function deleteM(memberID){
 if(confirm("정말탈퇴 하겠습니까?")){
-var url = "delete";
-url = url +"?memberID="+id;
-url = url +"&col=${param.col}";
-url = url +"&word=${param.word}";
-url = url +"&nowPage=${param.nowPage}";
- 
+	var passwd = prompt("비밀번호를 입력하세요","");
+var url = "./deletePwC";
+url += "?memberID="+memberID
+		url+= "&passwd="+passwd;
 location.href=url;
  
 }

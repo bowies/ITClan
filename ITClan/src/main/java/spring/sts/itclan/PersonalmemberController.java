@@ -23,9 +23,10 @@ public class PersonalmemberController {
 	private PersonalMemberDAO dao;
 	
 	@RequestMapping("/personal/deletePwC")
-	public String deletePwC(String memberID , String passwd){
+	public String deletePwC(String memberID , String passwd,Model model){
 		if(dao.passwdCheck(memberID, passwd)>0){
-			return "/personalmember/delete";
+			model.addAttribute("memberID", memberID);
+			return "redirect:/personal/delete";
 		}else{
 			return "/error/passwderror";
 		}
@@ -33,8 +34,9 @@ public class PersonalmemberController {
 	}
 	
 	@RequestMapping("/personal/delete")
-	public String delete(String memberID) throws Exception{
+	public String delete(String memberID,HttpSession session) throws Exception{
 		if(dao.delete(memberID)>0){
+			session.invalidate();
 			return "redirect:/";
 		}else{
 			return "error/error";
@@ -64,21 +66,23 @@ public class PersonalmemberController {
 	public String idFind(){
 		return "/personalmember/idFind";
 	}
-	@RequestMapping(value="/personal/updatePw",method=RequestMethod.POST)
-	public String updatePw(Model model,String passwd ,String memberID){
+	@RequestMapping(value="/personal/updatepw",method=RequestMethod.POST)
+	public String updatePw(Model model,String passwd ,String memberID,HttpSession session){
 		
 		
 		if(dao.updatePw(passwd, memberID)>0){
-			return "redirect:/personalmember/read";
+			session.invalidate();
+			return "redirect:/";
 		}else{
 			return "/error/error";
 		}
 	}
 	@RequestMapping(value="/personal/updatepw",method=RequestMethod.GET)
-	public String updatePw(String memberID,HttpSession session){
+	public String updatePw(String memberID,HttpSession session,Model model){
 		if(memberID == null){
 			memberID = (String)session.getAttribute("memberID");
 		}
+		model.addAttribute("memberID", memberID);
 		return "/personalmember/updatepw";
 	}
 	@RequestMapping("/personal/logout")
