@@ -64,6 +64,14 @@
 		<put-attribute name="title" value="개인회원 패스워드 찾기 Page"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/personalmember/pwFind.jsp" />
 	</definition>
+	<definition name="/personalmember/idFindProc" extends="main">
+		<put-attribute name="title" value="개인회원 아이디찾기 Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/personalmember/idFindProc.jsp" />
+	</definition>
+	<definition name="/personalmember/pwFindProc" extends="main">
+		<put-attribute name="title" value="개인회원 패스워드 찾기 Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/personalmember/pwFindProc.jsp" />
+	</definition>
 	
 	
 	

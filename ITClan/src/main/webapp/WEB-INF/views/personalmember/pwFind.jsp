@@ -48,8 +48,8 @@ margin: 20px auto;
       <TD><input type="text" name="memberID" value="ccc"></TD>
     </TR>
     <TR>
-      <TH>이름</TH>
-      <TD><input type="text" name = "name" value="하롱이"></TD>
+      <TH>Email</TH>
+      <TD><input type="email" name = "email" value="member3@email.com"></TD>
     </TR>
   </TABLE>
   

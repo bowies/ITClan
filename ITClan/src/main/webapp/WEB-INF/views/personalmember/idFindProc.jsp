@@ -45,7 +45,8 @@ margin: 20px auto;
 <c:when test="${empty memberID}">찾으시는 아이디는 없습니다.<br>
 <input type='button' value='home' onclick="location.href='../'"></c:when>
 <c:otherwise>
-찾으시는 아이디는 ${memberID }입니다.
+<h2>
+찾으시는 아이디는 ${memberID }입니다.</h2>
 <br>
 
 <input type='button' value='home' onclick="location.href='../'">

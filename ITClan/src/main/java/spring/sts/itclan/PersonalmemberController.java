@@ -45,7 +45,7 @@ public class PersonalmemberController {
 	@RequestMapping(value="/personal/pwFind",method=RequestMethod.POST)
 	public String pwFind(Model model,String memberID , String email){
 		String passwd = dao.pwFind(memberID, email);
-		model.addAttribute("memberID",memberID);
+		model.addAttribute("passwd",passwd);
 		return "/personalmember/pwFindProc"; 
 	}
 	

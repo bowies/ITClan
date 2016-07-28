@@ -198,8 +198,10 @@ table tr td {
 <div id="ID_sub1" style="width: 100px; float: left; margin-left:  30px">
 memberID 
 </div>
-<div id="ID_sub2"><input type="text" name="memberID" style="width: 300px; ">
+<div id="ID_sub2"><input type="text" name="memberID" style="width: 250px; ">
 <input type="button" value="ID중복확인"  onclick="idCheck(document.frm.memberID.value)" style="height: 23px"/>
+</div>
+<hr style="border-color: #2478FF; ">
 </div>
 <div id="name" style="width: 500px;padding-top: 23px; "> 
 <div id="name_sub1" style="width: 100px; float: left; margin-left:  30px">

@@ -45,7 +45,9 @@ margin: 20px auto;
 <c:when test="${empty passwd }">
 찾으시는 password가 없습니다.<br>
 </c:when><c:otherwise>
-찾으시는 password는 ${passwd } 입니다.<br>
+<h2 align="center">
+찾으시는 password는 ${passwd } 입니다.</h2>
+<br>
 </c:otherwise>
 </c:choose>
 

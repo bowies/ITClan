@@ -74,11 +74,7 @@ location.href=url;
     <tr> 
       <th>전화번호</th> 
       <td>${dto.phone }</td> 
-    </tr>           
-    <tr> 
-      <th>전화번호</th> 
-      <td>${dto.phone }</td> 
-    </tr>           
+    </tr>        
     <tr>  
       <th>이메일</th> 
       <td>${dto.email }</td> 
