@@ -9,7 +9,30 @@
 *{ 
   font-family: gulim; 
   font-size: 16px; 
-} 
+}
+.title{
+font-size : 30px;
+	width : 400px;
+	height : 30px;
+	margin: 20px auto ;
+	padding-left: 15px;
+}
+.bottom{
+	width : 400px;
+	height : 30px;
+	margin: 10px auto ;
+	padding-left: 15px;
+}
+table tr th{
+	background-color : #DAD9FF;
+	height: 44px;
+}
+table tr td{
+	padding-left : 10px;
+	height: 44px;
+	
+}
+
 </style> 
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 <script type="text/javascript">
@@ -35,7 +58,7 @@ location.href=url;
  
 <DIV class="title">${dto.name }의 회원정보</DIV>
  
-  <TABLE class='table'>
+  <TABLE class='table' style="margin: auto;width: 640px;border: 1px solid;border-collapse: collapse;">
     <TR>
       <TH>아이디</TH>
       <TD>${dto.memberID }</TD>
@@ -47,11 +70,7 @@ location.href=url;
     <tr> 
       <th>생년월일</th> 
       <td>${birth }</td> 
-    </tr>           
-    <tr> 
-      <th>email</th> 
-      <td>${dto.email }</td> 
-    </tr>           
+    </tr>                 
     <tr> 
       <th>전화번호</th> 
       <td>${dto.phone }</td> 
@@ -72,10 +91,6 @@ location.href=url;
         ${dto.address2 }
       </td> 
     </tr>
-      <tr>  
-      <th>날짜</th> 
-      <td>${dto.mdate }</td> 
-    </tr> 
   </TABLE>
   
   <DIV class='bottom'>

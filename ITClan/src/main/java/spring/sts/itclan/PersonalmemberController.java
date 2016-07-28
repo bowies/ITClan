@@ -254,15 +254,17 @@ public class PersonalmemberController {
 		}
 		
 			dto = (PersonalMemberDTO) dao.read(memberID);
-		Object birth1 = (Object) dto.getBirth(); 
-		StringBuffer birth = new StringBuffer();
-		System.out.println("호호호"+((String) birth1).substring(1,2));
-		birth.append(((String) birth1).substring(1,2));
-		birth.append("-");
-		birth.append(((String) birth1).substring(3,4));
-		birth.append("-");
-		birth.append(((String) birth1).substring(5,6));
+		int cnt = dto.getBirth();
+		String birth1 = Integer.toString(cnt);
 		
+		
+		StringBuffer birth = new StringBuffer();
+		birth.append(birth1.substring(0,2));
+		birth.append("년 ");
+		birth.append(birth1.substring(2,4));
+		birth.append("월 ");
+		birth.append(birth1.substring(4,6));
+		birth.append("일");
 		model.addAttribute("birth", birth);
 		model.addAttribute("dto",dto);
 		return "/personalmember/read";
