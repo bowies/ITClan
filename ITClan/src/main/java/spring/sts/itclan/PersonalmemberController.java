@@ -80,7 +80,12 @@ public class PersonalmemberController {
 		}
 		return "/personalmember/updatePw";
 	}
-	
+	@RequestMapping("/personal/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+
+		return "redirect:/";
+	}
 	@RequestMapping(value="/personal/login",method=RequestMethod.POST)
 	public String login(String memberID, String passwd,String c_id,
 		HttpSession session,HttpServletResponse response,Model model){

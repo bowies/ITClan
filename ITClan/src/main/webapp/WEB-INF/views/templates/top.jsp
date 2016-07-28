@@ -40,17 +40,17 @@ padding-right: 30px
      <li><a href="${pageContext.request.contextPath}/">홈</a></li>    
     
     <c:choose>
-    <c:when test="${empty sessionScope.id}">
+    <c:when test="${empty sessionScope.memberID}">
      <li><a href="${pageContext.request.contextPath}/personal/login">로그인</a></li>
      <li><a href="${pageContext.request.contextPath}/personal/agree">회원 가입</a></li>
-     <li><a href="${pageContext.request.contextPath}/member/idFind">아이디찾기</a><li>
-     <li><a href="${pageContext.request.contextPath}/member/pwFind">비번찾기</a><li>
+     <li><a href="${pageContext.request.contextPath}/personal/idFind">아이디찾기</a><li>
+     <li><a href="${pageContext.request.contextPath}/personal/pwFind">비번찾기</a><li>
 	</c:when>
      <c:otherwise>
-     <li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
-     <li><a href="${pageContext.request.contextPath}/member/read">나의정보</a></li>
-     <li><a href="${pageContext.request.contextPath}/member/update">회원수정</a><li>
-     <li><a href="${pageContext.request.contextPath}/member/delete">회원탈퇴</a><li>     
+     <li><a href="${pageContext.request.contextPath}/personal/logout">로그아웃</a></li>
+     <li><a href="${pageContext.request.contextPath}/personal/read">나의정보</a></li>
+     <li><a href="${pageContext.request.contextPath}/personal/update">회원수정</a><li>
+     <li><a href="${pageContext.request.contextPath}/personal/delete">회원탈퇴</a><li>     
      </c:otherwise>
      </c:choose>
         
@@ -62,7 +62,7 @@ padding-right: 30px
      <li><a href="${pageContext.request.contextPath}/image/create">이미지생성</a></li>
      <li><a href="${pageContext.request.contextPath}/cal/calendar">일정관리</a></li>
      
-     <c:if test="${not empty sessionScope.id and sessionScope.grade == 'A'}">
+     <c:if test="${not empty sessionScope.memberID and sessionScope.grade == 'A'}">
      <li id="admin"><a href="${pageContext.request.contextPath}/admin/list">회원목록</a></li>
 	</c:if>
  
