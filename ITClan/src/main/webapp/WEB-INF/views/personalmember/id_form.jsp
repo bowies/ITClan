@@ -22,7 +22,7 @@ ID를 입력해주세요 <br><br>
   <TABLE style="width:25%">
     <TR>
       <TH>아이디</TH>
-      <TD><input type="text" name = "id" size="20"></TD>
+      <TD><input type="text" name = "memberID" size="20"></TD>
     </TR>
   </TABLE>
   

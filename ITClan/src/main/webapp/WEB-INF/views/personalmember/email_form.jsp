@@ -18,7 +18,7 @@ Email를 입력해주세요 <br><br>
   <TABLE style="width:30%;margin: 0 auto ">
     <TR>
       <TH>Email</TH>
-      <TD><input type="text" name = "email" ></TD>
+      <TD><input type="email" name = "email" ></TD>
     </TR>
   </TABLE>
   

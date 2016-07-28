@@ -79,19 +79,19 @@
 	  } 
 	 
 	  // 중복 아이디를 검사합니다. 
-	  function idCheck(id){ 
-	    if(id == ""){ 
+	  function idCheck(memberID){ 
+	    if(memberID == ""){ 
 	      window.alert("아이디를 입력해 주세요."); 
-	      document.frm.id.focus(); // 커서 이동 
+	      document.frm.memberID.focus(); // 커서 이동 
 	    }else{ 
-	      url="./id_proc?id=" + id;  // GET 
+	      url="./id_proc?memberID=" + memberID;  // GET 
 	      wr = window.open(url,"아이디검색","width=500,height=400"); 
 	      wr.moveTo((window.screen.width-500)/2, (window.screen.height-400)/2);// x, y 
 	    } 
 	  } 
 	  function EmailCheck(email){ 
 	    if(email == ""){ 
-	      window.alert("아이디를 입력해 주세요."); 
+	      window.alert("이메일를 입력해 주세요."); 
 	      document.frm.email.focus(); // 커서 이동 
 	    }else{ 
 	      url="./email_proc?email=" + email;  // GET 
@@ -199,7 +199,7 @@ table tr td {
 memberID 
 </div>
 <div id="ID_sub2"><input type="text" name="memberID" style="width: 300px; ">
-<input type="button" value="ID중복확인"  onclick="idCheck(document.frm.id.value)" style="height: 23px"/>
+<input type="button" value="ID중복확인"  onclick="idCheck(document.frm.memberID.value)" style="height: 23px"/>
 </div>
 <div id="name" style="width: 500px;padding-top: 23px; "> 
 <div id="name_sub1" style="width: 100px; float: left; margin-left:  30px">

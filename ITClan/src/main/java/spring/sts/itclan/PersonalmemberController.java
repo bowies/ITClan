@@ -143,27 +143,29 @@ public class PersonalmemberController {
 		return "/personalmember/login"; 
 	}
 	
-	@RequestMapping("/personal/EmailCheckForm")
+	@RequestMapping("/personal/email_form")
 	public String emailCheckF(){
-		return "/personalmember/emailCheckForm";
+		return "/personalmember/email_form";
 	}
 	
-	@RequestMapping("/personal/EmailCheckProc")
+	@RequestMapping("/personal/email_proc")
 	public String emailCheckP(String email,Model model){
 		int cnt = dao.EmailCheck(email);
 		model.addAttribute("cnt", cnt);
-		return "/personalmember/emailCheckProc";
+		model.addAttribute("email", email);
+		return "/personalmember/email_proc";
 	}
-	@RequestMapping("/personal/idCheckForm")
+	@RequestMapping("/personal/id_form")
 	public String idCheckF(){
-		return "/personalmember/idCheckForm";
+		return "/personalmember/id_form";
 	}
 	
-	@RequestMapping("/personal/idCheckProc")
+	@RequestMapping("/personal/id_proc")
 	public String idCheckP(String memberID,Model model){
 		int cnt = dao.idCheck(memberID);
 		model.addAttribute("cnt", cnt);
-		return "/personalmember/idCheckProc";
+		model.addAttribute("memberID", memberID);
+		return "/personalmember/id_proc";
 	}
 	
 	@RequestMapping(value="/personal/update",method=RequestMethod.POST)

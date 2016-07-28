@@ -7,7 +7,7 @@
 <title></title> 
 <script type="text/javascript">
 function use() {
-	opener.frm.id.value='${id}'
+	opener.frm.memberID.value='${memberID}'
 	self.close();
 }
 </script>
@@ -19,7 +19,7 @@ function use() {
  
 <DIV class="title2">ID 중복확인</DIV>
  <div class="content">
- 입력된 아이디 :${id }<br><br>
+ 입력된 아이디 :${memberID }<br><br>
  <c:choose>
  <c:when test="${cnt==1 }">
 중복되어 사용할수 없습니다.<br><br>
