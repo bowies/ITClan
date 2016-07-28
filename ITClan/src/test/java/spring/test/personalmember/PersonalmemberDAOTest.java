@@ -110,7 +110,7 @@ public class PersonalmemberDAOTest {
 		
 		dto.setMemberID("usesr1");
 		dto.setName("하룽이");
-		dto.setBirth(900101);
+		dto.setBirth("900101");
 		dto.setPasswd("user1111");
 		dto.setPhone("01011112222");
 		dto.setEmail("user9@mail.net");

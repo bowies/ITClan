@@ -52,6 +52,10 @@
 
 
 
+	<definition name="/personalmember/updatepw" extends="main">
+		<put-attribute name="title" value="개인회원 update Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/personalmember/updatePwForm.jsp" />
+	</definition>
 	<definition name="/personalmember/update" extends="main">
 		<put-attribute name="title" value="개인회원 update Page"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/personalmember/updateForm.jsp" />

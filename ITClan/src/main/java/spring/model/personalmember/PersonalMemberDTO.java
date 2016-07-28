@@ -3,7 +3,7 @@ package spring.model.personalmember;
 public class PersonalMemberDTO {
 	 private String memberID ;            
      private String name           ;
-     private int birth            ;
+     private String birth            ;
      private String email           ;
      private String phone           ;
      private String passwd          ;
@@ -24,10 +24,10 @@ public class PersonalMemberDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-	public void setBirth(int birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 	public String getEmail() {

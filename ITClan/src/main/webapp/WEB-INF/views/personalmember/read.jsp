@@ -50,6 +50,23 @@ location.href=url;
  
 }
 
+function update(memberID) {
+	var passwd = prompt("비밀번호를 입력하세요","");
+	var url = "./updatePassC";
+	url += "?memberID="+memberID;
+	url += "&passwd="+passwd;
+	location.href=url;
+	
+}
+function updatepw(memberID) {
+	var passwd = prompt("비밀번호를 입력하세요","");
+	var url = "./updatepwC";
+	url += "?memberID="+memberID;
+	url += "&passwd="+passwd;
+	location.href=url;
+	
+}
+
 </script>
 </head> 
 <!-- *********************************************** -->
@@ -90,9 +107,9 @@ location.href=url;
   </TABLE>
   
   <DIV class='bottom'>
-    <input type='button' value='정보수정' onclick="location.href='update?memberID=${dto.memberID}'">
+    <input type='button' value='정보수정' onclick="update('${dto.memberID}')">
     <input type='button' value='탈퇴' onclick="deleteM('${dto.memberID}')">
-    <input type='button' value='비번수정' onclick="location.href='updatePw?memberID=${dto.memberID}'">
+    <input type='button' value='비번수정' onclick="updatepw('${dto.memberID}')">
   </DIV>
  
  

@@ -74,12 +74,12 @@ public class PersonalmemberController {
 			return "/error/error";
 		}
 	}
-	@RequestMapping(value="/personal/updatePw",method=RequestMethod.GET)
+	@RequestMapping(value="/personal/updatepw",method=RequestMethod.GET)
 	public String updatePw(String memberID,HttpSession session){
 		if(memberID == null){
 			memberID = (String)session.getAttribute("memberID");
 		}
-		return "/personalmember/updatePw";
+		return "/personalmember/updatepw";
 	}
 	@RequestMapping("/personal/logout")
 	public String logout(HttpSession session) {
@@ -176,9 +176,10 @@ public class PersonalmemberController {
 	
 	@RequestMapping(value="/personal/update",method=RequestMethod.POST)
 	public String update(PersonalMemberDTO dto) throws Exception{
+		
 		if(dao.update(dto)>0){
 			
-			return "redirect:/personalmember/read";
+			return "redirect:/personal/read";
 		}else{
 			return "/error/error";
 		}
@@ -187,9 +188,13 @@ public class PersonalmemberController {
 	}
 	@RequestMapping(value="/personal/update",method=RequestMethod.GET)
 	public String update(PersonalMemberDTO dto,String memberID
-			,Model model) throws Exception{
+			,Model model,HttpSession session) throws Exception{
+		if(memberID ==null){
+			memberID = (String)session.getAttribute("memberID");
+		}
 		dto = (PersonalMemberDTO) dao.read(memberID);
 		model.addAttribute("dto", dto);
+
 
 		
 		return "/personalmember/update";
@@ -197,7 +202,16 @@ public class PersonalmemberController {
 	@RequestMapping("/personal/updatePassC")
 	public String UpdatePassC(String memberID,String passwd){
 		if(dao.passwdCheck(memberID, passwd)>0){
-			return "redirect:/personalmember/update";
+			return "redirect:/personal/update";
+		}else{
+			return "/error/passwderror";
+		}
+		
+	}
+	@RequestMapping("/personal/updatepwC")
+	public String UpdatepwC(String memberID,String passwd){
+		if(dao.passwdCheck(memberID, passwd)>0){
+			return "redirect:/personal/updatepw";
 		}else{
 			return "/error/passwderror";
 		}
@@ -254,8 +268,8 @@ public class PersonalmemberController {
 		}
 		
 			dto = (PersonalMemberDTO) dao.read(memberID);
-		int cnt = dto.getBirth();
-		String birth1 = Integer.toString(cnt);
+		
+		String birth1 = dto.getBirth();
 		
 		
 		StringBuffer birth = new StringBuffer();
@@ -281,8 +295,7 @@ public class PersonalmemberController {
 		flag = true;
 	}
 	if(!flag){
-		int birth = Integer.parseInt(request.getParameter("birth"));
-		dto.setBirth(birth);
+		
 	cnt = dao.create(dto);
 	}
 		model.addAttribute("cnt",cnt);
