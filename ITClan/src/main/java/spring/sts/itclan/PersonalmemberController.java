@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.*;
 
+import org.junit.internal.matchers.SubstringMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -176,6 +177,7 @@ public class PersonalmemberController {
 	@RequestMapping(value="/personal/update",method=RequestMethod.POST)
 	public String update(PersonalMemberDTO dto) throws Exception{
 		if(dao.update(dto)>0){
+			
 			return "redirect:/personalmember/read";
 		}else{
 			return "/error/error";
@@ -246,16 +248,21 @@ public class PersonalmemberController {
 	
 	@RequestMapping("/personal/read")
 	public String read(String memberID,HttpSession session,
-			PersonalMemberDTO dto,Model model){
+			PersonalMemberDTO dto,Model model) throws Exception{
 		if(memberID == null){
 			memberID = (String)session.getAttribute("memberID");
 		}
-		try {
+		
 			dto = (PersonalMemberDTO) dao.read(memberID);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Object birth1 = (Object) dto.getBirth();
+		StringBuffer birth = new StringBuffer();
+		birth.append(((String) birth1).substring(1,2));
+		birth.append("-");
+		birth.append(((String) birth1).substring(3,4));
+		birth.append("-");
+		birth.append(((String) birth1).substring(5,6));
+		
+		model.addAttribute("birth", birth);
 		model.addAttribute("dto",dto);
 		return "/personalmember/read";
 	}
