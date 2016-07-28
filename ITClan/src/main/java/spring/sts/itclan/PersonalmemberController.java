@@ -256,7 +256,7 @@ public class PersonalmemberController {
 			dto = (PersonalMemberDTO) dao.read(memberID);
 		Object birth1 = (Object) dto.getBirth(); 
 		StringBuffer birth = new StringBuffer();
-		System.out.println(((String) birth1).substring(1,2));
+		System.out.println("호호호"+((String) birth1).substring(1,2));
 		birth.append(((String) birth1).substring(1,2));
 		birth.append("-");
 		birth.append(((String) birth1).substring(3,4));
