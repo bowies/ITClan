@@ -47,6 +47,20 @@ div.panel.show {
 
 
 </style>
+<script type="text/javascript">
+function readB(qnANum) {
+	var url = "read";
+	url += "?qnANum=" + qnANum;//변수의 인식
+	url += "&col=${col}";  
+	//data의 인식
+	url += "&word=${word}";
+	url += "&nowPage=${nowPage}";
+	
+	location.href=url;
+	
+	
+}
+</script>
 
 <body class="w3-container">
 <%-- <jsp:include page="/menu/top.jsp" flush="false"/> --%>
@@ -207,7 +221,7 @@ ${fn:substring(dto.regdate,0,10)}
   <tr>
     <td>${dto.qnANum}</td>
     <td>
-    <a href="javascript:read('${dto.qnANum }')">${dto.title }</a>
+    <a href="javascript:readB('${dto.qnANum }')">${dto.title}</a>
      <c:if test="${uti:newImg(fn:substring(dto.regdate,0,10)) }">
      <img src="../images/new.gif">
      </c:if>
@@ -220,48 +234,7 @@ ${fn:substring(dto.regdate,0,10)}
   </c:otherwise>
   </c:choose>   
 
-<!-- <tr bgcolor="ebebeb"><td height="1" colspan="5" style="padding:0"></td></tr> -->
 
-<!-- <tr> -->
-<!-- <td align="center" height="25">14287</td> -->
-<!-- <td><a href="">//자주찾는질문// 공고 깜박거림 현상 어떻게 해야 할까요?</a></td> -->
-<!-- <td align="center" height="25">운영자</td> -->
-<!-- <td align="center" height="25">09-17 13:18</td> -->
-<!-- </tr> -->
-<!-- <tr bgcolor="ebebeb"><td height="1" colspan="5" valign="top" style="padding:0"></td></tr> -->
-
-<!-- <tr> -->
-<!-- <td align="center" height="25">2535</td> -->
-<!-- <td><a href="">//자주찾는질문// 입사지원 한 이력서 수정/삭제</a></td> -->
-<!-- <td align="center" height="25">운영자</td> -->
-<!-- <td align="center" height="25">11-05 11:36</td> -->
-<!-- </tr> -->
-<!-- <tr bgcolor="ebebeb"><td height="1" colspan="5" valign="top" style="padding:0"></td></tr> -->
-
-
-<!-- <tr> -->
-<!-- <td align="center" height="25">2533</td> -->
-<!-- <td><a href="">//자주찾는질문// 아이디와 비밀번호를 모르겠어요.</a></td> -->
-<!-- <td align="center" height="25">운영자</td> -->
-<!-- <td align="center" height="25">11-05 11:35</td> -->
-<!-- </tr> -->
-<!-- <tr bgcolor="ebebeb"><td height="1" colspan="5" valign="top" style="padding:0"></td></tr> -->
-
-<!-- <tr> -->
-<!-- <td align="center" height="25">2532</td> -->
-<!-- <td><b><a href="">//자주찾는질문//개명을 했는데, 이름변경은 어디서 하나요?</a></b> <img src=""></td> -->
-<!-- <td align="center" height="25">운영자</td> -->
-<!-- <td align="center" height="25">11-05 11:33</td> -->
-<!-- </tr> -->
-<!-- <tr bgcolor="ebebeb"><td height="1" colspan="5" valign="top" style="padding:0"></td></tr> -->
-
-<!-- <tr> -->
-<!-- <td align="center" height="25">165</td> -->
-<!-- <td><a href="">사람인에 대한 궁금한 점을 묻고 답하는 곳입니다.</a></td> -->
-<!-- <td align="center" height="25">운영자</td> -->
-<!-- <td align="center" height="25">02-01 11:37</td> -->
-<!-- </tr> -->
-<!-- <tr bgcolor="ebebeb"><td height="1" colspan="5" valign="top" style="padding:0"></td></tr> -->
 </tbody>
 <DIV class="title">게시판 목록</DIV>
  <div class="search">
@@ -435,48 +408,48 @@ p{padding:0; margin:0}
 //-->
 </script>
 <!-- 레이어 - 인재정보 열람 상품 이벤트 -->
-<div class="layer_main01" style="z-index:98; display:none" id="head-event-layer">
-  <div class="layer_close">
-    <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/ico_close.gif" border="0" style="cursor:pointer" alt="닫기" onclick="return closeBanner(this)">
-  </div>
-  <div style="text-align:center">
-    <p style="padding:249px 0 21px 0; letter-spacing:1px;">
-      <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/btn_go_talent_contact900.gif" border="0" style="cursor:pointer" onclick="return applyHeadhuntEvent()" alt="지금 인재정보 열람 상품 900건 받기">
-      <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/btn_contact_no.gif" border="0" style="cursor:pointer" onclick="return closeBanner(this)" alt="나중에 받기">
-    </p>
-  </div>
-</div>
-<!-- 레이어 - 인재정보 열람 상품 이벤트 -->
+<!-- <div class="layer_main01" style="z-index:98; display:none" id="head-event-layer"> -->
+<!--   <div class="layer_close"> -->
+<!--     <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/ico_close.gif" border="0" style="cursor:pointer" alt="닫기" onclick="return closeBanner(this)"> -->
+<!--   </div> -->
+<!--   <div style="text-align:center"> -->
+<!--     <p style="padding:249px 0 21px 0; letter-spacing:1px;"> -->
+<!--       <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/btn_go_talent_contact900.gif" border="0" style="cursor:pointer" onclick="return applyHeadhuntEvent()" alt="지금 인재정보 열람 상품 900건 받기"> -->
+<!--       <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/btn_contact_no.gif" border="0" style="cursor:pointer" onclick="return closeBanner(this)" alt="나중에 받기"> -->
+<!--     </p> -->
+<!--   </div> -->
+<!-- </div> -->
+<!-- <!-- 레이어 - 인재정보 열람 상품 이벤트 --> -->
 
-<!-- 레이어 - 인재정보 열람 상품 이벤트 회원가입레이어1 -->
-<div class="layer_main03" style="z-index:98; display:none; top:55px;" id="head-event-registration-layer">
-  <div class="layer_close">
-    <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/ico_close.gif" border="0" style="cursor:pointer" alt="닫기" onclick="return closeBanner(this)">
-  </div>
-    <div style="text-align:center;">
-     <p style="padding:279px 0 21px 0; letter-spacing:1px;">
-       <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/btn_go_talent_contact900.gif" border="0" style="cursor:pointer" onclick="return applyHeadhuntEvent()" alt="지금 인재정보 열람 상품 900건 받기">
-       <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/btn_contact_no2.gif" border="0" style="cursor:pointer" onclick="return goMainPage(this);" alt="나중에 받기">
-     </p>
-    </div>
-</div>
-<!-- 레이어 - 인재정보 열람 상품 이벤트 회원가입레이어1 -->
+<!-- <!-- 레이어 - 인재정보 열람 상품 이벤트 회원가입레이어1 --> -->
+<!-- <div class="layer_main03" style="z-index:98; display:none; top:55px;" id="head-event-registration-layer"> -->
+<!--   <div class="layer_close"> -->
+<!--     <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/ico_close.gif" border="0" style="cursor:pointer" alt="닫기" onclick="return closeBanner(this)"> -->
+<!--   </div> -->
+<!--     <div style="text-align:center;"> -->
+<!--      <p style="padding:279px 0 21px 0; letter-spacing:1px;"> -->
+<!--        <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/btn_go_talent_contact900.gif" border="0" style="cursor:pointer" onclick="return applyHeadhuntEvent()" alt="지금 인재정보 열람 상품 900건 받기"> -->
+<!--        <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/btn_contact_no2.gif" border="0" style="cursor:pointer" onclick="return goMainPage(this);" alt="나중에 받기"> -->
+<!--      </p> -->
+<!--     </div> -->
+<!-- </div> -->
+<!-- <!-- 레이어 - 인재정보 열람 상품 이벤트 회원가입레이어1 --> -->
 
 
-<!-- 레이어 - 인재정보 열람 상품 이벤트 적용 완료-->
-<div class="layer_main02" style="z-index:99; display:none" id="head-apply-ok-layer">
-  <div class="layer_close">
-    <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/ico_close.gif" border="0" style="cursor:pointer" onclick="$('head-apply-ok-layer').hide();" alt="닫기">
-  </div>
-  <div style="padding-top:127px; text-align:center">
-    <p class="layer_end_day">(서비스 만료 예정일 : <span id="expiry_date"></span>)</p>
-    <p style="padding:30px 0 38px 0;">
-                <a href="/zf_user/talent/search-resume/total">
-           <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/btn_go_talent_info.gif" border="0" alt="인재정보 바로가기"></a>
-                  </p>
-  </div>
-</div>
-<!-- 레이어 - 인재정보 열람 상품 이벤트 적용 완료 -->
+<!-- <!-- 레이어 - 인재정보 열람 상품 이벤트 적용 완료--> -->
+<!-- <div class="layer_main02" style="z-index:99; display:none" id="head-apply-ok-layer"> -->
+<!--   <div class="layer_close"> -->
+<!--     <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/ico_close.gif" border="0" style="cursor:pointer" onclick="$('head-apply-ok-layer').hide();" alt="닫기"> -->
+<!--   </div> -->
+<!--   <div style="padding-top:127px; text-align:center"> -->
+<!--     <p class="layer_end_day">(서비스 만료 예정일 : <span id="expiry_date"></span>)</p> -->
+<!--     <p style="padding:30px 0 38px 0;"> -->
+<!--                 <a href="/zf_user/talent/search-resume/total"> -->
+<!--            <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/btn_go_talent_info.gif" border="0" alt="인재정보 바로가기"></a> -->
+<!--                   </p> -->
+<!--   </div> -->
+<!-- </div> -->
+<!-- <!-- 레이어 - 인재정보 열람 상품 이벤트 적용 완료 --> -->
 
 
   </div>

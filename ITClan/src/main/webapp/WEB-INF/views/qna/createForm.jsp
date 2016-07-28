@@ -5,6 +5,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글쓰기</title>
+
+
+ <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
+ <script type="text/JavaScript">
+   window.onload=function(){
+     CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
+  };
+  </script>
+<link href="../css/style.css" rel="Stylesheet" type="text/css">
+
 </head>
 <body>
 
@@ -13,7 +23,7 @@
 
 <div class="center">
 <h1>Q & A </h1>
-<form name="qnaform" method="post" action="createProc" >
+<form name="qnaform" method="post" action="create" >
 <table width="680" border="0" cellspacing="0" cellpadding="0" align="center"> 
 
 <!-- 			<input type="hidden" name="mode" value="write_ok"> -->
