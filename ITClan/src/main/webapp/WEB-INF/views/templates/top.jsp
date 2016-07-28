@@ -41,7 +41,7 @@ padding-right: 30px
     
     <c:choose>
     <c:when test="${empty sessionScope.id}">
-     <li><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+     <li><a href="${pageContext.request.contextPath}/personal/login">로그인</a></li>
      <li><a href="${pageContext.request.contextPath}/personal/agree">회원 가입</a></li>
      <li><a href="${pageContext.request.contextPath}/member/idFind">아이디찾기</a><li>
      <li><a href="${pageContext.request.contextPath}/member/pwFind">비번찾기</a><li>
