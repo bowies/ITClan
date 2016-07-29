@@ -18,7 +18,7 @@ FROM OneByOne
 WHERE oneByOneNum= #{oneByOneNum} AND id=#{id}
 </select>
 
-<insert id="reply" parameterType="BbsDTO">
+<insert id="reply" parameterType="OneByOneDTO">
 INSERT INTO OneByOne(oneByOneNum, name, title, content,  regdate, grpno, indent, ansnum)
 VALUES((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
  #{name}, #{title}, #{content},
@@ -43,12 +43,12 @@ WHERE grpno=#{grpno} AND ansnum > #{ansnum}
 
 <insert id="create" parameterType="OneByOneDTO">
 
-INSERT INTO OneByOne(oneByOneNum , title,name, content,mail, filename, id,regdate,grpno)
+INSERT INTO OneByOne(oneByOneNum , title, content, mail, filename, id, regdate)
 values((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
-#{title},#{name}, #{content}, #{mail}, #{filename}, #{id}, sysdate,
-(select nvl(max(grpno),0)+1 as grpno from OneByOne))  
-
+#{title}, #{content}, #{mail}, #{filename}, #{id}, sysdate)  
 </insert>
+
+
 
 
 
@@ -88,7 +88,7 @@ values((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
 
 
  <select id="read" resultType="OneByOneDTO" parameterType="int" >
- SELECT oneByOneNum, id, mail,title, content, filename, regdate
+ SELECT oneByOneNum, id, mail,name, title, content, filename, regdate
  FROM OneByOne            
   WHERE oneByOneNum = #{oneByOneNum}                                                              
  </select>
