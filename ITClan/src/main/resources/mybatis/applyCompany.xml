@@ -108,12 +108,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 where offerNum =#{offerNum}
 	</delete>
 	<!-- resumedetail (list/read) -->
-	<select id="list_resume" parameterType="Map" resultType="ResumeDTO" >
-	select * from resume
+	<select id="list_resume" parameterType="Map" resultType="String" >
+	select resumeName from resume
 	where memberID = #{memberID} and resumenum = #{resumenum}
 	</select>
-	<select id="list_portfolio" parameterType="Map" resultType="PortFolioDTO" >
-	select * from PortFolio
+	<select id="list_portfolio" parameterType="Map" resultType="String" >
+	select portfolioName from PortFolio
 	where memberID = #{memberID} and portfolioNum = #{portfolioNum}
 	</select>
 	<select id="list_License" parameterType="String" resultType="LicenseDTO" >

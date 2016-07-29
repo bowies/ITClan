@@ -12,6 +12,7 @@ import spring.model.externalactivity.ExternalActivityDTO;
 import spring.model.itclan.DAOMyBatisInter;
 import spring.model.license.LicenseDTO;
 import spring.model.offer.OfferDTO;
+import spring.model.portfolio.PortFolioDTO;
 import spring.model.resume.ResumeDTO;
 
 @Component
@@ -19,12 +20,12 @@ public class ApplyCompanyDAO implements DAOMyBatisInter{
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
+	
 	public void setMybatis(SqlSessionTemplate mybatis) {
 		this.mybatis = mybatis;
 	}
-	
-	
-	
+
+
 	public int total_personal(String memberID){
 		return mybatis.selectOne("applycompany.total_personal", memberID);
 	}
@@ -37,11 +38,17 @@ public class ApplyCompanyDAO implements DAOMyBatisInter{
 	public List<ApplyCompanyDTO> list_company(Map map){
 		return mybatis.selectList("applycompany.list_company", map);
 	}
-	public ResumeDTO list_D(String memberID,int resumenum){
+	public String list_D(String memberID,int resumeNum){
 		Map map = new HashMap();
 		map.put("memberID", memberID);
-		map.put("resumenum", resumenum);
-		return (ResumeDTO)mybatis.selectOne("applycompany.list_resumedetail", map);
+		map.put("resumeNum", resumeNum);
+		return (String)mybatis.selectOne("applycompany.list_resume", map);
+	}
+	public String list_P(String memberID,int portfolioNum){
+		Map map = new HashMap();
+		map.put("memberID", memberID);
+		map.put("portfolioNum", portfolioNum);
+		return (String)mybatis.selectOne("applycompany.list_portfolio", map);
 	}
 	
 	public List<LicenseDTO> list_L(String memberID){

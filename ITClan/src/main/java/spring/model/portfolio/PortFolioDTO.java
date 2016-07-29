@@ -3,7 +3,7 @@ package spring.model.portfolio;
 public class PortFolioDTO {
 
     private int portfolioNum     ; 
-    private String MemberID      ; 
+    private String memberID      ; 
     private String portfolioName ;
     
 	public int getPortfolioNum() {
@@ -13,10 +13,10 @@ public class PortFolioDTO {
 		this.portfolioNum = portfolioNum;
 	}
 	public String getMemberID() {
-		return MemberID;
+		return memberID;
 	}
 	public void setMemberID(String memberID) {
-		MemberID = memberID;
+		memberID = memberID;
 	}
 	public String getPortfolioName() {
 		return portfolioName;

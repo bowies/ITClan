@@ -5,7 +5,7 @@ import java.util.List;
 public class ResumeDTO {
 
 	private int resumeNum ;
-    private int MemberID  ;
+    private int memberID  ;
     private int resumeName;
     
     private List resumeList;
@@ -21,11 +21,11 @@ public class ResumeDTO {
 	}
 
 	public int getMemberID() {
-		return MemberID;
+		return memberID;
 	}
 
 	public void setMemberID(int memberID) {
-		MemberID = memberID;
+		memberID = memberID;
 	}
 
 	public int getResumeName() {

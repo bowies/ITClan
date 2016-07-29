@@ -24,6 +24,7 @@ import spring.model.applycompany.ApplyCompanyDTO;
 import spring.model.externalactivity.ExternalActivityDTO;
 import spring.model.license.LicenseDTO;
 import spring.model.offer.OfferDTO;
+import spring.model.portfolio.PortFolioDTO;
 import spring.model.resume.ResumeDTO;
 
 public class ApplycomanyDAOTest {
@@ -117,12 +118,19 @@ public class ApplycomanyDAOTest {
 	@Test @Ignore
 	public void testList_D() {
 		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
-		ResumeDTO dto = dao.list_D("bbb", 2);
+		String dto = dao.list_D("bbb", 2);
 		
-		assertEquals("자기소개서.hwp",dto.getResumeName() );
+		assertEquals("자소서.hwp",dto );
+	}
+	@Test //@Ignore
+	public void testList_P() {
+		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
+		String dto = dao.list_P("bbb", 4);
+		
+		assertEquals("포트폴리오.hwp",dto );
 	}
 
-	@Test //@Ignore
+	@Test @Ignore
 	public void testList_L() {
 		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
 		List<LicenseDTO> list = dao.list_L("bbb");

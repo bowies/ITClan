@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import spring.model.applycompany.ApplyCompanyDAO;
 import spring.model.externalactivity.ExternalActivityDAO;
 import spring.model.license.LicenseDAO;
+import spring.model.portfolio.PortFolioDAO;
 import spring.model.resume.ResumeDAO;
 
 @Service
@@ -15,7 +16,7 @@ public class ResumeInfoMgr {
 	private ApplyCompanyDAO applycompanydao;
 	
 	@Autowired
-	private ResumeInfoDAO resumedao;
+	private ResumeInfoDAO resumeinfodao;
 	
 	@Autowired
 	private ExternalActivityDAO externalactivitydao;
@@ -24,14 +25,17 @@ public class ResumeInfoMgr {
 	private LicenseDAO licensedao;
 	
 	@Autowired
-	private ResumeDAO resumedetaildao;
+	private ResumeDAO resumedao;
 	
+	@Autowired
+	private PortFolioDAO portfoliodao;
 	
 	public void delete(String memberID) throws Exception {
 		applycompanydao.delete(memberID);
 		externalactivitydao.deleteinfo(memberID);
 		licensedao.deleteinfo(memberID);
-		resumedetaildao.deleteinfo(memberID);
-		resumedao.delete(memberID);
+		resumedao.deleteinfo(memberID);
+		portfoliodao.deleteinfo(memberID);
+		resumeinfodao.delete(memberID);
 	}
 }

@@ -47,7 +47,7 @@
 		p:mybatis-ref="sqlSession" />
 
 	<!-- ResumeInfoDAO 객체 생성 -->
-	<bean id="resumedao" class="spring.model.resumeinfo.ResumeInfoDAO"
+	<bean id="resumeinfodao" class="spring.model.resumeinfo.ResumeInfoDAO"
 		p:mybatis-ref="sqlSession" />
 
 	<!-- ResumeDetailDAO 객체 생성 -->
