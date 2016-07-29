@@ -28,14 +28,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </resultMap>
 
 <select id="list" parameterType="Map" resultMap="ManyMap">
-select education, career, employmentType, exSalary,
-	   disableGrade, picture, exArea, exField, military,
-	   actNum, actPeriod, actSector, actContent
-from(
-	select education, career, employmentType, exSalary,
-		   disableGrade, picture, exArea, exField, military,
-		   actNum, actPeriod, actSector, actContent
-	from(
 		select r.memberID, r.education, r.career, r.employmentType, r.exSalary,
 			   r.disableGrade, r.picture, r.exArea, r.exField, r.military,
 			   a.actNum, a.actPeriod, a.actSector, a.actContent
@@ -43,8 +35,6 @@ from(
 		where r.memberID = a.memberID
 		and r.memberID = #{memberID}
 		order by actNum ASC
-	)
-)
 </select>
 
 <select id="total" parameterType="String" resultType="int">

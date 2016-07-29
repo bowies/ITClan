@@ -108,7 +108,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 where offernum =#{offernum}
 	</delete>
 	<!-- resumedetail (list/read) -->
-	<select id="list_resumedetail" parameterType="Map" resultType="ResumeDetailDTO" >
+	<select id="list_resumedetail" parameterType="Map" resultType="ResumeDTO" >
 	select * from resumedetail
 	where memberid = #{memberid} and resumenum = #{resumenum}
 	</select>

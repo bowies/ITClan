@@ -38,16 +38,16 @@ public class ResumeInfoDAOTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test  @Ignore
+	@Test  //@Ignore
 	public void testRead() throws Exception {
-		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumedao");
+		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumeinfodao");
 		String memberID = "aaa";
 		ResumeInfoDTO dto = (ResumeInfoDTO) dao.read(memberID);
 	}
 
 	@Test @Ignore
 	public void testCreate() throws Exception {
-		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumedao");
+		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumeinfodao");
 		ResumeInfoDTO dto = new ResumeInfoDTO();
 		dto.setMemberID("ccc");
 		dto.setEducation("고등학교 졸업");
@@ -64,7 +64,7 @@ public class ResumeInfoDAOTest {
 	
 	@Test @Ignore
 	public void testUpdate() throws Exception {
-		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumedao");
+		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumeinfodao");
 		
 		ResumeInfoDTO dto = new ResumeInfoDTO();
 		
@@ -81,9 +81,9 @@ public class ResumeInfoDAOTest {
 		assertEquals(1, dao.update(dto));
 	}
 
-	@Test //@Ignore
+	@Test @Ignore
 	public void testDelete() throws Exception {
-		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumedao");
+		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumeinfodao");
 		
 		String pk = "bbb";
 		dao.delete(pk);

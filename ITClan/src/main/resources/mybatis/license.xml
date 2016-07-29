@@ -26,14 +26,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<result property="military" column="military"/>
 </resultMap>
 <select id="list" parameterType="Map" resultMap="ManyMap">
- select  memberID, education, career, employmentType, exSalary,
-		disableGrade, picture, exArea, exField, military,
-		licenseNum, qualification, takeDate
-from(
-	select 	memberID, education, career, employmentType, exSalary,
-			disableGrade, picture, exArea, exField, military,
-			licenseNum, qualification, takeDate
-	from(
 		select  r.memberID, r.education, r.career, r.employmentType, r.exSalary,
 				r.disableGrade, r.picture, r.exArea, r.exField, r.military,
 				l.licenseNum, l.qualification, l.takedate
@@ -41,8 +33,6 @@ from(
 		where r.memberID = l.memberID
 		and r.memberid = #{memberID}
 		order by licenseNum ASC
-	)
-) 
 </select>
 
 <select id="total" parameterType="String" resultType="int">

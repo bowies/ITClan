@@ -18,7 +18,7 @@ from resume
 where memberID = #{memberID}
 </select>
 
-<insert id="create" parameterType="ResumeDetailDTO">
+<insert id="create" parameterType="ResumeDTO">
 insert into resume (resumeNum, memberID, resumeName)
 	values ((select nvl(max(resumeNum),0)+1 from resume), #{memberID}, #{resumeName})
 </insert>

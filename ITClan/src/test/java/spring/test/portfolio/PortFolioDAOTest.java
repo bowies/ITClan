@@ -1,4 +1,4 @@
-package spring.test.resume;
+package spring.test.portfolio;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,10 +17,10 @@ import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
-import spring.model.resume.ResumeDAO;
-import spring.model.resume.ResumeDTO;
+import spring.model.portfolio.PortFolioDAO;
+import spring.model.portfolio.PortFolioDTO;
 
-public class ResumeDAOTest {
+public class PortFolioDAOTest {
 
 	private static BeanFactory beans;
 	
@@ -44,37 +44,37 @@ public class ResumeDAOTest {
 
 	@Test //@Ignore
 	public void testList() throws Exception {
-		ResumeDAO dao = (ResumeDAO)beans.getBean("resumedao");
+		PortFolioDAO dao = (PortFolioDAO)beans.getBean("portfoliodao");
 		Map map = new HashMap();
 		map.put("memberID", "bbb");
-		List<ResumeDTO> list = dao.list(map );
+		List<PortFolioDTO> list = dao.list(map );
 		assertEquals(2, list.size());
 	}
 
 	@Test @Ignore
 	public void testCreate() throws Exception {
-		ResumeDAO dao = (ResumeDAO)beans.getBean("resumedao");
-		ResumeDTO dto = new ResumeDTO();
+		PortFolioDAO dao = (PortFolioDAO)beans.getBean("portfoliodao");
+		PortFolioDTO dto = new PortFolioDTO();
 		dto.setMemberID("aaa");
-		dto.setResumeName("자기소개서.hwp");
+		dto.setPortfolioName("포트폴리오.hwp");;
 		assertEquals(1, dao.create(dto));
 	}
 
 	@Test @Ignore
 	public void testDelete() throws Exception {
-		ResumeDAO dao = (ResumeDAO)beans.getBean("resumedao");
+		PortFolioDAO dao = (PortFolioDAO)beans.getBean("portfoliodao");
 		dao.delete(1);
 	}
 	
 	@Test @Ignore
 	public void testDeleteinfo() throws Exception {
-		ResumeDAO dao = (ResumeDAO)beans.getBean("resumedao");
+		PortFolioDAO dao = (PortFolioDAO)beans.getBean("portfoliodao");
 		dao.delete("aaa");
 	}
 	
 	@Test //@Ignore
 	public void testTotal() throws Exception {
-		ResumeDAO dao = (ResumeDAO)beans.getBean("resumedao");
+		PortFolioDAO dao = (PortFolioDAO)beans.getBean("portfoliodao");
 		dao.total("aaa");
 	}
 

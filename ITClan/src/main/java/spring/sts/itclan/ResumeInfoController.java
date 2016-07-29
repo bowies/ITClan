@@ -20,8 +20,7 @@ import spring.model.license.LicenseDAO;
 import spring.model.license.LicenseDTO;
 import spring.model.personalmember.PersonalMemberDAO;
 import spring.model.personalmember.PersonalMemberDTO;
-import spring.model.resumedetail.ResumeDetailDAO;
-import spring.model.resumedetail.ResumeDetailDTO;
+import spring.model.resume.ResumeDAO;
 import spring.model.resumeinfo.ResumeInfoDAO;
 import spring.model.resumeinfo.ResumeInfoDTO;
 import spring.utility.itclan.Utility;
@@ -30,7 +29,7 @@ import spring.utility.itclan.Utility;
 public class ResumeInfoController {
 
 	@Autowired
-	private ResumeInfoDAO resumedao;
+	private ResumeInfoDAO resumeinfodao;
 	
 	@Autowired
 	private PersonalMemberDAO personalmemberdao;
@@ -43,7 +42,7 @@ public class ResumeInfoController {
 	private ExternalActivityDAO externalactivitydao;
 	
 	@Autowired
-	private ResumeDetailDAO resumedetaildao;
+	private ResumeDAO resumedao;
 	
 	
 	@RequestMapping(value="/resumeInfo/create",method=RequestMethod.GET)
@@ -65,10 +64,7 @@ public class ResumeInfoController {
 		
 		
 		Map map = new HashMap();
-		map.put("memberID", membe
-				
-				
-				rID);
+		map.put("memberID", memberID);
 		
 		//자격증
 		List<LicenseDTO>licenselist = licensedao.list(map);
@@ -108,7 +104,7 @@ public class ResumeInfoController {
 	}
 	
 	@RequestMapping(value="/resumeInfo/create",method=RequestMethod.POST)
-	public String create(HttpServletRequest request, Model model, ResumeInfoDTO resumedto, PersonalMemberDTO personalmemberdto) throws Exception {
+	public String create(HttpServletRequest request, Model model, ResumeInfoDTO resumeinfodto, PersonalMemberDTO personalmemberdto) throws Exception {
 	
 		
 		String basePath = request.getRealPath("/storage/resumeInfo_img");
@@ -118,16 +114,16 @@ public class ResumeInfoController {
 			picture = "member.jpg";
 		}
 		
-		int size = (int)resumedto.getPictureMF().getSize();
+		int size = (int)resumeinfodto.getPictureMF().getSize();
 		
 		if(size>0){
-			picture = Utility.saveFile(resumedto.getPictureMF(), basePath);
+			picture = Utility.saveFile(resumeinfodto.getPictureMF(), basePath);
 		}
 		
-		resumedto.setPicture(picture);
+		resumeinfodto.setPicture(picture);
 		
 		
-		if(resumedao.create(resumedto)>0){
+		if(resumeinfodao.create(resumeinfodto)>0){
 			model.addAttribute("personalmemberdto", personalmemberdto);
 			return "redirect:/";
 		}
@@ -144,14 +140,14 @@ public class ResumeInfoController {
 		}
 		memberID = "ccc";
 		
-		ResumeInfoDTO resumedto = (ResumeInfoDTO) resumedao.read(memberID);
+		ResumeInfoDTO resumeinfodto = (ResumeInfoDTO) resumeinfodao.read(memberID);
 		personalmemberdto = (PersonalMemberDTO) personalmemberdao.read(memberID);
 		
 		int cnt = personalmemberdto.getBirth();
 		
 		String birth = Integer.toString(cnt);
 		
-		model.addAttribute("resumedto",resumedto);
+		model.addAttribute("resumeinfodto",resumeinfodto);
 		model.addAttribute("personalmemberdto",personalmemberdto);
 		model.addAttribute("birth", birth);
 		return "/resumeInfo/read";
@@ -160,9 +156,9 @@ public class ResumeInfoController {
 	@RequestMapping(value="/resumeInfo/update",method=RequestMethod.GET)
 	public String update(String memberID, Model model, String oldfile) throws Exception{
 		
-		ResumeInfoDTO resumedto = (ResumeInfoDTO) resumedao.read(memberID);
+		ResumeInfoDTO resumeinfodto = (ResumeInfoDTO) resumeinfodao.read(memberID);
 		
-		model.addAttribute("resumedto",resumedto);
+		model.addAttribute("resumeinfodto",resumeinfodto);
 		model.addAttribute("oldfile", oldfile);
 		
 		return "/resumeInfo/update";
@@ -184,11 +180,11 @@ public class ResumeInfoController {
 			picture = Utility.saveFile(pictureMF, basePath);
 		}
 		
-		ResumeInfoDTO resumedto = (ResumeInfoDTO) resumedao.read(memberID);
+		ResumeInfoDTO resumeinfodto = (ResumeInfoDTO) resumeinfodao.read(memberID);
 		
-		resumedto.setPicture(picture);
+		resumeinfodto.setPicture(picture);
 		
-		if(resumedao.update(resumedto)>0) {
+		if(resumeinfodao.update(resumeinfodto)>0) {
 			return "redirect:/";
 		}else{
 			return "error/error";
