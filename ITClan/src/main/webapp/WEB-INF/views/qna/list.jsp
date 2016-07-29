@@ -236,7 +236,7 @@ ${fn:substring(dto.regdate,0,10)}
 
 
 </tbody>
-<DIV class="title">게시판 목록</DIV>
+<DIV class="title">Q & A 목록</DIV>
  <div class="search">
 	<form action="./list" method="post">
 		<select name="col">
@@ -278,23 +278,7 @@ ${fn:substring(dto.regdate,0,10)}
 </td></tr>
 <tr>
 <td height="30" align="center">
-<!-- 페이지  -->
 
-
-<!-- |<font color="ff8400"> <b>1</b> </font> -->
-<!-- |<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=2"> -->
-<!--  <b>2</b> </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=3"> <b>3</b> -->
-<!--   </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=4"> <b>4</b> -->
-<!--    </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=5"> <b>5</b> -->
-<!--     </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=6"> <b>6</b> -->
-<!--      </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=7"> <b>7</b> -->
-<!--       </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=8"> <b>8</b> -->
-<!--        </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=9"> <b>9</b> -->
-<!--         </a>|<a href="qna.php?default=0&amp;get_total_count=33406&amp;page=10"> <b>10</b> -->
-<!--          </a>| <a href="qna.php?default=0&amp;get_total_count=33406&amp;page=11">다음  -->
-<!--          <img src="http://www.saraminimage.co.kr/recruit/upjikjong/point_04.gif" width="5" height="7" border="0" align="absmiddle"> -->
-<!--          </a></td></tr> -->
-<!-- 페이지  -->
 
 <tr><td align="right"><a href="${pageContext.request.contextPath}/qna/create">
 <img src="http://www.saraminimage.co.kr/buttons/default/qnalist_write.gif" width="114" height="18" border="0" alt="Q&amp;A게시판에 글쓰기"></a></td></tr>
@@ -307,92 +291,12 @@ ${fn:substring(dto.regdate,0,10)}
 <tr><td>&nbsp;</td></tr>
 </tbody></table>
 </td></tr>
-<!-- <tr><td height="20">&nbsp;</td></tr> -->
-<!-- <tr><td height="20"><p>&nbsp;</p></td></tr> -->
+
 </tbody></table>
 
 
 </div>
-<!-- ================================= -->
-<!-- <DIV class="title">게시판 목록</DIV> -->
-<!--  <div class="search"> -->
-<!-- 	<form action="./list" method="post"> -->
-<!-- 		<select name="col"> -->
-<!-- 			<option value="name" -->
-<%-- 			<c:if test="${col =='name' }">selected</c:if> --%>
-<!-- 			>성명</option> -->
-<!-- 			<option value="title" -->
-<%-- 			<c:if test="${col =='title' }">selected</c:if> --%>
-<!-- 			>제목</option> -->
-<!-- 			<option value="content" -->
-<%-- 			<c:if test="${col =='content' }">selected</c:if> --%>
-<!-- 			>내용</option> -->
-<!-- 			<option value="total" -->
-<%-- 			<c:if test="${col =='total' }">selected</c:if> --%>
-<!-- 			>전체출력</option> -->
-<!-- 		</select> -->
-<%-- 	<input type="text" name="word" value="${word }"> --%>
-<!-- 	<input type="submit" value="검색"> -->
-<!-- 	</form> -->
-<!--  </div> -->
 
-<!--   <TABLE> -->
-<!--     <TR> -->
-<!--       <th>번호</th> -->
-<!--       <th width = "25%">제목</th> -->
-<!--       <th>이름</th> -->
-<!--       <th>조회수</th> -->
-<!--       <th>등록일</th> -->
-<!-- <!--       <th>grpno</th> --> -->
-<!-- <!--       <th>indent</th> --> -->
-<!-- <!--       <th>ansnum</th>       --> -->
-<!--     </TR> -->
-<%--   <c:choose> --%>
-<%--   <c:when test="${empty list}"> --%>
-<!--   <tr> -->
-<!-- 	  <td colspan="8" align="center">등록된 글이 없습니다.</td> -->
-<!-- 	  </tr> -->
-<%--   </c:when> --%>
-<%--   <c:otherwise> --%>
-<%--   <c:forEach var="dto" items="${list}"> --%>
-<!--   <tr> -->
-<%--     <td>${dto.qnANum}</td> --%>
-<!--     <td> -->
-<%--     <c:forEach begin="1" end="${dto.indent }" > --%>
-<!--     &nbsp;&nbsp; -->
-<%--     </c:forEach> --%>
-<%--     <c:if test="${dto.indent >0 }"> --%>
-<!--     [답변] -->
-<%--     </c:if> --%>
-<%--     <c:set var="rcount" value="${uti:rcount(dto.qnANum,rdao) }"/> --%>
-<%--     <a href="javascript:read('${dto.qnANum }')">${dto.title }</a> --%>
-<%--      <c:if test="${rcount>0 }"> --%>
-<%--      <span style="color:red;">(${rcount})</span> --%>
-<%--      </c:if> --%>
-<%--      <c:if test="${uti:newImg(fn:substring(dto.wdate,0,10)) }"> --%>
-<!--      <img src="../images/new.gif"> -->
-<%--      </c:if> --%>
-<!--       </td> -->
-<%--     <td>${dto.wname }</td> --%>
-<%--     <td>${dto.viewcnt }</td> --%>
-<%--     <td>${fn:substring(dto.wdate,0,10)  }</td> --%>
-<%--     <td>${dto.grpno }</td> --%>
-<%--     <td>${dto.indent }</td> --%>
-<%--     <td>${dto.ansnum }</td> --%>
-<!--     </tr> -->
-     
-<%--   </c:forEach> --%>
-<%--   </c:otherwise> --%>
-<%--   </c:choose>    --%>
-<!--   </TABLE> -->
-  
-<!--   <DIV class='bottom'> -->
-<%--   	${paging}<br> --%>
-<!--   	    <input type='button' value='등록' onclick="location.href='create'"> -->
-<!--   </DIV> -->
-
-
-<!-- ================================= -->
 
 
 <style type="text/css">
@@ -407,49 +311,6 @@ p{padding:0; margin:0}
 <!--
 //-->
 </script>
-<!-- 레이어 - 인재정보 열람 상품 이벤트 -->
-<!-- <div class="layer_main01" style="z-index:98; display:none" id="head-event-layer"> -->
-<!--   <div class="layer_close"> -->
-<!--     <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/ico_close.gif" border="0" style="cursor:pointer" alt="닫기" onclick="return closeBanner(this)"> -->
-<!--   </div> -->
-<!--   <div style="text-align:center"> -->
-<!--     <p style="padding:249px 0 21px 0; letter-spacing:1px;"> -->
-<!--       <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/btn_go_talent_contact900.gif" border="0" style="cursor:pointer" onclick="return applyHeadhuntEvent()" alt="지금 인재정보 열람 상품 900건 받기"> -->
-<!--       <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/btn_contact_no.gif" border="0" style="cursor:pointer" onclick="return closeBanner(this)" alt="나중에 받기"> -->
-<!--     </p> -->
-<!--   </div> -->
-<!-- </div> -->
-<!-- <!-- 레이어 - 인재정보 열람 상품 이벤트 --> -->
-
-<!-- <!-- 레이어 - 인재정보 열람 상품 이벤트 회원가입레이어1 --> -->
-<!-- <div class="layer_main03" style="z-index:98; display:none; top:55px;" id="head-event-registration-layer"> -->
-<!--   <div class="layer_close"> -->
-<!--     <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/ico_close.gif" border="0" style="cursor:pointer" alt="닫기" onclick="return closeBanner(this)"> -->
-<!--   </div> -->
-<!--     <div style="text-align:center;"> -->
-<!--      <p style="padding:279px 0 21px 0; letter-spacing:1px;"> -->
-<!--        <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/btn_go_talent_contact900.gif" border="0" style="cursor:pointer" onclick="return applyHeadhuntEvent()" alt="지금 인재정보 열람 상품 900건 받기"> -->
-<!--        <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/btn_contact_no2.gif" border="0" style="cursor:pointer" onclick="return goMainPage(this);" alt="나중에 받기"> -->
-<!--      </p> -->
-<!--     </div> -->
-<!-- </div> -->
-<!-- <!-- 레이어 - 인재정보 열람 상품 이벤트 회원가입레이어1 --> -->
-
-
-<!-- <!-- 레이어 - 인재정보 열람 상품 이벤트 적용 완료--> -->
-<!-- <div class="layer_main02" style="z-index:99; display:none" id="head-apply-ok-layer"> -->
-<!--   <div class="layer_close"> -->
-<!--     <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/ico_close.gif" border="0" style="cursor:pointer" onclick="$('head-apply-ok-layer').hide();" alt="닫기"> -->
-<!--   </div> -->
-<!--   <div style="padding-top:127px; text-align:center"> -->
-<!--     <p class="layer_end_day">(서비스 만료 예정일 : <span id="expiry_date"></span>)</p> -->
-<!--     <p style="padding:30px 0 38px 0;"> -->
-<!--                 <a href="/zf_user/talent/search-resume/total"> -->
-<!--            <img src="http://www.saraminimage.co.kr/event_2011/1124_contact/btn_go_talent_info.gif" border="0" alt="인재정보 바로가기"></a> -->
-<!--                   </p> -->
-<!--   </div> -->
-<!-- </div> -->
-<!-- <!-- 레이어 - 인재정보 열람 상품 이벤트 적용 완료 --> -->
 
 
   </div>
