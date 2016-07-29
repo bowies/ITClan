@@ -32,7 +32,7 @@ public class AdminLoginCheckFilter implements Filter {
         
         if (session != null) { // session 객체가 생성되어 있는지 확인
             // 로그인을 했으면서 관리자인지 확인합니다.
-            if (session.getAttribute("id") != null 
+            if (session.getAttribute("memberID") != null || session.getAttribute("companyID") != null
                     && session.getAttribute("grade").equals("A")) {
                 login = true;  // 관리자라면
             }
@@ -44,7 +44,7 @@ public class AdminLoginCheckFilter implements Filter {
         } else {
             // 로그인이 안되었다면 로그인 페이지로 이동
             RequestDispatcher dispatcher = 
-                request.getRequestDispatcher("/member/login.do");
+                request.getRequestDispatcher("/company/login");
             dispatcher.forward(request, response);
         }
     }

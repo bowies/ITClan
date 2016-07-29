@@ -1,0 +1,84 @@
+<script type="text/javascript"> 
+  // 입력 값 검사후 서버로 전송 
+  function inputCheck(){
+	  var f=document.frm; // <FORM>태그 객체 
+    if(f.id.value ==""){ 
+    	alert("아이디를 입력해 주세요."); 
+      f.id.focus(); // 폼이름.input 태그명.커서 셋팅    
+ 
+      return false;       // 프로그램 종료, 값을 돌려줌 
+    } 
+    if(f.passwd.value == ""){ 
+      alert("비밀번호를 입력해 주세요."); 
+      f.passwd.focus(); 
+      return false; 
+    } 
+    if(f.repasswd.value == ""){ 
+      alert("비밀번호를 확인해 주세요"); 
+      f.repasswd.focus(); 
+      return false; 
+    } 
+     
+    //비밀번호가 일치하는지 검사 
+    if(f.passwd.value != f.repasswd.value){ 
+      alert("비밀번호가 일치하지 않습니다. 다시 입력해 주세요."); 
+      f.repasswd.value="";
+      f.repasswd.focus(); 
+      return false; 
+    } 
+     
+    if(f.mname.value == ""){ 
+      alert("이름을 입력해 주세요."); 
+      f.mname.focus(); 
+      return false; 
+    } 
+ 
+    if(f.click.value==0){ 
+        alert("아이디 중복체크를 해주세요"); 
+        f.confirm.focus();  
+        return false;
+      }
+    if(f.email.value==""){ 
+		return true;
+	}else{if(f.eclick.value==0){
+    	alert("이메일 중복체크를 해주세요"); 
+        f.emailclick.focus();  
+        return false;
+			}
+      } 
+
+    // Form onsubmit 이벤트일경우 
+    // return false; 
+     
+    f.submit(); 
+  } 
+ 
+  // 중복 아이디를 검사합니다. 
+  function idCheck(idv){
+	  var f=document.frm; // <FORM>태그 객체 
+    if(idv == ""){ 
+      window.alert("아이디를 입력해 주세요."); 
+      f.id.focus(); // 커서 이동 
+    }else{
+      url="./id_proc?id=" + idv;  // GET 
+      wr = window.open(url,"아이디검색","width=500,height=400"); 
+      wr.moveTo((window.screen.width-500)/2, (window.screen.height-400)/2);// x, y //윈도우창을 x,y좌표로 움직이겠다.
+    } 
+  } 
+ 
+  //중복 이메일을 검사합니다. 
+  function emailCheck(email){ 
+    if(email == ""){ 
+      window.alert("이메일을 입력해 주세요."); 
+      f.email.focus(); 
+    }else{ 
+      url="./email_proc?email=" + email;  // GET 
+      wr = window.open(url,"이메일검색","width=500,height=400"); 
+      wr.moveTo((window.screen.width-500)/2, (window.screen.height - 400)/2);// x, y 
+    } 
+  } 
+ 
+ 
+ 
+</script> 
+ 
