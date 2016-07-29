@@ -85,7 +85,7 @@ public class ExternalActivityDAOTest {
 		assertEquals(1, dao.update(dto));
 	}
 
-	@Test //@Ignore
+	@Test @Ignore
 	public void testDelete() throws Exception {
 		ExternalActivityDAO dao = (ExternalActivityDAO)beans.getBean("externalactivitydao");
 		dao.delete(3);
@@ -95,5 +95,11 @@ public class ExternalActivityDAOTest {
 	public void testDeleteinfo() throws Exception {
 		ExternalActivityDAO dao = (ExternalActivityDAO)beans.getBean("externalactivitydao");
 		dao.deleteinfo("aaa");
+	}
+	
+	@Test //@Ignore
+	public void testTotal() throws Exception {
+		ExternalActivityDAO dao = (ExternalActivityDAO)beans.getBean("externalactivitydao");
+		dao.total("aaa");
 	}
 }

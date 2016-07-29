@@ -42,7 +42,7 @@ public class ResumeDetailDAOTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test //@Ignore
+	@Test @Ignore
 	public void testList() throws Exception {
 		ResumeDetailDAO dao = (ResumeDetailDAO)beans.getBean("resumedetaildao");
 		Map map = new HashMap();
@@ -53,7 +53,7 @@ public class ResumeDetailDAOTest {
 		assertEquals(3, list.size());
 	}
 
-	@Test //@Ignore
+	@Test @Ignore
 	public void testCreate() throws Exception {
 		ResumeDetailDAO dao = (ResumeDetailDAO)beans.getBean("resumedetaildao");
 		ResumeDetailDTO dto = new ResumeDetailDTO();
@@ -63,7 +63,7 @@ public class ResumeDetailDAOTest {
 		assertEquals(1, dao.create(dto));
 	}
 
-	@Test //@Ignore
+	@Test @Ignore
 	public void testDelete() throws Exception {
 		ResumeDetailDAO dao = (ResumeDetailDAO)beans.getBean("resumedetaildao");
 		dao.delete(4);
@@ -73,6 +73,12 @@ public class ResumeDetailDAOTest {
 	public void testDeleteinfo() throws Exception {
 		ResumeDetailDAO dao = (ResumeDetailDAO)beans.getBean("resumedetaildao");
 		dao.delete("aaa");
+	}
+	
+	@Test //@Ignore
+	public void testTotal() throws Exception {
+		ResumeDetailDAO dao = (ResumeDetailDAO)beans.getBean("resumedetaildao");
+		dao.total("aaa");
 	}
 
 }

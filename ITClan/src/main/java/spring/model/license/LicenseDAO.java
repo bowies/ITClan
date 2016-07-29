@@ -61,5 +61,10 @@ public class LicenseDAO implements DAOMyBatisInter {
 		
 		return mybatis.delete("license.deleteinfo", memberID);
 	}
+	
+	public int total(String memberID) {
+		
+		return mybatis.selectOne("license.total", memberID);
+	}
 
 }

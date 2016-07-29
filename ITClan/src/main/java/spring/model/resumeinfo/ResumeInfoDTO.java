@@ -1,5 +1,9 @@
 package spring.model.resumeinfo;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import com.sun.org.apache.xpath.internal.operations.Mult;
+
 import spring.model.personalmember.PersonalMemberDTO;
 
 public class ResumeInfoDTO {
@@ -14,8 +18,17 @@ public class ResumeInfoDTO {
     private String exArea         ;
     private String exField        ;
     private String military       ;
+    private MultipartFile pictureMF;
+
+	private PersonalMemberDTO pmdto;
 	
-    private PersonalMemberDTO pmdto;
+    public MultipartFile getPictureMF() {
+		return pictureMF;
+	}
+
+	public void setPictureMF(MultipartFile pictureMF) {
+		this.pictureMF = pictureMF;
+	}
 
 	public String getMemberID() {
 		return memberID;

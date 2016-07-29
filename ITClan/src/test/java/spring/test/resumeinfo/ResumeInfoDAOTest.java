@@ -45,7 +45,7 @@ public class ResumeInfoDAOTest {
 		ResumeInfoDTO dto = (ResumeInfoDTO) dao.read(memberID);
 	}
 
-	@Test @Ignore
+	@Test //@Ignore
 	public void testCreate() throws Exception {
 		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumedao");
 		ResumeInfoDTO dto = new ResumeInfoDTO();
@@ -81,7 +81,7 @@ public class ResumeInfoDAOTest {
 		assertEquals(1, dao.update(dto));
 	}
 
-	@Test //@Ignore
+	@Test @Ignore
 	public void testDelete() throws Exception {
 		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumedao");
 		

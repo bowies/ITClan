@@ -60,4 +60,9 @@ public class ResumeDetailDAO implements DAOMyBatisInter {
 		
 		return mybatis.delete("resumedetail.deleteinfo", memberID);
 	}
+	
+	public int total(String memberID) {
+		
+		return mybatis.selectOne("resumedetail.total", memberID);
+	}
 }

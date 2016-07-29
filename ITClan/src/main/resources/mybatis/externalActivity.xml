@@ -50,6 +50,12 @@ where r>=#{sno} and r<=#{eno}
 ]]>
 </select>
 
+<select id="total" parameterType="String" resultType="int">
+select count(*)
+from ExternalActivity
+where memberID = #{memberID}
+</select>
+
 <select id="read" parameterType="int" resultType="ExternalActivityDTO">
 select * from ExternalActivity
 where actNum = #{actNum}

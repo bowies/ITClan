@@ -49,6 +49,12 @@ where r>=#{sno} and r<=#{eno}
 ]]>
 </select>
 
+<select id="total" parameterType="String" resultType="int">
+select count(*)
+from ResumeDetail
+where memberID = #{memberID}
+</select>
+
 <insert id="create" parameterType="ResumeDetailDTO">
 insert into ResumeDetail (ResumeNum, memberID, biograph, portfolio)
 	values ((select nvl(max(ResumeNum),0)+1 from ResumeDetail), #{memberID}, #{biograph}, #{portfolio})

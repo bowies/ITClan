@@ -61,5 +61,10 @@ public class ExternalActivityDAO implements DAOMyBatisInter {
 		
 		return mybatis.delete("externalactivity.deleteinfo", memberID);
 	}
+	
+	public int total(String memberID){
+		
+		return mybatis.selectOne("externalactivity.total", memberID);
+	}
 
 }

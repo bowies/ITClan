@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<result property="military" column="military"/>
 </resultMap>
 <select id="list" parameterType="Map" resultMap="ManyMap">
-select  memberID, education, career, employmentType, exSalary,
+ select  memberID, education, career, employmentType, exSalary,
 		disableGrade, picture, exArea, exField, military,
 		licenseNum, qualification, takeDate, r
 from(
@@ -42,10 +42,16 @@ from(
 		and r.memberid = #{memberID}
 		order by licenseNum ASC
 	)
-)
+) 
 <![CDATA[
 where r>=#{sno} and r<=#{eno}
 ]]>
+</select>
+
+<select id="total" parameterType="String" resultType="int">
+select count(*)
+from license
+where memberID = #{memberID}
 </select>
 
 <select id="read" parameterType="int" resultType="LicenseDTO">
