@@ -3,9 +3,9 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="resumedetail">
+<mapper namespace="resume">
 
-<resultMap type="ResumeDetailDTO" id="ManyMap">
+<resultMap type="ResumeDTO" id="ManyMap">
 	<result property="resumeNum" column="resumeNum"/>
 	<result property="memberID" column="memberID"/>
 	<result property="biograph" column="biograph"/>

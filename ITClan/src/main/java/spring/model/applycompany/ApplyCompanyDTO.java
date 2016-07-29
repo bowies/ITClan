@@ -9,6 +9,27 @@ public class ApplyCompanyDTO {
 	private int offerNum;
 	private List offerList;
 	private List resumeInfoList;
+	private int resumeNum;
+	private int portfolioNum;
+	
+	
+	
+
+	public int getResumeNum() {
+		return resumeNum;
+	}
+
+	public void setResumeNum(int resumeNum) {
+		this.resumeNum = resumeNum;
+	}
+
+	public int getPortfolioNum() {
+		return portfolioNum;
+	}
+
+	public void setPortfolioNum(int portfolioNum) {
+		this.portfolioNum = portfolioNum;
+	}
 
 	public int getApplyCode() {
 		return applyCode;
