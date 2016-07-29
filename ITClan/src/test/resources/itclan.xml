@@ -51,9 +51,11 @@
 		p:mybatis-ref="sqlSession" />
 
 	<!-- ResumeDetailDAO 객체 생성 -->
-	<bean id="resumedetaildao" class="spring.model.resumedetail.ResumeDetailDAO"
+	<bean id="resumedao" class="spring.model.resume.ResumeDAO"
 		p:mybatis-ref="sqlSession" />
-
+	<!-- PortFolioDAO 객체 생성 -->
+	<bean id="portfoliodao" class="spring.model.portfolio.PortFolioDAO"
+		p:mybatis-ref="sqlSession" />
 	<!-- LicenseDAO 객체 생성 -->
 	<bean id="licensedao" class="spring.model.license.LicenseDAO"
 		p:mybatis-ref="sqlSession" />

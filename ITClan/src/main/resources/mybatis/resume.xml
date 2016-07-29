@@ -5,63 +5,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="resume">
 
-<resultMap type="ResumeDTO" id="ManyMap">
-	<result property="resumeNum" column="resumeNum"/>
-	<result property="memberID" column="memberID"/>
-	<result property="biograph" column="biograph"/>
-	<result property="portfolio" column="Portfolio"/>
-	<collection property="resumeList" column="memberID" javaType="List" ofType="ResumeInfoDTO"
-				resultMap="resumedetail.ResumeDTOListMap"/>
-</resultMap>
-<resultMap type="ResumeInfoDTO" id="ResumeDTOListMap">
-	<result property="memberID" column="memberID"/>
-	<result property="education" column="education"/>
-	<result property="career" column="career"/>
-	<result property="employmentType" column="employmentType"/>
-	<result property="exSalary" column="exSalary"/>
-	<result property="disableGrade" column="disableGrade"/>
-	<result property="picture" column="picture"/>
-	<result property="exArea" column="exArea"/>
-	<result property="exField" column="exField"/>
-	<result property="military" column="military"/>
-</resultMap>
-
-<select id="list" parameterType="Map" resultMap="ManyMap">
-select memberID, education, career, employmentType, exSalary,
-	   disableGrade, picture, exArea, exField, military,
-	   ResumeNum, biograph, portfolio, r
-from(
-	select memberID, education, career, employmentType, exSalary,
-		   disableGrade, picture, exArea, exField, military,
-		   ResumeNum, biograph, portfolio, rownum r
-	from(
-		select r.memberID, r.education, r.career, r.employmentType, r.exSalary,
-			   r.disableGrade, r.picture, r.exarea, r.exfield, r.military,
-			   b.ResumeNum, b.Biograph, b.Portfolio
-		from ResumeInfo r, ResumeDetail b
-		where r.memberID = b.memberID
-		and r.memberID = #{memberID}  
-		order by ResumeNum ASC
-	)
-)
-<![CDATA[
-where r>=#{sno} and r<=#{eno}
-]]>
+<select id="list" parameterType="Map" resultType="ResumeDTO">
+	select resumeNum, resumeName
+	from resume
+	where memberID = #{memberID}
+	order by resumeNum ASC
 </select>
 
-<insert id="create" parameterType="ResumeDetailDTO">
-insert into ResumeDetail (ResumeNum, memberID, biograph, portfolio)
-	values ((select nvl(max(ResumeNum),0)+1 from ResumeDetail), #{memberID}, #{biograph}, #{portfolio})
+<select id="total" parameterType="String" resultType="int">
+select count(*)
+from resume
+where memberID = #{memberID}
+</select>
+
+<insert id="create" parameterType="ResumeDTO">
+insert into resume (resumeNum, memberID, resumeName)
+	values ((select nvl(max(resumeNum),0)+1 from resume), #{memberID}, #{resumeName})
 </insert>
 
 
-<delete id="delete" parameterType="Map">
-delete from ResumeDetail
-where ResumeNum = #{ResumeNum} and memberID = #{memberID}
+<delete id="delete" parameterType="int">
+delete from resume
+where resumeNum = #{resumeNum}
 </delete>
 
 <delete id="deleteinfo" parameterType="String">
-delete from ResumeDetail
+delete from resume
 where memberID = #{memberID}
 </delete>
 </mapper>
