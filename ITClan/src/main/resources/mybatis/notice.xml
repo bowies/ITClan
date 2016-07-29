@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="notice">
+
+	<insert id="create" parameterType="NoticeDTO">
+		insert into notice(noticeNum,title,content,regDate)
+		values( (SELECT NVL(MAX(noticeNum), 0) + 1 as noticeNum FROM notice), #{title}, #{content},sysdate )
+	</insert>
+
+	<update id="update" parameterType="NoticeDTO">
+	    update notice
+	    set title=#{title}, content=#{content}
+		where noticenum = #{noticenum}
+	</update>
+	
+	<select id="read" resultType="NoticeDTO" parameterType="int">
+	  select noticenum, title, content,reDate,viewCnt
+	  from notice
+	  where noticenum = #{noticenum}
+	</select>
+
+	<delete id="delete" parameterType="int">
+		delete from notice
+		where noticenum = #{noticenum}
+	</delete>
+
+	<select id="list" resultType="NoticeDTO" parameterType="Map">
+		select  noticenum , title, content, viewCnt, regdate, r
+		from(
+			select  noticenum , title, content, viewCnt, regdate, rownum r
+			from(
+				select noticenum , title, content, viewCnt, regdate 
+				from notice  
+		<where>
+			<choose>
+				<when test="col=='title'">
+					title like '%'||#{word}||'%'
+				</when>
+				<when test="col=='content'">
+					content like '%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>        	                                       
+			ORDER BY noticenum desc
+			)
+			)                                                                            
+	   <![CDATA[                                                                        
+	   where r>=#{sno} and r<=#{eno}  
+	   ]]>
+	</select>
+	
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from notice
+	</select>
+	
+	<update id="increaseViewcnt" parameterType="int">
+	UPDATE notice
+	SET viewcnt = viewcnt +1
+	WHERE noticenum = #{noticenum}
+	</update>
+</mapper>

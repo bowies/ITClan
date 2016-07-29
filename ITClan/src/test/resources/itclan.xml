@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 데이터베이스 접속 설정 -->
+	<bean id="dataSource1" destroy-method="close"
+		class="org.apache.commons.dbcp.BasicDataSource" p:driverClassName="oracle.jdbc.driver.OracleDriver"
+		p:url="jdbc:oracle:thin:@172.16.3.15:1521:XE" p:username="goldstar"
+		p:password="lucky" />
+
+
+	<!-- MyBatis SQL 실행 클래스 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource1" />
+		<!-- 아래부분은 매핑할 xml파일이 있는 패키지경로를 설정한다. -->
+		<property name="typeAliasesPackage" value="spring.model" />
+		<property name="mapperLocations" value="classpath:mybatis/*.xml" />
+	</bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<!-- CompanyMemberDAO 객체 생성 -->
+	<bean id="companymemberdao" class="spring.model.companymember.CompanyMemberDAO"
+		p:mybatis-ref="sqlSession" />
+
+	<!-- OneByOneDAO 객체 생성 -->
+	<bean id="onebyonedao" class="spring.model.onebyone.OneByOneDAO"
+		p:mybatis-ref="sqlSession" />
+
+	<!-- QnADAO 객체 생성 -->
+	<bean id="qnadao" class="spring.model.qna.QnADAO" p:mybatis-ref="sqlSession" />
+
+	<!-- OfferDAO 객체 생성 -->
+	<bean id="offerdao" class="spring.model.offer.OfferDAO"
+		p:mybatis-ref="sqlSession" />
+
+	<!-- PersonalMemberDAO 객체 생성 -->
+	<bean id="personalmemberdao" class="spring.model.personalmember.PersonalMemberDAO"
+		p:mybatis-ref="sqlSession" />
+
+	<!-- ApplyCompanyDAO 객체 생성 -->
+	<bean id="applycompanydao" class="spring.model.applycompany.ApplyCompanyDAO"
+		p:mybatis-ref="sqlSession" />
+
+	<!-- ResumeInfoDAO 객체 생성 -->
+	<bean id="resumedao" class="spring.model.resumeinfo.ResumeInfoDAO"
+		p:mybatis-ref="sqlSession" />
+
+	<!-- ResumeDetailDAO 객체 생성 -->
+	<bean id="resumedetaildao" class="spring.model.resumedetail.ResumeDetailDAO"
+		p:mybatis-ref="sqlSession" />
+
+	<!-- LicenseDAO 객체 생성 -->
+	<bean id="licensedao" class="spring.model.license.LicenseDAO"
+		p:mybatis-ref="sqlSession" />
+
+	<!-- ExternalActivityDAO 객체 생성 -->
+	<bean id="externalactivitydao" class="spring.model.externalactivity.ExternalActivityDAO"
+		p:mybatis-ref="sqlSession" />
+		
+	<!-- CompanyInfoDAO 객체 생성 -->
+	<bean id="companyinfodao" class="spring.model.companyinfo"
+		p:mybatis-ref="sqlSession" />
+
+	<!-- IndustryCategoryDTO 객체 생성 -->
+	<bean id="industrycategorydto" class="spring.model.industrycategory"
+		p:mybatis-ref="sqlSession" />
+
+
+	<!-- NoticeDTO 객체 생성 -->
+	<bean id="noticedto" class="spring.model.notice"
+		p:mybatis-ref="sqlSession" />
+
+
+	<!-- ReplyDTO 객체 생성 -->
+	<bean id="replydto" class="spring.model.reply"
+		p:mybatis-ref="sqlSession" />
+
+</beans>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="offer">
+
+	<insert id="create" parameterType="OfferDTO">
+		insert into offer(OfferNum, Title, Qualification, OfferDate, CompanyName,
+						 CompanyId, Detail, EmploymentSector, Task, WorkingArea,Recruitment, Salary)
+						 
+		values( #{offerNum}, #{title}, #{qualification}, #{offerDate}, #{companyName}, #{companyID},
+				 #{detail}, #{employmentSector}, #{task}, #{workingArea}, #{recruitment}, #{salary} )
+	</insert>
+	
+	<update id="update" parameterType="OfferDTO">
+	    update offer
+	    set Title=#{title}, Qualification=#{qualification}, OfferDate=#{offerDate},
+		Detail=#{offerDate}, EmploymentSector=#{employmentSector}, Task=#{task},
+		WorkingArea=#{workingArea}, Recruitment=#{recruitment}, Salary=#{salary}
+		where OfferNum = #{offerNum}
+	</update>
+	
+	<select id="read" resultType="OfferDTO" parameterType="int">
+	  select OfferNum, title, OfferDate, Recruitment, Salary
+	  from Offer
+	  where OfferNum = #{offerNum}
+	</select>
+
+	<delete id="delete" parameterType="int">
+		delete from offer
+		where OfferNum = #{offerNum}
+	</delete>
+
+	<select id="list" resultType="OfferDTO" parameterType="Map">
+		select OfferNum , Title, Qualification, OfferDate, CompanyName, r
+		from(
+			select OfferNum , Title, Qualification, OfferDate, CompanyName, rownum r
+			from(
+				select OfferNum , Title, Qualification, OfferDate, CompanyName
+				from Offer  
+				
+		<where>
+			<choose>
+				<when test="col=='title'">
+					title like '%'||#{word}||'%'
+				</when>
+				<when test="col=='CompanyName'">
+					CompanyName like '%'||#{word}||'%'
+				</when>
+				<when test="col=='WorkingArea'">
+					WorkingArea like '%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>        	                                       
+	
+			ORDER BY OfferNum desc
+			)
+			)                                                                            
+	   <![CDATA[                                                                        
+	   where r>=#{sno} and r<=#{eno}  
+	   ]]>
+	</select>
+	
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from Offer
+	</select>
+	
+</mapper>

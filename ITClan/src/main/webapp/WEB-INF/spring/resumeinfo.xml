@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE  tiles-definitions PUBLIC 
+    "-//Aapche Software Foundation//DTD Tiles Configuration 2.0//EN" 
+    "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+
+	<definition name="main" template="/WEB-INF/views/templates/template.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/templates/top.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/templates/bottom.jsp" />
+	</definition>
+	
+	
+
+	<definition name="/resumeInfo/create" extends="main">
+		<put-attribute name="title" value="Bbs Join Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/resumeInfo/createForm.jsp" />
+	</definition>
+
+
+	<definition name="/resumeInfo/read" extends="main">
+		<put-attribute name="title" value="Bbs Join Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/resumeinfo/read.jsp" />
+	</definition>
+
+	<definition name="/resumeInfo/delete" extends="main">
+		<put-attribute name="title" value="Bbs information delete Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/resumeInfo/deleteForm.jsp" />
+	</definition>
+
+	<definition name="/resumeInfo/update" extends="main">
+		<put-attribute name="title" value="Bbs update Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/resumeInfo/updateForm.jsp" />
+	</definition>
+	
+	
+</tiles-definitions> 
+

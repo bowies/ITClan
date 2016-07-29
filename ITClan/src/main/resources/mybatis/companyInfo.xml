@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="companyinfo">
+<insert id="create" parameterType="CompanyInfoDTO">
+insert into CompanyInfo(CompanyID, CompanyName, CompanyScale, BossName, CompanyNumber, CI, CategoryCode)
+values(#{companyID},#{companyName}, #{companyName}, #{companyScale}, #{bossName}, #{companyNumber},#{ci},#{categoryCode});
+
+
+</insert>
+
+
+<select id="list" resultType="CompanyInfoDTO" parameterType="Map">
+	
+select CompanyID, CompanyName, CompanyScale, BossName, CompanyNumber, CI, CategoryCode, r
+from(
+	select CompanyID, CompanyName, CompanyScale, BossName, CompanyNumber, CI, CategoryCode, rownum r
+	from(
+		select CompanyID, CompanyName, CompanyScale, BossName, CompanyNumber, CI, CategoryCode
+		from CompanyInfo
+		
+		order by r ASC))
+		
+	
+</select>
+
+<update id="update" parameterType="CompanyInfoDTO">
+update CompanyInfo
+set CompanyName=#{companyName}, CompanyScale=#{companyScale}, BossName=#{bossName}, CompanyNumber=#{companyNumber}, CI=#{ci}, CategoryCode=#{categoryCode}
+where  CompanyID=#{CompanyID}
+
+
+
+</update>
+
+
+<delete id="delete" parameterType="string">
+delete from CompanyInfo
+where CompanyID=#{CompanyID}
+</delete>
+
+
+<select id="read" resultType="CompanyInfoDTO" parameterType="String">
+select CompanyID, CompanyName, CompanyScale, BossName, CompanyNumber, CI, CategoryCode
+from CompanyInfo
+where CompanyID=#{CompanyID}
+</select>
+
+</mapper>

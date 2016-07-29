@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE  tiles-definitions PUBLIC 
+    "-//Aapche Software Foundation//DTD Tiles Configuration 2.0//EN" 
+    "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+
+	<definition name="main" template="/WEB-INF/views/templates/template.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/templates/top.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/templates/bottom.jsp" />
+	</definition>
+	
+	
+	<!-- definition의 이름은 Bbscontroller에서 리턴되는 뷰의 이름 -->	
+	<definition name="/industrycategory/home" extends="main">
+		<put-attribute name="title" value="Default Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+	</definition>
+	
+	<definition name="/industrycategory/reply" extends="main">
+		<put-attribute name="title" value="industrycategory reply!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/industrycategory/replyForm.jsp" />
+	</definition>
+
+	<definition name="/industrycategory/create" extends="main">
+		<put-attribute name="title" value="industrycategory create Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/industrycategory/createForm.jsp" />
+	</definition>
+
+
+
+	<definition name="/industrycategory/read" extends="main">
+		<put-attribute name="title" value="industrycategory read Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/industrycategory/read.jsp" />
+	</definition>
+
+	<definition name="/industrycategory/delete" extends="main">
+		<put-attribute name="title" value="industrycategory information delete Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/industrycategory/deleteForm.jsp" />
+	</definition>
+
+	<definition name="/industrycategory/update" extends="main">
+		<put-attribute name="title" value="industrycategory update Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/industrycategory/updateForm.jsp" />
+	</definition>
+	
+	
+	
+	<definition name="/industrycategory/list" extends="main">
+		<put-attribute name="title" value="industrycategory list Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/industrycategory/list.jsp" />
+	</definition>
+	
+</tiles-definitions> 
+
