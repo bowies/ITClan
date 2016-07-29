@@ -5,32 +5,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <title></title>
-<script type="text/javascript">
-	function input(f){
-		if(f.passwd.value==""){
-			alert("비밀번호를 써주세요")
-			f.passwd.focus();
-			return false;
-		}
-		if(f.repasswd.value==""){
-			alert("비밀번호를 한번더 써주세요")
-			f.repasswd.focus();
-			return false;
-		}
-		if(f.passwd.value!==f.repasswd.value){
-			alert("비밀번호가 같은지 확인해주세요")
-			f.repasswd.value="";
-			f.repasswd.focus();
-			return false;
-		}
-}
-</script>
-<style type="text/css"> 
-*{ 
-  font-family: gulim; 
-  font-size: 20px; 
-} 
-</style> 
+
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 </head> 
 <!-- *********************************************** -->
@@ -43,7 +18,7 @@
       method='POST' 
 	  action='./updatePw'
 	  onsubmit="return input(this)">
- <input type="hidden" name='id' value='${param.id}'>
+ <input type="hidden" name='companyID' value='${param.companyID}'>
   <TABLE class='table'>
     <TR>
       <TH>*패스워드</TH>

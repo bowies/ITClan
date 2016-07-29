@@ -7,12 +7,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <title></title> 
-<style type="text/css"> 
-*{ 
-  font-family: gulim; 
-  font-size: 20px; 
-} 
-</style> 
+
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 </head> 
 <!-- *********************************************** -->
@@ -22,8 +17,8 @@
 <DIV class="title">아이디 찾기</DIV>
 <div class="content">
 <c:choose>
-<c:when test="${not empty id}">
-당신의 아이디는 ${id}<br>
+<c:when test="${not empty companyID}">
+당신의 아이디는 ${companyID}<br>
 <DIV class='bottom'>
   <input type='button' value='로그인' onclick="location.href='./login'">
 </DIV>

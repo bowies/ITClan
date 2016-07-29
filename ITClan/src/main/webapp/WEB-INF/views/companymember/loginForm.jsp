@@ -6,12 +6,7 @@
 <meta charset="UTF-8"> 
 <title></title>
 
-<style type="text/css"> 
-*{ 
-  font-family: 맑은고딕; 
-  font-size: 20px; 
-} 
-</style> 
+
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 </head> 
 <!-- *********************************************** -->
@@ -22,11 +17,11 @@
  
 <DIV class="title">로그인</DIV>
  
-<FORM name='frm' method='POST' action='${pageContext.request.contextPath}/member/login'>
+<FORM name='frm' method='POST' action='${pageContext.request.contextPath}/companymember/login'>
   <TABLE class='table'>
     <TR>
       <TH>아이디</TH>
-      <TD><input type="text" name="id" autofocus value='${c_id_val}'>
+      <TD><input type="text" name="companyID" autofocus value='${c_id_val}'>
        <c:choose>
        <c:when test="${c_id=='Y'}">
        <input type='checkbox' name='c_id' value='Y' checked='checked'> ID 저장
@@ -49,7 +44,7 @@
     <input type='button' value='회원가입' onclick="location.href='./agree'">
   </DIV>
   <input type="hidden" name="flag" value="${param.flag}">
-  <input type="hidden" name="bbsno" value="${bbsno}">
+  <input type="hidden" name="companyID" value="${companyID}">
   <input type="hidden" name="nowPage" value="${nowPage}">
   <input type="hidden" name="nPage" value="${nPage}">
   <input type="hidden" name="col" value="${param.col}">

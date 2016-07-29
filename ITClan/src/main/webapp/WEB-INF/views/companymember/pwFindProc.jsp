@@ -5,12 +5,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <title></title> 
-<style type="text/css"> 
-*{ 
-  font-family: gulim; 
-  font-size: 20px; 
-} 
-</style> 
+
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 </head> 
 <!-- *********************************************** -->
@@ -24,7 +19,7 @@
 <c:when test="${not empty passwd}">
 당신의 비밀번호는 ${passwd}<br>
 <DIV class='bottom'>
-  <input type='button' value='로그인' onclick="location.href='./loginForm.jsp'">
+  <input type='button' value='로그인' onclick="location.href='./loginForm'">
 </DIV>
 </c:when>
 <c:otherwise>

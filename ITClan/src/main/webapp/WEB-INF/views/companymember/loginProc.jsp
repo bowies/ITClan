@@ -6,12 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <title></title> 
-<style type="text/css"> 
-*{ 
-  font-family: 맑은고딕; 
-  font-size: 20px; 
-} 
-</style> 
+
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 </head> 
 <!-- *********************************************** -->
@@ -37,7 +32,7 @@ id와 passwd가 일치하지 않습니다.<br>
 </div>
 </c:otherwise>
 </c:choose>
- 
+ </div>
 <!-- *********************************************** -->
 
 </body>

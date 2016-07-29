@@ -6,12 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <title></title> 
-<style type="text/css"> 
-*{ 
-  font-family: 맑은고딕; 
-  font-size: 20px; 
-} 
-</style> 
+
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 </head> 
 <!-- *********************************************** -->
@@ -26,7 +21,7 @@
 <c:when test="${cnt==1}">
 탈퇴 되었습니다. 자동 로그아웃 됩니다.<br>
 <DIV class='bottom'>
-  <input type='button' value='홈' onclick="location.href='../index.jsp'">
+  <input type='button' value='홈' onclick="location.href='../index'">
 </DIV>
 </c:when>
 <c:otherwise>

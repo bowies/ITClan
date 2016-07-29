@@ -6,12 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <title></title> 
-<style type="text/css"> 
-*{ 
-  font-family: gulim; 
-  font-size: 20px; 
-} 
-</style>
+
  
 <link href='../css/style.css' rel='Stylesheet' type='text/css'> 
  
@@ -25,13 +20,13 @@
 <FORM method="POST" action="./list">
 <select name="col">
 <option value="mname"
-<c:if test="${col==mname}">selected='selected'</c:if>
+<c:if test="${col==name}">selected='selected'</c:if>
 >성명</option>
 <option value="email"
 <c:if test="${col==email}">selected='selected'</c:if>
 >이메일</option>
 <option value="id"
-  <c:if test="${col==id}">selected='selected'</c:if>
+  <c:if test="${col==companyID}">selected='selected'</c:if>
 >아이디</option>
 <option value="total"
   <c:if test="${col==total}">selected='selected'</c:if>
@@ -39,7 +34,7 @@
 </select>
 <input type="text" name="word" value="${word}">
 <input type="submit" value="검색" />
-  &emsp;<input type='button' value='회원 등록'  onclick="location.href='../member/create'"> 
+  &emsp;<input type='button' value='회원 등록'  onclick="location.href='../companymember/create'"> 
 </FORM>
 </DIV>
  
@@ -50,29 +45,30 @@
     <TD rowspan='5' width='20%' align="center">
     <IMG src='../storage/${dto.fname}' width='100%'></TD> 
     <TH width='20%'>아이디</TH> 
-    <TD width='60%'><A href='../member/read?id=${dto.id}'>${dto.id}</A></TD>
+    <TD width='60%'><A href='../companymember/read?companyID=${dto.companyID}'>${dto.companyID}</A></TD>
   </TR>
    
   <TR> 
     <TH>성명</TH> 
-    <TD>${dto.mname}</TD> 
+    <TD>${dto.name}</TD> 
   </TR> 
   <TR> 
     <TH>전화번호</TH> 
-    <TD>${dto.tel}</TD> 
+    <TD>${dto.phone}</TD> 
   </TR> 
   <TR> 
     <TH>이메일</TH> 
     <TD>${dto.email}</TD> 
   </TR> 
   <TR> 
-    <TH>주소</TH> 
-    <TD>${dto.address1} 
-    <c:if test="${not empty dto.address2}">
-    ${dto.address2}
-    </c:if>        
-    </TD> 
+    <TH>사업자번호</TH> 
+    <TD>${dto.companyNumber}</TD> 
   </TR> 
+  <TR> 
+    <TH>회사명</TH> 
+    <TD>${dto.companyName}</TD> 
+  </TR> 
+  
  
 </TABLE> 
 <BR> 

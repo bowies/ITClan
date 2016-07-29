@@ -5,12 +5,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <title></title> 
-<style type="text/css"> 
-*{ 
-  font-family: gulim; 
-  font-size: 20px; 
-} 
-</style> 
+
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 </head> 
 <!-- *********************************************** -->
@@ -23,10 +18,11 @@
   <TABLE class='table'>
     <TR>
       <TH>아이디</TH>
-      <TD><input type="text" name="id" ></TD>
+      <TD><input type="text" name="companyID" ></TD>
     </TR>
+    <TR>
     <TH>이름</TH>
-      <TD> <input type="text" name="mname" ></TD>
+      <TD> <input type="text" name="name" ></TD>
     </TR>
   </TABLE>
   
