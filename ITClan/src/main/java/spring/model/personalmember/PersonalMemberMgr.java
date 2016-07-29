@@ -1,9 +1,10 @@
 package spring.model.personalmember;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import spring.model.resumeinfo.ResumeInfoMgr;
-
+@Service
 public class PersonalMemberMgr {
 	
 	@Autowired

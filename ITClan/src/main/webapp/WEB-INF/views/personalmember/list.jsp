@@ -13,11 +13,11 @@
  
 <DIV class="title">회원 목록</DIV> 
  
-<DIV class="content"> 
+<DIV class="content" align="center"> 
   <input type='button' value='회원 등록'  onclick="location.href='../personal/create'" style="margin-bottom: 10px"> 
  
 <FORM method="POST" action="./list">
-<select name="col">
+<select name="col" >
 <option value="name"
 <c:if test="${col =='name' }">selected</c:if>
 >성명</option>
@@ -32,7 +32,7 @@
 <input type="submit" value="검색" />
 </FORM>
 </DIV>
- <table class="readTable" style="width: 80%">
+ <table class="readTable" style="width: 80%;margin: auto;border: 1px solid;" >
  <tr>
  <th>memberID</th>
  <th>name</th>
@@ -42,7 +42,7 @@
 </tr>
 <c:forEach var="dto" items="${list}">
   <tr> 
-    <TD width="100px"><A href='../userM/read?memberID=${dto.memberID }'>${dto.memberID }</A></TD> 
+    <TD width="100px"><A href='../personal/read?memberID=${dto.memberID }'>${dto.memberID }</A></TD> 
      <TD>${dto.name }</TD> 
      <TD>${dto.birth }</TD> 
     <TD width="250px">${dto.phone }</TD> 

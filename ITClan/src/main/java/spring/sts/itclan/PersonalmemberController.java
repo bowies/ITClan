@@ -21,6 +21,7 @@ import spring.utility.itclan.*;
 public class PersonalmemberController {
 	@Autowired
 	private PersonalMemberDAO dao;
+	
 	@Autowired
 	private PersonalMemberMgr mgr;
 	
@@ -36,10 +37,18 @@ public class PersonalmemberController {
 	}
 	
 	@RequestMapping("/personal/delete")
-	public String delete(String memberID,HttpSession session) throws Exception{
-		mgr.delete(memberID);
-		session.invalidate();
-		return "redirect:/";
+	public String delete(String memberID,HttpSession session){
+		
+		try {
+			mgr.delete(memberID);
+			session.invalidate();
+			return "redirect:/";
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "/error/error";
+		}
+		
+		
 		
 	}
 	
@@ -260,7 +269,7 @@ public class PersonalmemberController {
 		model.addAttribute("nowPage", nowPage);
 		
 		
-	return "/personalmember/list";
+	return "/admin/list";
 	}
 	
 	@RequestMapping("/personal/read")

@@ -59,4 +59,9 @@ insert into ResumeDetail (ResumeNum, memberID, biograph, portfolio)
 delete from ResumeDetail
 where ResumeNum = #{ResumeNum} and memberID = #{memberID}
 </delete>
+
+<delete id="deleteinfo" parameterType="String">
+delete from ResumeDetail
+where memberID = #{memberID}
+</delete>
 </mapper>

@@ -70,4 +70,8 @@ where licenseNum = #{licenseNum} and memberID = #{memberID}
 delete from license
 where licenseNum = #{licenseNum} and memberID = #{memberID}
 </delete>
+<delete id="deleteinfo" parameterType="String">
+delete from license
+where memberID = #{memberID}
+</delete>
 </mapper>
