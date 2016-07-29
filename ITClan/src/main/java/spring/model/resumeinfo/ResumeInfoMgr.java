@@ -27,9 +27,9 @@ public class ResumeInfoMgr {
 	private ResumeDetailDAO resumedetaildao;
 	
 	
-	public void delete(String memberID, Object pk) throws Exception {
-		applycompanydao.delete(pk);
-		resumedao.delete(pk);
+	public void delete(String memberID) throws Exception {
+		applycompanydao.delete(memberID);
+		resumedao.delete(memberID);
 		externalactivitydao.deleteinfo(memberID);
 		licensedao.deleteinfo(memberID);
 		resumedetaildao.deleteinfo(memberID);

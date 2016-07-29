@@ -21,6 +21,8 @@ import spring.utility.itclan.*;
 public class PersonalmemberController {
 	@Autowired
 	private PersonalMemberDAO dao;
+	@Autowired
+	private PersonalMemberMgr mgr;
 	
 	@RequestMapping("/personal/deletePwC")
 	public String deletePwC(String memberID , String passwd,Model model){
@@ -35,12 +37,9 @@ public class PersonalmemberController {
 	
 	@RequestMapping("/personal/delete")
 	public String delete(String memberID,HttpSession session) throws Exception{
-		if(dao.delete(memberID)>0){
-			session.invalidate();
-			return "redirect:/";
-		}else{
-			return "error/error";
-		}
+		mgr.delete(memberID);
+		session.invalidate();
+		return "redirect:/";
 		
 	}
 	

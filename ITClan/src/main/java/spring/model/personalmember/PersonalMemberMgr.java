@@ -11,10 +11,10 @@ public class PersonalMemberMgr {
 	@Autowired
 	private ResumeInfoMgr mgr;
 	
-    public void delete(String memberID , Object pk) throws Exception{
+    public void delete(String memberID) throws Exception{
     	 
-        mgr.delete(memberID , pk);
-        dao.delete(pk);
+        mgr.delete(memberID);
+        dao.delete(memberID);
  }
 
 }
