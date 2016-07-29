@@ -1,4 +1,4 @@
-package spring.test.resumedetail;
+package spring.test.resume;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,10 +17,10 @@ import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
-import spring.model.resumedetail.ResumeDetailDAO;
-import spring.model.resumedetail.ResumeDetailDTO;
+import spring.model.resume.ResumeDAO;
+import spring.model.resume.ResumeDTO;
 
-public class ResumeDetailDAOTest {
+public class ResumeDAOTest {
 
 	private static BeanFactory beans;
 	
@@ -44,40 +44,37 @@ public class ResumeDetailDAOTest {
 
 	@Test @Ignore
 	public void testList() throws Exception {
-		ResumeDetailDAO dao = (ResumeDetailDAO)beans.getBean("resumedetaildao");
+		ResumeDAO dao = (ResumeDAO)beans.getBean("resumedao");
 		Map map = new HashMap();
 		map.put("memberID", "bbb");
-		map.put("sno", 1);
-		map.put("eno", 5);
-		List<ResumeDetailDTO> list = dao.list(map );
-		assertEquals(3, list.size());
+		List<ResumeDTO> list = dao.list(map );
+		assertEquals(2, list.size());
 	}
 
-	@Test @Ignore
+	@Test //@Ignore
 	public void testCreate() throws Exception {
-		ResumeDetailDAO dao = (ResumeDetailDAO)beans.getBean("resumedetaildao");
-		ResumeDetailDTO dto = new ResumeDetailDTO();
+		ResumeDAO dao = (ResumeDAO)beans.getBean("resumedao");
+		ResumeDTO dto = new ResumeDTO();
 		dto.setMemberID("aaa");
-		dto.setBiograph("자소서.hwp");
-		dto.setPortfolio("포트.hwp");
+		dto.setResumeName("자기소개서.hwp");
 		assertEquals(1, dao.create(dto));
 	}
 
 	@Test @Ignore
 	public void testDelete() throws Exception {
-		ResumeDetailDAO dao = (ResumeDetailDAO)beans.getBean("resumedetaildao");
-		dao.delete(4);
+		ResumeDAO dao = (ResumeDAO)beans.getBean("resumedao");
+		dao.delete(1);
 	}
 	
 	@Test @Ignore
 	public void testDeleteinfo() throws Exception {
-		ResumeDetailDAO dao = (ResumeDetailDAO)beans.getBean("resumedetaildao");
+		ResumeDAO dao = (ResumeDAO)beans.getBean("resumedao");
 		dao.delete("aaa");
 	}
 	
 	@Test //@Ignore
 	public void testTotal() throws Exception {
-		ResumeDetailDAO dao = (ResumeDetailDAO)beans.getBean("resumedetaildao");
+		ResumeDAO dao = (ResumeDAO)beans.getBean("resumedao");
 		dao.total("aaa");
 	}
 

@@ -12,14 +12,6 @@
 		<put-attribute name="footer"
 			value="/WEB-INF/views/templates/bottom.jsp" />
 	</definition>
-	
-	
-	
-	<definition name="/license/create" extends="main">
-		<put-attribute name="title" value="Bbs Join Page"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/license/createForm.jsp" />
-	</definition>
-
 
 	<definition name="/license/read" extends="main">
 		<put-attribute name="title" value="Bbs Join Page"></put-attribute>

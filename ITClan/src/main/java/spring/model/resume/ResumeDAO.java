@@ -1,4 +1,4 @@
-package spring.model.resumedetail;
+package spring.model.resume;
 
 import java.util.List;
 import java.util.Map;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import spring.model.itclan.DAOMyBatisInter;
 
 @Component
-public class ResumeDetailDAO implements DAOMyBatisInter {
+public class ResumeDAO implements DAOMyBatisInter {
 	
 	@Autowired
 	private SqlSessionTemplate mybatis;
@@ -22,13 +22,13 @@ public class ResumeDetailDAO implements DAOMyBatisInter {
 	@Override
 	public int create(Object dto) throws Exception {
 		// TODO Auto-generated method stub
-		return mybatis.insert("resumedetail.create", dto);
+		return mybatis.insert("resume.create", dto);
 	}
 
 	@Override
 	public List list(Map map) throws Exception {
 		// TODO Auto-generated method stub
-		return mybatis.selectList("resumedetail.list", map);
+		return mybatis.selectList("resume.list", map);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class ResumeDetailDAO implements DAOMyBatisInter {
 	public int delete(Object pk) throws Exception {
 		// TODO Auto-generated method stub
 		int resumeNum = (Integer) pk;
-		return mybatis.delete("resumedetail.delete", resumeNum);
+		return mybatis.delete("resume.delete", resumeNum);
 	}
 
 	@Override
@@ -58,11 +58,11 @@ public class ResumeDetailDAO implements DAOMyBatisInter {
 
 	public int deleteinfo(String memberID) {
 		
-		return mybatis.delete("resumedetail.deleteinfo", memberID);
+		return mybatis.delete("resume.deleteinfo", memberID);
 	}
 	
 	public int total(String memberID) {
 		
-		return mybatis.selectOne("resumedetail.total", memberID);
+		return mybatis.selectOne("resume.total", memberID);
 	}
 }

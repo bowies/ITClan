@@ -12,7 +12,7 @@ import spring.model.externalactivity.ExternalActivityDTO;
 import spring.model.itclan.DAOMyBatisInter;
 import spring.model.license.LicenseDTO;
 import spring.model.offer.OfferDTO;
-import spring.model.resumedetail.ResumeDetailDTO;
+import spring.model.resume.ResumeDTO;
 
 @Component
 public class ApplyCompanyDAO implements DAOMyBatisInter{
@@ -37,11 +37,11 @@ public class ApplyCompanyDAO implements DAOMyBatisInter{
 	public List<ApplyCompanyDTO> list_company(Map map){
 		return mybatis.selectList("applycompany.list_company", map);
 	}
-	public ResumeDetailDTO list_D(String memberID,int resumenum){
+	public ResumeDTO list_D(String memberID,int resumenum){
 		Map map = new HashMap();
 		map.put("memberID", memberID);
 		map.put("resumenum", resumenum);
-		return (ResumeDetailDTO)mybatis.selectOne("applycompany.list_resumedetail", map);
+		return (ResumeDTO)mybatis.selectOne("applycompany.list_resumedetail", map);
 	}
 	
 	public List<LicenseDTO> list_L(String memberID){

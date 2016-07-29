@@ -44,15 +44,13 @@ public class LicenseDAOTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test @Ignore
+	@Test //@Ignore
 	public void testList() throws Exception {
 		LicenseDAO dao = (LicenseDAO)beans.getBean("licensedao");
 		Map map = new HashMap();
 		map.put("memberID", "aaa");
-		map.put("sno", 1);
-		map.put("eno", 5);
 		List<LicenseDTO> list = dao.list(map);
-		assertEquals(2, list.size());
+		assertEquals(1, list.size());
 	}
 
 	@Test @Ignore
@@ -94,7 +92,7 @@ public class LicenseDAOTest {
 		dao.deleteinfo("bbb");
 	}
 	
-	@Test //@Ignore
+	@Test @Ignore
 	public void testTotal() throws Exception {
 		LicenseDAO dao = (LicenseDAO)beans.getBean("licensedao");
 		dao.total("aaa");

@@ -7,7 +7,7 @@
 	<!-- 데이터베이스 접속 설정 -->
 	<bean id="dataSource1" destroy-method="close"
 		class="org.apache.commons.dbcp.BasicDataSource" p:driverClassName="oracle.jdbc.driver.OracleDriver"
-		p:url="jdbc:oracle:thin:@127.0.0.1:1521:XE" p:username="goldstar"
+		p:url="jdbc:oracle:thin:@172.16.3.15:1521:XE" p:username="goldstar"
 		p:password="lucky" />
 
 
@@ -50,8 +50,8 @@
 	<bean id="resumedao" class="spring.model.resumeinfo.ResumeInfoDAO"
 		p:mybatis-ref="sqlSession" />
 
-	<!-- ResumeDetailDAO 객체 생성 -->
-	<bean id="resumedetaildao" class="spring.model.resumedetail.ResumeDetailDAO"
+	<!-- ResumeDAO 객체 생성 -->
+	<bean id="resumedao" class="spring.model.resume.ResumeDAO"
 		p:mybatis-ref="sqlSession" />
 
 	<!-- LicenseDAO 객체 생성 -->

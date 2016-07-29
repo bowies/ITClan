@@ -63,13 +63,12 @@ public class ResumeInfoController {
 		model.addAttribute("personalmemberdto", personalmemberdto);
 		model.addAttribute("birth", birth);
 		
-		int sno = 1;
-		int eno = 5;
 		
 		Map map = new HashMap();
-		map.put("memberID", memberID);
-		map.put("sno", sno);
-		map.put("eno", eno);
+		map.put("memberID", membe
+				
+				
+				rID);
 		
 		//자격증
 		List<LicenseDTO>licenselist = licensedao.list(map);

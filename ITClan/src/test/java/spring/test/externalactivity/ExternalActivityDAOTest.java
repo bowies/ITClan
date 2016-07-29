@@ -44,15 +44,13 @@ public class ExternalActivityDAOTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test @Ignore
+	@Test //@Ignore
 	public void testList() throws Exception {
 		ExternalActivityDAO dao = (ExternalActivityDAO)beans.getBean("externalactivitydao");
 		Map map = new HashMap();
 		map.put("memberID", "bbb");
-		map.put("sno", 1);
-		map.put("eno", 5);
 		List<ExternalActivityDTO> list = dao.list(map);
-		assertEquals(2, list.size());
+		assertEquals(1, list.size());
 	}
 
 	@Test @Ignore
@@ -97,7 +95,7 @@ public class ExternalActivityDAOTest {
 		dao.deleteinfo("aaa");
 	}
 	
-	@Test //@Ignore
+	@Test @Ignore
 	public void testTotal() throws Exception {
 		ExternalActivityDAO dao = (ExternalActivityDAO)beans.getBean("externalactivitydao");
 		dao.total("aaa");

@@ -68,6 +68,7 @@ function licenseCreate(limax){
 	var url = "../license/create";
 	wr = window.open(url,"자격증","width=500,height=400"); 
     wr.moveTo((window.screen.width-500)/2, (window.screen.height - 400)/2);// x, y 
+	
 	}
 }
 
