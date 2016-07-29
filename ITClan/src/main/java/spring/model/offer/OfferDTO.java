@@ -13,7 +13,16 @@ public class OfferDTO {
 	private String	workingArea         ;
 	private String	recruitment         ;
 	private String	salary			    ;
+	private String viewcnt;
 	
+	
+	
+	public String getViewcnt() {
+		return viewcnt;
+	}
+	public void setViewcnt(String viewcnt) {
+		this.viewcnt = viewcnt;
+	}
 	public int getOfferNum() {
 		return offerNum;
 	}
