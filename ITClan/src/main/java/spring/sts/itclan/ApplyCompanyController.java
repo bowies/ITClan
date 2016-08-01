@@ -21,8 +21,20 @@ public class ApplyCompanyController {
 	@Autowired
 	private ApplyCompanyDAO dao;
 
+	
+	
+	@RequestMapping(value="/applycompany/create",method=RequestMethod.POST)
+	public String create(ApplyCompanyDTO dto, Model model,String memberID,int offerNum) throws Exception{
+		int cnt = dao.create(dto);
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("memberID", memberID);
+		model.addAttribute("offerNum", offerNum);
+		
+		return "/applycompany/create";
+	}
+	
 	@RequestMapping(value="/applycompany/create",method=RequestMethod.GET)
-	public String Create(HttpSession session, int offerNum,Model model){
+	public String create(HttpSession session, int offerNum,Model model){
 		String memberID = (String)session.getAttribute("memberID");
 		model.addAttribute("offerNum", offerNum);
 		model.addAttribute("memberID", memberID);
