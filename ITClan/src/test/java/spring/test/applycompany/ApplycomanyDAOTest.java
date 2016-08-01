@@ -56,6 +56,8 @@ public class ApplycomanyDAOTest {
 		ApplyCompanyDTO dto = new ApplyCompanyDTO();
 		dto.setMemberID("bbb");
 		dto.setOfferNum(1);
+		dto.setResumeNum(4);
+		dto.setPortfolioNum(4);
 		assertEquals(1, dao.create(dto));
 	 
 	}
@@ -86,13 +88,19 @@ public class ApplycomanyDAOTest {
 		map.put("sno", 1);
 		map.put("eno", 3);
 		List<ApplyCompanyDTO> list = dao.list(map);
-		assertEquals(1, list.size());
+		assertEquals(0, list.size());
 	}
 
 	@Test @Ignore
+	public void testDeletePensonal() throws Exception{
+		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
+		assertEquals( 2, dao.deletePersonal("bbb", 2));
+		
+	}
+	@Test @Ignore
 	public void testDelete() throws Exception{
 		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
-		assertEquals( 1, dao.delete("aaa"));
+		assertEquals(4, dao.delete("bbb"));
 		
 	}
 
@@ -116,38 +124,62 @@ public class ApplycomanyDAOTest {
 	}
 
 	@Test @Ignore
-	public void testList_D() {
+	public void testDown_resume() {
 		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
-		String dto = dao.list_D("bbb", 2);
+		String dto = dao.down_resume("bbb", 2);
 		
 		assertEquals("자소서.hwp",dto );
 	}
-	@Test //@Ignore
-	public void testList_P() {
+	@Test @Ignore
+	public void testDown_port() {
 		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
-		String dto = dao.list_P("bbb", 4);
+		String dto = dao.down_port("bbb", 4);
 		
-		assertEquals("포트폴리오.hwp",dto );
+		assertEquals("포트폴리오.hwp",dto ); 
 	}
+	//----------------------------------------------------------------------------------
+	@Test @Ignore
+	public void testList_resume() {
+		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
+		List<ResumeDTO> list = dao.list_resume("bbb");
+		
+		assertEquals(2,list.size() ); 
+	}
+	
+	@Test @Ignore
+	public void testList_port() {
+		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
+		List<PortFolioDTO> list = dao.List_portfolio("bbb");
+		
+		assertEquals(3,list.size()); 
+	}
+	//----------------------------------------------------------------------------------
 
 	@Test @Ignore
 	public void testList_L() {
 		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
 		List<LicenseDTO> list = dao.list_L("bbb");
-		assertEquals(1, list.size());
+		assertEquals(2, list.size());
 	}
 
 	@Test @Ignore
 	public void testList_A() {
 		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
-		List<ExternalActivityDTO> list= dao.list_A("bbb");
+		List<ExternalActivityDTO> list= dao.list_A("aaa");
 		
 		assertEquals(1, list.size());
 	}
 	@Test @Ignore
 	public void testDelete_company() {
 		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
-		assertEquals(1, dao.delete_company(1));
+		assertEquals(1, dao.delete_company(2));
+		
+		
+	}
+	@Test @Ignore
+	public void testMemberIDCheck() {
+		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
+		assertEquals(1, dao.memberIDCheck("bbb", 1));
 		
 		
 	}

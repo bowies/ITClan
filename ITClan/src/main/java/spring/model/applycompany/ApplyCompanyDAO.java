@@ -38,18 +38,27 @@ public class ApplyCompanyDAO implements DAOMyBatisInter{
 	public List<ApplyCompanyDTO> list_company(Map map){
 		return mybatis.selectList("applycompany.list_company", map);
 	}
-	public String list_D(String memberID,int resumeNum){
+	public String down_resume(String memberID,int resumeNum){
 		Map map = new HashMap();
 		map.put("memberID", memberID);
 		map.put("resumeNum", resumeNum);
-		return (String)mybatis.selectOne("applycompany.list_resume", map);
+		return (String)mybatis.selectOne("applycompany.down_resume", map);
 	}
-	public String list_P(String memberID,int portfolioNum){
+	public String down_port(String memberID,int portfolioNum){
 		Map map = new HashMap();
 		map.put("memberID", memberID);
 		map.put("portfolioNum", portfolioNum);
-		return (String)mybatis.selectOne("applycompany.list_portfolio", map);
+		return (String)mybatis.selectOne("applycompany.down_portfolio", map);
 	}
+	//----------------------------------------------------------------------------------
+	public List<ResumeDTO> list_resume(String memberID){
+		return mybatis.selectList("applycompany.list_resume", memberID);
+	}
+	public List<PortFolioDTO> List_portfolio(String memberID){
+		return mybatis.selectList("applycompany.list_portfolio", memberID);
+	}
+	
+	//-----------------------------------------------------------------------------------
 	
 	public List<LicenseDTO> list_L(String memberID){
 		return mybatis.selectList("applycompany.list_License", memberID);
@@ -85,11 +94,24 @@ public class ApplyCompanyDAO implements DAOMyBatisInter{
 	@Override
 	public int delete(Object pk) throws Exception {
 		String memberID = (String)pk;
-		return mybatis.delete("applycompany.delete_personal", memberID);
+		return mybatis.delete("applycompany.delete_personalA", memberID);
 	}
 	@Override
 	public int total(Map map) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	public int deletePersonal(String memberID,int offerNum){
+		Map map = new HashMap();
+		map.put("memberID", memberID);
+		map.put("offerNum", offerNum);
+		return mybatis.delete("applycompany.delete_personal", map);
+	}
+	public int memberIDCheck(String memberID, int offerNum){
+		Map map = new HashMap();
+		map.put("memberID", memberID);
+		map.put("offerNum", offerNum);
+		return mybatis.selectOne("applycompany.memberIDCheck", map);
+	}
+	
 }

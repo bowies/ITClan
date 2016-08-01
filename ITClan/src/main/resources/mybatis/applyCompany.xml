@@ -13,7 +13,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	values(#{applyCode},#{memberID},sysdate,#{offerNum},#{resumeNum},#{portfolioNum})
 	
 	</insert>
+	
+	
+	<select id="memberIDCheck" resultType="int" parameterType="Map">
+	select count(*) from applycompany
+	where memberID =#{memberID} and offerNum =#{offerNum} 
+	</select>
 	<delete id="delete_personal" parameterType="String">
+	delete from applycompany
+	where memberID =#{memberID} and offerNum =#{offerNum} 
+	</delete>
+	<delete id="delete_personalA" parameterType="String">
 	delete from applycompany
 	where memberID =#{memberID}
 	</delete>
@@ -108,14 +118,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 where offerNum =#{offerNum}
 	</delete>
 	<!-- resumedetail (list/read) -->
-	<select id="list_resume" parameterType="Map" resultType="String" >
+	<select id="down_resume" parameterType="Map" resultType="String" >
 	select resumeName from resume
 	where memberID = #{memberID} and resumenum = #{resumenum}
 	</select>
-	<select id="list_portfolio" parameterType="Map" resultType="String" >
+	<select id="list_resume" parameterType="String" resultType="ResumeDTO">
+	select resumeNum,memberID ,resumeName from resume
+	where memberID=#{memberID}
+	</select>
+	
+	
+	<select id="down_portfolio" parameterType="Map" resultType="String" >
 	select portfolioName from PortFolio
 	where memberID = #{memberID} and portfolioNum = #{portfolioNum}
 	</select>
+	<select id="list_portfolio" parameterType="String" resultType="PortFolioDTO">
+	select portfolioNum , memberID, portfolioName 
+	from portfolio
+	where memberID = #{memberID}
+	</select>
+	
+	
 	<select id="list_License" parameterType="String" resultType="LicenseDTO" >
 	select * from license
 where memberID = #{memberID}
