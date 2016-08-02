@@ -46,6 +46,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <result property="resumeNum" column="resumeNum"/>
 <result property="portfolioNum" column="portfolioNum"/>
 <result property="viewCheck" column="viewCheck"/>
+<result property="pmdto.memberID" column="memberID"/>
+<result property="pmdto.name" column="name"/>
 <collection property="offerList" column="offerNum" javaType="List" ofType="OfferDTO"
  resultMap="applycompany.OfferDTOListMap"/>
 </resultMap>
@@ -55,7 +57,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <result property="companyName" column="companyName"/>
 <result property="recruitment" column="recruitment"/>
 </resultMap>
-
 
 <resultMap type="PersonalMemberDTO" id="CompanyMap">
 <result property="name" column="name"/>
@@ -94,6 +95,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <result property="memberID" column="memberID"/>
 <result property="offerNum" column="offerNum"/>
 <result property="applyDate" column="applyDate"/>
+<result property="resumeNum" column="resumeNum"/>
+<result property="portfolioNum" column="portfolioNum"/>
 </resultMap>
 <resultMap type="ResumeDTO" id="ResumeDTOListMap">
 <result property="memberID" column="memberID"/>
@@ -140,12 +143,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	where r >=#{sno} and r<=#{eno}
 	]]>
 	</select>
-<select id="list_company" parameterType="Map" resultMap="CompanyMap">
- select memberID,name,applyDate,r	
+<select id="list_company" parameterType="Map" resultMap="PersonalMap">
+ select memberID,name,applyDate,resumeNum,portfolioNum,r	
  	from(
- 	select memberID , name, applyDate ,rownum r
+ 	select memberID , name, applyDate,resumeNum,portfolioNum,rownum r
  	from(
- 	select a.memberID, p.name , a.applyDate
+ 	select a.memberID, p.name , a.applyDate,a.resumeNum , a.portfolioNum
 	from Personalmember p , applycompany a
 	where p.memberID = a.memberID and offerNum = #{offerNum}
 	)

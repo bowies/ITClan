@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import spring.model.applycompany.*;
+import spring.model.personalmember.PersonalMemberDTO;
 import spring.utility.itclan.Utility;
 
 @Controller
@@ -22,8 +23,17 @@ public class ApplyCompanyController {
 	private ApplyCompanyDAO dao;
 
 	@RequestMapping("/a_company/read")
-	public String read_company(){
-		
+	public String read_company(int offerNum,String memberID,int resumeNum,int portfolioNum,
+			Model model){
+		dao.viewup(offerNum, memberID);
+		Map map = new HashMap();
+		map.put("memberID", memberID);
+		map.put("offerNum", offerNum);
+		map.put("resumeNum", resumeNum);
+		map.put("portfolioNum", portfolioNum);
+		PersonalMemberDTO dto= dao.read_c(map);
+		model.addAttribute("dto", dto);
+
 		return "/applycompamy/read_company";
 	}
 	@RequestMapping("/a_company/list")
@@ -50,10 +60,14 @@ public class ApplyCompanyController {
 	}
 	@RequestMapping("/applycompany/delete")
 	public String delete_personal(String memberID, int offerNum){
+		if(dao.viewCheck(memberID, offerNum)>0){
 		if(dao.deletePersonal(memberID, offerNum)>0){
 			return "redirect:/personal/read";
 		}else{
 			return "/error/passwderror";
+		}
+		}else{
+			return "/error/checkerror";
 		}
 	}
 	

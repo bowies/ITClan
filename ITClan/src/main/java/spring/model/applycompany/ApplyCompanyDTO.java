@@ -2,6 +2,8 @@ package spring.model.applycompany;
 
 import java.util.List;
 
+import spring.model.personalmember.PersonalMemberDTO;
+
 public class ApplyCompanyDTO {
 	private int applyCode;
 	private String applyDate;
@@ -11,11 +13,21 @@ public class ApplyCompanyDTO {
 	private int portfolioNum;
 	private int viewCheck;
 	private List offerList;
+	private PersonalMemberDTO pmdto;
 	
 	
 	
 	
 	
+	
+
+	public PersonalMemberDTO getPmdto() {
+		return pmdto;
+	}
+
+	public void setPmdto(PersonalMemberDTO pmdto) {
+		this.pmdto = pmdto;
+	}
 
 	public List getOfferList() {
 		return offerList;
