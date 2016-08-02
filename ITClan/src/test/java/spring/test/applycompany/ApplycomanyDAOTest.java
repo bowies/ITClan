@@ -24,6 +24,7 @@ import spring.model.applycompany.ApplyCompanyDTO;
 import spring.model.externalactivity.ExternalActivityDTO;
 import spring.model.license.LicenseDTO;
 import spring.model.offer.OfferDTO;
+import spring.model.personalmember.PersonalMemberDTO;
 import spring.model.portfolio.PortFolioDTO;
 import spring.model.resume.ResumeDTO;
 
@@ -73,7 +74,7 @@ public class ApplycomanyDAOTest {
 		assertEquals("학력무관 경력무관", dto.getQualification());
 		
 	}
-	@Test //@Ignore
+	@Test @Ignore
 	public void testViewup() throws Exception{
 		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
 		dao.viewup(2, "bbb");
@@ -125,28 +126,27 @@ public class ApplycomanyDAOTest {
 	public void testList_company() {
 		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
 		Map map = new HashMap();
-		map.put("offerNum", 3);
+		map.put("offerNum", 2);
 		map.put("sno", 1);
 		map.put("eno", 5);
 		List<ApplyCompanyDTO> list = dao.list_company(map);
 		
-		assertEquals(2, list.size());
+		assertEquals(1, list.size());
 	}
 
 	@Test @Ignore
-	public void testDown_resume() {
+	public void testRead_c() {
 		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
-		String dto = dao.down_resume("bbb", 2);
+		Map map = new HashMap();
+		map.put("memberID", "bbb");
+		map.put("offerNum", 2);
+		map.put("resumeNum", 4);
+		map.put("portfolioNum", 4);
+		PersonalMemberDTO dto = dao.read_c(map);
 		
-		assertEquals("자소서.hwp",dto );
+		assertEquals("하롱이",dto.getName());
 	}
-	@Test @Ignore
-	public void testDown_port() {
-		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
-		String dto = dao.down_port("bbb", 4);
-		
-		assertEquals("포트폴리오.hwp",dto ); 
-	}
+
 	//----------------------------------------------------------------------------------
 	@Test @Ignore
 	public void testList_resume() {

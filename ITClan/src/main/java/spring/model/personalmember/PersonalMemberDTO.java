@@ -12,7 +12,7 @@ public class PersonalMemberDTO {
      private String grade           ;
      private String address         ;
      private String address2        ;
-     private List resumInfoList;
+     private List resumeInfoList;
      private List resumeList;
      private List portFolioList;
      private List applyCompanyList;
@@ -21,11 +21,11 @@ public class PersonalMemberDTO {
      
      
      
-	public List getResumInfoList() {
-		return resumInfoList;
+	public List getResumeInfoList() {
+		return resumeInfoList;
 	}
-	public void setResumInfoList(List resumInfoList) {
-		this.resumInfoList = resumInfoList;
+	public void setResumeInfoList(List resumInfoList) {
+		this.resumeInfoList = resumInfoList;
 	}
 	public List getResumeList() {
 		return resumeList;

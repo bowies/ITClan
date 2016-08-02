@@ -12,6 +12,7 @@ import spring.model.externalactivity.ExternalActivityDTO;
 import spring.model.itclan.DAOMyBatisInter;
 import spring.model.license.LicenseDTO;
 import spring.model.offer.OfferDTO;
+import spring.model.personalmember.PersonalMemberDTO;
 import spring.model.portfolio.PortFolioDTO;
 import spring.model.resume.ResumeDTO;
 
@@ -38,17 +39,8 @@ public class ApplyCompanyDAO implements DAOMyBatisInter{
 	public List<ApplyCompanyDTO> list_company(Map map){
 		return mybatis.selectList("applycompany.list_company", map);
 	}
-	public String down_resume(String memberID,int resumeNum){
-		Map map = new HashMap();
-		map.put("memberID", memberID);
-		map.put("resumeNum", resumeNum);
-		return (String)mybatis.selectOne("applycompany.down_resume", map);
-	}
-	public String down_port(String memberID,int portfolioNum){
-		Map map = new HashMap();
-		map.put("memberID", memberID);
-		map.put("portfolioNum", portfolioNum);
-		return (String)mybatis.selectOne("applycompany.down_portfolio", map);
+	public PersonalMemberDTO read_c(Map map){
+		return mybatis.selectOne("applycompany.read_c", map);
 	}
 	//----------------------------------------------------------------------------------
 	public List<ResumeDTO> list_resume(String memberID){

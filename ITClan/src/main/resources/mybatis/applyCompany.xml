@@ -67,53 +67,69 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <result property="email" column="email"/>
 <collection property="resumeInfoList" column="memberID" javaType="List" ofType="ResumeInfoDTO"
  resultMap="applycompany.ResumeInfoDTOListMap"/>
+<collection property="applyCompanyList" column="memberID" javaType="List" ofType="ApplyCompanyDTO"
+ resultMap="applycompany.ApplyCompanyDTOListMap"/>
+<collection property="resumeList" column="memberID" javaType="List" ofType="ResumeDTO"
+ resultMap="applycompany.ResumeDTOListMap"/>
+<collection property="portFolioList" column="memberID" javaType="List" ofType="PortFolioDTO"
+ resultMap="applycompany.PortFolioDTOListMap"/>
 </resultMap>
-
 <resultMap type="ResumeInfoDTO" id="ResumeInfoDTOListMap">
 <result property="memberID" column="memberID"/>
 <result property="education" column="education"/>
 <result property="career" column="career"/>
-<result property="employmentType" column="employmenttype"/>
-<result property="exSalary" column="exsalary"/>
-<result property="disableGrade" column="disablegrade"/>
+<result property="employmentType" column="employmentType"/>
+<result property="exSalary" column="exSalary"/>
+<result property="disableGrade" column="disableGrade"/>
 <result property="picture" column="picture"/>
-<result property="exArea" column="exarea"/>
-<result property="exField" column="exfield"/>
+<result property="exArea" column="exArea"/>
+<result property="exField" column="exField"/>
 <result property="military" column="military"/>
 <result property="schoolName" column="schoolName"/>
 <result property="major" column="major"/>
 <result property="termtime" column="termtime"/>
 <result property="GPA" column="GPA"/>
 </resultMap>
-<resultMap type="PersonalMemberDTO" id="PersonalMemberDTOListMap">
+<resultMap type="ApplyCompanyDTO" id="ApplyCompanyDTOListMap">
 <result property="memberID" column="memberID"/>
-<result property="name" column="name"/>
+<result property="offerNum" column="offerNum"/>
+<result property="applyDate" column="applyDate"/>
 </resultMap>
-<select id="read_c">
+<resultMap type="ResumeDTO" id="ResumeDTOListMap">
+<result property="memberID" column="memberID"/>
+<result property="resuemNum" column="resumeNum"/>
+<result property="resumeName" column="resumeName"/>
+</resultMap>
+<resultMap type="PortFolioDTO" id="PortFolioDTOListMap">
+<result property="memberID" column="memberID"/>
+<result property="portfolioNum" column="portfolioNum"/>
+<result property="portfolioName" column="portfolioName"/>
+</resultMap>
+<select id="read_c" parameterType="Map" resultMap="CompanyMap">
 	select  name,memberID,birth,phone,address,address2,email,education,
-		career,employmenttype,exsalary,disablegrade,picture,shoolName,major,termtime,GPA,
-	exarea,exfield,military,resumeName,portfolioName
+		career,employmentType,exSalary,disablegrade,picture,schoolName,major,termtime,GPA,
+	exArea,exField,military,resumeName,portfolioName
 	from(
 	select p.name,r.memberID,p.birth,p.phone,p.address,p.address2,p.email, r.education,
-		r.career,r.employmenttype,r.exsalary,r.disablegrade,r.picture,r.shoolName,r.major,r.termtime,r.GPA,
-	r.exarea,r.exfield,r.military,re.resumeName,pf.portfolioName
-	from resumeinfo r ,applycompany a ,personalmember p , offer o ,resume re , portfolio pf
+		r.career,r.employmentType,r.exSalary,r.disablegrade,r.picture,r.schoolName,r.major,r.termtime,r.GPA,
+	r.exArea,r.exField,r.military,re.resumeName,pf.portfolioName,pf.portfolioNum , re.resumeNum,a.offerNum
+	from resumeinfo r ,applycompany a ,personalmember p ,resume re , portfolio pf
 	where p.memberID = r.memberID and r.memberID = a.memberID
 	and p.memberID = re.memberID and p.memberID = pf.memberID 
-	and o.offerNum = a.offerNum
 	)
-	where memberID = 'bbb' and offerNum = 2 and resumeNum =4 and portfolioNum = 4
+	where memberID = #{memberID} and offerNum = #{offerNum}
+	 and resumeNum =#{resumeNum} and portfolioNum = #{portfolioNum}
 </select>
 
 
 	<select id="list_personal" parameterType="Map" resultMap = "PersonalMap">
-		select applydate , memberID,offerNum , title,companyName,recruitment,
+		select applyDate , memberID,offerNum , title,companyName,recruitment,
 		r
 		from(
-		select applydate , memberID,offerNum , title,companyName,recruitment,rownum
+		select applyDate , memberID,offerNum , title,companyName,recruitment,rownum
 		r
 		from(
-		select a.applydate , a.memberID,a.offerNum ,
+		select a.applydDate , a.memberID,a.offerNum ,
 		o.title,o.companyName,o.recruitment
 		from applycompany a,offer o
 		where o.offerNum = a.offerNum
@@ -124,20 +140,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	where r >=#{sno} and r<=#{eno}
 	]]>
 	</select>
-<select id="list_company" parameterType="Map" resultMap="manyMap">
- select memberID,name,applydate,r	
+<select id="list_company" parameterType="Map" resultMap="CompanyMap">
+ select memberID,name,applyDate,r	
  	from(
- 	select memberID , name, applydate ,rownum r
+ 	select memberID , name, applyDate ,rownum r
  	from(
- 	select a.memberID, p.name , a.applydate
+ 	select a.memberID, p.name , a.applyDate
 	from Personalmember p , applycompany a
 	where p.memberID = a.memberID and offerNum = #{offerNum}
-	order by a.applydate asc
 	)
 	)
 	<![CDATA[
 	where r >=#{sno} and r<=#{eno}
 	]]>
+		order by applyDate asc
+	
 </select>
 	
 	<update id="viewup" parameterType="int">
@@ -165,20 +182,12 @@ where offerNum = #{offerNum} and memberID = #{memberID}
 where offerNum =#{offerNum}
 	</delete>
 	<!-- resumedetail (list/read) -->
-	<select id="down_resume" parameterType="Map" resultType="String" >
-	select resumeName from resume
-	where memberID = #{memberID} and resumenum = #{resumenum}
-	</select>
+
 	<select id="list_resume" parameterType="String" resultType="ResumeDTO">
 	select resumeNum,memberID ,resumeName from resume
 	where memberID=#{memberID}
-	</select>
-	
-	
-	<select id="down_portfolio" parameterType="Map" resultType="String" >
-	select portfolioName from PortFolio
-	where memberID = #{memberID} and portfolioNum = #{portfolioNum}
-	</select>
+</select>
+
 	<select id="list_portfolio" parameterType="String" resultType="PortFolioDTO">
 	select portfolioNum , memberID, portfolioName 
 	from portfolio
