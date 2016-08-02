@@ -15,7 +15,7 @@ public class PersonalMemberDTO {
      private List resumInfoList;
      private List resumeList;
      private List portFolioList;
-     private List ApplyCompanyList;
+     private List applyCompanyList;
      
      
      
@@ -40,10 +40,10 @@ public class PersonalMemberDTO {
 		this.portFolioList = portFolioList;
 	}
 	public List getApplyCompanyList() {
-		return ApplyCompanyList;
+		return applyCompanyList;
 	}
 	public void setApplyCompanyList(List applyCompanyList) {
-		ApplyCompanyList = applyCompanyList;
+		applyCompanyList = applyCompanyList;
 	}
 	public String getMemberID() {
 		return memberID;
