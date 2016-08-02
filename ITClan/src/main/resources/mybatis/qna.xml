@@ -6,16 +6,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="qna"> 
 
 <insert id="create" parameterType="QnADTO">
-INSERT INTO QnA(qnANum , title, content,name, regdate)
+INSERT INTO QnA(qnANum , title, content, regdate)
 values((SELECT NVL(MAX(qnANum), 0) + 1 as qnANum FROM QnA),  
-#{title}, #{content}, #{name}, sysdate)                                     
+#{title}, #{content},  sysdate)                                     
      
 </insert>
 
 <select id="list" resultType="QnADTO" parameterType="Map">
-	select qnANum, title, content,name ,regdate,  r       
+	select qnANum, title, content,name , regdate,  r       
 		from(                                                                  
-			select qnANum, title, content,name,regdate,   rownum r  
+			select qnANum, title, content,name, regdate,   rownum r  
 			from(                                                                
 			select qnANum, title, content,name ,regdate
 			from QnA                                                                                                              

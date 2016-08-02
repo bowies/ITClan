@@ -46,7 +46,10 @@ function checkemailaddy(){
 							<th scope="row"><label for="Member_ID"><img alt="필수입력사항" src="../img/dot.gif"> 아이디</label></th>
 							<td>
 								<div class="mbrHelpWrap">		
-									<input type="text" id="Member_ID" name="id" maxlength="20" style="width:200px;" class="ipText">
+									<%String id =(String)session.getAttribute("memberID");%>
+<%-- 									 ${sessionScope.memberID} --%>
+									<input type="text" id="Member_ID" name="id" maxlength="20" 
+											style="width:200px;" class="ipText" value="<%=id%>" readonly />
 								
 								</div>
 							</td>

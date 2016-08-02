@@ -6,25 +6,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="onebyone"> 
 
 <select id="readReply" parameterType="int" resultType="OneByOneDTO">
-SELECT oneByOneNum,title,grpno,indent,ansnum 
+SELECT oneByOneNum, title,content, id,regdate, grpnum,indent,ansnum 
 FROM OneByOne                           
 WHERE oneByOneNum = #{oneByOneNum}                 
 
 </select>
+<!-- INSERT INTO OneByOne(oneByOneNum, title, content, id, regdate, grpnum, indent, ansnum)
+VALUES((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
+  #{title}, #{content},#{id},
+  sysdate, #{grpnum}, #{indent}+1, #{ansnum}+1) -->
+
+<insert id="reply" parameterType="OneByOneDTO">  
+INSERT INTO OneByOne(oneByOneNum , title, content, id, regdate, grpnum, indent, ansnum)
+values((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
+#{title}, #{content}, #{mail}, #{id}, sysdate,
+#{grpnum}, #{indent}+1, #{ansnum}+1)  
+</insert>
+
+
+
+
 
 <select id="checkId" parameterType="Map" resultType="int">
 SELECT COUNT(oneByOneNum) as cnt
 FROM OneByOne             
 WHERE oneByOneNum= #{oneByOneNum} AND id=#{id}
 </select>
-
-<insert id="reply" parameterType="OneByOneDTO">
-INSERT INTO OneByOne(oneByOneNum, name, title, content,  regdate, grpno, indent, ansnum)
-VALUES((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
- #{name}, #{title}, #{content},
-  sysdate, #{grpno}, #{indent}+1, #{ansnum}+1)
-</insert>
-
 
 
 <update id="increaseViewcnt" parameterType="int">
@@ -36,16 +43,16 @@ WHERE oneByOneNum = #{oneByOneNum}
 <update id="addAnsnum" parameterType="Map">
 UPDATE OneByOne           
 SET ansnum = ansnum + 1  
-WHERE grpno=#{grpno} AND ansnum > #{ansnum}
+WHERE grpnum=#{grpnum} AND ansnum > #{ansnum}
 
 </update>
 
 
 <insert id="create" parameterType="OneByOneDTO">
-
-INSERT INTO OneByOne(oneByOneNum , title, content, mail, filename, id, regdate)
+INSERT INTO OneByOne(oneByOneNum , title, content, mail, filename, id, regdate, grpnum)
 values((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
-#{title}, #{content}, #{mail}, #{filename}, #{id}, sysdate)  
+#{title}, #{content}, #{mail}, #{filename}, #{id}, sysdate,
+(SELECT NVL(MAX(grpnum), 0) + 1 as grpnum FROM OneByOne))  
 </insert>
 
 
@@ -54,11 +61,11 @@ values((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
 
 
 <select id="list" resultType="OneByOneDTO" parameterType="Map">
-	select oneByOneNum, id, mail, title,content,regdate,   r  
+	select oneByOneNum, id, mail, title,content,regdate, viewcnt,  r  
 		from(                                                                  
-			select oneByOneNum,  id, mail, title,content,regdate,   rownum r 
+			select oneByOneNum,  id, mail, title,content,regdate, viewcnt,  rownum r 
 			from(                                                                
-			select oneByOneNum, id, mail, title,content,regdate   
+			select oneByOneNum, id, mail, title,content,viewcnt, regdate   
 			from OneByOne                                                                                                              
             <where>
             <choose>
@@ -76,7 +83,7 @@ values((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
             </when>           
             </choose>      
             </where>                                                                 
-         ORDER BY oneByOneNum                                             
+         ORDER BY oneByOneNum desc                                            
         
         )
     )                                                                            
@@ -88,7 +95,7 @@ values((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
 
 
  <select id="read" resultType="OneByOneDTO" parameterType="int" >
- SELECT oneByOneNum, id, mail,name, title, content, filename, regdate
+ SELECT oneByOneNum, id, mail,name, title, content, filename, viewcnt, regdate
  FROM OneByOne            
   WHERE oneByOneNum = #{oneByOneNum}                                                              
  </select>
@@ -96,7 +103,7 @@ values((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
 
 <update id="update" parameterType="OneByOneDTO">
 UPDATE OneByOne                 
-SET title=#{title}, content=#{content}  
+SET name=#{name}, title=#{title}, content=#{content}, filename=#{filename}  
 WHERE oneByOneNum = #{oneByOneNum}             
 </update>     
       

@@ -28,11 +28,16 @@ public class OneByOneDAO implements DAOMyBatisInter {
 	 public OneByOneDTO readReply(int oneByOneNum){
 		   
 		   return mybatis.selectOne("onebyone.readReply", oneByOneNum);
-	 }
-	
-	public void addAnsnum(int grpno, int ansnum){ 
+	 }	
+	 
+	 public int reply(OneByOneDTO dto) { 			 
+
+		  return mybatis.update("onebyone.reply", dto); 
+	} 	 
+	 
+	public void addAnsnum(int grpnum, int ansnum){ 
 	    Map map = new HashMap();
-	    map.put("grpno", grpno);
+	    map.put("grpnum", grpnum);
 	    map.put("ansnum",ansnum);
 		  mybatis.update("onebyone.addAnsnum",map);
 	}   
@@ -73,6 +78,15 @@ public class OneByOneDAO implements DAOMyBatisInter {
 	@Override
 	public int total(Map map) throws Exception {
 		return mybatis.selectOne("onebyone.total", map);
+	}
+
+
+	public int checkId(int oneByOneNum, String id) {
+		   Map map = new HashMap();
+		   map.put("oneByOneNum", oneByOneNum);
+		   map.put("id", id);
+		return mybatis.selectOne("onebyone.checkId", map);
+		
 	}
 
 }

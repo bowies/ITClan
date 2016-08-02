@@ -58,9 +58,11 @@
 <!-- 		<th>이미지</th> -->
 		<th>글번호</th>
 		<th>제목</th>
-		<th>아이디</th>
+		<th>ID</th>
 		<th>조회수</th>
 		<th>등록일</th>
+		<th>파일</th>
+		
 	</tr>
 	<c:choose>
 	<c:when test="${empty list }">
@@ -74,21 +76,31 @@
 		<td>${dto.oneByOneNum}</td>
 		
 		<td width=50%>
-		<c:forEach begin="1" end="${dto.indent }">
+		<c:forEach begin="1" end="${dto.indent }">		
 		&nbsp;&nbsp;
 		<c:if test="${dto.indent>0 }">
 		[답변]
 		</c:if>
 		</c:forEach>
-			 <a href="javascript:read(${dto.oneByOneNum })">${dto.title}</a>
-		
+			 <a href="javascript:read(${dto.oneByOneNum })">${dto.title}</a>		
 		</td>
+		
+		
+<%-- 		<%
+		String id = (String)session.getAttribute("memberID");
+		 %> --%>
+		 
+<%-- 		 <td><%=id%></td> --%>
 		<td>${dto.id}</td>
 		
-<!-- 		name = (String)session.getAttribute("name");   -->
-		<td>${dto.viewcnt }</td>
+		 
+		<td>${dto.viewcnt}</td>
 		
 		<td>${fn:substring(dto.regdate,0,10)}</td>
+<%-- 		<td>${dto.filename}</td> --%>
+		<td><a href="${pageContext.request.contextPath }/download?dir=/storage/onebyone&filename=${dto.filename}">${dto.filename}</a></td>
+<%-- 		location.href='${pageContext.request.contextPath }/download?dir=/storage/onebyone&filename=${dto.filename}' --%>
+		
 	</tr>
 	</c:forEach>
 	</c:otherwise>
