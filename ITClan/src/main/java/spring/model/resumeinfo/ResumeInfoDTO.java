@@ -14,8 +14,46 @@ public class ResumeInfoDTO {
     private String exArea         ;
     private String exField        ;
     private String military       ;
+    private String schoolName ;
+    private String major;
+    private String termtime;
+    private String GPA;
+    
+    
 	
-    private PersonalMemberDTO pmdto;
+    public String getSchoolName() {
+		return schoolName;
+	}
+
+	public void setSchoolName(String schoolName) {
+		this.schoolName = schoolName;
+	}
+
+	public String getMajor() {
+		return major;
+	}
+
+	public void setMajor(String major) {
+		this.major = major;
+	}
+
+	public String getTermtime() {
+		return termtime;
+	}
+
+	public void setTermtime(String termtime) {
+		this.termtime = termtime;
+	}
+
+	public String getGPA() {
+		return GPA;
+	}
+
+	public void setGPA(String gPA) {
+		GPA = gPA;
+	}
+
+	private PersonalMemberDTO pmdto;
 
 	public String getMemberID() {
 		return memberID;

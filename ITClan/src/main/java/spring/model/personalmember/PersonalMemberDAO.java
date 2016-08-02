@@ -15,7 +15,7 @@ public class PersonalMemberDAO implements DAOMyBatisInter{
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	public String getGrade(String memberID){
+	public PersonalMemberDTO getGrade(String memberID){
 		return mybatis.selectOne("personalmember.getGrade", memberID);
 	}
 	

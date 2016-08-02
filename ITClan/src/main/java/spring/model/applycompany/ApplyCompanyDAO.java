@@ -91,6 +91,7 @@ public class ApplyCompanyDAO implements DAOMyBatisInter{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	//전부삭제
 	@Override
 	public int delete(Object pk) throws Exception {
 		String memberID = (String)pk;
@@ -101,6 +102,7 @@ public class ApplyCompanyDAO implements DAOMyBatisInter{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	//개인적 삭제
 	public int deletePersonal(String memberID,int offerNum){
 		Map map = new HashMap();
 		map.put("memberID", memberID);
@@ -113,5 +115,18 @@ public class ApplyCompanyDAO implements DAOMyBatisInter{
 		map.put("offerNum", offerNum);
 		return mybatis.selectOne("applycompany.memberIDCheck", map);
 	}
+	public void viewup(int offerNum , String memberID){
+		Map map = new HashMap();
+	map.put("memberID", memberID);
+	map.put("offerNum", offerNum);
+		mybatis.update("applycompany.viewup", map);
+	}
+	public int viewCheck(String memberID,int offerNum){
+		Map map = new HashMap();
+		map.put("memberID", memberID);
+		map.put("offerNum", offerNum);
+		return mybatis.selectOne("applycompany.viewCheck", map);
+	}
+	
 	
 }

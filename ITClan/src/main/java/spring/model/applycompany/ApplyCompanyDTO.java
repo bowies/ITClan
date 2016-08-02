@@ -7,13 +7,32 @@ public class ApplyCompanyDTO {
 	private String applyDate;
 	private String memberID;
 	private int offerNum;
-	private List offerList;
-	private List resumeInfoList;
 	private int resumeNum;
 	private int portfolioNum;
+	private int viewCheck;
+	private List offerList;
 	
 	
 	
+	
+	
+
+	public List getOfferList() {
+		return offerList;
+	}
+
+	public void setOfferList(List offerList) {
+		this.offerList = offerList;
+	}
+
+	public int getViewCheck() {
+		return viewCheck;
+	}
+
+	public void setViewCheck(int viewCheck) {
+		this.viewCheck = viewCheck;
+	}
+
 
 	public int getResumeNum() {
 		return resumeNum;
@@ -63,20 +82,5 @@ public class ApplyCompanyDTO {
 		this.offerNum = offerNum;
 	}
 
-	public List getOfferList() {
-		return offerList;
-	}
-
-	public void setOfferList(List offerList) {
-		this.offerList = offerList;
-	}
-
-	public List getResumeInfoList() {
-		return resumeInfoList;
-	}
-
-	public void setResumeInfoList(List resumeInfoList) {
-		this.resumeInfoList = resumeInfoList;
-	}
 
 }

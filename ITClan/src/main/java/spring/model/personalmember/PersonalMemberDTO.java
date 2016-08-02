@@ -1,5 +1,7 @@
 package spring.model.personalmember;
 
+import java.util.List;
+
 public class PersonalMemberDTO {
 	 private String memberID ;            
      private String name           ;
@@ -10,8 +12,39 @@ public class PersonalMemberDTO {
      private String grade           ;
      private String address         ;
      private String address2        ;
-	
+     private List resumInfoList;
+     private List resumeList;
+     private List portFolioList;
+     private List ApplyCompanyList;
      
+     
+     
+     
+     
+	public List getResumInfoList() {
+		return resumInfoList;
+	}
+	public void setResumInfoList(List resumInfoList) {
+		this.resumInfoList = resumInfoList;
+	}
+	public List getResumeList() {
+		return resumeList;
+	}
+	public void setResumeList(List resumeList) {
+		this.resumeList = resumeList;
+	}
+	public List getPortFolioList() {
+		return portFolioList;
+	}
+	public void setPortFolioList(List portFolioList) {
+		this.portFolioList = portFolioList;
+	}
+	public List getApplyCompanyList() {
+		return ApplyCompanyList;
+	}
+	public void setApplyCompanyList(List applyCompanyList) {
+		ApplyCompanyList = applyCompanyList;
+	}
 	public String getMemberID() {
 		return memberID;
 	}

@@ -45,10 +45,12 @@ public class PersonalmemberDAOTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test @Ignore
+	@Test //@Ignore
 	public void testGetGrade() {
 		PersonalMemberDAO dao = (PersonalMemberDAO)beans.getBean("personalmemberdao");
-		assertEquals("P", dao.getGrade("bbb"));
+		PersonalMemberDTO dto = dao.getGrade("bbb");
+		assertEquals("P", dto.getGrade());
+		assertEquals("하롱이", dto.getName());
 	}
 	@Test @Ignore
 	public void testLoginCheck() {

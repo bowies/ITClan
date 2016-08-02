@@ -103,13 +103,14 @@ public class PersonalmemberController {
 	public String login(String memberID, String passwd,String c_id,
 		HttpSession session,HttpServletResponse response,Model model){
 		int cnt = 0;
-		String grade = "";
 		
 		cnt = dao.loginCheck(memberID, passwd);
 		if(cnt ==1){
-			grade = dao.getGrade(memberID);
+			PersonalMemberDTO member = dao.getGrade(memberID);
 			session.setAttribute("memberID", memberID);
-			session.setAttribute("grade", grade);
+			session.setAttribute("grade", member.getGrade());
+			session.setAttribute("name", member.getName());
+			
 			
 			Cookie cookie = null;
 			if(c_id != null){

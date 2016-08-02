@@ -12,8 +12,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	delete from personalmember
 where memberID = #{memberID}
 	</delete>
-	<select id="getGrade" parameterType="String" resultType="String">
-	select grade from personalmember
+	<select id="getGrade" parameterType="String" resultType="PersonalMemberDTO">
+	select grade,name from personalmember
 	where memberID =#{memberID}
 	</select>
 	

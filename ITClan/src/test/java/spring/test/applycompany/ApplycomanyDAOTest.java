@@ -55,7 +55,7 @@ public class ApplycomanyDAOTest {
 		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
 		ApplyCompanyDTO dto = new ApplyCompanyDTO();
 		dto.setMemberID("bbb");
-		dto.setOfferNum(1);
+		dto.setOfferNum(2);
 		dto.setResumeNum(4);
 		dto.setPortfolioNum(4);
 		assertEquals(1, dao.create(dto));
@@ -71,6 +71,16 @@ public class ApplycomanyDAOTest {
 		
 		assertEquals("보안솔루션 엔지니어 신입/경력 모집", dto.getTitle());
 		assertEquals("학력무관 경력무관", dto.getQualification());
+		
+	}
+	@Test //@Ignore
+	public void testViewup() throws Exception{
+		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
+		dao.viewup(2, "bbb");
+		ApplyCompanyDTO dto = (ApplyCompanyDTO)dao.read(2);
+		
+		
+		assertEquals(1, dto.getViewCheck());
 		
 	}
 
