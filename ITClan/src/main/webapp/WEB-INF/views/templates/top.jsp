@@ -4,47 +4,83 @@
 <html>
 <head>
 <style type="text/css">
+
+body{
+width:1000px; 
+margin: 0 auto;
+
+}
+
+#top {
+
+height:30px;
+opacity:0.8;
+margin: 0 auto;
+
+}
+
+#top2{
+
+height: 100px;
+margin: 0 auto;
+position: relative;
+
+
+}
+
+#top2 #logo{
+width:198px; height: 44px;
+border:1px;
+  border: 2px solid #dddddd;
+position: absolute;
+top:20px;
+left:50px;
+
+}
+
+#top2 #search{
+    clear: both;
+    width: 300px;
+      height: 33px;
+    border: 2px solid #39f;
+position: absolute;
+top:20px;
+left:350px;
+}
+
 ul#menu li{
 display : inline;
 }
+
+
 ul#menu li a{
-background-color: #3399ff;
-color:white;
-padding : 10px 20px;
+color:gray;
+float: right;
 text-decoration:none;
-border-radius:10px 10px 0 0;
+margin-left: 10px;
+
+
 }
-ul#menu li a:hover{
-background-color: orange;
-}
+
 li#admin{
 float:right;
-padding-right: 30px
+padding-right:10px
 } 
 </style>
 </head>
 <body>
 <!-- 상단 메뉴 -->
-<div style="background-color: #EEEEEE;">
-<table style="width: 100%">
-  <tr>
-    <td>
-        <img src="${pageContext.request.contextPath}/images/images.jpg" width='100%' height='32%'>
-    </td>
-  </tr>
-  
-   <tr>
-    <td>
+<div id="top">
     <ul id="menu">
     
-     <li><a href="${pageContext.request.contextPath}/">홈</a></li>    
+     <li><a style="float: left;"  href="${pageContext.request.contextPath}/">홈</a></li>    
     
     <c:choose>
     <c:when test="${empty sessionScope.id}">
-     <li><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+     <li><a href="${pageContext.request.contextPath}/member/login">고객센터</a></li>
      <li><a href="${pageContext.request.contextPath}/member/agree">회원 가입</a></li>
-     <li><a href="${pageContext.request.contextPath}/member/idFind">아이디찾기</a><li>
-     <li><a href="${pageContext.request.contextPath}/member/pwFind">비번찾기</a><li>
+     <li><a href="${pageContext.request.contextPath}/member/idFind">로그인</a><li>
+     
 	</c:when>
      <c:otherwise>
      <li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
@@ -54,27 +90,26 @@ padding-right: 30px
      </c:otherwise>
      </c:choose>
         
-     <li><a href="${pageContext.request.contextPath}/bbs/list">글목록</a></li>
-     <li><a href="${pageContext.request.contextPath}/bbs/create">글생성</a></li>
-     <li><a href="${pageContext.request.contextPath}/memo/list">메모목록</a></li>
-     <li><a href="${pageContext.request.contextPath}/memo/create">메모생성</a></li>
-     <li><a href="${pageContext.request.contextPath}/image/list">이미지목록</a></li>
-     <li><a href="${pageContext.request.contextPath}/image/create">이미지생성</a></li>
-     <li><a href="${pageContext.request.contextPath}/cal/calendar">일정관리</a></li>
+     
      
      <c:if test="${not empty sessionScope.id and sessionScope.grade == 'A'}">
      <li id="admin"><a href="${pageContext.request.contextPath}/admin/list">회원목록</a></li>
 	</c:if>
  
     </ul>
-    </td> 
-  </tr>
- 
-</table>
+    
 </div>
-<!-- 상단 메뉴 끝 -->
+<div id="top2">
+	<div id="logo"> logo 
+	
+	</div>
+	<div id="search"> search
+	
+	
+	</div>
  
- 
- 
-<!-- 내용 시작 -->
-<div style="width: 100%; padding-top: 10px;">
+
+
+</div>
+
+</body>
