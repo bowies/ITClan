@@ -30,7 +30,6 @@ public class ApplyCompanyDAO implements DAOMyBatisInter{
 	public int total_personal(String memberID){
 		return mybatis.selectOne("applycompany.total_personal", memberID);
 	}
-	
 
 	//-------------------------------------------------------company
 	public int total_company(int offerNum){
@@ -61,7 +60,9 @@ public class ApplyCompanyDAO implements DAOMyBatisInter{
 	public int delete_company(int offerNum){
 		return mybatis.delete("applycompany.delete_company", offerNum);
 	}
-	
+	public ApplyCompanyDTO read_personal(Map map){
+		return (ApplyCompanyDTO)mybatis.selectOne("applycompany.read_p", map);
+	}
 	//---------------------------------------------------------------------------------
 	@Override
 	public int create(Object dto) throws Exception {

@@ -53,9 +53,11 @@ padding-right: 30px
      <li><a href="${pageContext.request.contextPath}/personal/delete">회원탈퇴</a><li>     
      </c:otherwise>
      </c:choose>
-        
-     <li><a href="${pageContext.request.contextPath}/bbs/list">글목록</a></li>
+     <c:if test="${not empty sessionScope.memberID }">
+       <li><a href="${pageContext.request.contextPath}/applycompany/list_personal">글목록</a></li>
      <li><a href="${pageContext.request.contextPath}/bbs/create">글생성</a></li>
+     </c:if>   
+   
      <li><a href="${pageContext.request.contextPath}/memo/list">메모목록</a></li>
      <li><a href="${pageContext.request.contextPath}/memo/create">메모생성</a></li>
      <li><a href="${pageContext.request.contextPath}/image/list">이미지목록</a></li>

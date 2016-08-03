@@ -3,6 +3,8 @@ package spring.model.applycompany;
 import java.util.List;
 
 import spring.model.personalmember.PersonalMemberDTO;
+import spring.model.portfolio.PortFolioDTO;
+import spring.model.resume.ResumeDTO;
 
 public class ApplyCompanyDTO {
 	private int applyCode;
@@ -14,12 +16,32 @@ public class ApplyCompanyDTO {
 	private int viewCheck;
 	private List offerList;
 	private PersonalMemberDTO pmdto;
+	private PortFolioDTO pfdto;
+	private ResumeDTO redto;
 	
 	
 	
 	
 	
 	
+	
+	
+
+	public PortFolioDTO getPfdto() {
+		return pfdto;
+	}
+
+	public void setPfdto(PortFolioDTO pfdto) {
+		this.pfdto = pfdto;
+	}
+
+	public ResumeDTO getRedto() {
+		return redto;
+	}
+
+	public void setRedto(ResumeDTO redto) {
+		this.redto = redto;
+	}
 
 	public PersonalMemberDTO getPmdto() {
 		return pmdto;

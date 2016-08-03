@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import spring.model.applycompany.*;
 import spring.model.personalmember.PersonalMemberDTO;
+import spring.utility.itclan.Paging;
 import spring.utility.itclan.Utility;
 
 @Controller
@@ -107,8 +108,8 @@ public class ApplyCompanyController {
 		int recordPerPage = 5;
 		int sno = ((nowPage-1)* recordPerPage) + 1;
 		int eno = nowPage * recordPerPage;
-		
 		String memberID = (String)session.getAttribute("memberID");
+		int total = dao.total_personal(memberID);
 		
 		Map map = new HashMap();
 		map.put("sno", sno);
@@ -117,9 +118,11 @@ public class ApplyCompanyController {
 
 		
 		List<ApplyCompanyDTO> list = dao.list(map);
+		String paging = new Paging().pagingApplyCompnay(total, nowPage, recordPerPage);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("nowPage", nowPage);		
+		model.addAttribute("paging", paging);		
 		
 		
 		

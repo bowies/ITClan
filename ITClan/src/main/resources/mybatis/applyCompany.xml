@@ -45,6 +45,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <result property="offerNum" column="offerNum"/>
 <result property="resumeNum" column="resumeNum"/>
 <result property="portfolioNum" column="portfolioNum"/>
+<result property="pfdto.portfolioName" column="portfolioName"/>
+<result property="redto.resumeName" column="resumeName"/>
 <result property="viewCheck" column="viewCheck"/>
 <result property="pmdto.memberID" column="memberID"/>
 <result property="pmdto.name" column="name"/>
@@ -126,14 +128,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<select id="list_personal" parameterType="Map" resultMap = "PersonalMap">
-		select applyDate , memberID,offerNum , title,companyName,recruitment,
+		select applyDate , memberID,offerNum , title,companyName,recruitment,resumeNum,portfolioNum
 		r
 		from(
-		select applyDate , memberID,offerNum , title,companyName,recruitment,rownum
+		select applyDate , memberID,offerNum , title,companyName,recruitment,resumeNum,portfolioNum,rownum
 		r
 		from(
 		select a.applydDate , a.memberID,a.offerNum ,
-		o.title,o.companyName,o.recruitment
+		o.title,o.companyName,o.recruitment,a.resumeNum,a.portfolioNum
 		from applycompany a,offer o
 		where o.offerNum = a.offerNum
 		and a.memberID=#{memberID}
@@ -143,6 +145,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	where r >=#{sno} and r<=#{eno}
 	]]>
 	</select>
+	<select id="read_p" parameterType="Map" resultMap="PersonalMap">
+	select o.title,a.offerNum,o.companyName,o.recruitment,pm.name,pf.portfolioName,a.portfolioNum,re.resumeName,a.resumeNum
+from offer o ,applycompany a , resume re , personalmember pm ,portfolio pf
+where o.offerNum = a.offerNum and pm.memberID = pf.memberID and pm.memberID = re.memberID and a.memberID = pm.memberID
+and a.offerNum = #{offerNum} and a.memberID = #{memberID} and pf.portfolioNum = #{portfolioNum} and re.resumeNum = #{resumeNum}
+	</select>
+	
 <select id="list_company" parameterType="Map" resultMap="PersonalMap">
  select memberID,name,applyDate,resumeNum,portfolioNum,r	
  	from(

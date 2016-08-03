@@ -75,6 +75,22 @@ public class ApplycomanyDAOTest {
 		
 	}
 	@Test @Ignore
+	public void testRead_p() throws Exception {
+		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
+		Map map = new HashMap();
+		map.put("offerNum", 2);
+		map.put("memberID", "bbb");
+		map.put("portfolioNum", 4);
+		map.put("resumeNum", 4);
+		ApplyCompanyDTO dto = dao.read_personal(map);
+		PersonalMemberDTO pmdto = dto.getPmdto();
+
+		
+		assertEquals("하롱이", pmdto.getName());
+
+		
+	}
+	@Test @Ignore
 	public void testViewup() throws Exception{
 		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
 		dao.viewup(2, "bbb");
