@@ -45,9 +45,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <result property="offerNum" column="offerNum"/>
 <result property="resumeNum" column="resumeNum"/>
 <result property="portfolioNum" column="portfolioNum"/>
+<result property="viewCheck" column="viewCheck"/>
 <result property="pfdto.portfolioName" column="portfolioName"/>
 <result property="redto.resumeName" column="resumeName"/>
-<result property="viewCheck" column="viewCheck"/>
 <result property="pmdto.memberID" column="memberID"/>
 <result property="pmdto.name" column="name"/>
 <collection property="offerList" column="offerNum" javaType="List" ofType="OfferDTO"
@@ -128,13 +128,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<select id="list_personal" parameterType="Map" resultMap = "PersonalMap">
-		select applyDate , memberID,offerNum , title,companyName,recruitment,resumeNum,portfolioNum
+		select applyDate , memberID,offerNum,viewCheck , title,companyName,recruitment,resumeNum,portfolioNum,
 		r
 		from(
-		select applyDate , memberID,offerNum , title,companyName,recruitment,resumeNum,portfolioNum,rownum
+		select applyDate , memberID,offerNum ,viewCheck, title,companyName,recruitment,resumeNum,portfolioNum,rownum
 		r
 		from(
-		select a.applydDate , a.memberID,a.offerNum ,
+		select a.applyDate , a.memberID,a.offerNum ,a.viewCheck,
 		o.title,o.companyName,o.recruitment,a.resumeNum,a.portfolioNum
 		from applycompany a,offer o
 		where o.offerNum = a.offerNum
@@ -145,6 +145,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	where r >=#{sno} and r<=#{eno}
 	]]>
 	</select>
+
 	<select id="read_p" parameterType="Map" resultMap="PersonalMap">
 	select o.title,a.offerNum,o.companyName,o.recruitment,pm.name,pf.portfolioName,a.portfolioNum,re.resumeName,a.resumeNum
 from offer o ,applycompany a , resume re , personalmember pm ,portfolio pf

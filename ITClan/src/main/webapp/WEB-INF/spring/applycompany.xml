@@ -21,9 +21,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/applycompany/list_personal.jsp" />
 	</definition>
 
-	<definition name="/applycompany/read_personal" extends="main">
+	<definition name="/applycompany/read_p" extends="main">
 		<put-attribute name="title" value="Bbs Join Page"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/applycompany/read_personal.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/applycompany/read_p.jsp" />
 	</definition>
 	<definition name="/applycompany/list_company" extends="main">
 		<put-attribute name="title" value="Bbs agreement!"></put-attribute>

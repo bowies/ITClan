@@ -23,10 +23,6 @@ public class ApplyCompanyDTO {
 	
 	
 	
-	
-	
-	
-
 	public PortFolioDTO getPfdto() {
 		return pfdto;
 	}

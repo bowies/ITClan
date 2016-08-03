@@ -15,12 +15,12 @@
 </style> 
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 <script type="text/javascript">
-function readB(offerNum) {
-	var url = "./read";
+function readB(offerNum,memberID,portfolioNum,resumeNum) {
+	var url = "./read_p";
 	url += "?offerNum=" + offerNum;//변수의 인식
-	url += "&memberID=${dto.memberID}";
-	url += "&portfolioNum=${dto.portfolioNum}";
-	url += "&resumeNum=${resumeNum}";
+	url += "&memberID="+memberID;
+	url += "&portfolioNum="+portfolioNum;
+	url += "&resumeNum="+resumeNum;
 	url += "&nowPage=${nowPage}";
 	
 	location.href=url;
@@ -60,23 +60,25 @@ function del() {
   </c:when>
   <c:otherwise>
   <c:forEach var="dto" items="${list}">
+ <c:forEach items="${dto.offerList}" var="offerList">
   <tr>
-    <td><a href="javascript:readB('${dto.offerNum }')">${dto.title}</a>></td>
-    <td>${dto.companyName }</td>
-    <td>${dto.recruitment }</td>
+    <td><a href="javascript:readB('${dto.offerNum }','${dto.memberID }','${dto.portfolioNum }','${dto.resumeNum }')">
+    ${offerList.title}</a></td>
+    <td>${offerList.companyName }</td>
+    <td>${offerList.recruitment }</td>
     <td>${dto.applyDate }</td>
     <td>
     <c:choose>
-    <c:when test="${dto.viewCheck ==0 }">
-    <a href="javascript:del()">삭제</a>
+    <c:when test="${dto.viewCheck >0 }">
+   삭제불가
     </c:when>
      <c:otherwise>
-     삭제불가
+      <a href="javascript:del()">삭제</a>
      </c:otherwise>
     </c:choose>
     </td>
     </tr>
-     
+    </c:forEach>
   </c:forEach>
   </c:otherwise>
   </c:choose>   

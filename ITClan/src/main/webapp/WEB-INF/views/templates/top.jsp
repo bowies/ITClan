@@ -55,7 +55,7 @@ padding-right: 30px
      </c:choose>
      <c:if test="${not empty sessionScope.memberID }">
        <li><a href="${pageContext.request.contextPath}/applycompany/list_personal">글목록</a></li>
-     <li><a href="${pageContext.request.contextPath}/bbs/create">글생성</a></li>
+     <li><a href="${pageContext.request.contextPath}/applycompany/read_personal">글생성</a></li>
      </c:if>   
    
      <li><a href="${pageContext.request.contextPath}/memo/list">메모목록</a></li>

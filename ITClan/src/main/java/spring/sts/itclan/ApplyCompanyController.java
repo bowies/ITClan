@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import spring.model.applycompany.*;
+import spring.model.offer.OfferDTO;
 import spring.model.personalmember.PersonalMemberDTO;
+import spring.model.portfolio.PortFolioDTO;
+import spring.model.resume.ResumeDTO;
 import spring.utility.itclan.Paging;
 import spring.utility.itclan.Utility;
 
@@ -94,11 +97,28 @@ public class ApplyCompanyController {
 		return "/applycompany/create";
 	}
 	
+	@RequestMapping("/applycompany/read_p")
+	public String read_p(String memberID,int offerNum,int resumeNum , int portfolioNum, int nowPage,
+			Model model,ApplyCompanyDTO dto,PortFolioDTO pfdto,PersonalMemberDTO pmdto,ResumeDTO redto){
+		Map map = new HashMap();
+		map.put("memberID", memberID);
+		map.put("offerNum", offerNum);
+		map.put("resumeNum", resumeNum);
+		map.put("portfolioNum", portfolioNum);
+		dto = dao.read_personal(map);
+		List<OfferDTO> olist = dto.getOfferList();
+		pfdto = dto.getPfdto();
+		pmdto= dto.getPmdto();
+		redto = dto.getRedto();
+		model.addAttribute("dto", dto);
+		model.addAttribute("olist", olist);
+		model.addAttribute("pfdto", pfdto);
+		model.addAttribute("redto", redto);
+		model.addAttribute("pmdto", pmdto);
+		return "/applycompany/read_p";
+	}
 	
-	
-	
-	
-	@RequestMapping("/applycomapny/list_personal")
+	@RequestMapping("/applycompany/list_personal")
 	public String list_personal(HttpServletRequest request,HttpSession session,
 			Model model) throws Exception{
 		int nowPage = 1;
