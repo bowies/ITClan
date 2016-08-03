@@ -13,7 +13,6 @@ public class ReplyDTO {
 	public void setReplyNum(int replyNum) {
 		this.replyNum = replyNum;
 	}
-
 	public String getContent() {
 		return content;
 	}
@@ -38,6 +37,8 @@ public class ReplyDTO {
 	public void setNoticeNum(int noticeNum) {
 		this.noticeNum = noticeNum;
 	}
+	
+	
 	
 	
 	

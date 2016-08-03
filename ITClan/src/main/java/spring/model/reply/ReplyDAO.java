@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import spring.model.itclan.DAOMyBatisInter;
-
+@Component
 public class ReplyDAO implements DAOMyBatisInter {
-
+	@Autowired
 	private SqlSessionTemplate mybatis;
 	
 	public SqlSessionTemplate getMybatis() {
@@ -31,7 +33,8 @@ public class ReplyDAO implements DAOMyBatisInter {
 
 	@Override
 	public Object read(Object pk) throws Exception {
-		return mybatis.selectOne("reply.read", pk);
+		int replynum = (Integer)pk;
+		return mybatis.selectOne("reply.read", replynum);
 	}
 
 	@Override
@@ -41,7 +44,8 @@ public class ReplyDAO implements DAOMyBatisInter {
 
 	@Override
 	public int delete(Object pk) throws Exception {
-		return mybatis.delete("reply.delete", pk);
+		int replynum = (Integer)pk;
+		return mybatis.delete("reply.delete", replynum);
 	}
 
 	@Override

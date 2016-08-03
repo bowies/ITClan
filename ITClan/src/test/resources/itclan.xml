@@ -12,7 +12,7 @@
 
 
 	<!-- MyBatis SQL 실행 클래스 -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> 
 		<property name="dataSource" ref="dataSource1" />
 		<!-- 아래부분은 매핑할 xml파일이 있는 패키지경로를 설정한다. -->
 		<property name="typeAliasesPackage" value="spring.model" />
@@ -63,21 +63,21 @@
 		p:mybatis-ref="sqlSession" />
 		
 	<!-- CompanyInfoDAO 객체 생성 -->
-	<bean id="companyinfodao" class="spring.model.companyinfo"
+	<bean id="companyinfodao" class="spring.model.companyinfo.CompanyinfoDAO"
 		p:mybatis-ref="sqlSession" />
 
 	<!-- IndustryCategoryDTO 객체 생성 -->
-	<bean id="industrycategorydto" class="spring.model.industrycategory"
+	<bean id="industrycategorydao" class="spring.model.industrycategory.IndustrycategoryDAO"
 		p:mybatis-ref="sqlSession" />
 
 
 	<!-- NoticeDTO 객체 생성 -->
-	<bean id="noticedto" class="spring.model.notice"
+	<bean id="noticedao" class="spring.model.notice.NoticeDAO"
 		p:mybatis-ref="sqlSession" />
 
 
 	<!-- ReplyDTO 객체 생성 -->
-	<bean id="replydto" class="spring.model.reply"
+	<bean id="replydao" class="spring.model.reply.ReplyDAO"
 		p:mybatis-ref="sqlSession" />
 
 </beans>

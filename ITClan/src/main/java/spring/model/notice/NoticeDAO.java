@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import spring.model.itclan.DAOMyBatisInter;
-
+@Component
 public class NoticeDAO implements DAOMyBatisInter {
-
+	@Autowired
 	private SqlSessionTemplate mybatis;
 	
 	public SqlSessionTemplate getMybatis() {
@@ -31,7 +33,8 @@ public class NoticeDAO implements DAOMyBatisInter {
 
 	@Override
 	public Object read(Object pk) throws Exception {
-		return mybatis.selectOne("notice.read", pk);
+		int noticenum = (Integer)pk;
+		return mybatis.selectOne("notice.read", noticenum);
 	}
 
 	@Override
@@ -41,13 +44,19 @@ public class NoticeDAO implements DAOMyBatisInter {
 
 	@Override
 	public int delete(Object pk) throws Exception {
-		return mybatis.delete("notice.delete", pk);
+		int noticenum = (Integer)pk;
+		return mybatis.delete("notice.delete", noticenum);
 	}
 
 	@Override
 	public int total(Map map) throws Exception {
 		// TODO Auto-generated method stub
 		return mybatis.selectOne("notice.total", map);
+	}
+
+	public int viewCnt(int noticenum) {
+		return mybatis.update("notice.viewcnt",noticenum);
+		
 	}
 
 }

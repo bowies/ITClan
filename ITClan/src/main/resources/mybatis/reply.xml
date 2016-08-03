@@ -7,54 +7,54 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <select id="rcount" parameterType="int" resultType="int">
      SELECT count(*) FROM reply
-     WHERE noticenum = #{noticenum}
+     WHERE noticeNum = #{noticeNum}
 </select>
 <insert id="create" parameterType="replyDTO">
-<selectKey keyProperty="replynum" resultType="int" order="BEFORE">
-select nvl(max(replynum),0)+1 from reply 
+<selectKey keyProperty="replyNum" resultType="int" order="BEFORE">
+select nvl(max(replyNum),0)+1 from reply 
 </selectKey>
-insert into reply(replynum, content, regdate, id, noticenum)
-values(#{replynum}, #{content}, sysdate, #{id}, #{noticenum}) 
+insert into reply(replyNum, content, regDate, id, noticeNum)
+values(#{replyNum}, #{content}, sysDate, #{id}, #{noticeNum}) 
 </insert>
  
 <select id="read" parameterType="int" resultType="replyDTO">
 select * from reply
-where replynum = #{replynum}
+where replyNum = #{replyNum}
 </select>
  
 <update id="update" parameterType="replyDTO">
 update reply
 set content = #{content}
-where replynum = #{replynum}
+where replyNum = #{replyNum}
 </update>
  
 <delete id="delete" parameterType="int">
 delete from REPLY
-where replynum = #{replynum}
+where replyNum = #{replyNum}
 </delete>
 
 <delete id="bdelete" parameterType="int">
 delete from REPLY
-where noticenum = #{noticenum}
+where noticeNum = #{noticeNum}
 </delete>
 
 <select id="list" parameterType="Map" resultType="replyDTO">
-select replynum, content, to_char(regdate,'yyyy-mm-dd') regdate, id, noticenum, r
+select replyNum, content, to_char(regDate,'yyyy-mm-dd') regDate, id, noticeNum, r
 FROM(
-	select replynum, content, regdate, id, noticenum, rownum r
+	select replyNum, content, regDate, id, noticeNum, rownum r
 	FROM(
-		select replynum, content, regdate, id, noticenum
+		select replyNum, content, regDate, id, noticeNum
 		from REPLY
-		where noticenum = #{noticenum}
-		order by replynum DESC
+		where noticeNum = #{noticeNum}
+		order by replyNum DESC
 	)
 <![CDATA[
 )WHERE r >= #{sno} and r <= #{eno}
 ]]>
 </select>
  
-<select id="total" resultType="int" parameterType="int">
+<select id="total" parameterType="Map" resultType="int">
 select count(*) from reply
-where noticenum=#{noticenum}
+where noticeNum=#{noticeNum}
 </select>
 </mapper>
