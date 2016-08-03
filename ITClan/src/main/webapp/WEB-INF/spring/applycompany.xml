@@ -12,11 +12,10 @@
 		<put-attribute name="footer"
 			value="/WEB-INF/views/templates/bottom.jsp" />
 	</definition>
+
 	
 	
-	
-	
-	<definition name="/applycompany/list_personal" extends="main">
+	<definition name="/applycompany/list_personal"  extends="main">
 		<put-attribute name="title" value="Bbs agreement!"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/applycompany/list_personal.jsp" />
 	</definition>
