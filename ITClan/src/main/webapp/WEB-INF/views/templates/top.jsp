@@ -49,7 +49,7 @@ padding-right: 30px
      <c:otherwise>
      <li><a href="${pageContext.request.contextPath}/personal/logout">로그아웃</a></li>
      <li><a href="${pageContext.request.contextPath}/personal/read">나의정보</a></li>
-     <li><a href="${pageContext.request.contextPath}/personal/update">회원수정</a><li>
+     <li><a href="${pageContext.request.contextPath}/personal/main_p">main</a><li>
      <li><a href="${pageContext.request.contextPath}/personal/delete">회원탈퇴</a><li>     
      </c:otherwise>
      </c:choose>

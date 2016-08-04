@@ -27,10 +27,11 @@ function readB(offerNum,memberID,portfolioNum,resumeNum) {
 	
 	
 }
-function del() {
+function del(offerNum,memberID) {
+	alert("삭제하시겠습니까? ");
 	var url = "./delete";
-	url += "?offerNum=${dto.offerNum}";
-	url += "&memberID=${dto.memberID}"
+	url += "?offerNum="+offerNum;
+	url += "&memberID="+memberID;
 	
 	location.href=url;
 	
@@ -66,14 +67,14 @@ function del() {
     ${offerList.title}</a></td>
     <td>${offerList.companyName }</td>
     <td>${offerList.recruitment }</td>
-    <td>${dto.applyDate }</td>
+    <td>${fn:substring(dto.applyDate,0,10) }</td>
     <td>
     <c:choose>
     <c:when test="${dto.viewCheck >0 }">
    삭제불가
     </c:when>
      <c:otherwise>
-      <a href="javascript:del()">삭제</a>
+      <a href="javascript:del('${dto.offerNum }','${dto.memberID }')">삭제</a>
      </c:otherwise>
     </c:choose>
     </td>

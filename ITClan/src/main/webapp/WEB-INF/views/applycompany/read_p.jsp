@@ -11,14 +11,17 @@
 <script type="text/javascript">
 function listB() {
 	var url = "list_personal";
-	url += "&nowPage=${param.nowPage}";
+	url += "?nowPage=${param.nowPage}";
 	
 	location.href=url;
 	
 }
 </script>
 <style type="text/css"> 
-
+.table{
+	border: 1px solid;
+	border-collapse: collapse;
+}
 *{ 
   font-family: gulim; 
   font-size: 16px; 
@@ -32,16 +35,15 @@ function listB() {
  
 <DIV class="title">★ 조회</DIV>
  
-  <TABLE class='table'>
+  <TABLE class="table" style=" margin: auto;" >
     <TR>
-      <th colspan="2">title</th>
-      <TD colspan="2">${olist.title}</TD>
+       <TD colspan="4" style="text-align: center; font-size: 16px; font-family: sans-serif;">${odto.title}</TD>
     </TR>
     <TR>
       <TH>회사명</TH>
-      <TD>${olist.companyName }</TD>
+      <TD>${odto.companyName }</TD>
       <th>모집인원</th>
-      <td>${olist.recruitment }</td>
+      <td>${odto.recruitment }</td>
     </TR>
     <TR>
       <TH colspan="2">작성자</TH>
@@ -50,18 +52,18 @@ function listB() {
     <TR>
     <th> 자기소개서</th>
       <TD height="50px;">
-      <a href="'${pageContext.request.contextPath }/download?dir=/storage/resume&filename=${redto.resumeName }'">
+      <a href="${pageContext.request.contextPath }/download?dir=/storage/resume&filename=${redto.resumeName }">
       ${redto.resumeName }</a></TD>
     <th>포트폴리오</th>
       <TD height="50px;">
-      <a href="'${pageContext.request.contextPath }/download?dir=/storage/portfolio&filename=${pfdto.portfolioName }'">
+      <a href="${pageContext.request.contextPath }/download?dir=/storage/portfolio&filename=${pfdto.portfolioName }">
       ${pfdto.portfolioName }
       </a>
       </TD>
     </TR>
   </TABLE>
   
-  <DIV class='bottom'>
+  <DIV align="center" style="margin-top: 20px;">
 
     <input type='button' value='목록' onclick="listB()">
 

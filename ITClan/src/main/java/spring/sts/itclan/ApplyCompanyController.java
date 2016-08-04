@@ -64,15 +64,12 @@ public class ApplyCompanyController {
 	}
 	@RequestMapping("/applycompany/delete")
 	public String delete_personal(String memberID, int offerNum){
-		if(dao.viewCheck(memberID, offerNum)>0){
 		if(dao.deletePersonal(memberID, offerNum)>0){
 			return "redirect:/personal/read";
 		}else{
 			return "/error/passwderror";
 		}
-		}else{
-			return "/error/checkerror";
-		}
+
 	}
 	
 	@RequestMapping(value="/applycompany/create",method=RequestMethod.POST)
@@ -107,11 +104,16 @@ public class ApplyCompanyController {
 		map.put("portfolioNum", portfolioNum);
 		dto = dao.read_personal(map);
 		List<OfferDTO> olist = dto.getOfferList();
+		OfferDTO odto= new OfferDTO();
+		for(int i = 0;i<olist.size(); i++){
+			odto = (OfferDTO)olist.get(i);
+		}
+		
 		pfdto = dto.getPfdto();
 		pmdto= dto.getPmdto();
 		redto = dto.getRedto();
 		model.addAttribute("dto", dto);
-		model.addAttribute("olist", olist);
+		model.addAttribute("odto", odto);
 		model.addAttribute("pfdto", pfdto);
 		model.addAttribute("redto", redto);
 		model.addAttribute("pmdto", pmdto);

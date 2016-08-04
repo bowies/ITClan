@@ -139,11 +139,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from applycompany a,offer o
 		where o.offerNum = a.offerNum
 		and a.memberID=#{memberID}
+		order by a.applyDate desc
 		)
 		)
 	<![CDATA[
 	where r >=#{sno} and r<=#{eno}
 	]]>
+	
 	</select>
 
 	<select id="read_p" parameterType="Map" resultMap="PersonalMap">

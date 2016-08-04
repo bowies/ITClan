@@ -15,12 +15,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import spring.model.personalmember.*;
+import spring.model.resumeinfo.ResumeInfoDAO;
 import spring.utility.itclan.*;
 
 @Controller
 public class PersonalmemberController {
 	@Autowired
 	private PersonalMemberDAO dao;
+	@Autowired
+	private ResumeInfoDAO ridao;
 	
 	@Autowired
 	private PersonalMemberMgr mgr;
@@ -295,6 +298,16 @@ public class PersonalmemberController {
 		model.addAttribute("birth", birth);
 		model.addAttribute("dto",dto);
 		return "/personalmember/read";
+	}
+	@RequestMapping("/personal/main_p")
+	public String main_p(String memberID,Model model,HttpSession session){
+		if(memberID == null){
+			memberID = (String)session.getAttribute("memberID");
+		}
+		String picture = ridao.viewPic(memberID);
+		
+		model.addAttribute("picture", picture);
+		return "/personalmember/main_p";
 	}
 	
 	@RequestMapping(value="/personal/create",method=RequestMethod.POST)

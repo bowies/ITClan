@@ -18,6 +18,10 @@ public class ResumeInfoDAO implements DAOMyBatisInter {
 	public void setMybatis(SqlSessionTemplate mybatis) {
 		this.mybatis = mybatis;
 	}
+	
+	public String viewPic(String memberID){
+		return mybatis.selectOne("resumeinfo.viewPic", memberID);
+	}
 
 	@Override
 	public int create(Object dto) throws Exception {
