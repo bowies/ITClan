@@ -67,7 +67,7 @@ function readC(offerNum,memberID,portfolioNum,resumeNum) {
   </c:choose>   
   </TABLE>
   
-  <DIV class='bottom'>
+  <DIV class='bottom'> 
   	${paging}<br>
   </DIV>
 
