@@ -63,26 +63,27 @@ function readB(qnANum) {
 </script>
 
 <body class="w3-container">
+
 <%-- <jsp:include page="/menu/top.jsp" flush="false"/> --%>
 
 
-<div class="left">
-<div style=" font-size:15px; position: relative; display:block;">
-<table border="1" cellspacing="0" cellpadding="0" align="left" width="200px"> 
+<!-- <div class="left"> -->
+<!-- <div style=" font-size:15px; position: relative; display:block;"> -->
+<!-- <table border="1" cellspacing="0" cellpadding="0" align="left" width="200px">  -->
    
-        <ul>
-        <h4 style="text-align: left">무엇을 도와드릴까요?</h4>
-            <li><a href="">도움말</a></li>
-            <li><a href=""><span class="lspn">Q&amp;A</span></a></li>
-            <li><a href="">이메일 문의</a></li>
-            <li><a href="">이력서 의견ㆍ제안사항 </a></li>
-            <li><a href="">아이디ㆍ비밀번호 찾기</a></li>
-<!--                                     <li class="last_line"><a href="">사이트맵 </a></li> -->
-        </ul>
+<!--         <ul> -->
+<!--         <h4 style="text-align: left">무엇을 도와드릴까요?</h4> -->
+<!--             <li><a href="">도움말</a></li> -->
+<!--             <li><a href=""><span class="lspn">Q&amp;A</span></a></li> -->
+<!--             <li><a href="">이메일 문의</a></li> -->
+<!--             <li><a href="">이력서 의견ㆍ제안사항 </a></li> -->
+<!--             <li><a href="">아이디ㆍ비밀번호 찾기</a></li> -->
+<!-- <!--                                     <li class="last_line"><a href="">사이트맵 </a></li> --> 
+<!--         </ul> -->
     
-</table>
-</div> 
-</div>
+<!-- </table> -->
+<!-- </div>  -->
+<!-- </div> -->
 
 
 
@@ -182,7 +183,7 @@ for (i = 0; i < acc.length; i++) {
 <table width="680" border="0" cellspacing="0" cellpadding="0" align="center">
 <tbody><tr><td height="50" align="center">
 <table width="680" border="0" cellspacing="0" cellpadding="0">
-<h2> 질문과 답변</h2>
+<h2> Q & A</h2>
 ${fn:substring(dto.regdate,0,10)}
 
 <tbody><tr><td align="right">
@@ -200,6 +201,7 @@ ${fn:substring(dto.regdate,0,10)}
 <td width="50" height="25" align="center"><b>번호</b></td>
 <td width="360" height="25" align="center"><b>주제</b></td>
 <td width="120" height="25" align="center"><b>작성자</b></td>
+<!-- 	(String)session.getAttribute("id") -->
 <td width="80" height="25" align="center"><b>등록일시</b></td>
 </tr>
 
@@ -226,7 +228,7 @@ ${fn:substring(dto.regdate,0,10)}
      <img src="../images/new.gif">
      </c:if>
       </td>
-    <td>${dto.name }</td>
+    <td>${dto.name}</td>
     <td>${fn:substring(dto.regdate,0,10)}</td>
     </tr>
      

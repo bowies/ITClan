@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="uti" uri="/ELFunctions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,15 +36,6 @@ function deleteB() {
 	location.href=url;
 	
 }
-function replyB() {
-	var url = "reply";
-	url += "?qnANum=${dto.qnANum}";
-	url += "&col=${param.col}";
-	url += "&word=${param.word}";
-	url += "&nowPage=${param.nowPage}";
-	
-	location.href=url;	
-}
 
 </script>
 
@@ -72,7 +66,8 @@ function replyB() {
 
     <TR>
       <TH>등록일</TH>
-      <TD>${dto.regdate }</TD>
+<%--       <TD>${dto.regdate }</TD> --%>
+       <TD>${fn:substring(dto.regdate,0,16)}</TD>
     </TR>
 
   </TABLE>
@@ -90,7 +85,7 @@ function replyB() {
     <input type='button' value='삭제' onclick="deleteB()">
     
     
-    <input type='button' value='답변' onclick="replyB()">
+ 
  
   </DIV>
 
