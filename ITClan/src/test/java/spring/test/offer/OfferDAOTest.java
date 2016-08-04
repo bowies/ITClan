@@ -55,15 +55,14 @@ public class OfferDAOTest extends OfferDAO {
 	}
 
 	@Test @Ignore
-	public void testCreate() {
+	public void testCreate() throws Exception {
 		OfferDAO dao = (OfferDAO) beans.getBean("offerdao");
 		OfferDTO dto = new OfferDTO();
-		dto.setOfferNum(6);
 		dto.setTitle("S/W 개발 및 시스템 운영 직원 채용");
 		dto.setQualification("경력 최소 1년이상");
 		dto.setOfferDate("2017-07-16");
-		dto.setCompanyName("test co");
-		dto.setCompanyID("testman");
+		dto.setCompanyName("64");
+		dto.setCompanyID("prettymk");
 		dto.setDetail("1234");
 		dto.setEmploymentSector("1234");
 		dto.setTask("1234");
@@ -74,22 +73,22 @@ public class OfferDAOTest extends OfferDAO {
 	}
 
 	@Test @Ignore
-	public void testList() {
+	public void testList() throws Exception {
 		OfferDAO dao = (OfferDAO) beans.getBean("offerdao");
 		Map map = new HashMap();
 		map.put("offernum", 3);
 		map.put("sno", 1);
-		map.put("eno", 5);
+		map.put("eno", 6);
 		List<OfferDTO> list = dao.list(map);
-		assertEquals(4,list.size());
+		assertEquals(6,list.size());
 	}
  
 	@Test @Ignore
-	public void testRead() {
+	public void testRead() throws Exception {
 		OfferDAO dao = (OfferDAO) beans.getBean("offerdao");
-		OfferDTO dto = (OfferDTO)dao.read(5);
+		OfferDTO dto = (OfferDTO)dao.read(7);
 		
-		assertEquals(5,dto.getOfferNum());
+		assertEquals(7,dto.getOfferNum());
 		assertEquals("S/W 개발 및 시스템 운영 직원 채용",dto.getTitle());
 		assertEquals("2017-07-16 00:00:00.0",dto.getOfferDate());
 		assertEquals("2명",dto.getRecruitment());
@@ -97,7 +96,7 @@ public class OfferDAOTest extends OfferDAO {
 	}
 
 	@Test @Ignore
-	public void testUpdate() {
+	public void testUpdate() throws Exception {
 		OfferDAO dao = (OfferDAO) beans.getBean("offerdao");
 		OfferDTO dto = new OfferDTO();
 		dto.setOfferNum(5);
@@ -116,18 +115,25 @@ public class OfferDAOTest extends OfferDAO {
 	}
 
 	@Test @Ignore
-	public void testDelete() {
+	public void testDelete() throws Exception {
 		OfferDAO dao = (OfferDAO) beans.getBean("offerdao");
 		assertEquals(1,dao.delete(5));
 	}
 
 	@Test //@Ignore
-	public void testTotal() {
+	public void testTotal() throws Exception {
 		OfferDAO dao = (OfferDAO) beans.getBean("offerdao");
 		Map map = new HashMap();
 		map.put("title", "개발");
 		
-		assertEquals(4,dao.total(map));
+		assertEquals(5,dao.total(map));
 	}
 
+	@Test @Ignore
+	public void testIncreaseViewCnt() throws Exception {
+		OfferDAO dao = (OfferDAO) beans.getBean("offerdao");
+		dao.increaseViewCnt(5);
+		OfferDTO dto = (OfferDTO) dao.read(5);
+		assertEquals(5, dto.getViewCnt());
+	}
 }

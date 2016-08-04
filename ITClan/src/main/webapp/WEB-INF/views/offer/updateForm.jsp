@@ -14,26 +14,12 @@
 
 <script type="text/javascript">
 function input(f){
-	if(f.name.value==''){
-	alert("이름을 입력하세요");
-	f.name.focus();
-	return false;
-	}
 	if(f.subject.value==''){
 	alert("제목을 입력하세요");
 	f.subject.focus();
 	return false;
 	}
-	if(f.content.value==''){
-	alert("내용을 입력하세요");
-	f.content.focus();
-	return false;
-	}
-	if(f.passwd.value==''){
-	alert("비밀번호를 입력하세요");
-	f.passwd.focus();
-	return false;
-	}
+
 }
 </script>
 </head> 
@@ -53,28 +39,53 @@ function input(f){
   <input type="hidden" name="word" value="${param.word}">
   <input type="hidden" name="oldfile" value="${dto.filename}">
   
-  <TABLE class="table">
-   <TR>
-      <TH>글쓴이</TH>
-      <TD><input type="text" name="name" value="${dto.name}"></TD>
+    <TABLE class='table'>
+    <TR>
+      <TH>작성자</TH>
+      <TD><input type="text" name="companyid" value="${dto.companyid}"></TD>
+    </TR>
+    <TR>
+      <TH>회사이름</TH>
+      <TD><input type="text" name="companyname" value="${dto.companyname}"></TD>
     </TR>
     <TR>
       <TH>제목</TH>
-      <TD><input type="text" name="subject" size="30" value="${dto.subject}"></TD>
+      <TD><input type="text" name="title" size="30" value="${dto.title}"></TD>
     </TR>
     <TR>
-      <TH>내용</TH>
-      <TD><textarea cols="30" rows="10" name="content">${dto.content}</textarea></TD>
+      <TH>채용마감일</TH>
+      <TD><input type="text" name="offerdate" value="${dto.offerdate}"></TD>
     </TR>
     <TR>
-      <TH>비밀번호</TH>
-      <TD><input type="password" name="passwd"></TD>
+  	  <TH>지원자격</TH>
+      <TD><input type="text" name="qualification" value="${dto.qualification}"></TD>
     </TR>
     <TR>
-      <TH>파일</TH>
-      <TD><input type="file" name="filenameMF">(${dto.filename})</TD>
+      <TH>채용분야</TH>
+      <TD><input type="text" name="employmentSector" value="${dto.employmentSector}"></TD>
+    </TR>
+    <TR>
+      <TH>근무지역</TH>
+      <TD><input type="text" name="workingArea" value="${dto.workingArea}"></TD>
+    </TR>
+    <TR>
+      <TH>급여</TH>
+      <TD><input type="text" name="salary" value="${dto.salary}"></TD>
+    </TR>
+    <TR>
+      <TH>모집인원</TH>
+      <TD><input type="text" name="recruitment" value="${dto.recruitment}"></TD>
+    </TR>
+    <TR>
+      <TH>주요업무</TH>
+      <TD><input type="text" name="task" value="${dto.task}"></TD>
+    </TR>
+    <TR>
+      <TH>채용상세</TH>
+      <TD><textarea cols="30" rows="10" name="detail"></textarea></TD>
     </TR>
   </TABLE>
+  
   <DIV class='bottom'>
     <input type='submit' value='수정'>
     <input type='button' value='목록' onclick="location.href='./list'">

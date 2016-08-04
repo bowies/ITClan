@@ -21,23 +21,12 @@
  
 <DIV class="content">
 <c:choose>
-	<c:when test="${flag }">
-	답변있는 글이므로 삭제 할 수 없습니다. <br>
-	<input type='button' value='다시시도' onclick='history.back()'>
-	</c:when>
 	<c:otherwise>
 	<FORM name='frm' method='POST' action='./delete'>
 	<input type="hidden" name="nowPage" value="${param.nowPage}">
 	  <input type="hidden" name="col" value="${param.col}">
 	  <input type="hidden" name="word" value="${param.word}">
-	  <input type="hidden" name="num" value="${param.num}">
-	  <input type="hidden" name="oldfile" value="${param.oldfile}">
-	  <TABLE class='table'  style="width: 40%"> 
-	    <TR>
-	      <TH>비밀번호</TH>
-	      <TD><input type="password" name="passwd"></TD>
-	    </TR>
-	  </TABLE>
+	  <input type="hidden" name="offernum" value="${param.offernum}">
 	  
 	  <DIV class='bottom'>
 	    <input type='submit' value='삭제'>

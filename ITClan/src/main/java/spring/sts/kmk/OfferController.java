@@ -23,20 +23,8 @@ public class OfferController {
 	@Autowired
 	public OfferDAO dao;
 	
-	@RequestMapping(value="offer/create", method=RequestMethod.POST)
-	public String create(OfferDTO dto, HttpServletRequest request){
-		
-		dto.setTitle(request.getParameter("title"));
-		dto.setQualification(request.getParameter("qualification"));
-		dto.setOfferDate(request.getParameter("offerdate"));
-		dto.setCompanyName(request.getParameter("companyname"));
-		dto.setCompanyID(request.getParameter("companyid"));
-		dto.setDetail(request.getParameter("detail"));
-		dto.setEmploymentSector(request.getParameter("employmentsector"));
-		dto.setTask(request.getParameter("task"));
-		dto.setWorkingArea(request.getParameter("workingarea")); 
-		dto.setRecruitment(request.getParameter("recruitment"));
-		dto.setSalary(request.getParameter("salary"));
+	@RequestMapping(value="/offer/create", method=RequestMethod.POST)
+	public String create(OfferDTO dto, HttpServletRequest request) throws Exception{
 		
 		if(dao.create(dto)>0){
 			
@@ -45,14 +33,14 @@ public class OfferController {
 			return "error/error";
 		}
 	}
-	@RequestMapping(value="offer/create", method=RequestMethod.GET)
+	@RequestMapping(value="/offer/create", method=RequestMethod.GET)
 	public String create(){
 		
 		return "/offer/create";
 	}
 	
 	@RequestMapping(value="/offer/update", method=RequestMethod.POST)
-	public String update(Model model, OfferDTO dto,HttpServletRequest request){
+	public String update(Model model, OfferDTO dto,HttpServletRequest request) throws Exception{
 		
 		model.addAttribute("col", request.getParameter("col"));
 		model.addAttribute("word", request.getParameter("word"));
@@ -66,7 +54,7 @@ public class OfferController {
 		
 	}
 	@RequestMapping(value="/offer/update", method=RequestMethod.GET)
-	public String update(Model model, int offerNum){
+	public String update(Model model, int offerNum) throws Exception{
 		Object dto = dao.read(offerNum);
 		
 		model.addAttribute("dto", dto);
@@ -75,7 +63,7 @@ public class OfferController {
 	}
 	
 	@RequestMapping(value="offer/delete", method=RequestMethod.POST)
-	public String delete(int offerNum, Model model, String col, String word, int nowPage){
+	public String delete(int offerNum, Model model, String col, String word, int nowPage) throws Exception{
 		
 		if(dao.delete(offerNum)>0){	
 			model.addAttribute("col", col);
@@ -93,18 +81,34 @@ public class OfferController {
 	}
 
 	@RequestMapping(value="offer/read")
-	public String read(int offerNum, Model model){
+	public String read(int offerNum, Model model) throws Exception{
 		
-		//dao.upViewcnt(offerNum);//조회수 증가
+		dao.increaseViewCnt(offerNum);//조회수 증가
 		Object dto=dao.read(offerNum);//한건의 레코드 가져오기
 		String title= ((OfferDTO) dto).getTitle();
-		((OfferDTO) dto).setTitle(title);		
+		((OfferDTO) dto).setTitle(title);	
+		int viewCnt= ((OfferDTO) dto).getViewCnt();
+		((OfferDTO) dto).setViewCnt(viewCnt);
+		String companyID= ((OfferDTO) dto).getCompanyID();
+		((OfferDTO) dto).setCompanyID(companyID);	
+		String companyName= ((OfferDTO) dto).getCompanyName();
+		((OfferDTO) dto).setCompanyName(companyName);
 		String offerdate=((OfferDTO) dto).getOfferDate().substring(0,10);
 		((OfferDTO) dto).setOfferDate(offerdate);
-		String recruitment= ((OfferDTO) dto).getRecruitment();
-		((OfferDTO) dto).setRecruitment(recruitment);
+		String qualification= ((OfferDTO) dto).getQualification();
+		((OfferDTO) dto).setQualification(qualification);	
+		String employmentSector = ((OfferDTO) dto).getEmploymentSector();
+		((OfferDTO) dto).setEmploymentSector(employmentSector);
+		String workingArea = ((OfferDTO) dto).getWorkingArea();
+		((OfferDTO) dto).setWorkingArea(workingArea);
 		String Salary= ((OfferDTO) dto).getSalary();
 		((OfferDTO) dto).setSalary(Salary);
+		String recruitment= ((OfferDTO) dto).getRecruitment();
+		((OfferDTO) dto).setRecruitment(recruitment);
+		String task= ((OfferDTO) dto).getTask();
+		((OfferDTO) dto).setTask(task);
+		String detail= ((OfferDTO) dto).getDetail();
+		((OfferDTO) dto).setDetail(detail);
 		
 		model.addAttribute("dto", dto);
 		return "/offer/read";
@@ -112,7 +116,7 @@ public class OfferController {
 	
 	
 	@RequestMapping(value="offer/list")
-	public String list(HttpServletRequest request, Model model){
+	public String list(HttpServletRequest request, Model model) throws Exception{
 		
 		int nowPage=1;
 		int recordPerPage=5;

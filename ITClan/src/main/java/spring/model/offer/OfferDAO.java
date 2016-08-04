@@ -14,56 +14,53 @@ public class OfferDAO implements DAOMyBatisInter {
 	
 	@Autowired
 	private SqlSessionTemplate mybatis;	
-	
-	public SqlSessionTemplate getMybatis() {
-		return mybatis;
-	}
 
 	public void setMybatis(SqlSessionTemplate mybatis) {
 		this.mybatis = mybatis;
 	}
 
 	@Override
-	public int create(Object dto){
+	public int create(Object dto) throws Exception {
 		// TODO Auto-generated method stub
-		int cnt = mybatis.insert("offer.create", dto);
-	
-		return cnt;
+		return mybatis.insert("offer.create", dto);
 	}
 
 	@Override
-	public List list(Map map){
+	public List list(Map map) throws Exception {
 		// TODO Auto-generated method stub
 		return mybatis.selectList("offer.list", map);
 	}
 
 	@Override
-	public Object read(Object pk){
+	public Object read(Object pk) throws Exception {
 		// TODO Auto-generated method stub
-		return mybatis.selectOne("offer.read", pk);
+		int offerNum = (Integer)pk;
+		return mybatis.selectOne("offer.read", offerNum);
 	}
 
 	@Override
-	public int update(Object dto){
+	public int update(Object dto) throws Exception {
 		// TODO Auto-generated method stub
-		int cnt = mybatis.update("offer.update",dto);
-		
-		return cnt;
+		return mybatis.update("offer.update", dto);
 	}
 
 	@Override
-	public int delete(Object pk){
+	public int delete(Object pk) throws Exception {
 		// TODO Auto-generated method stub
-		int cnt = mybatis.delete("offer.delete", pk);
-		
-		return cnt;
+		int offerNum = (Integer)pk;
+		return mybatis.delete("offer.delete",offerNum );
 	}
 
 	@Override
-	public int total(Map map){
+	public int total(Map map) throws Exception {
 		// TODO Auto-generated method stub
- 	
 		return mybatis.selectOne("offer.total", map);
+	}
+
+	public int increaseViewCnt(int offerNum) {
+		// TODO Auto-generated method stub
+		return mybatis.update("offer.increaseViewCnt", offerNum);
+		
 	}
 
 }

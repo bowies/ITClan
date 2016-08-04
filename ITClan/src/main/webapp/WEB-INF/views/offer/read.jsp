@@ -5,22 +5,10 @@
 <head> 
 <meta charset="UTF-8"> 
 <title></title> 
-<style type="text/css"> 
-*{ 
-  font-family: gulim; 
-  font-size: 20px; 
-} 
-</style> 
+
 <link href="./css/style.css" rel="Stylesheet" type="text/css">
 <script type="text/javascript">
-function downFile(fname){
-var url = "${pageContext.request.contextPath}/download";
-url = url + "?dir=/storage";
-url = url + "&filename="+fname;
- 
-location.href=url;
-}
- 
+
 function listB(){
 var url ="./list";
 url = url + "?nowPage=${param.nowPage}";
@@ -29,36 +17,46 @@ url = url + "&word=${param.word}";
  
 location.href=url; 
 }
- 
-function updateB(num){
+
+function updateB(offerNum){
 var url ="./update";
 url = url + "?nowPage=${param.nowPage}";
 url = url + "&col=${param.col}";
 url = url + "&word=${param.word}";
-url = url + "&num="+num;
+url = url + "&offerNum="+offerNum;
  
 location.href=url; 
 }
-function replyB(num){
-var url="./reply";
-url = url + "?nowPage=${param.nowPage}";
-url = url + "&col=${param.col}";
-url = url + "&word=${param.word}";
-url = url + "&num="+num;
- 
-location.href= url;
-}
-function deleteB(num){
+
+function deleteB(offerNum){
 var url="./delete";
 url = url + "?nowPage=${param.nowPage}";
 url = url + "&col=${param.col}";
 url = url + "&word=${param.word}";
-url = url + "&num="+num;
-url = url + "&oldfile=${dto.filename}";
+url = url + "&offerNum="+offerNum;
  
 location.href=url;
 }
  
+function applyB(offerNum){
+	var url="./apply";
+	url = url + "?nowPage=${param.nowPage}";
+	url = url + "&col=${param.col}";
+	url = url + "&word=${param.word}";
+	url = url + "&offerNum="+offerNum;
+	 
+	location.href=url;
+} 
+
+function applylistB(offerNum){
+	var url="./apply";
+	url = url + "?nowPage=${param.nowPage}";
+	url = url + "&col=${param.col}";
+	url = url + "&word=${param.word}";
+	url = url + "&offerNum="+offerNum;
+	 
+	location.href=url;
+} 
 </script>
  
 </head> 
@@ -66,45 +64,67 @@ location.href=url;
 <!-- *********************************************** -->
 <body leftmargin="0" topmargin="0">
  
-<DIV class="title">내용보기</DIV>
+<DIV class="title">채용공고 보기</DIV>
  
 <TABLE class='table' width="50%">
+
    <TR>
-     <TH>글쓴이</TH>
-     <TD>${dto.name }</TD>
-   </TR>
-   <TR>
-     <TH>제목</TH>
-     <TD>${dto.subject }</TD>
-   </TR>
-   <TR>
-     <TH>내용</TH>
-     <TD>${dto.content }</TD>
+     <TH>채용제목</TH>
+     <TD>${dto.title}</TD>
    </TR>
    <TR>
      <TH>조회수</TH>
-     <TD>${dto.count}</TD>
+     <TD>${dto.viewCnt}</TD>
    </TR>
    <TR>
-     <TH>파일명</TH>
-     <TD>
-     <c:choose>
-     	<c:when test="${empty dto.filename}">파일없음</c:when>
-     	<c:otherwise>
-     	<a href="javascript:downFile('${dto.filename}')">
-    	${dto.filename}(${dto.filesize}) 
-    	</a>
-     	</c:otherwise>
-     </c:choose>  
-     </TD>
+     <TH>작성자</TH>
+     <TD>${dto.companyID}</TD>
+   </TR>
+   <TR>
+     <TH>회사이름</TH>
+     <TD>${dto.companyName}</TD>
+   </TR>
+   <TR>
+     <TH>채용마감일</TH>
+     <TD>${dto.offerDate}</TD>
+   </TR>
+   <TR>
+     <TH>지원자격</TH>
+     <TD>${dto.qualification}</TD>
+   </TR>
+   <TR>
+     <TH>채용분야</TH>
+     <TD>${dto.employmentSector}</TD>
+   </TR>
+   <TR>
+     <TH>근무지역</TH>
+     <TD>${dto.workingArea}</TD>
+   </TR>
+   <TR>
+     <TH>급여</TH>
+     <TD>${dto.salary}</TD>
+   </TR>
+   <TR>
+     <TH>모집인원</TH>
+     <TD>${dto.recruitment}</TD>
+   </TR>
+   <TR>
+     <TH>주요업무</TH>
+     <TD>${dto.task}</TD>
+   </TR>
+   <TR>
+     <TH>채용상세</TH>
+     <TD>${dto.detail}</TD>
    </TR>
 </TABLE>
   
 <DIV class='bottom'>
   <input type='button' value='목록' onclick="listB()">
-  <input type='button' value='수정' onclick="updateB('${dto.num}')">
-  <input type='button' value='답변' onclick="replyB('${dto.num}')">
-  <input type='button' value='삭제' onclick="deleteB('${dto.num}')">
+  <input type='button' value='수정' onclick="updateB('${dto.offerNum}')">
+  <input type='button' value='삭제' onclick="deleteB('${dto.offerNum}')">
+<br>
+  <input type='button' value='지원하기' onclick="applyB('${dto.offerNum}')">
+  <input type='button' value='지원자목록보기' onclick="applylistB('${dto.offerNum}')">
 </DIV>
 </body>
 <!-- *********************************************** -->
