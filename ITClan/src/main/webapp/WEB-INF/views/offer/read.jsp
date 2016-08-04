@@ -53,11 +53,8 @@ function applyB(offerNum,memberID){
 } 
 
 function applylistB(offerNum){
-	var url="./apply";
-	url = url + "?nowPage=${param.nowPage}";
-	url = url + "&col=${param.col}";
-	url = url + "&word=${param.word}";
-	url = url + "&offerNum="+offerNum;
+	var url="../a_company/list";
+	url = url + "?offerNum="+offerNum;
 	 
 	location.href=url;
 } 
