@@ -7,9 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="create" parameterType="OfferDTO">
 		insert into offer(OfferNum, Title, Qualification, OfferDate, CompanyName,
-						 CompanyId, Detail, EmploymentSector, Task, WorkingArea,Recruitment, Salary)
-						 
-		values( #{offerNum}, #{title}, #{qualification}, #{offerDate}, #{companyName}, #{companyID},
+						 CompanyId, Detail, EmploymentSector, Task, WorkingArea,Recruitment, Salary)					 
+		values(( SELECT NVL(MAX(offerNum), 0) + 1 as offerNum FROM offer), #{title}, #{qualification}, #{offerDate}, #{companyName}, #{companyID},
 				 #{detail}, #{employmentSector}, #{task}, #{workingArea}, #{recruitment}, #{salary} )
 	</insert>
 	
@@ -22,7 +21,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<select id="read" resultType="OfferDTO" parameterType="int">
-	  select OfferNum, title, OfferDate, Recruitment, Salary
+	  select OfferNum, title, viewCnt, companyID, companyName, offerDate, qualification, employmentSector,
+	  workingArea, salary, recruitment, task, detail
 	  from Offer
 	  where OfferNum = #{offerNum}
 	</select>
@@ -33,11 +33,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<select id="list" resultType="OfferDTO" parameterType="Map">
-		select OfferNum , Title, Qualification, OfferDate, CompanyName, r
+		select OfferNum , Title, Qualification, OfferDate, CompanyName, recruitment, r
 		from(
-			select OfferNum , Title, Qualification, OfferDate, CompanyName, rownum r
+			select OfferNum , Title, Qualification, OfferDate, CompanyName, recruitment, rownum r
 			from(
-				select OfferNum , Title, Qualification, OfferDate, CompanyName
+				select OfferNum , Title, Qualification, OfferDate, CompanyName, recruitment
 				from Offer  
 				
 		<where>
@@ -64,6 +64,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="total" parameterType="Map" resultType="int">
 		select count(*) from Offer
+		
+		<where>
+			<choose>
+				<when test="col=='title'">
+					title like '%'||#{word}||'%'
+				</when>
+				<when test="col=='CompanyName'">
+					CompanyName like '%'||#{word}||'%'
+				</when>
+				<when test="col=='WorkingArea'">
+					WorkingArea like '%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>  
 	</select>
+	
+	<update id="increaseViewCnt" parameterType="int">
+		UPDATE offer
+	    SET viewCnt = viewCnt + 1
+	    WHERE offerNum = #{offerNum}
+	</update>
 	
 </mapper>

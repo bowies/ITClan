@@ -13,15 +13,15 @@ public class OfferDTO {
 	private String	workingArea         ;
 	private String	recruitment         ;
 	private String	salary			    ;
-	private String viewcnt;
+	private int viewCnt;
 	
 	
 	
-	public String getViewcnt() {
-		return viewcnt;
+	public int getViewCnt() {
+		return viewCnt;
 	}
-	public void setViewcnt(String viewcnt) {
-		this.viewcnt = viewcnt;
+	public void setViewCnt(int viewCnt) {
+		this.viewCnt = viewCnt;
 	}
 	public int getOfferNum() {
 		return offerNum;
