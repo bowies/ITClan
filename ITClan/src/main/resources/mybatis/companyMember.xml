@@ -86,7 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update" parameterType="CompanyMemberDTO">
 		UPDATE CompanyMember
 		SET
-		companyNumber = #{companyNumber}, name = #{name}, phone = #{phone}
+		phone = #{phone}, email = #{email}, companyNumber = #{companyNumber}, companyName = #{companyName}
 		WHERE companyID = #{companyID}
 	</update>
 

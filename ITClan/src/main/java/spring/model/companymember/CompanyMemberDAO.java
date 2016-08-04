@@ -44,7 +44,7 @@ public class CompanyMemberDAO implements DAOMyBatisInter {
 	}
 
 	
-	public String pwFind(String companyID , String email){
+	public String pwFind(String companyID, String email){
 		Map map = new HashMap();
 		map.put("companyID", companyID);
 		map.put("email", email);
@@ -52,7 +52,7 @@ public class CompanyMemberDAO implements DAOMyBatisInter {
 		
 	}
 	
-	public String idFind(String name , String email){
+	public String idFind(String name, String email){
 		Map map = new HashMap();
 		map.put("name", name);
 		map.put("email", email);

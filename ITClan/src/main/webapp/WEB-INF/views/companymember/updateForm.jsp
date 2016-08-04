@@ -34,7 +34,7 @@
 			</tr>
 			<tr>
 				<th>이메일</th>
-				<td><input type="email" name="email"> 
+				<td><input type="text" name="email" value="${dto.email}"> 
 					
 					
 				</td>
@@ -42,14 +42,14 @@
 		
 			<tr>
 				<th>사업자번호</th>
-				<td><input type="text" name="companyNumber"> 
+				<td><input type="text" name="companyNumber" value = "${dto.companyNumber}"> 
 					
 					
 				</td>
 			</tr>
 			<tr>
 				<th>회사명</th>
-				<td><input type="text" name="companyName"> 
+				<td><input type="text" name="companyName" value="${dto.companyName}"> 
 					
 					
 				</td>

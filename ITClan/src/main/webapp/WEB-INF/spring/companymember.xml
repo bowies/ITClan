@@ -106,7 +106,7 @@
 	</definition>
 
 
-	<definition name="/companymember/update" extends="main">
+	<definition name="/companymember/updateProc" extends="main">
 		<put-attribute name="title" value="기업 회원 정보 수정 처리 페이지"></put-attribute>
 		<put-attribute name="body"
 			value="/WEB-INF/views/companymember/updateProc.jsp" />
@@ -120,7 +120,7 @@
 			value="/WEB-INF/views/companymember/updatePwForm.jsp" />
 	</definition>
 
-	<definition name="/companymember/updatePw" extends="main">
+	<definition name="/companymember/updatePwProc" extends="main">
 		<put-attribute name="title" value="기업 회원 비밀번호 수정 처리 페이지"></put-attribute>
 		<put-attribute name="body"
 			value="/WEB-INF/views/companymember/updatePwProc.jsp" />

@@ -41,29 +41,22 @@ padding-right: 30px
     
     <c:choose>
     <c:when test="${empty sessionScope.id}">
-     <li><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
-     <li><a href="${pageContext.request.contextPath}/member/agree">회원 가입</a></li>
-     <li><a href="${pageContext.request.contextPath}/member/idFind">아이디찾기</a><li>
-     <li><a href="${pageContext.request.contextPath}/member/pwFind">비번찾기</a><li>
+     <li><a href="${pageContext.request.contextPath}/companymember/idFind">ID찾기</a></li>
+     <li><a href="${pageContext.request.contextPath}/companymember/pwFind">PW찾기</a></li>
+     <li><a href="${pageContext.request.contextPath}/companymember/agreement">회원가입</a><li>
+     <li><a href="${pageContext.request.contextPath}/companymember/pwFind">회원정보</a><li>
 	</c:when>
      <c:otherwise>
-     <li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
-     <li><a href="${pageContext.request.contextPath}/member/read">나의정보</a></li>
-     <li><a href="${pageContext.request.contextPath}/member/update">회원수정</a><li>
-     <li><a href="${pageContext.request.contextPath}/member/delete">회원탈퇴</a><li>     
+     <li><a href="${pageContext.request.contextPath}/companymemberr/logout">로그아웃</a></li>
+     <li><a href="${pageContext.request.contextPath}/companymember/read?companyID=${sessionScope.id}">나의정보</a></li>
+     <li><a href="${pageContext.request.contextPath}/companymember/update?companyID=${sessionScope.id}">회원수정</a><li>
+     <li><a href="${pageContext.request.contextPath}/companymember/updatePw?companyID=${sessionScope.id}">비밀번호수정</a><li>
+     <li><a href="${pageContext.request.contextPath}/companymember/delete?companyID=${sessionScope.id}">회원탈퇴</a><li>     
      </c:otherwise>
      </c:choose>
-        
-     <li><a href="${pageContext.request.contextPath}/bbs/list">글목록</a></li>
-     <li><a href="${pageContext.request.contextPath}/bbs/create">글생성</a></li>
-     <li><a href="${pageContext.request.contextPath}/memo/list">메모목록</a></li>
-     <li><a href="${pageContext.request.contextPath}/memo/create">메모생성</a></li>
-     <li><a href="${pageContext.request.contextPath}/image/list">이미지목록</a></li>
-     <li><a href="${pageContext.request.contextPath}/image/create">이미지생성</a></li>
-     <li><a href="${pageContext.request.contextPath}/cal/calendar">일정관리</a></li>
      
      <c:if test="${not empty sessionScope.id and sessionScope.grade == 'A'}">
-     <li id="admin"><a href="${pageContext.request.contextPath}/admin/list">회원목록</a></li>
+     <li id="Admin"><a href="${pageContext.request.contextPath}/companymember/list">회원목록</a></li>
 	</c:if>
  
     </ul>

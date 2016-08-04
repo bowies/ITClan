@@ -19,7 +19,7 @@
   <TABLE class='table'>
     <TR>
       <TH>이름</TH>
-      <TD><input type="text" name="companyID" ></TD>
+      <TD><input type="text" name="name" ></TD>
     </TR>
     <TR>
     <TH>e-mail</TH>
