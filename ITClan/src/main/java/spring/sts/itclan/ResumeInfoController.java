@@ -55,13 +55,7 @@ public class ResumeInfoController {
 		
 		PersonalMemberDTO personalmemberdto = (PersonalMemberDTO) personalmemberdao.read(memberID);
 		
-		int cnt = personalmemberdto.getBirth();
-		
-		String birth = Integer.toString(cnt);
-		
 		model.addAttribute("personalmemberdto", personalmemberdto);
-		model.addAttribute("birth", birth);
-		
 		
 		Map map = new HashMap();
 		map.put("memberID", memberID);
@@ -133,39 +127,48 @@ public class ResumeInfoController {
 	}
 	
 	@RequestMapping("/resumeInfo/read")
-	public String read(String memberID, HttpSession session, Model model, PersonalMemberDTO personalmemberdto) throws Exception{
+	public String read(LicenseDTO licensedto, String memberID, HttpSession session, Model model, PersonalMemberDTO personalmemberdto) throws Exception{
 		
 		if(memberID==null){
 		memberID = (String)session.getAttribute(memberID);
 		}
-		memberID = "ccc";
+		memberID = "aaa";
+		
+		Map map = new HashMap();
+		map.put("memberID", memberID);
+		
+		List<LicenseDTO> licenselist = licensedao.list(map);
+		int limax = licensedao.total(memberID);
+		
+		List<ExternalActivityDTO> externalactivitylist = externalactivitydao.list(map);
+		int exmax = externalactivitydao.total(memberID);
 		
 		ResumeInfoDTO resumeinfodto = (ResumeInfoDTO) resumeinfodao.read(memberID);
 		personalmemberdto = (PersonalMemberDTO) personalmemberdao.read(memberID);
 		
-		int cnt = personalmemberdto.getBirth();
-		
-		String birth = Integer.toString(cnt);
-		
 		model.addAttribute("resumeinfodto",resumeinfodto);
 		model.addAttribute("personalmemberdto",personalmemberdto);
-		model.addAttribute("birth", birth);
+		model.addAttribute("licenselist", licenselist);
+		model.addAttribute("externalactivitylist", externalactivitylist);
+		model.addAttribute("limax", limax);
+		model.addAttribute("exmax", exmax);
+		
 		return "/resumeInfo/read";
 	}
 
 	@RequestMapping(value="/resumeInfo/update",method=RequestMethod.GET)
-	public String update(String memberID, Model model, String oldfile) throws Exception{
+	public String update(String memberID, Model model, String oldpicture) throws Exception{
 		
 		ResumeInfoDTO resumeinfodto = (ResumeInfoDTO) resumeinfodao.read(memberID);
 		
 		model.addAttribute("resumeinfodto",resumeinfodto);
-		model.addAttribute("oldfile", oldfile);
+		model.addAttribute("oldpicture", oldpicture);
 		
 		return "/resumeInfo/update";
 	}
 	
 	@RequestMapping(value="/resumeInfo/update",method=RequestMethod.POST)
-	public String update(MultipartFile pictureMF, HttpServletRequest request, String memberID, Model model, String oldfile) throws Exception{
+	public String update(MultipartFile pictureMF, HttpServletRequest request, String memberID, Model model, String oldpicture) throws Exception{
 		
 		String picture = "";
 		
@@ -174,8 +177,8 @@ public class ResumeInfoController {
 		int size = (int) pictureMF.getSize();
 		
 		if(size>0) {
-			if(oldfile!=null) {
-				Utility.deleteFile(basePath, oldfile);
+			if(oldpicture!=null) {
+				Utility.deleteFile(basePath, oldpicture);
 			}
 			picture = Utility.saveFile(pictureMF, basePath);
 		}

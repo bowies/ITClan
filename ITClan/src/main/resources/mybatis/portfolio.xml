@@ -5,6 +5,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="portfolio">
 
+<resultMap type="PortFolioDTO" id="ManyMap">
+	<result property="portfolioNum" column="portfolioNum"/>
+</resultMap>
 <select id="list" parameterType="Map" resultType="PortFolioDTO">
 	select portfolioNum, portfolioName
 	from portFolio

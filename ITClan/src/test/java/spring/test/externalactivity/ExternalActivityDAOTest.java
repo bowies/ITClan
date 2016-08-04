@@ -44,7 +44,7 @@ public class ExternalActivityDAOTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test //@Ignore
+	@Test @Ignore
 	public void testList() throws Exception {
 		ExternalActivityDAO dao = (ExternalActivityDAO)beans.getBean("externalactivitydao");
 		Map map = new HashMap();
@@ -61,14 +61,14 @@ public class ExternalActivityDAOTest {
 		assertEquals("아르바이트", dto.getActSector());
 	}
 
-	@Test @Ignore
+	@Test //@Ignore
 	public void testCreate() throws Exception {
 		ExternalActivityDAO dao = (ExternalActivityDAO)beans.getBean("externalactivitydao");
 		ExternalActivityDTO dto = new ExternalActivityDTO();
 		dto.setActPeriod("2015.09~2016.04");
 		dto.setActSector("아르바이트");
 		dto.setActContent("편의점");
-		dto.setMemberID("bbb");
+		dto.setMemberID("ccc");
 		assertEquals(1, dao.create(dto));
 	}
 

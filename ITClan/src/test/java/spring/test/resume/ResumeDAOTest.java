@@ -42,7 +42,7 @@ public class ResumeDAOTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test //@Ignore
+	@Test @Ignore
 	public void testList() throws Exception {
 		ResumeDAO dao = (ResumeDAO)beans.getBean("resumedao");
 		Map map = new HashMap();
@@ -51,11 +51,11 @@ public class ResumeDAOTest {
 		assertEquals(2, list.size());
 	}
 
-	@Test @Ignore
+	@Test //@Ignore
 	public void testCreate() throws Exception {
 		ResumeDAO dao = (ResumeDAO)beans.getBean("resumedao");
 		ResumeDTO dto = new ResumeDTO();
-		dto.setMemberID("aaa");
+		dto.setMemberID("bbb");
 		dto.setResumeName("자기소개서.hwp");
 		assertEquals(1, dao.create(dto));
 	}
@@ -72,7 +72,7 @@ public class ResumeDAOTest {
 		dao.delete("aaa");
 	}
 	
-	@Test //@Ignore
+	@Test @Ignore
 	public void testTotal() throws Exception {
 		ResumeDAO dao = (ResumeDAO)beans.getBean("resumedao");
 		dao.total("aaa");

@@ -3,7 +3,7 @@ package spring.model.resume;
 public class ResumeDTO {
 
     private int resumeNum      ; 
-    private String MemberID    ; 
+    private String memberID    ; 
     private String resumeName  ;
     
 	public int getResumeNum() {
@@ -13,10 +13,10 @@ public class ResumeDTO {
 		this.resumeNum = resumeNum;
 	}
 	public String getMemberID() {
-		return MemberID;
+		return memberID;
 	}
 	public void setMemberID(String memberID) {
-		MemberID = memberID;
+		memberID = memberID;
 	}
 	public String getResumeName() {
 		return resumeName;

@@ -2,8 +2,6 @@ package spring.model.resumeinfo;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.sun.org.apache.xpath.internal.operations.Mult;
-
 import spring.model.personalmember.PersonalMemberDTO;
 
 public class ResumeInfoDTO {
@@ -12,12 +10,17 @@ public class ResumeInfoDTO {
     private String education      ;
     private String career         ;
     private String employmentType ;
-    private int exSalary          ;
+    private String exSalary       ;
     private String disableGrade   ;
     private String picture        ;
     private String exArea         ;
     private String exField        ;
     private String military       ;
+    private String schoolName	  ;
+    private String major		  ;
+    private String termtime		  ;
+    private String GPA			  ;
+    
     private MultipartFile pictureMF;
 
 	private PersonalMemberDTO pmdto;
@@ -28,6 +31,38 @@ public class ResumeInfoDTO {
 
 	public void setPictureMF(MultipartFile pictureMF) {
 		this.pictureMF = pictureMF;
+	}
+	
+	public String getSchoolName() {
+		return schoolName;
+	}
+
+	public void setSchoolName(String schoolName) {
+		this.schoolName = schoolName;
+	}
+
+	public String getMajor() {
+		return major;
+	}
+
+	public void setMajor(String major) {
+		this.major = major;
+	}
+
+	public String getTermtime() {
+		return termtime;
+	}
+
+	public void setTermtime(String termtime) {
+		this.termtime = termtime;
+	}
+
+	public String getGPA() {
+		return GPA;
+	}
+
+	public void setGPA(String gPA) {
+		GPA = gPA;
 	}
 
 	public String getMemberID() {
@@ -62,11 +97,11 @@ public class ResumeInfoDTO {
 		this.employmentType = employmentType;
 	}
 
-	public int getExSalary() {
+	public String getExSalary() {
 		return exSalary;
 	}
 
-	public void setExSalary(int exSalary) {
+	public void setExSalary(String exSalary) {
 		this.exSalary = exSalary;
 	}
 

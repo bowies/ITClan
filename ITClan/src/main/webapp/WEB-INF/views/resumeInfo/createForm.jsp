@@ -15,41 +15,66 @@ margin: auto;
 width: 960px;
 }
 </style>
-<script>
+<script type="text/javascript">
 function input(f) {
-	if(f.disableGrade.cheked==false){
+	if(f.pictureMF.value==''){
+			alert("사진을 올려주세요.");
+			f.pictureMF.focus();
+			return false;
+		}
+	 
+	if(f.disableGrade[0].checked==false && f.disableGrade[2].checked==false){
 		alert("장애등급을 선택해주세요.");
-		f.disableGrade.focus();
+		f.disableGrade[0].focus();
 		return false;
 	}
 	
-	if(f.military.cheked==false){
+	if(f.disableGrade[0].checked==true && f.disableGrade[1].selectedIndex==0){
+		alert("장애등급을 선택해주세요.");
+		f.disableGrade[0].focus();
+		return false;
+	}
+	
+	if(f.military[0].checked==false && f.military[1].checked==false && f.military[2].checked==false){
 		alert("병역사항을 선택해주세요.");
-		f.military.focus();
+		f.military[0].focus();
 		return false;
 	}
 	
-	if(f.education.selectedIndex==0){
+	if(f.education[0].checked==false && f.education[1].checked==false &&
+			f.education[2].checked==false && f.education[3].checked==false &&
+			f.education[4].checked==false && f.education[5].checked==false){
 		alert("학력사항을 선택해주세요.");
-		f.education.focus();
+		f.education[0].focus();
 		return false;
 	}
 	
-	if(f.career.cheked==false){
+	
+	if(f.career[0].checked==false && f.career[1].checked==false){
 		alert("경력사항을 선택해주세요.");
-		f.career.focus();
+		f.career[0].focus();
 		return false;
 	}
 	
-	if(f.disableGrade.cheked==false){
+	
+	if(f.employmentType[0].checked==false && f.employmentType[1].checked==false &&
+			f.employmentType[2].checked==false && f.employmentType[3].checked==false &&
+			f.employmentType[4].checked==false && f.employmentType[5].checked==false &&
+			f.employmentType[6].checked==false){
 		alert("고용형태를 선택해주세요.");
-		f.disableGrade.focus();
+		f.employmentType[0].focus();
+		return false;
+	}
+
+	if(f.exArea[0].selectedIndex==0){
+		alert("근무지역을 입력해주세요.");
+		f.exArea[0].focus();
 		return false;
 	}
 	
-	if(f.exArea.value==""){
+	if(f.exArea[1].value==""){
 		alert("근무지역을 입력해주세요.");
-		f.exArea.focus();
+		f.exArea[1].focus();
 		return false;
 	}
 	
@@ -77,30 +102,44 @@ function externalactivityCreate(exmax){
 		alert("5개 이상");
 		return false;
 	}else{
-	var url = "../externalactivity/create";
-	wr = window.open(url,"자격증","width=500,height=400"); 
-    wr.moveTo((window.screen.width-500)/2, (window.screen.height - 400)/2);// x, y 
+	var url = "../externalActivity/create";
+	wr = window.open(url,"대외활동","width=500,height=400"); 
+    wr.moveTo((window.screen.width-500)/2, (window.screen.height - 400)/2);// x, y
 	}
 }
 
-/* function downFile(biograph){
-	var url = "../download";
-	url = url + "?dir=../storage";
-	url = url + "&biograph="+biograph;
-	 
-	location.href=url;
-	}
-
-function downFile(portfolio){
-	var url = "../download";
-	url = url + "?dir=../storage";
-	url = url + "&portfolio="+portfolio;
-	 
-	location.href=url;
-	} */
 </script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<script>
+<script type="text/javascript">
+
+$(function(){
+	$("#t1").val("0000").css("color","#000000").one("focus",function(){
+		$(this).val("").css("color","#000000");
+	});
+	$("#t2").val("00").css("color","#000000").one("focus",function(){
+		$(this).val("").css("color","#000000");
+	});
+	$("#t3").val("0000").css("color","#000000").one("focus",function(){
+		$(this).val("").css("color","#000000");
+	});
+	$("#t4").val("00").css("color","#000000").one("focus",function(){
+		$(this).val("").css("color","#000000");
+	});
+	$("#t5").val("0000").css("color","#000000").one("focus",function(){
+		$(this).val("").css("color","#000000");
+	});
+	$("#t6").val("00").css("color","#000000").one("focus",function(){
+		$(this).val("").css("color","#000000");
+	});
+	$("#t7").val("0000").css("color","#000000").one("focus",function(){
+		$(this).val("").css("color","#000000");
+	});
+	$("#t8").val("00").css("color","#000000").one("focus",function(){
+		$(this).val("").css("color","#000000");
+	});
+});
+
 	$(document).ready(function() {
 		$("#grade").hide();
 		$("#disable").click(function() {
@@ -110,7 +149,7 @@ function downFile(portfolio){
 			$("#grade").hide();
 		});
 	});
-
+	
 	$(document).ready(function() {
 		function readURL(input) {
 			if (input.files && input.files[0]) {
@@ -132,13 +171,63 @@ function downFile(portfolio){
 			readURL(this);
 		});
 	});
+
+	$(document).ready(function() {
+		$("#shigh").hide();
+		$("#sgreat").hide();
+		$("#edhigh").click(function () {
+			$("#shigh").show();
+			$("#sgreat").hide();
+		});
+	});
+	
+	$(document).ready(function() {
+		$("#shigh").hide();
+		$("#sgreat").hide();
+		$("#edgreat").click(function () {
+			$("#sgreat").show();
+			$("#shigh").hide();
+		});
+	});
+	
+	$(document).ready(function() {
+		$("#shigh").hide();
+		$("#sgreat").hide();
+		$("#edgreat2").click(function () {
+			$("#sgreat").show();
+			$("#shigh").hide();
+		});
+	});
+	
+	$(document).ready(function() {
+		$("#shigh").hide();
+		$("#sgreat").hide();
+		$("#edgreat3").click(function () {
+			$("#sgreat").show();
+			$("#shigh").hide();
+		});
+	});
+	
+	$(document).ready(function() {
+	$("#edu").click(function () {
+		$("#shigh").hide();
+		$("#sgreat").hide();
+	});
+});
+	
+	$(document).ready(function() {
+		$("#edu2").click(function () {
+			$("#shigh").hide();
+			$("#sgreat").hide();
+		});
+	});
 </script>
 
 </head>
 <body>
 	<form action="./create" method="post"
 		 enctype="multipart/form-data" onsubmit="return input(this)">
-	
+		 
 		<input type="hidden" name="memberID" value="${personalmemberdto.memberID }">
 		
 		<div style="width: 960px; margin: auto;">
@@ -149,23 +238,22 @@ function downFile(portfolio){
 			<tr>
 				<td style="width: 80px;" align="center" rowspan="12">
 				<img id="photo" src="../images/no_image.JPG" style="width: 170px; height: 170px;">
-				
-				<input style="text-align: center; width: 77px;" type="file" id="imgInp" name="pictureMF">
+				<input style="text-align: center; width: 77px; margin-top: 10px;" type="file" id="imgInp" name="pictureMF">
 				</td>
 			</tr>
 			<tr>
 				<th colspan="2">이름</th>
 				<td>${personalmemberdto.name }&nbsp;
-					${2016-(birth.substring(0,2)+1900) }세
+					${2016-(personalmemberdto.birth.substring(0,2)+1900) }세
 					/ ${personalmemberdto.memberID}</td>
 			</tr>
 
 			<tr>
 				<th colspan="2">생년월일</th>
 				<td colspan="3">
-				${birth.substring(0,2)+1900 }년
-				${birth.substring(2,4) }월
-				${birth.substring(4,6) }일
+				${personalmemberdto.birth.substring(0,2)+1900}년
+				${personalmemberdto.birth.substring(2,4) }월
+				${personalmemberdto.birth.substring(4,6) }일
 				</td>
 			</tr>
 
@@ -182,7 +270,7 @@ function downFile(portfolio){
 						<option value="5등급">5등급
 						<option value="6등급">6등급
 				</select>
-				<input style="margin-left: 20px" type="radio" id="normal" name="disableGrade" value="비장애">비장애
+				<input style="margin-left: 15px" type="radio" id="normal" name="disableGrade" value="비장애">비장애
 				</td>
 			</tr>
 
@@ -227,25 +315,123 @@ function downFile(portfolio){
 		</div>
 		
 		<div style="text-align: center; margin: auto; background-color: #D9E5FF; border: 2px solid #2478FF; padding-bottom: 15px; padding-top: 15px; width: 960px;">
-			<b>최종학력 *</b>
-			<select name="education">
-				<option value="학력선택">학력선택</option>
-				<option value="초등학교">초등학교</option>
-				<option value="중학교">중학교</option>
-				<option value="고등학교">고등학교</option>
-				<option value="대학(2,3년)">대학(2,3)</option>
-				<option value="대학교">대학교(4년)</option>
-				<option value="대학원">대학원</option>
-				
-			</select>
-			<select name="education">
-				<option value="상태선택">상태선택</option>
-				<option value="졸업">졸업</option>
-				<option value="졸업">졸업예정</option>
-				<option value="중퇴">중퇴</option>
-				<option value="수료">수료</option>
-			</select>
+		<input type="radio" name="education" value="초등학교 졸업" id="edu">초등학교
+		<input style="margin-left: 40px;" type="radio" name="education" value="중학교 졸업" id="edu2">중학교
+		<input style="margin-left: 40px;" type="radio" name="education" value="고등학교" id="edhigh">고등학교
+		<input style="margin-left: 40px;" type="radio" name="education" value="대학(2,3년)" id="edgreat">대학(2,3년)
+		<input style="margin-left: 40px;" type="radio" name="education" value="대학교(4년)" id="edgreat2">대학교(4년)
+		<input style="margin-left: 40px;" type="radio" name="education" value="대학원" id="edgreat3">대학원
+
 		</div>
+		<div style="width: 960px; margin: auto;">
+		<label style="float: right;">+최근 졸업으로 기제해주시기바랍니다.</label>
+		</div>
+		<br>
+		
+<!-- 		<div id="shigh">
+		<div style="width: 960px; margin: auto;">
+			<label>=고등학교</label>
+		</div>
+		<table border="1" style="border-collapse: collapse;">
+			<tr style="background-color: #D9E5FF;">
+				<th style="text-align: left ;" colspan="2">
+				고등학교
+				</th>
+			</tr>
+			
+			<tr>
+				<th style="text-align: center; background-color: #D9E5FF;">학교명</th>
+				<td><input type="text" name="schoolName" placeholder="학교명을입력하세요." style="width: 340px;">
+				<input type="text" name="gPA" placeholder="gPA">
+				</td>
+			</tr>
+			
+			<tr>
+				<th style="text-align: center; background-color: #D9E5FF;">재학기간</th>
+				<td>
+				<input type="text" name="termtime" id="t1" style="width: 45px;"> .
+				<input type="text" name="termtime" id="t2" style="width: 25px;">
+				<select name="termtime">
+					<option value="입학">입학</option>
+				</select>
+				~
+				<input type="text" name="termtime" id="t3" style="width: 45px;"> .
+				<input type="text" name="termtime" id="t4" style="width: 25px;">
+				<select name="termtime">
+					<option value="졸업">졸업</option>
+					<option value="졸업예정">졸업예정</option>
+				</select>	
+				</td>
+			</tr>
+			
+			<tr>
+				<th style="text-align: center; background-color: #D9E5FF;">전공</th>
+				<td>
+				<select name="major">
+					<option value="졸업">계열선택</option>
+					<option value="문과계열">문과계열</option>
+					<option value="이과계열">이과계열</option>
+					<option value="전문(실업)계열">전문(실업)계열</option>
+					<option value="예체능계열">예체능계열</option>
+				</select>
+				</td>
+			<tr>		
+		</table>
+		</div> -->
+		
+		<div style="width: 960px; margin: auto;">
+			<label>=대학·대학교·대학원</label>
+		</div>
+		<table border="1" style="border-collapse: collapse;">
+			<tr style="background-color: #D9E5FF;">
+				<th style="text-align: left ;" colspan="2">
+				 대학·대학교·대학원
+				</th>
+			</tr>
+			
+			<tr>
+				<th style="text-align: center; background-color: #D9E5FF;">학교명</th>
+				<td><input type="text" name="schoolName" placeholder="학교명을입력하세요." style="width: 340px;"></td>
+			</tr>
+			
+			<tr>
+				<th style="text-align: center; background-color: #D9E5FF;">재학기간</th>
+				<td>
+				<input type="text" name="termtime" id="t5" style="width: 45px;"> .
+				<input type="text" name="termtime" id="t6" style="width: 25px;">
+				<select name="termtime">
+					<option value="입학">입학</option>
+					<option value="편입">편입</option>
+				</select>
+				~
+				<input type="text" name="termtime" id="t7" style="width: 45px;"> .
+				<input type="text" name="termtime" id="t8" style="width: 25px;">
+				<select name="termtime">
+					<option value="졸업">졸업</option>
+					<option value="졸업">졸업예정</option>
+					<option value="중퇴">휴학</option>
+					<option value="중퇴">중퇴</option>
+					<option value="수료">수료</option>
+				</select>	
+				</td>
+			</tr>
+			
+			<tr>
+				<th style="text-align: center; background-color: #D9E5FF;">전공</th>
+				<td><input type="text" name="major">학과</td>
+			<tr>
+				<th style="text-align: center; background-color: #D9E5FF;">학점</th>
+				<td><input type="text" name="gPA" placeholder="학점" style="width: 40px;"> / 
+				<select name="gPA">
+					<option value="/4.5">4.5</option>
+					<option value="/4.3">4.3</option>
+					<option value="/4.0">4.0</option>
+					<option value="/100">100</option>
+				</select>
+				
+				</td>		
+			</tr>
+		</table>
 		
 		<br><br>
 		<div style="width: 960px; margin: auto;">
@@ -256,6 +442,14 @@ function downFile(portfolio){
 			<b>경력사항 *</b>
 			<input type="radio" name="career" value="신입">신입
 			<input type="radio" name="career" value="경력">경력
+			<select name="career">
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</select>
 		</div>
 		
 		<br><br>
@@ -366,21 +560,21 @@ function downFile(portfolio){
 					<td>
 					<select name="exSalary">
 							<option value="면접후 결정">면접후 결정</option>
-							<option>1400이하</option>
-							<option>1400~1600만원</option>
-							<option>1600~1800만원</option>
-							<option>1800~2000만원</option>
-							<option>2000~2200만원</option>
-							<option>2200~2400만원</option>
-							<option>2400~2600만원</option>
-							<option>2600~2800만원</option>
-							<option>2800~3000만원</option>
-							<option>3000~3200만원</option>
-							<option>3200~3400만원</option>
-							<option>3400~3600만원</option>
-							<option>3600~3800만원</option>
-							<option>3800~4000만원</option>
-							<option>4000만원이상</option>
+							<option value="1400이하">1400이하</option>
+							<option value="1400~1600만원">1400~1600만원</option>
+							<option value="1600~1800만원">1600~1800만원</option>
+							<option value="1800~2000만원">1800~2000만원</option>
+							<option value="2000~2200만원">2000~2200만원</option>
+							<option value="2200~2400만원">2200~2400만원</option>
+							<option value="2400~2600만원">2400~2600만원</option>
+							<option value="2600~2800만원">2600~2800만원</option>
+							<option value="2800~3000만원">2800~3000만원</option>
+							<option value="3000~3200만원">3000~3200만원</option>
+							<option value="3200~3400만원">3200~3400만원</option>
+							<option value="3400~3600만원">3400~3600만원</option>
+							<option value="3600~3800만원">3600~3800만원</option>
+							<option value="3800~4000만원">3800~4000만원</option>
+							<option value="4000만원이상">4000만원이상</option>
 					</select>
 					</td>
 				</tr>
@@ -388,15 +582,35 @@ function downFile(portfolio){
 				<tr>
 					<th>희망근무지</th>
 					<td>
-						<input type="text" name="exArea" placeholder="지역">
+						<select name="exArea">
+							<option value="선택">선택</option>
+							<option value="서울 > ">서울</option>
+							<option value="경기 > ">경기</option>
+							<option value="인천 > ">인천</option>
+							<option value="부산 > ">부산</option>
+							<option value="대구 > ">대구</option>
+							<option value="대전 > ">대전</option>
+							<option value="광주 > ">광주</option>
+							<option value="세종 > ">세종</option>
+							<option value="울산 > ">울산</option>
+							<option value="강원 > ">강원</option>
+							<option value="경남 > ">경남</option>
+							<option value="경북 > ">경북</option>
+							<option value="전남 > ">전남</option>
+							<option value="전북 > ">전북</option>
+							<option value="충남 > ">충남</option>
+							<option value="충북 > ">충북</option>
+							<option value="제주 > ">제주</option>
+						</select>
 						<input type="text" name="exArea" placeholder="상세지역">
 					</td>
 				</tr>
+				<tr>
 
 				<tr>
 					<th>지원분야</th>
 					<td>
-						<input type="text" name="exField">
+						<input type="button" id="parentId" name="exField">
 					</td>
 				</tr>
 			</table> 

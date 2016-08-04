@@ -35,7 +35,7 @@ public class LicenseController {
 	public String create( Model model,String memberID, LicenseDTO licensedto) throws Exception{
 		
 		if(licensedao.create(licensedto)>0){
-			return "/license/create";
+			return "/license/createProc";
 		}else {
 			return "error/error";
 		}

@@ -8,15 +8,20 @@
 </head>
 <body>
 <form action="./create" method="post">
-<input type="hidden" name="memberID" value="${memberID }">
+<input type="text" name="memberID" value="${memberID }">
 <div>
-<label>자격증
-<input type="text" name="qualification">
+<label>활동구분
+<input type="text" name="actSector">
 </label>
 </div>
 <div>
-<label>날짜
-<input type="text" name="takeDate">
+<label>활동기간
+<input type="text" name="actPeriod">
+</label>
+</div>
+<div>
+<label>활동내용
+<input type="text" name="actContent">
 </label>
 </div>
 <input type="submit" value="전송">

@@ -26,12 +26,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<result property="military" column="military"/>
 </resultMap>
 <select id="list" parameterType="Map" resultMap="ManyMap">
-		select  r.memberID, r.education, r.career, r.employmentType, r.exSalary,
-				r.disableGrade, r.picture, r.exArea, r.exField, r.military,
-				l.licenseNum, l.qualification, l.takedate
+		select  r.memberID, l.licenseNum, l.qualification, l.takedate
 		from ResumeInfo r, license l
 		where r.memberID = l.memberID
-		and r.memberid = #{memberID}
+		and r.memberID = #{memberID}
 		order by licenseNum ASC
 </select>
 

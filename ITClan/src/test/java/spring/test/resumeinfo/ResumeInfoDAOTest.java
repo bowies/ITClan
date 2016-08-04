@@ -38,10 +38,10 @@ public class ResumeInfoDAOTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test  //@Ignore
+	@Test  @Ignore
 	public void testRead() throws Exception {
 		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumeinfodao");
-		String memberID = "aaa";
+		String memberID = "ccc";
 		ResumeInfoDTO dto = (ResumeInfoDTO) dao.read(memberID);
 	}
 
@@ -51,9 +51,13 @@ public class ResumeInfoDAOTest {
 		ResumeInfoDTO dto = new ResumeInfoDTO();
 		dto.setMemberID("ccc");
 		dto.setEducation("고등학교 졸업");
+		dto.setSchoolName("안산고등학교 안산");
+		dto.setMajor("이과");
+		dto.setTermtime("2010.03 ~ 2012.02");
+		dto.setGPA("2.0");
 		dto.setCareer("신입");
 		dto.setEmploymentType("정규직");
-		dto.setExSalary(3500);
+		dto.setExSalary("3500");
 		dto.setDisableGrade("비장애");
 		dto.setPicture("img.jpg");
 		dto.setExArea("서울 종로");
@@ -66,13 +70,18 @@ public class ResumeInfoDAOTest {
 	public void testUpdate() throws Exception {
 		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumeinfodao");
 		
-		ResumeInfoDTO dto = new ResumeInfoDTO();
+		String pk = "aaa";
 		
-		dto.setMemberID("aaa");
+		ResumeInfoDTO dto = (ResumeInfoDTO) dao.read(pk);
+		
 		dto.setEducation("고등학교 졸업");
+		dto.setSchoolName("안산고등학교 안산");
+		dto.setMajor("이과");
+		dto.setTermtime("2010.03 ~ 2012.02");
+		dto.setGPA("pk");
 		dto.setCareer("신입");
 		dto.setEmploymentType("정규직");
-		dto.setExSalary(3500);
+		dto.setExSalary("3500");
 		dto.setDisableGrade("비장애");
 		dto.setPicture("img.jpg");
 		dto.setExArea("서울 종로");
@@ -81,11 +90,11 @@ public class ResumeInfoDAOTest {
 		assertEquals(1, dao.update(dto));
 	}
 
-	@Test @Ignore
+	@Test //@Ignore
 	public void testDelete() throws Exception {
 		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumeinfodao");
 		
-		String pk = "bbb";
+		String pk = "ccc";
 		dao.delete(pk);
 	}
 
