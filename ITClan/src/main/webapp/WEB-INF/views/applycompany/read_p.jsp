@@ -10,9 +10,7 @@
 
 <script type="text/javascript">
 function listB() {
-	var url = "list";
-	url += "?col=${param.col}";
-	url += "&word=${param.word}";
+	var url = "list_personal";
 	url += "&nowPage=${param.nowPage}";
 	
 	location.href=url;
@@ -46,21 +44,21 @@ function listB() {
       <td>${olist.recruitment }</td>
     </TR>
     <TR>
-      <TH>작성자</TH>
-      <TD>${dto.wname }</TD>
+      <TH colspan="2">작성자</TH>
+      <TD colspan="2">${pmdto.name }</TD>
     </TR>
     <TR>
-      <TD colspan="2">${dto.content }</TD>
+    <th> 자기소개서</th>
+      <TD height="50px;">
+      <a href="'${pageContext.request.contextPath }/download?dir=/storage/resume&filename=${redto.resumeName }'">
+      ${redto.resumeName }</a></TD>
+    <th>포트폴리오</th>
+      <TD height="50px;">
+      <a href="'${pageContext.request.contextPath }/download?dir=/storage/portfolio&filename=${pfdto.portfolioName }'">
+      ${pfdto.portfolioName }
+      </a>
+      </TD>
     </TR>
-    <TR>
-      <TH>조회수</TH>
-      <TD>${dto.viewcnt }</TD>
-    </TR>
-    <TR>
-      <TH>등록일</TH>
-      <TD>${dto.wdate }</TD>
-    </TR>
-
   </TABLE>
   
   <DIV class='bottom'>
