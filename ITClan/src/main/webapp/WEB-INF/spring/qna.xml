@@ -39,7 +39,7 @@
 
 	<definition name="/qna/delete" extends="main">
 		<put-attribute name="title" value="qna information delete Page"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/qna/deleteForm.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/qna/delete.jsp" />
 	</definition>
 
 	<definition name="/qna/update" extends="main">
@@ -52,6 +52,11 @@
 	<definition name="/qna/list" extends="main">
 		<put-attribute name="title" value="qna password change Page"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/qna/list.jsp" />
+	</definition>
+	
+	<definition name="/qna/custom" extends="main">
+		<put-attribute name="title" value="custom Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/qna/custom.jsp" />
 	</definition>
 	
 </tiles-definitions> 
