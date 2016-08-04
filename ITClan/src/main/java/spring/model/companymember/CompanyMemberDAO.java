@@ -51,6 +51,7 @@ public class CompanyMemberDAO implements DAOMyBatisInter {
 		return mybatis.selectOne("companymember.pwFind", map);
 		
 	}
+	
 	public String idFind(String name , String email){
 		Map map = new HashMap();
 		map.put("name", name);
@@ -58,6 +59,7 @@ public class CompanyMemberDAO implements DAOMyBatisInter {
 		return mybatis.selectOne("companymember.idFind", map);
 		
 	}
+	
 	public int EmailCheck(String email){
 		return mybatis.selectOne("companymember.emailCheck", email);
 	}

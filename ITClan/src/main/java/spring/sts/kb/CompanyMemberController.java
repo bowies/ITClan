@@ -56,7 +56,7 @@ public class CompanyMemberController {
 	}
 
 	@RequestMapping(value = "/companymember/delete", method = RequestMethod.POST)
-	public String delete(String companyID, String oldfile, HttpServletRequest request, HttpSession session) throws Exception {
+	public String delete(String companyID, HttpServletRequest request, HttpSession session) throws Exception{
 
 		if (dao.delete(companyID) > 0) {
 			
@@ -68,7 +68,9 @@ public class CompanyMemberController {
 	}
 
 	@RequestMapping(value = "/companymember/delete", method = RequestMethod.GET)
-	public String delete(String companyID, String oldfile, Model model, HttpSession session) {
+	public String delete(String companyID,Model model, HttpSession session) {
+		
+		
 		if (companyID == null) {
 			companyID = (String) session.getAttribute("companyID");
 
@@ -115,7 +117,7 @@ public class CompanyMemberController {
 
 		}
 		CompanyMemberDTO dto = (CompanyMemberDTO) dao.read(companyID);
-
+ 
 		model.addAttribute("dto", dto);
 
 		return "/companymember/update";
@@ -124,7 +126,7 @@ public class CompanyMemberController {
 	@RequestMapping(value = "/companymember/read")
 	public String read(String companyID, HttpSession session, Model model) throws Exception {
 		if (companyID == null) {
-			companyID = (String) session.getAttribute("id");
+			companyID = (String) session.getAttribute("companyID");
 
 		}
 		CompanyMemberDTO dto = (CompanyMemberDTO) dao.read(companyID);
@@ -143,8 +145,7 @@ public class CompanyMemberController {
 	}
 
 	@RequestMapping(value = "/companymember/login", method = RequestMethod.POST)
-	public String login(String companyID, String passwd, String c_id, long companyNumber, int nowPage, int nPage, String col,
-			String word, String flag, HttpServletResponse response, HttpSession session, Model model) {
+	public String login(String companyID, String passwd, String c_id, HttpServletResponse response, HttpSession session, Model model) {
 
 		int cnt = dao.loginCheck(companyID, passwd);
 		String grade = null;
@@ -179,21 +180,13 @@ public class CompanyMemberController {
 		String url = "./error/passwdError";
 		if (cnt == 1) {
 			url = "redirect:/";
-			if (flag != "") {
-				model.addAttribute("companyNumber", companyNumber);
-				model.addAttribute("nowPage", nowPage);
-				model.addAttribute("nPage", nPage);
-				model.addAttribute("col", col);
-				model.addAttribute("word", word);
-				url = "redirect:" + flag;
-			}
 		}
 
 		return url;
 	}
 
 	@RequestMapping(value = "/companymember/login", method = RequestMethod.GET)
-	public String login(HttpServletRequest request, @RequestParam(value = "companyNumber", defaultValue = "0") long companyNumber,
+	public String login(HttpServletRequest request,
 			@RequestParam(value = "nowPage", defaultValue = "0") int nowPage,
 			@RequestParam(value = "nPage", defaultValue = "0") int nPage) {
 
@@ -218,7 +211,6 @@ public class CompanyMemberController {
 
 		request.setAttribute("nowPage", nowPage);
 		request.setAttribute("nPage", nPage);
-		request.setAttribute("companyNumber", companyNumber);
 		return "/companymember/login";
 	}
 

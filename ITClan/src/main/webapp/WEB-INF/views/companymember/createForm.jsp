@@ -22,7 +22,6 @@
        <th>기업회원ID</th> 
        <td> 
            <input type="text" name="companyID"> 
-           <input type="button" name="confirm"> 
        </td> 
      </tr>  
      <tr>  
@@ -52,7 +51,7 @@
      <tr>   
        <th>사업자번호</th> 
               <td> 
-           <input type="text" name="companyNumber" >
+           <input type="number" name="companyNumber" >
         
        </td> 
 

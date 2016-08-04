@@ -19,7 +19,7 @@
  
 <FORM method="POST" action="./list">
 <select name="col">
-<option value="mname"
+<option value="name"
 <c:if test="${col==name}">selected='selected'</c:if>
 >성명</option>
 <option value="email"
@@ -39,11 +39,10 @@
 </DIV>
  
 <c:forEach var="dto" items="${list}">
-<TABLE border='1' align='center' width='70%'> 
+<TABLE> 
   
   <TR> 
-    <TD rowspan='5' width='20%' align="center">
-    <IMG src='../storage/${dto.fname}' width='100%'></TD> 
+    <TD rowspan='6' width='20%' align="center">
     <TH width='20%'>아이디</TH> 
     <TD width='60%'><A href='../companymember/read?companyID=${dto.companyID}'>${dto.companyID}</A></TD>
   </TR>

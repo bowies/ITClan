@@ -43,12 +43,6 @@
     <input type='submit' value='로그인'>
     <input type='button' value='회원가입' onclick="location.href='./agree'">
   </DIV>
-  <input type="hidden" name="flag" value="${param.flag}">
-  <input type="hidden" name="companyID" value="${companyID}">
-  <input type="hidden" name="nowPage" value="${nowPage}">
-  <input type="hidden" name="nPage" value="${nPage}">
-  <input type="hidden" name="col" value="${param.col}">
-  <input type="hidden" name="word" value="${param.word}">
 </FORM>
  
  

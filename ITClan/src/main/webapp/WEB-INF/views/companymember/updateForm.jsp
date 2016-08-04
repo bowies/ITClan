@@ -18,7 +18,6 @@
 		onsubmit="return inputCheck()">
 
 		<input type="hidden" name="companyID" value="${dto.companyID}">
-		<input type="hidden" name="eclick" value=0> 
 		<TABLE class='table' width="80%">
 
 			<tr>
@@ -60,7 +59,7 @@
 		<DIV class='bottom'>
 			<input type='submit' value='회원수정'> <input type='reset'
 				value='취소'>
-		</DIV>7
+		</DIV>
 	</FORM>
 
 

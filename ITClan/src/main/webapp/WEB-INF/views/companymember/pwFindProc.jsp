@@ -19,7 +19,7 @@
 <c:when test="${not empty passwd}">
 당신의 비밀번호는 ${passwd}<br>
 <DIV class='bottom'>
-  <input type='button' value='로그인' onclick="location.href='./loginForm'">
+  <input type='button' value='로그인' onclick="location.href='./login'">
 </DIV>
 </c:when>
 <c:otherwise>
