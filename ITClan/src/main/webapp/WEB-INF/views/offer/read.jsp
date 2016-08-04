@@ -38,14 +38,18 @@ url = url + "&offerNum="+offerNum;
 location.href=url;
 }
  
-function applyB(offerNum){
-	var url="./apply";
+function applyB(offerNum,memberID){
+	
+	
+	var url="../applycompany/create";
 	url = url + "?nowPage=${param.nowPage}";
-	url = url + "&col=${param.col}";
-	url = url + "&word=${param.word}";
+// 	url = url + "&col=${param.col}";
+// 	url = url + "&word=${param.word}";
 	url = url + "&offerNum="+offerNum;
-	 
-	location.href=url;
+	url = url + "&memberID="+memberID;
+
+	wr = window.open(url,"지원하기","width=600,height=800"); 
+	wr.moveTo((window.screen.width-600)/2, (window.screen.height-800)/2);
 } 
 
 function applylistB(offerNum){
@@ -123,7 +127,7 @@ function applylistB(offerNum){
   <input type='button' value='수정' onclick="updateB('${dto.offerNum}')">
   <input type='button' value='삭제' onclick="deleteB('${dto.offerNum}')">
 <br>
-  <input type='button' value='지원하기' onclick="applyB('${dto.offerNum}')">
+  <input type='button' value='지원하기' onclick="applyB('${dto.offerNum}','${sessionScope.memberID }')">
   <input type='button' value='지원자목록보기' onclick="applylistB('${dto.offerNum}')">
 </DIV>
 </body>

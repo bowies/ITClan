@@ -79,15 +79,20 @@ public class ApplyCompanyController {
 		model.addAttribute("memberID", memberID);
 		model.addAttribute("offerNum", offerNum);
 		
-		return "/applycompany/create";
+		return "/applycompany/createProc";
 	}
 	
 	@RequestMapping(value="/applycompany/create",method=RequestMethod.GET)
-	public String create(HttpSession session, int offerNum,Model model){
-		String memberID = (String)session.getAttribute("memberID");
+	public String create(HttpSession session, int offerNum,Model model,String memberID){
+		
 		
 		int cnt = dao.memberIDCheck(memberID, offerNum);
+		List<ResumeDTO> reList = dao.list_resume(memberID);
+		List<PortFolioDTO> pfList = dao.List_portfolio(memberID);
+		
 		model.addAttribute("cnt", cnt);
+		model.addAttribute("reList", reList);
+		model.addAttribute("pfList", pfList);
 		model.addAttribute("offerNum", offerNum);
 		model.addAttribute("memberID", memberID);
 		

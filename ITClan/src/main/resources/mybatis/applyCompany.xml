@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<selectKey order="BEFORE" keyProperty="applyCode" resultType="int">
 	SELECT NVL(MAX(applyCode), 0) + 1 as applyCode FROM applycompany
 	</selectKey>
-	insert into applycompany(applyCode,memberID,applydate,offerNum,resumeNum,portfolioNum)
+	insert into applycompany(applyCode,memberID,applyDate,offerNum,resumeNum,portfolioNum)
 	values(#{applyCode},#{memberID},sysdate,#{offerNum},#{resumeNum},#{portfolioNum})
 	
 	</insert>
