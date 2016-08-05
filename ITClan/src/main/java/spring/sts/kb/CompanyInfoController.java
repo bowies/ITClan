@@ -66,13 +66,11 @@ public class CompanyInfoController {
 
 
 	@RequestMapping(value = "/companyinfo/createProc", method = RequestMethod.POST)
-	public String create(CompanyInfoDTO dto, HttpServletRequest request) throws Exception {
+	public String create(CompanyInfoDTO dto, HttpServletRequest request,  Model model) throws Exception {
+		int cnt = dao.create(dto);
 		
-		if (dao.create(dto) > 0) {
-			return "/companyinfo/createProc";
-		} else {
-			return "/error/error";
-		}
+		model.addAttribute("cnt", cnt);
+		return "/companyinfo/createProc";
 	}
 
 	@RequestMapping(value = "/companyinfo/create", method = RequestMethod.GET)

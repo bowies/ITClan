@@ -9,8 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		CompanyInfo(companyID, companyName, companyScale, bossName,
 		companyNumber, ci, categoryCode)
 		values(#{companyID},#{companyName},
-		#{companyName}, #{companyScale}, #{bossName},
-		#{companyNumber},#{ci},#{categoryCode});
+		#{companyScale}, #{bossName},
+		#{companyNumber},#{ci},#{categoryCode})
 
 
 	</insert>
@@ -40,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				</when>
 			</choose>
 		</where>
-		order by r ASC
+		order by companyNumber ASC
 		)
 		)   
                                                                

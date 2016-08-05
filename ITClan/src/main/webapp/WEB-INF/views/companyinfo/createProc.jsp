@@ -17,17 +17,11 @@
 	<DIV class="title">회원가입 처리</DIV>
 
 	<DIV class="content">
-	
-	<c:choose>
-	<c:when test="${flag}">
-	아이디와 이메일 중복확인 하세요
-	</c:when>
-	<c:otherwise>
+
 		<c:choose>
 		<c:when test="${cnt==1}">
 			회원가입을 했습니다.<br>
 			<DIV class='bottom'>
-			<input type='button' value='로그인' onclick="location.href='login'">
 			<input type='button' value='홈' onclick="location.href='../'">
 			</DIV>
 		</c:when>
@@ -39,8 +33,7 @@
 			</DIV>
 		</c:otherwise>
 		</c:choose>
-	</c:otherwise>
-	</c:choose>
+	
 
 	</DIV>
 	<!-- *********************************************** -->

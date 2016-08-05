@@ -36,19 +36,26 @@
 <TABLE> 
   
   <TR> 
-    <TD rowspan='6' width='20%' align="center">
-    <TH width='20%'>아이디</TH> 
-    <TD width='60%'><A href='../companyinfo/read?companyID=${dto.companyID}'>${dto.companyID}</A></TD>
+    <TH>아이디</TH> 
+    <TD><A href='../companyinfo/read?companyID=${dto.companyID}'>${dto.companyID}</A></TD>
   </TR>
    
   <TR> 
-    <TH>성명</TH> 
+    <TH>회사명</TH> 
     <TD>${dto.companyName}</TD> 
+  </TR> 
+  <TR> 
+    <TH>대표자명</TH> 
+    <TD>${dto.bossName}</TD> 
+  </TR> 
+  <TR> 
+    <TH>사업자번호</TH> 
+    <TD>${dto.companyNumber}</TD> 
   </TR> 
   
  
 </TABLE> 
-<BR> 
+
 </c:forEach>
  
 <DIV class="bottom"> 
