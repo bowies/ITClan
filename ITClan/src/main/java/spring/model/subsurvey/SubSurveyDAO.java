@@ -14,8 +14,6 @@ public class SubSurveyDAO implements DAOMyBatisInter {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 
-	
-	
 	public void setMybatis(SqlSessionTemplate mybatis) {
 		this.mybatis = mybatis;
 	}

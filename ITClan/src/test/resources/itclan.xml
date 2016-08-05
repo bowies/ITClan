@@ -23,6 +23,14 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 
+<!-- surveyDAO 생성 -->
+<bean id="surveydao" class="spring.model.survey.SurveyDAO"
+		p:mybatis-ref="sqlSession" />
+
+<bean id="subsurveydao" class="spring.model.subsurvey.SubSurveyDAO"
+		p:mybatis-ref="sqlSession" />
+
+
 	<!-- CompanyMemberDAO 객체 생성 -->
 	<bean id="companymemberdao" class="spring.model.companymember.CompanyMemberDAO"
 		p:mybatis-ref="sqlSession" />
