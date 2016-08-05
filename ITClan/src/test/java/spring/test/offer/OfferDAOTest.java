@@ -95,16 +95,14 @@ public class OfferDAOTest extends OfferDAO {
 		assertEquals("연봉 2300만원 이상 ",dto.getSalary());
 	}
 
-	@Test @Ignore
+	@Test //@Ignore
 	public void testUpdate() throws Exception {
 		OfferDAO dao = (OfferDAO) beans.getBean("offerdao");
 		OfferDTO dto = new OfferDTO();
-		dto.setOfferNum(5);
-		dto.setTitle("S/W 개발 및 시스템 운영 직원 채용");
+		dto.setOfferNum(9);
+		dto.setTitle("1");
 		dto.setQualification("경력 최소 1년이상");
 		dto.setOfferDate("2016-08-16");
-		dto.setCompanyName("test co");
-		dto.setCompanyID("testman");
 		dto.setDetail("차량 및 교통 관련 S/W개발 /App. 개발 /시스템 운영, 유지보수 (현대기술연구소 파견근무)");
 		dto.setEmploymentSector("응용프로그래머");
 		dto.setTask("1234");

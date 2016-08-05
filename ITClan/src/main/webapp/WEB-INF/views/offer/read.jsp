@@ -37,23 +37,12 @@ url = url + "&offerNum="+offerNum;
  
 location.href=url;
 }
- 
-function applyB(offerNum){
-	var url="./apply";
-	url = url + "?nowPage=${param.nowPage}";
-	url = url + "&col=${param.col}";
-	url = url + "&word=${param.word}";
-	url = url + "&offerNum="+offerNum;
-	 
-	location.href=url;
-} 
 
 function applylistB(offerNum){
-	var url="./apply";
+	var url="./applylist";
 	url = url + "?nowPage=${param.nowPage}";
 	url = url + "&col=${param.col}";
 	url = url + "&word=${param.word}";
-	url = url + "&offerNum="+offerNum;
 	 
 	location.href=url;
 } 
@@ -120,11 +109,13 @@ function applylistB(offerNum){
   
 <DIV class='bottom'>
   <input type='button' value='목록' onclick="listB()">
-  <input type='button' value='수정' onclick="updateB('${dto.offerNum}')">
-  <input type='button' value='삭제' onclick="deleteB('${dto.offerNum}')">
+  <input type='submit' value='지원하기'>
 <br>
-  <input type='button' value='지원하기' onclick="applyB('${dto.offerNum}')">
-  <input type='button' value='지원자목록보기' onclick="applylistB('${dto.offerNum}')">
+	<c:if test="${sessionScope.grade == 'A' or sessionScope.grade == 'C'}">
+	  <input type='button' value='지원자목록보기' onclick="applylistB()">
+	  <input type='button' value='수정' onclick="updateB('${dto.offerNum}')">
+	  <input type='button' value='삭제' onclick="deleteB('${dto.offerNum}')">
+	</c:if>
 </DIV>
 </body>
 <!-- *********************************************** -->

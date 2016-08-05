@@ -15,16 +15,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update" parameterType="OfferDTO">
 	    update offer
 	    set Title=#{title}, Qualification=#{qualification}, OfferDate=#{offerDate},
-		Detail=#{offerDate}, EmploymentSector=#{employmentSector}, Task=#{task},
+		Detail=#{detail}, EmploymentSector=#{employmentSector}, Task=#{task},
 		WorkingArea=#{workingArea}, Recruitment=#{recruitment}, Salary=#{salary}
-		where OfferNum = #{offerNum}
+		where offerNum = #{offerNum}
 	</update>
 	
 	<select id="read" resultType="OfferDTO" parameterType="int">
 	  select OfferNum, title, viewCnt, companyID, companyName, offerDate, qualification, employmentSector,
 	  workingArea, salary, recruitment, task, detail
 	  from Offer
-	  where OfferNum = #{offerNum}
+	  where offerNum = #{offerNum}
 	</select>
 
 	<delete id="delete" parameterType="int">
