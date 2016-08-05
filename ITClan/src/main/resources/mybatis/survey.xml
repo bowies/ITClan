@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="survey">
+<delete id="delete" parameterType="int">
+delete from survey where preNum = #{preNum}
+</delete>
+<update id="update" parameterType="SurveyDTO">
+update survey
+set
+title = #{title},
+enddate = #{enddate}
+where preNum = #{preNum}
+</update>
+<insert id="create" parameterType="SurveyDTO">
+insert into survey(preNum,title,regdate,enddate)
+values((select NVL(MAX(preNum),0)+1 as preNum from survey ),
+#{title},sysdate,#{enddate})
+</insert>
+<select id="total" parameterType="Map" resultType="int">
+select count(*) from survey
+		<where>
+		<if test="col == 'title'">
+		title '%' || #{word} || '%'
+		</if>
+		</where>
+</select>
+<select id="read" parameterType="int" resultType="SurbeyDTO">
+select title , regdate , enddate,preNum
+from survey where preNum = #{preNum}
+  </select>
+	<select id="list" parameterType="Map" resultType="SurveyDTO">
+	select title,regdate,enddate,r
+	from(
+	select title,regdate,enddate,rownum r
+	from(
+		select title,regdate,enddate
+		from survey
+		<where>
+		<if test="col == 'title'">
+		title '%' || #{word} || '%'
+		</if>
+		</where>
+		order by regdate desc
+)
+)
+<![CDATA[
+	where r >#{sno} and r < #{eno}
+]]>
+	</select>
+</mapper>

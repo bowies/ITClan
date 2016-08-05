@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="subsurvey">
+<delete id="delete_sub" parameterType="int">
+delete from subsurvey where preNum = #{preNum}
+</delete>
+<update id="update" parameterType="SubSurveyDTO">
+update subsurvey
+set
+content = #{content}
+where surveyNum = #{surveyNum}
+</update>
+<insert id="create" parameterType="SubSurveyDTO">
+insert into subsurvey(surveyNum,content,preNum)
+values((select NVL(MAX(preNum),0)+1 as preNum from survey ),#{content},#{preNum})
+</insert>
+<select id="read" parameterType="int" resultType="SubSurveyDTO">
+select surveyNum,content,ansnum from subsurvey
+where preNum =#{preNum}
+order by surveyNum asc
+</select>
+</mapper>
