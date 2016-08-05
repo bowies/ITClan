@@ -14,45 +14,48 @@
 	</definition>
 	
 	
-	<!-- definition의 이름은 Bbscontroller에서 리턴되는 뷰의 이름 -->	
+	<!-- definition의 이름은 companyinfocontroller에서 리턴되는 뷰의 이름 -->	
 	<definition name="/companyinfo/home" extends="main">
-		<put-attribute name="title" value="Default Page"></put-attribute>
+		<put-attribute name="title" value="기본 페이지"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
 	</definition>
 	
-	<definition name="/companyinfo/reply" extends="main">
-		<put-attribute name="title" value="companyinfo reply!"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/companyinfo/replyForm.jsp" />
-	</definition>
-
 	<definition name="/companyinfo/create" extends="main">
-		<put-attribute name="title" value="companyinfo Create Page"></put-attribute>
+		<put-attribute name="title" value="회사 정보 가입"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/companyinfo/createForm.jsp" />
 	</definition>
 
+	<definition name="/companyinfo/createProc" extends="main">
+		<put-attribute name="title" value="회사 정보 가입 처리 페이지"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/companyinfo/createProc.jsp" />
+	</definition>
 
 
 	<definition name="/companyinfo/read" extends="main">
-		<put-attribute name="title" value="companyinfo read Page"></put-attribute>
+		<put-attribute name="title" value="회사 정보"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/companyinfo/read.jsp" />
 	</definition>
 
 	<definition name="/companyinfo/delete" extends="main">
-		<put-attribute name="title" value="companyinfo delete Page"></put-attribute>
+		<put-attribute name="title" value="회사 정보 탈퇴"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/companyinfo/deleteForm.jsp" />
 	</definition>
 
 	<definition name="/companyinfo/update" extends="main">
-		<put-attribute name="title" value="companyinfo update Page"></put-attribute>
+		<put-attribute name="title" value="회사 정보 수정"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/companyinfo/updateForm.jsp" />
 	</definition>
 	
-	
-	
-	<definition name="/companyinfo/list" extends="main">
-		<put-attribute name="title" value="companyinfo password change Page"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/companyinfo/list.jsp" />
+	<definition name="/companyinfo/updateProc" extends="main">
+		<put-attribute name="title" value="회사 정보 수정 처리 페이지"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/companyinfo/updateProc.jsp" />
 	</definition>
 	
+	<definition name="/companyinfo/list" extends="main">
+		<put-attribute name="title" value="회사 정보 목록"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/companyinfo/list.jsp" />
+	</definition>
+
+
 </tiles-definitions> 
 

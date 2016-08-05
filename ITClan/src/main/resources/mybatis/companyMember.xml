@@ -15,7 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="loginCheck" parameterType="Map" resultType="int">
 		select
 		count(companyID) from CompanyMember
-		where companyID = #{companyID} and passwd = #{passwd}
+		where companyID = #{companyID} and
+		passwd = #{passwd}
 	</select>
 
 	<select id="duplicateEmail" parameterType="String" resultType="int">
@@ -25,59 +26,62 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="duplicateID" parameterType="String" resultType="int">
 		select count(companyID) From CompanyMember
-		where companyID = #{companyID}
+		where companyID =
+		#{companyID}
 	</select>
 
 
-<select id="pwFind" parameterType="Map" resultType="String">
-	select passwd from CompanyMember
-	where companyID = #{companyID} and email = #{email}
+	<select id="pwFind" parameterType="Map" resultType="String">
+		select passwd from CompanyMember
+		where companyID = #{companyID} and email = #{email}
 	</select>
 
 
 	<select id="idFind" parameterType="Map" resultType="String">
-	select companyID from CompanyMember
-	where name = #{name} and email = #{email}
+		select companyID from CompanyMember
+		where name = #{name} and email = #{email}
 	</select>
 
 	<select id="emailCheck" parameterType="String" resultType="int">
-	select count(email) from CompanyMember
-	where email=#{email}
+		select count(email) from CompanyMember
+		where email=#{email}
 	</select>
 
-	
+
 	<select id="idCheck" parameterType="String" resultType="int">
-	select count(companyID) from CompanyMember
-	where companyID=#{companyID}
+		select count(companyID) from CompanyMember
+		where companyID=#{companyID}
 	</select>
 
-		<select id="passwdCheck" parameterType="Map" resultType="int">
-	select count(passwd) from CompanyMember
-	where companyID = #{companyID} and passwd = #{passwd}
+	<select id="passwdCheck" parameterType="Map" resultType="int">
+		select count(passwd) from CompanyMember
+		where companyID = #{companyID} and passwd = #{passwd}
 	</select>
 
 
-<update id="updatePw" parameterType="Map">
-	update CompanyMember
-	set
-	passwd =#{passwd}
-	where companyID = #{companyID}
+	<update id="updatePw" parameterType="Map">
+		update CompanyMember
+		set
+		passwd =#{passwd}
+		where companyID = #{companyID}
 	</update>
 
 	<insert id="create" parameterType="CompanyMemberDTO">
 		insert into
 		CompanyMember(companyID, name, passwd, phone, email,
-		companyNumber, companyName)
+		companyNumber,
+		companyName)
 		values(#{companyID}, #{name}, #{passwd}, #{phone},
 		#{email}, #{companyNumber}, #{companyName})
 	</insert>
-	
+
 
 
 
 	<select id="read" resultType="CompanyMemberDTO" parameterType="String">
 		SELECT
-		companyID, name, passwd, phone, email, companyNumber, companyName
+		companyID, name, passwd, phone, email, companyNumber,
+		companyName
 		FROM
 		CompanyMember
 		WHERE companyID = #{companyID}
@@ -86,7 +90,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update" parameterType="CompanyMemberDTO">
 		UPDATE CompanyMember
 		SET
-		phone = #{phone}, email = #{email}, companyNumber = #{companyNumber}, companyName = #{companyName}
+		phone =
+		#{phone}, email = #{email}, companyNumber = #{companyNumber},
+		companyName = #{companyName}
 		WHERE companyID = #{companyID}
 	</update>
 

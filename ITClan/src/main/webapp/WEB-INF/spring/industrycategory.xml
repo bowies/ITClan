@@ -19,40 +19,40 @@
 		<put-attribute name="title" value="Default Page"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
 	</definition>
-	
-	<definition name="/industrycategory/reply" extends="main">
-		<put-attribute name="title" value="industrycategory reply!"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/industrycategory/replyForm.jsp" />
-	</definition>
+
 
 	<definition name="/industrycategory/create" extends="main">
-		<put-attribute name="title" value="industrycategory create Page"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/industrycategory/createForm.jsp" />
+		<put-attribute name="title" value="업종 분류 추가"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/industrycategory/createForm.jsp" />
 	</definition>
 
+	<definition name="/industrycategory/createProc" extends="main">
+		<put-attribute name="title" value="업종 분류 추가 처리 페이지"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/industrycategory/createProc.jsp" />
+	</definition>
 
 
 	<definition name="/industrycategory/read" extends="main">
-		<put-attribute name="title" value="industrycategory read Page"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/industrycategory/read.jsp" />
+		<put-attribute name="title" value="업종 분류 정보"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/industrycategory/read.jsp" />
 	</definition>
 
 	<definition name="/industrycategory/delete" extends="main">
-		<put-attribute name="title" value="industrycategory information delete Page"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/industrycategory/deleteForm.jsp" />
+		<put-attribute name="title" value="업종 분류 삭제"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/industrycategory/deleteForm.jsp" />
 	</definition>
-
-	<definition name="/industrycategory/update" extends="main">
-		<put-attribute name="title" value="industrycategory update Page"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/industrycategory/updateForm.jsp" />
-	</definition>
-	
 	
 	
 	<definition name="/industrycategory/list" extends="main">
-		<put-attribute name="title" value="industrycategory list Page"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/industrycategory/list.jsp" />
+		<put-attribute name="title" value="업종 분류 목록"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/industrycategory/list.jsp" />
 	</definition>
+	
 	
 </tiles-definitions> 
 

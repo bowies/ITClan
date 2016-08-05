@@ -5,19 +5,63 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="industrycategory">
 <insert id="create" parameterType="IndustryCategoryDTO">
-insert into IndustryCategory(CategoryCode, CategoryName, UpperCode)
-values(#{categoryCode}, #{categoryName}, #{upperCode});
+insert into industryCategory(categoryCode, categoryName)
+values(#{categoryCode}, #{categoryName})
 </insert>
 
 <select id="read" resultType="IndustryCategoryDTO" parameterType="String">
-select CategoryCode, CategoryName, UpperCode
+select categoryCode, categoryName
 from IndustryCategory
-where CategoryCode = #{categoryCode}
+where categoryCode = #{categoryCode}
 </select>
 
-<delete id="delete" parameterType="string">
-delete from IndustryCategory
-where CategoryCode = #{categoryCode}
+<delete id="delete" parameterType="String">
+delete from industryCategory
+where categoryCode = #{categoryCode}
 </delete>
+
+	<select id="list" resultType="IndustryCategoryDTO" parameterType="Map">
+
+		select categoryCode, categoryName, r
+		from(
+		select categoryCode, categoryName, rownum r
+		from(
+		select categoryCode, categoryName
+		from IndustryCategory
+		<where>
+			<choose>
+				<when test="col=='categoryCode'">
+					categoryCode like '%'||#{word}||'%'
+				</when>
+				<when test="col=='categoryName'">
+					categoryName like '%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>
+		ORDER BY categoryCode DESC
+
+		)
+		)                                                                            
+   <![CDATA[                                                                        
+   where r>=#{sno} and r<=#{eno}  
+   ]]>
+	</select>
+
+
+
+
+<select id="total" parameterType="Map" resultType="int">
+		select count(*) from IndustryCategory
+		<where>
+			<choose>
+				<when test="col=='name'">
+					name LIKE '%' || #{word} || '%'
+				</when>
+
+			</choose>
+		</where>
+	</select>
+
+
 
 </mapper>

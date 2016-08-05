@@ -4,48 +4,89 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="companyinfo">
-<insert id="create" parameterType="CompanyInfoDTO">
-insert into CompanyInfo(CompanyID, CompanyName, CompanyScale, BossName, CompanyNumber, CI, CategoryCode)
-values(#{companyID},#{companyName}, #{companyName}, #{companyScale}, #{bossName}, #{companyNumber},#{ci},#{categoryCode});
+	<insert id="create" parameterType="CompanyInfoDTO">
+		insert into
+		CompanyInfo(companyID, companyName, companyScale, bossName,
+		companyNumber, ci, categoryCode)
+		values(#{companyID},#{companyName},
+		#{companyName}, #{companyScale}, #{bossName},
+		#{companyNumber},#{ci},#{categoryCode});
 
 
-</insert>
+	</insert>
 
 
-<select id="list" resultType="CompanyInfoDTO" parameterType="Map">
-	
-select CompanyID, CompanyName, CompanyScale, BossName, CompanyNumber, CI, CategoryCode, r
-from(
-	select CompanyID, CompanyName, CompanyScale, BossName, CompanyNumber, CI, CategoryCode, rownum r
-	from(
-		select CompanyID, CompanyName, CompanyScale, BossName, CompanyNumber, CI, CategoryCode
+	<select id="list" resultType="CompanyInfoDTO" parameterType="Map">
+
+		select companyID, companyName, companyScale, bossName, companyNumber,
+		ci, categoryCode, r
+		from(
+		select companyID, companyName, companyScale,
+		bossName, companyNumber, ci, categoryCode, rownum r
+		from(
+
+		select
+		companyID, companyName, companyScale, bossName, companyNumber,
+		ci,
+		categoryCode
 		from CompanyInfo
-		
-		order by r ASC))
-		
-	
-</select>
+		<where>
+			<choose>
+				<when test="col=='companyID'">
+					companyID like '%'||#{word}||'%'
+				</when>
+				<when test="col=='companyName'">
+					companyName like '%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>
+		order by r ASC
+		)
+		)   
+                                                               
+   <![CDATA[                                                                        
+   where r>=#{sno} and r<=#{eno}  
+   ]]>
+	</select>
 
-<update id="update" parameterType="CompanyInfoDTO">
-update CompanyInfo
-set CompanyName=#{companyName}, CompanyScale=#{companyScale}, BossName=#{bossName}, CompanyNumber=#{companyNumber}, CI=#{ci}, CategoryCode=#{categoryCode}
-where  CompanyID=#{CompanyID}
+	<update id="update" parameterType="CompanyInfoDTO">
+		update CompanyInfo
+		set
+		companyName=#{companyName}, companyScale=#{companyScale},
+		bossName=#{bossName}, companyNumber=#{companyNumber}, ci=#{ci},
+		categoryCode=#{categoryCode}
+		where companyID=#{companyID}
 
 
 
-</update>
+	</update>
 
 
-<delete id="delete" parameterType="string">
-delete from CompanyInfo
-where CompanyID=#{CompanyID}
-</delete>
+	<delete id="delete" parameterType="string">
+		delete from CompanyInfo
+		where
+		companyID=#{companyID}
+	</delete>
 
 
-<select id="read" resultType="CompanyInfoDTO" parameterType="String">
-select CompanyID, CompanyName, CompanyScale, BossName, CompanyNumber, CI, CategoryCode
-from CompanyInfo
-where CompanyID=#{CompanyID}
-</select>
+	<select id="read" resultType="CompanyInfoDTO" parameterType="String">
+		select companyID, companyName, companyScale, bossName, companyNumber,
+		ci, categoryCode
+		from CompanyInfo
+		where companyID=#{companyID}
+	</select>
+
+
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from CompanyInfo
+		<where>
+			<choose>
+				<when test="col=='companyID'">
+					companyID LIKE '%' || #{word} || '%'
+				</when>
+
+			</choose>
+		</where>
+	</select>
 
 </mapper>

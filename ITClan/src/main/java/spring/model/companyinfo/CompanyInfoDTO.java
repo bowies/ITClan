@@ -8,9 +8,6 @@ public class CompanyInfoDTO {
 	private long companyNumber;
 	private String ci;
 	private String categoryCode;
-	
-	
-	
 	public String getCompanyID() {
 		return companyID;
 	}
@@ -53,6 +50,7 @@ public class CompanyInfoDTO {
 	public void setCategoryCode(String categoryCode) {
 		this.categoryCode = categoryCode;
 	}
+	
 	
 	
 	
