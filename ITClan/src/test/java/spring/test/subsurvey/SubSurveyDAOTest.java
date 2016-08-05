@@ -80,7 +80,7 @@ public class SubSurveyDAOTest {
 		SubSurveyDAO dao = (SubSurveyDAO)beans.getBean("subsurveydao");
 		assertEquals(1, dao.delete(2));
 	}
-
+ 
 	@Test @Ignore
 	public void testTotal() {
 		fail("Not yet implemented");
