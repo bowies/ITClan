@@ -17,6 +17,7 @@ function listT(){
 }
 </script>
 </head>
+
 <body>
 	<DIV class="title">삭제 확인</DIV>
 
