@@ -78,12 +78,16 @@ public class ApplycomanyDAOTest {
 	public void testRead_p() throws Exception {
 		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
 		Map map = new HashMap();
-		map.put("offerNum", 2);
+		map.put("offerNum", 8);
 		map.put("memberID", "bbb");
-		map.put("portfolioNum", 4);
-		map.put("resumeNum", 4);
+		map.put("portfolioNum", 1);
+		map.put("resumeNum", 3);
 		ApplyCompanyDTO dto = dao.read_personal(map);
-		PersonalMemberDTO pmdto = dto.getPmdto();
+		List pmlist = dto.getPersonalmemberList();
+		PersonalMemberDTO pmdto = new PersonalMemberDTO();
+		for(int i =0;i<pmlist.size();i++){
+			pmdto=(PersonalMemberDTO) pmlist.get(i);
+		}
 
 		
 		assertEquals("하롱이", pmdto.getName());
@@ -155,12 +159,16 @@ public class ApplycomanyDAOTest {
 		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
 		Map map = new HashMap();
 		map.put("memberID", "bbb");
-		map.put("offerNum", 2);
-		map.put("resumeNum", 4);
-		map.put("portfolioNum", 4);
-		PersonalMemberDTO dto = dao.read_c(map);
-		
-		assertEquals("하롱이",dto.getName());
+		map.put("offerNum", 8);
+		map.put("resumeNum", 3);
+		map.put("portfolioNum", 1);
+		ApplyCompanyDTO dto = dao.read_c(map);
+		List pmlist = dto.getPersonalmemberList();
+		PersonalMemberDTO pmdto = new PersonalMemberDTO();
+		for(int i =0;i<pmlist.size();i++){
+			pmdto=(PersonalMemberDTO) pmlist.get(i);
+		}
+		assertEquals("하롱이",pmdto.getName());
 	}
 
 	//----------------------------------------------------------------------------------

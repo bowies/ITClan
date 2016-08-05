@@ -5,6 +5,7 @@ import java.util.List;
 import spring.model.personalmember.PersonalMemberDTO;
 import spring.model.portfolio.PortFolioDTO;
 import spring.model.resume.ResumeDTO;
+import spring.model.resumeinfo.ResumeInfoDTO;
 
 public class ApplyCompanyDTO {
 	private int applyCode;
@@ -15,14 +16,32 @@ public class ApplyCompanyDTO {
 	private int portfolioNum;
 	private int viewCheck;
 	private List offerList;
-	private PersonalMemberDTO pmdto;
+	private List personalmemberList;
+
 	private PortFolioDTO pfdto;
 	private ResumeDTO redto;
+	private ResumeInfoDTO ridto;
 	
 	
 	
 	
+	public List getPersonalmemberList() {
+		return personalmemberList;
+	}
 	
+	public void setPersonalmemberList(List personalmemberList) {
+		this.personalmemberList = personalmemberList;
+	}
+	
+	
+	public ResumeInfoDTO getRidto() {
+		return ridto;
+	}
+
+	public void setRidto(ResumeInfoDTO ridto) {
+		this.ridto = ridto;
+	}
+
 	public PortFolioDTO getPfdto() {
 		return pfdto;
 	}
@@ -39,13 +58,6 @@ public class ApplyCompanyDTO {
 		this.redto = redto;
 	}
 
-	public PersonalMemberDTO getPmdto() {
-		return pmdto;
-	}
-
-	public void setPmdto(PersonalMemberDTO pmdto) {
-		this.pmdto = pmdto;
-	}
 
 	public List getOfferList() {
 		return offerList;

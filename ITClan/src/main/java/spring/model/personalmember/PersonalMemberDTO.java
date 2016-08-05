@@ -12,36 +12,13 @@ public class PersonalMemberDTO {
      private String grade           ;
      private String address         ;
      private String address2        ;
-     private List resumeInfoList;
-     private List resumeList;
-     private List portFolioList;
-     private List applyCompanyList;
+
      
      
      
      
      
-	public List getResumeInfoList() {
-		return resumeInfoList;
-	}
-	public void setResumeInfoList(List resumInfoList) {
-		this.resumeInfoList = resumInfoList;
-	}
-	public List getResumeList() {
-		return resumeList;
-	}
-	public void setResumeList(List resumeList) {
-		this.resumeList = resumeList;
-	}
-	public List getPortFolioList() {
-		return portFolioList;
-	}
-	public void setPortFolioList(List portFolioList) {
-		this.portFolioList = portFolioList;
-	}
-	public List getApplyCompanyList() {
-		return applyCompanyList;
-	}
+
 	public void setApplyCompanyList(List applyCompanyList) {
 		applyCompanyList = applyCompanyList;
 	}

@@ -8,6 +8,17 @@
 <meta charset="UTF-8"> 
 <title></title> 
 <style type="text/css"> 
+table{
+	border :1px solid;
+	margin: auto;
+	width: 60%;
+}
+tr{
+	border: 1px solid;
+}
+td{
+	border: 1px s
+}
 *{ 
   font-family: gulim; 
   font-size: 12px; 
@@ -39,11 +50,10 @@ function readC(offerNum,memberID,portfolioNum,resumeNum) {
 
   <TABLE>
     <TR>
-      <th width = "25%">제목</th>
-      <th>회사명</th>
-      <th>모집인원</th>
+      <th width = "25%">이름</th>
+      <th>email</th>
       <th>등록일</th>
-      <th>삭제여뷰</th>
+
    </TR>
   <c:choose>
   <c:when test="${empty list}">
@@ -53,12 +63,11 @@ function readC(offerNum,memberID,portfolioNum,resumeNum) {
   </c:when>
   <c:otherwise>
   <c:forEach var="dto" items="${list}">
- <c:forEach items="${dto.offerList}" var="offerList">
+ <c:forEach items="${dto.personalmemberList}" var="pmdto">
   <tr>
     <td><a href="javascript:readC('${dto.offerNum }','${dto.memberID }','${dto.portfolioNum }','${dto.resumeNum }')">
-    ${offerList.title}</a></td>
-    <td>${offerList.companyName }</td>
-    <td>${offerList.recruitment }</td>
+    ${pmdto.name}</a></td>
+    <td>${pmdto.email }</td>
     <td>${fn:substring(dto.applyDate,0,10) }</td>
     </tr>
     </c:forEach>

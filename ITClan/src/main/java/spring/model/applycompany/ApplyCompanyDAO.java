@@ -38,7 +38,7 @@ public class ApplyCompanyDAO implements DAOMyBatisInter{
 	public List<ApplyCompanyDTO> list_company(Map map){
 		return mybatis.selectList("applycompany.list_company", map);
 	}
-	public PersonalMemberDTO read_c(Map map){
+	public ApplyCompanyDTO read_c(Map map){
 		return mybatis.selectOne("applycompany.read_c", map);
 	}
 	//----------------------------------------------------------------------------------

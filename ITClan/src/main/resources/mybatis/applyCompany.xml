@@ -48,10 +48,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <result property="viewCheck" column="viewCheck"/>
 <result property="pfdto.portfolioName" column="portfolioName"/>
 <result property="redto.resumeName" column="resumeName"/>
-<result property="pmdto.memberID" column="memberID"/>
-<result property="pmdto.name" column="name"/>
+<result property="ridto.education" column="education"/>
+<result property="ridto.career" column="career"/>
+<result property="ridto.employmentType" column="employmentType"/>
+<result property="ridto.exSalary" column="exSalary"/>
+<result property="ridto.disableGrade" column="disableGrade"/>
+<result property="ridto.picture" column="picture"/>
+<result property="ridto.exArea" column="exArea"/>
+<result property="ridto.exField" column="exField"/>
+<result property="ridto.military" column="military"/>
+<result property="ridto.schoolName" column="schoolName"/>
+<result property="ridto.major" column="major"/>
+<result property="ridto.termtime" column="termtime"/>
+<result property="ridto.GPA" column="GPA"/>
 <collection property="offerList" column="offerNum" javaType="List" ofType="OfferDTO"
  resultMap="applycompany.OfferDTOListMap"/>
+<collection property="personalmemberList" column="memberID" javaType="List" ofType="PersonalMemberDTO"
+ resultMap="applycompany.PersonalMemberDTOListMap"/>
+
 </resultMap>
 <resultMap type="OfferDTO" id="OfferDTOListMap">
 <result property="offerNum" column="offerNum"/>
@@ -59,63 +73,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <result property="companyName" column="companyName"/>
 <result property="recruitment" column="recruitment"/>
 </resultMap>
-
-<resultMap type="PersonalMemberDTO" id="CompanyMap">
-<result property="name" column="name"/>
+<resultMap type="PersonalMemberDTO" id="PersonalMemberDTOListMap">
 <result property="memberID" column="memberID"/>
+<result property="name" column="name"/>
 <result property="birth" column="birth"/>
 <result property="phone" column="phone"/>
 <result property="address" column="address"/>
 <result property="address2" column="address2"/>
 <result property="email" column="email"/>
-<collection property="resumeInfoList" column="memberID" javaType="List" ofType="ResumeInfoDTO"
- resultMap="applycompany.ResumeInfoDTOListMap"/>
-<collection property="applyCompanyList" column="memberID" javaType="List" ofType="ApplyCompanyDTO"
- resultMap="applycompany.ApplyCompanyDTOListMap"/>
-<collection property="resumeList" column="memberID" javaType="List" ofType="ResumeDTO"
- resultMap="applycompany.ResumeDTOListMap"/>
-<collection property="portFolioList" column="memberID" javaType="List" ofType="PortFolioDTO"
- resultMap="applycompany.PortFolioDTOListMap"/>
 </resultMap>
-<resultMap type="ResumeInfoDTO" id="ResumeInfoDTOListMap">
-<result property="memberID" column="memberID"/>
-<result property="education" column="education"/>
-<result property="career" column="career"/>
-<result property="employmentType" column="employmentType"/>
-<result property="exSalary" column="exSalary"/>
-<result property="disableGrade" column="disableGrade"/>
-<result property="picture" column="picture"/>
-<result property="exArea" column="exArea"/>
-<result property="exField" column="exField"/>
-<result property="military" column="military"/>
-<result property="schoolName" column="schoolName"/>
-<result property="major" column="major"/>
-<result property="termtime" column="termtime"/>
-<result property="GPA" column="GPA"/>
-</resultMap>
-<resultMap type="ApplyCompanyDTO" id="ApplyCompanyDTOListMap">
-<result property="memberID" column="memberID"/>
-<result property="offerNum" column="offerNum"/>
-<result property="applyDate" column="applyDate"/>
-<result property="resumeNum" column="resumeNum"/>
-<result property="portfolioNum" column="portfolioNum"/>
-</resultMap>
-<resultMap type="ResumeDTO" id="ResumeDTOListMap">
-<result property="memberID" column="memberID"/>
-<result property="resuemNum" column="resumeNum"/>
-<result property="resumeName" column="resumeName"/>
-</resultMap>
-<resultMap type="PortFolioDTO" id="PortFolioDTOListMap">
-<result property="memberID" column="memberID"/>
-<result property="portfolioNum" column="portfolioNum"/>
-<result property="portfolioName" column="portfolioName"/>
-</resultMap>
-<select id="read_c" parameterType="Map" resultMap="CompanyMap">
+
+<select id="read_c" parameterType="Map" resultMap="PersonalMap">
 	select  name,memberID,birth,phone,address,address2,email,education,
 		career,employmentType,exSalary,disablegrade,picture,schoolName,major,termtime,GPA,
 	exArea,exField,military,resumeName,portfolioName
 	from(
-	select p.name,r.memberID,p.birth,p.phone,p.address,p.address2,p.email, r.education,
+	select p.name,a.memberID,p.birth,p.phone,p.address,p.address2,p.email, r.education,
 		r.career,r.employmentType,r.exSalary,r.disablegrade,r.picture,r.schoolName,r.major,r.termtime,r.GPA,
 	r.exArea,r.exField,r.military,re.resumeName,pf.portfolioName,pf.portfolioNum , re.resumeNum,a.offerNum
 	from resumeinfo r ,applycompany a ,personalmember p ,resume re , portfolio pf
@@ -156,13 +129,13 @@ and a.offerNum = #{offerNum} and a.memberID = #{memberID} and pf.portfolioNum = 
 	</select>
 	
 <select id="list_company" parameterType="Map" resultMap="PersonalMap">
- select memberID,name,applyDate,resumeNum,portfolioNum,r	
+ select memberID,name,applyDate,resumeNum,portfolioNum,email,r	
  	from(
- 	select memberID , name, applyDate,resumeNum,portfolioNum,rownum r
+ 	select memberID , name, applyDate,resumeNum,portfolioNum,email,rownum r
  	from(
- 	select a.memberID, p.name , a.applyDate,a.resumeNum , a.portfolioNum
+ 	select a.memberID, p.name , a.applyDate,a.resumeNum , a.portfolioNum,p.email
 	from Personalmember p , applycompany a
-	where p.memberID = a.memberID and offerNum = #{offerNum}
+	where p.memberID = a.memberID and a.offerNum = #{offerNum}
 	)
 	)
 	<![CDATA[

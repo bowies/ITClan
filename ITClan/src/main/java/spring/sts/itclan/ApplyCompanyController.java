@@ -35,7 +35,7 @@ public class ApplyCompanyController {
 		map.put("offerNum", offerNum);
 		map.put("resumeNum", resumeNum);
 		map.put("portfolioNum", portfolioNum);
-		PersonalMemberDTO dto= dao.read_c(map);
+		ApplyCompanyDTO dto= dao.read_c(map);
 		model.addAttribute("dto", dto);
 
 		return "/applycompamy/read_company";
@@ -57,6 +57,7 @@ public class ApplyCompanyController {
 		map.put("eno", eno);
 		map.put("offerNum", offerNum);
 		List<ApplyCompanyDTO> list = dao.list_company(map);
+
 		model.addAttribute("list", list);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("offerNum", offerNum);
@@ -113,9 +114,12 @@ public class ApplyCompanyController {
 		for(int i = 0;i<olist.size(); i++){
 			odto = (OfferDTO)olist.get(i);
 		}
+		List pmlist = dto.getPersonalmemberList();
+		for(int i =0;i<pmlist.size();i++){
+			pmdto=(PersonalMemberDTO) pmlist.get(i);
+		}
 		
 		pfdto = dto.getPfdto();
-		pmdto= dto.getPmdto();
 		redto = dto.getRedto();
 		model.addAttribute("dto", dto);
 		model.addAttribute("odto", odto);
