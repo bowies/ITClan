@@ -23,11 +23,11 @@ values((select NVL(MAX(preNum),0)+1 as preNum from survey ),
 select count(*) from survey
 		<where>
 		<if test="col == 'title'">
-		title '%' || #{word} || '%'
+		title like '%' || #{word} || '%'
 		</if>
 		</where>
 </select>
-<select id="read" parameterType="int" resultType="SurbeyDTO">
+<select id="read" parameterType="int" resultType="SurveyDTO">
 select title , regdate , enddate,preNum
 from survey where preNum = #{preNum}
   </select>
@@ -40,14 +40,14 @@ from survey where preNum = #{preNum}
 		from survey
 		<where>
 		<if test="col == 'title'">
-		title '%' || #{word} || '%'
+		title like '%' || #{word} || '%'
 		</if>
 		</where>
 		order by regdate desc
 )
 )
 <![CDATA[
-	where r >#{sno} and r < #{eno}
+	where r >= #{sno} and r <= #{eno}
 ]]>
 	</select>
 </mapper>

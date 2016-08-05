@@ -17,9 +17,14 @@ where surveyNum = #{surveyNum}
 insert into subsurvey(surveyNum,content,preNum)
 values((select NVL(MAX(preNum),0)+1 as preNum from survey ),#{content},#{preNum})
 </insert>
+<select id="read1" parameterType="int" resultType="SubSurveyDTO">
+select content,surveyNum from subsurvey 
+where surveyNum = #{surveyNum}
+</select>
 <select id="read" parameterType="int" resultType="SubSurveyDTO">
 select surveyNum,content,ansnum from subsurvey
 where preNum =#{preNum}
 order by surveyNum asc
 </select>
+
 </mapper>

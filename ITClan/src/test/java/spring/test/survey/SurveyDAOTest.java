@@ -2,6 +2,10 @@ package spring.test.survey;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -38,7 +42,7 @@ public class SurveyDAOTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test //@Ignore
+	@Test @Ignore
 	public void testCreate() throws Exception {
 		SurveyDAO dao = (SurveyDAO)beans.getBean("surveydao");
 		SurveyDTO dto = new SurveyDTO();
@@ -50,28 +54,52 @@ public class SurveyDAOTest {
 	}
 
 	@Test @Ignore
-	public void testList() {
-		fail("Not yet implemented");
+	public void testList() throws Exception {
+		SurveyDAO dao = (SurveyDAO)beans.getBean("surveydao");
+		Map map = new HashMap();
+		map.put("col", "title");
+		map.put("word", "");
+		map.put("sno", 1);
+		map.put("eno", 5);
+		List<SurveyDTO> list = dao.list(map);
+		 
+		assertEquals(2, list.size());
+		
 	}
 
 	@Test @Ignore
-	public void testRead() {
-		fail("Not yet implemented");
+	public void testRead() throws Exception {
+		SurveyDAO dao = (SurveyDAO)beans.getBean("surveydao");
+		SurveyDTO dto = (SurveyDTO) dao.read(2);
+		
+		assertEquals("화요일은좋아", dto.getTitle());
 	}
 
 	@Test @Ignore
-	public void testUpdate() {
-		fail("Not yet implemented");
+	public void testUpdate() throws Exception {
+		SurveyDAO dao = (SurveyDAO)beans.getBean("surveydao");
+		SurveyDTO dto = (SurveyDTO) dao.read(2);
+		dto.setTitle("금요일");
+		dto.setEnddate("2019-08-08");
+		assertEquals(1, dao.update(dto));
 	}
 
 	@Test @Ignore
-	public void testDelete() {
-		fail("Not yet implemented");
+	public void testDelete() throws Exception {
+		SurveyDAO dao = (SurveyDAO)beans.getBean("surveydao");
+		
+		assertEquals(1, dao.delete(2));
 	}
 
 	@Test @Ignore
-	public void testTotal() {
-		fail("Not yet implemented");
+	public void testTotal() throws Exception {
+		SurveyDAO dao = (SurveyDAO)beans.getBean("surveydao");
+		Map map = new HashMap();
+		map.put("col", "title");
+		map.put("word", "");
+		
+		
+		assertEquals(2, dao.total(map));
 	}
 
 }

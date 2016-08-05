@@ -35,7 +35,7 @@ public class SubSurveyDAO implements DAOMyBatisInter {
 	@Override
 	public Object read(Object pk) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return mybatis.selectOne("subsurvey.read1", pk);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class SubSurveyDAO implements DAOMyBatisInter {
 	@Override
 	public int delete(Object pk) throws Exception {
 		// TODO Auto-generated method stub
-		return mybatis.delete("subsurvey.delete", pk);
+		return mybatis.delete("subsurvey.delete_sub", pk);
 	}
 
 	@Override
