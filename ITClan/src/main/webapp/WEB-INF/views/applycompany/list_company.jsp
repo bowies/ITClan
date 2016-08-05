@@ -27,7 +27,7 @@ td{
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 <script type="text/javascript">
 function readC(offerNum,memberID,portfolioNum,resumeNum) {
-	var url = "./read_c";
+	var url = "./read";
 	url += "?offerNum=" + offerNum;//변수의 인식
 	url += "&memberID="+memberID;
 	url += "&portfolioNum="+portfolioNum;
@@ -65,7 +65,7 @@ function readC(offerNum,memberID,portfolioNum,resumeNum) {
   <c:forEach var="dto" items="${list}">
  <c:forEach items="${dto.personalmemberList}" var="pmdto">
   <tr>
-    <td><a href="javascript:readC('${dto.offerNum }','${dto.memberID }','${dto.portfolioNum }','${dto.resumeNum }')">
+    <td><a href="javascript:readC('${offerNum }','${dto.memberID }','${dto.portfolioNum }','${dto.resumeNum }')">
     ${pmdto.name}</a></td>
     <td>${pmdto.email }</td>
     <td>${fn:substring(dto.applyDate,0,10) }</td>

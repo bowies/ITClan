@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import spring.model.applycompany.*;
+import spring.model.externalactivity.ExternalActivityDTO;
+import spring.model.license.LicenseDTO;
 import spring.model.offer.OfferDTO;
 import spring.model.personalmember.PersonalMemberDTO;
 import spring.model.portfolio.PortFolioDTO;
 import spring.model.resume.ResumeDTO;
+import spring.model.resumeinfo.ResumeInfoDTO;
 import spring.utility.itclan.Paging;
 import spring.utility.itclan.Utility;
 
@@ -28,7 +31,8 @@ public class ApplyCompanyController {
 
 	@RequestMapping("/a_company/read")
 	public String read_company(int offerNum,String memberID,int resumeNum,int portfolioNum,
-			Model model){
+			Model model,PersonalMemberDTO pmdto,ResumeDTO redto,ResumeInfoDTO ridto,
+			PortFolioDTO pfdto){
 		dao.viewup(offerNum, memberID);
 		Map map = new HashMap();
 		map.put("memberID", memberID);
@@ -36,9 +40,27 @@ public class ApplyCompanyController {
 		map.put("resumeNum", resumeNum);
 		map.put("portfolioNum", portfolioNum);
 		ApplyCompanyDTO dto= dao.read_c(map);
+		List pmlist = dto.getPersonalmemberList();
+		for(int i =0;i<pmlist.size();i++){
+			pmdto=(PersonalMemberDTO) pmlist.get(i);
+		}
+		
+		redto = dto.getRedto();
+		ridto = dto.getRidto();
+		pfdto = dto.getPfdto();
+		
+		List<LicenseDTO> licenseList = dao.list_L(memberID);
+		List<ExternalActivityDTO> eaList = dao.list_A(memberID);
+		
 		model.addAttribute("dto", dto);
+		model.addAttribute("pmdto", pmdto);
+		model.addAttribute("ridto", ridto);
+		model.addAttribute("redto", redto);
+		model.addAttribute("pfdto", pfdto);
+		model.addAttribute("licenseList", licenseList);
+		model.addAttribute("eaList", eaList);
 
-		return "/applycompamy/read_company";
+		return "/applycompany/read_c";
 	}
 	@RequestMapping("/a_company/list")
 	public String list_company(HttpServletRequest request,int offerNum,

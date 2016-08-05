@@ -30,9 +30,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/applycompany/list_company.jsp" />
 	</definition>
 
-	<definition name="/applycompany/read_company" extends="main">
+	<definition name="/applycompany/read_c" extends="main">
 		<put-attribute name="title" value="Bbs Join Page"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/applycompany/read_company.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/applycompany/read_c.jsp" />
 	</definition>
 
 	

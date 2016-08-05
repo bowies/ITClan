@@ -184,11 +184,11 @@ where offerNum =#{offerNum}
 	
 	
 	<select id="list_License" parameterType="String" resultType="LicenseDTO" >
-	select * from license
+	select takeDate,qualification from license
 where memberID = #{memberID}
 	</select>
 	<select id="list_externalactivity" parameterType="String" resultType="externalactivityDTO" >
-	select * from externalactivity
+	select actPeriod,actContent,actSector from externalactivity
 where memberID = #{memberID}
 	</select>
 	
