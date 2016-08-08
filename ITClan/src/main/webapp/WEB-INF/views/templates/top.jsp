@@ -4,70 +4,113 @@
 <html>
 <head>
 <style type="text/css">
+
+body{
+width:1000px; 
+margin: 0 auto;
+
+}
+
+#top {
+
+height:30px;
+opacity:0.8;
+margin: 0 auto;
+
+}
+
+#top2{
+
+height: 100px;
+margin: 0 auto;
+position: relative;
+
+
+}
+
+#top2 #logo{
+width:198px; height: 44px;
+
+position: absolute;
+top:20px;
+left:50px;
+
+}
+
+#top2 #search{
+    clear: both;
+    width: 300px;
+      height: 33px;
+    border: 2px solid #866538;
+position: absolute;
+top:20px;
+left:350px;
+}
+
 ul#menu li{
 display : inline;
 }
+
+
 ul#menu li a{
-background-color: #3399ff;
-color:white;
-padding : 10px 20px;
+color:black;
+float: right;
 text-decoration:none;
-border-radius:10px 10px 0 0;
+margin-left: 10px;
+
+
 }
-ul#menu li a:hover{
-background-color: orange;
-}
+
 li#admin{
 float:right;
-padding-right: 30px
+padding-right:10px
 } 
 </style>
 </head>
 <body>
 <!-- 상단 메뉴 -->
-<div style="background-color: #EEEEEE;">
-<table style="width: 100%">
-  <tr>
-    <td>
-        <img src="${pageContext.request.contextPath}/images/images.jpg" width='100%' height='32%'>
-    </td>
-  </tr>
-  
-   <tr>
-    <td>
+<div id="top">
     <ul id="menu">
     
-     <li><a href="${pageContext.request.contextPath}/">홈</a></li>    
+     <li><a style="float: left;"  href="${pageContext.request.contextPath}/">홈</a></li>    
     
     <c:choose>
     <c:when test="${empty sessionScope.id}">
-     <li><a href="${pageContext.request.contextPath}/companymember/idFind">ID찾기</a></li>
-     <li><a href="${pageContext.request.contextPath}/companymember/pwFind">PW찾기</a></li>
-     <li><a href="${pageContext.request.contextPath}/companymember/agreement">회원가입</a><li>
-     <li><a href="${pageContext.request.contextPath}/companymember/pwFind">회원정보</a><li>
+     <li><a href="${pageContext.request.contextPath}/member/login">고객센터</a></li>
+     <li><a href="${pageContext.request.contextPath}/companymember/agree">회원가입</a></li>
+     <li><a href="${pageContext.request.contextPath}/member/idFind">로그인</a><li>
+     
 	</c:when>
      <c:otherwise>
-     <li><a href="${pageContext.request.contextPath}/companymemberr/logout">로그아웃</a></li>
-     <li><a href="${pageContext.request.contextPath}/companymember/read?companyID=${sessionScope.id}">나의정보</a></li>
-     <li><a href="${pageContext.request.contextPath}/companymember/update?companyID=${sessionScope.id}">회원수정</a><li>
-     <li><a href="${pageContext.request.contextPath}/companymember/updatePw?companyID=${sessionScope.id}">비밀번호수정</a><li>
-     <li><a href="${pageContext.request.contextPath}/companymember/delete?companyID=${sessionScope.id}">회원탈퇴</a><li>     
+     <li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
+     <li><a href="${pageContext.request.contextPath}/member/read">나의정보</a></li>
+     <li><a href="${pageContext.request.contextPath}/member/update">회원수정</a><li>
+     <li><a href="${pageContext.request.contextPath}/member/delete">회원탈퇴</a><li>     
      </c:otherwise>
      </c:choose>
+        
+     
      
      <c:if test="${not empty sessionScope.id and sessionScope.grade == 'A'}">
-     <li id="Admin"><a href="${pageContext.request.contextPath}/companymember/list">회원목록</a></li>
+     <li id="admin"><a href="${pageContext.request.contextPath}/admin/list">회원목록</a></li>
 	</c:if>
  
     </ul>
-    </td> 
-  </tr>
- 
-</table>
+    
 </div>
-<!-- 상단 메뉴 끝 -->
+<div id="top2">
+	<div id="logo"><img src="./image/sample.png">
+	
+	</div>
+	
+	
+	<div id="search"> search
+	
+	
+	</div>
  
- 
- 
-<!-- 내용 시작 -->
-<div style="width: 100%; padding-top: 10px;">
+
+
+</div>
+
+</body>

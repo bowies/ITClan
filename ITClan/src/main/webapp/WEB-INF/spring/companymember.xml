@@ -14,12 +14,17 @@
 
 
 	<!-- definition의 이름은controller에서 리턴되는 뷰의 이름 -->
-	<definition name="/home" extends="main">
-		<put-attribute name="title" value="기본 페이지"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+	<definition name="/offer" extends="main">
+		<put-attribute name="title" value="기본 페이지"></put-attribute>		
+		<put-attribute name="body" value="/WEB-INF/views/offer.jsp"/>
 	</definition>
 
 
+	<definition name="/hunting" extends="main">
+		<put-attribute name="title" value="기본 페이지"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/hunting.jsp" />
+	</definition>
+	
 	<definition name="/companymember/agree" extends="main">
 		<put-attribute name="title" value="기업 회원 가입 동의"></put-attribute>
 		<put-attribute name="body"

@@ -29,7 +29,7 @@ public class CompanyMemberController {
 
 	@RequestMapping(value = "/companymember/pwFind", method = RequestMethod.POST)
 	public String pwFind(String name, String companyID, Model model) {
-
+ 
 		String passwd = dao.pwFind(companyID, name);
 		model.addAttribute("passwd", passwd);
 		return "/companymember/pwFindProc";
