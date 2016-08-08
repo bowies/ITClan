@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="scheduler">
+ 
+ <resultMap id="scheduler" type="SchedulerDTO">
+  <result property="event_id" column="event_id"/>
+  <result property="event_name" column="event_name"/>
+  <result property="start_date" column="start_date"/>
+  <result property="end_date" column="end_date"/>
+ </resultMap>
+ 
+ <select id="getEvent" resultMap="scheduler"> 
+ 	SELECT event_id, event_name, start_date, end_date FROM events
+ </select>
+
+ <update id="updateEvent" parameterType="SchedulerDTO"> 
+ 	UPDATE events SET event_name=#{event_name}, 
+ 	start_date=TO_TIMESTAMP(#{start_date},'yyyy-MM-dd HH24:MI:ss'), 
+ 	end_date= TO_TIMESTAMP(#{end_date},'yyyy-MM-dd HH24:Mi:ss')
+ 	WHERE event_id=#{event_id}
+ </update>
+ 
+ <insert id="insertEvent" parameterType="SchedulerDTO"> 
+ 	INSERT INTO events (event_id, event_name, start_date, end_date) 
+ 	VALUES (#{event_id}, #{event_name}, 
+ 	        TO_TIMESTAMP(#{start_date},'yyyy-MM-dd HH24:MI:ss'),
+ 	        TO_TIMESTAMP(#{end_date},'yyyy-MM-dd HH24:Mi:ss')
+ 	        )
+ 	<selectKey keyProperty="event_id" resultType="int" order="BEFORE">
+ 		SELECT nvl(max(event_id),0)+1 FROM events
+ 	</selectKey>
+ </insert>
+ 
+  <delete id="deleteEvent" parameterType="int">
+  	DELETE FROM events WHERE event_id=#{event_id}
+  </delete>
+ 
+</mapper>
