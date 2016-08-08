@@ -12,13 +12,10 @@
 <body>
 <!-- *********************************************** -->
  
-<DIV class="title">회원탈퇴</DIV>
- 
+<DIV class="title">회사 정보 삭제</DIV>
+
 <FORM name='frm' method='POST' action='./delete'>
 <input type="hidden" name="companyID" value="${companyID}">
-  <div class="content">
-  회사 정보 삭제
-  </div>
   <DIV class='bottom'>
     <input type='submit' value='탈퇴'>
     <input type='button' value='취소' onclick="history.back()">

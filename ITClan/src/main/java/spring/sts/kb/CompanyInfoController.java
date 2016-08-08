@@ -95,8 +95,8 @@ public class CompanyInfoController {
 	}
 
 	@RequestMapping(value = "/companyinfo/update", method = RequestMethod.GET)
-	public String update(Model model, int CompanyInfoNum) throws Exception {
-		Object dto = dao.read(CompanyInfoNum);
+	public String update(Model model, String companyID) throws Exception {
+		Object dto = dao.read(companyID);
 
 		model.addAttribute("dto", dto);
 
@@ -104,12 +104,9 @@ public class CompanyInfoController {
 	}
 
 	@RequestMapping(value = "/companyinfo/delete", method = RequestMethod.POST)
-	public String delete(int CompanyInfoNum, Model model, String col, String word, int nowPage) throws Exception {
+	public String delete(String companyID) throws Exception {
 
-		if (dao.delete(CompanyInfoNum) > 0) {
-			model.addAttribute("col", col);
-			model.addAttribute("word", word);
-			model.addAttribute("nowPage", nowPage);
+		if (dao.delete(companyID) > 0) {
 			return "redirect:/companyinfo/list";
 		} else {
 			return "error/error";

@@ -12,7 +12,7 @@
 <body leftmargin="0" topmargin="0">
 	<!-- *********************************************** -->
 
-	<DIV class="title">회원 수정 (* 필수 입력)</DIV>
+	<DIV class="title">회사 정보</DIV>
 
 	<FORM name='frm' method='POST' action='./update'
 		onsubmit="return inputCheck()">
@@ -21,38 +21,33 @@
 		<TABLE class='table' width="80%">
 
 			<tr>
-				<th>*아이디</th>
-				<td>${dto.companyID}</td>
+				<th>기업회원 아이디</th>
+				<td><input type="text" name="companyID" value="${dto.companyID}"></td>
 			</tr>
 			<tr>
-				<th>*이름</th>
-				<td>${dto.name}</td>
+				<th>회사명</th>
+				<td><input type="text" name="companyName" value="${dto.companyName}"></td>
 			</tr>
 			<tr>
-				<th>전화번호</th>
-				<td><input type="text" name="phone" value="${dto.phone}"></td>
+				<th>기업형태</th>
+				<td><input type="text" name="companyScale" value="${dto.companyScale}"></td>
 			</tr>
 			<tr>
-				<th>이메일</th>
-				<td><input type="text" name="email" value="${dto.email}"> 
-					
-					
-				</td>
+				<th>대표자명</th>
+				<td><input type="text" name="bossName" value="${dto.bossName}"></td>
 			</tr>
 		
 			<tr>
 				<th>사업자번호</th>
-				<td><input type="text" name="companyNumber" value = "${dto.companyNumber}"> 
-					
-					
-				</td>
+				<td><input type="text" name="companyNumber" value="${dto.companyNumber}"></td>
 			</tr>
 			<tr>
-				<th>회사명</th>
-				<td><input type="text" name="companyName" value="${dto.companyName}"> 
-					
-					
-				</td>
+				<th>회사마크 사진파일명</th>
+				<td><input type="text" name="ci" value="${dto.ci}"></td>
+			</tr>
+			<tr>
+				<th>분류코드</th>
+				<td><input type="text" name="categoryCode" value="${dto.categoryCode}"></td>
 			</tr>
 		</TABLE>
 
