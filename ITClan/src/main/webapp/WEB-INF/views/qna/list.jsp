@@ -14,36 +14,7 @@
 /* font-size: 12px; }*/
 
 /* Style the buttons that are used to open and close the accordion panel */
-button.accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    transition: 0.4s;
-}
 
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-button.accordion.active, button.accordion:hover {
-    background-color: #ddd;
-}
-
-/* Style the accordion panel. Note: hidden by default */
-
-div.panel {
-    padding: 0 18px;
-    background-color: white;
-    display: none;
-    font-family: 굴림;
-}
-
-/* The "show" class is added to the accordion panel when the user clicks on one of the buttons. This will show the panel content */
-div.panel.show {
-    display: block !important;
-}
 
 
 </style>
@@ -64,31 +35,8 @@ function readB(qnANum) {
 
 <body class="w3-container">
 
-<%-- <jsp:include page="/menu/top.jsp" flush="false"/> --%>
 
-
-<!-- <div class="left"> -->
-<!-- <div style=" font-size:15px; position: relative; display:block;"> -->
-<!-- <table border="1" cellspacing="0" cellpadding="0" align="left" width="200px">  -->
-   
-<!--         <ul> -->
-<!--         <h4 style="text-align: left">무엇을 도와드릴까요?</h4> -->
-<!--             <li><a href="">도움말</a></li> -->
-<!--             <li><a href=""><span class="lspn">Q&amp;A</span></a></li> -->
-<!--             <li><a href="">이메일 문의</a></li> -->
-<!--             <li><a href="">이력서 의견ㆍ제안사항 </a></li> -->
-<!--             <li><a href="">아이디ㆍ비밀번호 찾기</a></li> -->
-<!-- <!--                                     <li class="last_line"><a href="">사이트맵 </a></li> --> 
-<!--         </ul> -->
-    
-<!-- </table> -->
-<!-- </div>  -->
-<!-- </div> -->
-
-
-
-
-<div class="aaa"  style="height:400px; width:1250px; margin-left:200px; position:absolute">
+<div class="aaa" >
 	<h2>자주찾는 FAQ</h2>
 
 
@@ -135,11 +83,9 @@ function readB(qnANum) {
 
 
 <!-- ============ -->
-<button class="accordion">페이스북 로그인으로 잡코리아를 이용하고 있는데 탈퇴하면 어떻게 되나요?</button>
+<button class="accordion">잡코리아를 탈퇴하면 어떻게 되나요?</button>
 <div class="panel">
-  <p>잡코리아 탈퇴 시, 해당 페이스북 아이디로 잡코리아를 이용하셨던 이력서, 지원내역 등 모든 정보가 삭제 됩니다. 
-
-같은 페이스북 아이디로 다시 잡코리아를 이용하실 수 있지만 이전에 저장하셨던 정보들을 더이상 확인하실 수 없습니다.</p>
+  <p>탈퇴 시, 해당 아이디로 사이트를 이용하셨던 이력서, 지원내역 등 모든 정보가 삭제 됩니다. </p>
 </div>
 
 <button class="accordion">Section 2</button>
@@ -160,11 +106,9 @@ function readB(qnANum) {
   <p>5.</p>
 </div>
 
-<!-- ========== -->
 
 <script>
 
-// ============
 /* Toggle between adding and removing the "active" and "show" classes when the user clicks on one of the "Section" buttons. The "active" class is used to add a background color to the current button when its belonging panel is open. The "show" class is used to open the specific accordion panel */
 var acc = document.getElementsByClassName("accordion");
 var i;
@@ -175,7 +119,6 @@ for (i = 0; i < acc.length; i++) {
         this.nextElementSibling.classList.toggle("show");
     }
 }
-// ===============
 
 </script>
 
@@ -188,7 +131,7 @@ ${fn:substring(dto.regdate,0,10)}
 
 <tbody><tr><td align="right">
 <a href="${pageContext.request.contextPath}/qna/create">
-<img src="http://www.saraminimage.co.kr/buttons/default/qnalist_write.gif" width="114" height="18" border="0" alt="Q&amp;A게시판에 글쓰기">
+<img src="http://www.saraminimage.co.kr/buttons/default/qnalist_write.gif" width="150" height="23" border="0" alt="Q&amp;A게시판에 글쓰기">
 </a></td></tr>
 <tr><td height="5"></td></tr>
 <tr><td>
@@ -196,6 +139,7 @@ ${fn:substring(dto.regdate,0,10)}
 <div class="helpdesk-qna-list">
 <table class="padding3" width="680" border="0" cellspacing="0" cellpadding="3">
 <tbody>
+
 <tr bgcolor="62B5DF"><td height="1" colspan="5" style="padding:0"></td></tr>
 <tr>
 <td width="50" height="25" align="center"><b>번호</b></td>
@@ -205,36 +149,29 @@ ${fn:substring(dto.regdate,0,10)}
 <td width="80" height="25" align="center"><b>등록일시</b></td>
 </tr>
 
-<!--   <TR> -->
-<!--       <th>번호</th> -->
-<!--       <th width = "25%">제목</th> -->
-<!--       <th>이름</th> -->
-<!--       <th>등록일</th> -->
-
-<!--     </TR> -->
-  <c:choose>
-  <c:when test="${empty list}">
-  <tr>
-	  <td colspan="8" align="center">등록된 글이 없습니다.</td>
-	  </tr>
-  </c:when>
-  <c:otherwise>
-  <c:forEach var="dto" items="${list}">
-  <tr>
-    <td>${dto.qnANum}</td>
-    <td>
-    <a href="javascript:readB('${dto.qnANum }')">${dto.title}</a>
-     <c:if test="${uti:newImg(fn:substring(dto.regdate,0,10)) }">
-     <img src="../images/new.gif">
-     </c:if>
-      </td>
-    <td>${dto.name}</td>
-    <td>${fn:substring(dto.regdate,0,10)}</td>
-    </tr>
-     
-  </c:forEach>
-  </c:otherwise>
-  </c:choose>   
+<c:choose>
+<c:when test="${empty list}">
+<tr>
+ <td colspan="8" align="center">등록된 글이 없습니다.</td>
+ </tr>
+</c:when>
+<c:otherwise>
+<c:forEach var="dto" items="${list}">
+<tr>
+  <td>${dto.qnANum}</td>
+  <td>
+  <a href="javascript:readB('${dto.qnANum }')">${dto.title}</a>
+   <c:if test="${uti:newImg(fn:substring(dto.regdate,0,10)) }">
+   <img src="../images/new.gif">
+   </c:if>
+    </td>
+  <td>${dto.name}</td>
+  <td>${fn:substring(dto.regdate,0,10)}</td>
+  </tr>
+   
+</c:forEach>
+</c:otherwise>
+</c:choose>   
 
 
 </tbody>
@@ -260,46 +197,24 @@ ${fn:substring(dto.regdate,0,10)}
 	</form>
  </div>
 
-
-  
-
-  
-  <DIV class='bottom'>
-  	${paging}<br>
-  	    <input type='button' value='등록' onclick="location.href='create'">
-  </DIV>
-
-
-
-
-
-
 </table>
 </div>
 
 </td></tr>
 <tr>
 <td height="30" align="center">
+  
+  <DIV class='bottom'>
+  	${paging}<br>
+  </DIV>
 
 
-<tr><td align="right"><a href="${pageContext.request.contextPath}/qna/create">
-<img src="http://www.saraminimage.co.kr/buttons/default/qnalist_write.gif" width="114" height="18" border="0" alt="Q&amp;A게시판에 글쓰기"></a></td></tr>
-<tr><td>&nbsp;</td></tr>
-<form name="helpdeskSearchForm" method="get" action="qna.php?default=0&amp;get_total_count=33406" onsubmit="return helpdeskSearchCheck(this);"></form>
-<tr><td align="center"><b><font color="#0066CC">검색</font></b>
-<input name="s_keyword" type="text" class="textareabg" size="20" value=""> &nbsp;<input type="image" src="http://www.saraminimage.co.kr/buttons/default/search001.gif" width="36" height="18" align="absmiddle" title="검색"></td></tr>
-
-<tr><td>&nbsp;</td></tr>
 <tr><td>&nbsp;</td></tr>
 </tbody></table>
 </td></tr>
 
 </tbody></table>
-
-
 </div>
-
-
 
 <style type="text/css">
 p{padding:0; margin:0}
