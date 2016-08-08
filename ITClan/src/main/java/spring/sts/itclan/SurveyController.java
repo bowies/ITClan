@@ -61,25 +61,16 @@ public class SurveyController {
 	@RequestMapping(value="/survey/read",method=RequestMethod.GET)
 	public String readIn(int preNum ,SurveyDTO dto,Model model,SubSurveyDTO sdto,
 			HttpServletRequest request,String col,String word,int nowPage) throws Exception{
-		String surID = "";
 		dto = (SurveyDTO) dao.read(preNum);
 		
 		
-		Cookie[] cookies = request.getCookies();
-		Cookie surCook = null;
-		for (int i = 0; i < cookies.length; i++) {
-			surCook = cookies[i];
-			if(surCook.getName().equals("surID")){
-				surID = surCook.getValue();
-			}
-		}
+		
 		if(dto.getSub() > 0){
 		sdto =	(SubSurveyDTO) sdao.read(preNum);
 				
 		}else{
 			sdao.createS(preNum);
 		}
-		model.addAttribute("surID", surID);
 		model.addAttribute("dto", dto);
 		model.addAttribute("sdto", sdto);
 		model.addAttribute("col", col);
@@ -120,6 +111,16 @@ public class SurveyController {
 		int sno = ((nowPage -1)*recordPerPage)+1;
 		int eno = nowPage * recordPerPage;
 		
+		String surID = "";
+		Cookie[] cookies = request.getCookies();
+		Cookie surCook = null;
+		for (int i = 0; i < cookies.length; i++) {
+			surCook = cookies[i];
+			if(surCook.getName().equals("surID")){
+				surID = surCook.getValue();
+			}
+		}
+		
 		Map map = new HashMap();
 		map.put("col", col);
 		map.put("word", word);
@@ -140,6 +141,8 @@ public class SurveyController {
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("col", col);
 		model.addAttribute("word", word);
+		model.addAttribute("paging", paging);
+		model.addAttribute("surID", surID);
 		
 		
 		return "/survey/list";

@@ -21,9 +21,39 @@ tr td{
 
 
 </style>
-
+<script type="text/javascript">
+function read(surID,memberID){
+	if(memberID == null){
+		alert("로그인을하세요");
+	}else if(memberID == surID){
+		alert("이미 설문을 하였습니다.");
+		
+	}else{
+		
+	}
+	
+	
+}
+</script>
 </head>
 <body>
+<FORM method="POST" action="./list">
+<select name="col" >
+<option value="name"
+<c:if test="${col =='name' }">selected</c:if>
+>성명</option>
+<option value="memberID"
+<c:if test="${col == 'memberID' }">selected</c:if>
+>아이디</option>
+<option value="total"
+<c:if test="${col == 'total' }">selected</c:if>
+>전체출력</option>
+</select>
+<input type="text" name="word" value="${param.word }">
+<input type="submit" value="검색" />
+</FORM>
+</DIV>
+
 <table>
 <tr>
 <td style="background-color: #FAF4C0">Number</td>
@@ -41,7 +71,7 @@ tr td{
 <c:forEach items="${list}" var="dto">
 <tr>
 <td>${dto.preNum }</td>
-<td>${dto.title }</td>
+<td><a href="javascript:read(${surID},${sessionScope.memberID })"> ${dto.title }</a></td>
 <td>${dto.viewcnt }</td>
 <td>${fn:substring(dto.regdate,0,10)}~${dto.enddate }</td>
 </tr>
@@ -49,5 +79,10 @@ tr td{
 </c:otherwise>
 </c:choose>
 </table>
+
+<DIV class="bottom"> 
+${paging }
+</DIV>
+
 </body>
 </html>
