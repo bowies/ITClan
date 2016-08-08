@@ -17,13 +17,15 @@ public class SubSurveyDAO implements DAOMyBatisInter {
 	public void setMybatis(SqlSessionTemplate mybatis) {
 		this.mybatis = mybatis;
 	}
-	public List<SubSurveyDTO> read_sub(int preNum){
-		return mybatis.selectList("subsurvey.read",preNum );
-	}
+
 	@Override
 	public int create(Object dto) throws Exception {
 		// TODO Auto-generated method stub
-		return mybatis.insert("subsurvey.create", dto);
+		return 0;
+	}
+
+	public int createS(int preNum){
+		return mybatis.insert("subsurvey.create", preNum);
 	}
 
 	@Override
@@ -35,15 +37,29 @@ public class SubSurveyDAO implements DAOMyBatisInter {
 	@Override
 	public Object read(Object pk) throws Exception {
 		// TODO Auto-generated method stub
-		return mybatis.selectOne("subsurvey.read1", pk);
+		return mybatis.selectOne("subsurvey.read", pk);
 	}
 
 	@Override
 	public int update(Object dto) throws Exception {
 		// TODO Auto-generated method stub
-		return mybatis.update("subsurvey.update", dto);
+		return 0;
 	}
-
+//-------------------------------------------------------------
+	
+	public int update1(int preNum){
+		return mybatis.update("subsurvey.updatecnt1", preNum);
+	}
+	public int update2(int preNum){
+		return mybatis.update("subsurvey.updatecnt2", preNum);
+	}
+	public int update3(int preNum){
+		return mybatis.update("subsurvey.updatecnt3", preNum);
+	}
+	public int update4(int preNum){
+		return mybatis.update("subsurvey.updatecnt4", preNum);
+	}
+	
 	@Override
 	public int delete(Object pk) throws Exception {
 		// TODO Auto-generated method stub

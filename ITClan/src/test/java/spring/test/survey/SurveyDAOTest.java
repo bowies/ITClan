@@ -47,6 +47,10 @@ public class SurveyDAOTest {
 		SurveyDAO dao = (SurveyDAO)beans.getBean("surveydao");
 		SurveyDTO dto = new SurveyDTO();
 		dto.setTitle("화요일은좋아");
+		dto.setContent1("one");
+		dto.setContent2("two");
+		dto.setContent3("three");
+		dto.setContent4("four");
 		dto.setEnddate("2016-08-11");
 		
 		assertEquals(1, dao.create(dto));
@@ -63,32 +67,24 @@ public class SurveyDAOTest {
 		map.put("eno", 5);
 		List<SurveyDTO> list = dao.list(map);
 		 
-		assertEquals(2, list.size());
+		assertEquals(1, list.size());
 		
 	}
 
 	@Test @Ignore
 	public void testRead() throws Exception {
 		SurveyDAO dao = (SurveyDAO)beans.getBean("surveydao");
-		SurveyDTO dto = (SurveyDTO) dao.read(2);
+		SurveyDTO dto = (SurveyDTO) dao.read(1);
 		
 		assertEquals("화요일은좋아", dto.getTitle());
 	}
 
-	@Test @Ignore
-	public void testUpdate() throws Exception {
-		SurveyDAO dao = (SurveyDAO)beans.getBean("surveydao");
-		SurveyDTO dto = (SurveyDTO) dao.read(2);
-		dto.setTitle("금요일");
-		dto.setEnddate("2019-08-08");
-		assertEquals(1, dao.update(dto));
-	}
-
+	
 	@Test @Ignore
 	public void testDelete() throws Exception {
 		SurveyDAO dao = (SurveyDAO)beans.getBean("surveydao");
 		
-		assertEquals(1, dao.delete(2));
+		assertEquals(1, dao.delete(1));
 	}
 
 	@Test @Ignore
@@ -99,7 +95,7 @@ public class SurveyDAOTest {
 		map.put("word", "");
 		
 		
-		assertEquals(2, dao.total(map));
+		assertEquals(1, dao.total(map));
 	}
 
 }

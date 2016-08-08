@@ -7,24 +7,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <delete id="delete_sub" parameterType="int">
 delete from subsurvey where preNum = #{preNum}
 </delete>
-<update id="update" parameterType="SubSurveyDTO">
+<insert id="create" parameterType="int">
+insert into subsurvey(preNum)
+values(#{preNum})
+</insert>
+<update id="updatecnt1" parameterType="int">
 update subsurvey
 set
-content = #{content}
-where surveyNum = #{surveyNum}
-</update>
-<insert id="create" parameterType="SubSurveyDTO">
-insert into subsurvey(surveyNum,content,preNum)
-values((select NVL(MAX(preNum),0)+1 as preNum from survey ),#{content},#{preNum})
-</insert>
-<select id="read1" parameterType="int" resultType="SubSurveyDTO">
-select content,surveyNum from subsurvey 
-where surveyNum = #{surveyNum}
-</select>
-<select id="read" parameterType="int" resultType="SubSurveyDTO">
-select surveyNum,content,ansnum from subsurvey
-where preNum =#{preNum}
-order by surveyNum asc
-</select>
+ans1 = #{ans1} +1
+where preNum = #{preNum}
 
+</update>
+<update id="updatecnt2" parameterType="int">
+update subsurvey
+set
+ans2 = #{ans2} +1
+where preNum = #{preNum}
+
+</update>
+<update id="updatecnt3" parameterType="int">
+update subsurvey
+set
+ans3 = #{ans3} +1
+where preNum = #{preNum}
+
+</update>
+<update id="updatecnt4" parameterType="int">
+update subsurvey
+set
+ans4 = #{ans4} +1
+where preNum = #{preNum}
+
+</update>
+
+<select id="read" parameterType="int" resultType="SubSurveyDTO">
+select ans1,ans2,ans3,ans4 from subsurvey 
+where preNum = #{preNum}
+</select>
 </mapper>

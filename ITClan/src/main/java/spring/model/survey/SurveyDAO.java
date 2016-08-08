@@ -17,6 +17,10 @@ public class SurveyDAO implements DAOMyBatisInter {
 	public void setMybatis(SqlSessionTemplate mybatis) {
 		this.mybatis = mybatis;
 	}
+	
+	public int up_sub(int preNum){
+		return mybatis.update("survey.up_sub", preNum);
+	}
 
 	@Override
 	public int create(Object dto) throws Exception {
@@ -38,7 +42,7 @@ public class SurveyDAO implements DAOMyBatisInter {
 	@Override
 	public int update(Object dto) throws Exception {
 		// TODO Auto-generated method stub
-		return mybatis.update("survey.update", dto);
+		return 0;
 	}
 
 	@Override

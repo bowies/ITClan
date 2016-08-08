@@ -39,22 +39,14 @@ public class SubSurveyDAOTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test @Ignore
-	public void testRead_sub() {
-		SubSurveyDAO dao = (SubSurveyDAO)beans.getBean("subsurveydao");
-		List dto = dao.read_sub(2);
-		
-		assertEquals(1, dto.size());
-		
-	}
+
 
 	@Test @Ignore
 	public void testCreate() throws Exception {
 		SubSurveyDAO dao = (SubSurveyDAO)beans.getBean("subsurveydao");
 		SubSurveyDTO dto = new SubSurveyDTO();
-		dto.setContent("1.a");
-		dto.setPreNum(2);
-		assertEquals(1, dao.create(dto));
+		dto.setPreNum(1);
+		assertEquals(1, dao.createS(1));
 	}
 
 	@Test @Ignore
@@ -63,22 +55,41 @@ public class SubSurveyDAOTest {
 	}
 
 	@Test @Ignore
-	public void testRead() {
-		fail("Not yet implemented");
+	public void testRead() throws Exception {
+		SubSurveyDAO dao = (SubSurveyDAO)beans.getBean("subsurveydao");
+		SubSurveyDTO dto = (SubSurveyDTO) dao.read(1);
+		assertEquals(0, dto.getAns1());
 	}
 
 	@Test @Ignore
-	public void testUpdate() throws Exception {
+	public void testUpdate1() throws Exception {
 		SubSurveyDAO dao = (SubSurveyDAO)beans.getBean("subsurveydao");
-		SubSurveyDTO dto = (SubSurveyDTO) dao.read(3);
-		dto.setContent("haru");
-		assertEquals(1, dao.update(dto));
+		SubSurveyDTO dto = (SubSurveyDTO) dao.read(1);
+		assertEquals(1, dao.update1(1));
+	}
+	@Test @Ignore
+	public void testUpdate2() throws Exception {
+		SubSurveyDAO dao = (SubSurveyDAO)beans.getBean("subsurveydao");
+		SubSurveyDTO dto = (SubSurveyDTO) dao.read(1);
+		assertEquals(1, dao.update2(1));
+	}
+	@Test @Ignore
+	public void testUpdate3() throws Exception {
+		SubSurveyDAO dao = (SubSurveyDAO)beans.getBean("subsurveydao");
+		SubSurveyDTO dto = (SubSurveyDTO) dao.read(1);
+		assertEquals(1, dao.update3(1));
+	}
+	@Test @Ignore
+	public void testUpdate4() throws Exception {
+		SubSurveyDAO dao = (SubSurveyDAO)beans.getBean("subsurveydao");
+		SubSurveyDTO dto = (SubSurveyDTO) dao.read(1);
+		assertEquals(1, dao.update4(1));
 	}
 
 	@Test @Ignore
 	public void testDelete() throws Exception {
 		SubSurveyDAO dao = (SubSurveyDAO)beans.getBean("subsurveydao");
-		assertEquals(1, dao.delete(2));
+		assertEquals(1, dao.delete(1));
 	}
  
 	@Test @Ignore
