@@ -43,10 +43,10 @@ public class SchedulerController {
     private Boolean dynFilter;
     HttpServletRequest request;
 	
-   @RequestMapping("/scheduler")
+   @RequestMapping("/schedule/scheduler")
    public String scheduler(ModelMap model, HttpServletRequest request) throws Exception {
 	   
-	   DHXPlanner planner = new DHXPlanner("./codebase/", DHXSkin.TERRACE);
+	   DHXPlanner planner = new DHXPlanner(request.getContextPath()+"/codebase/", DHXSkin.TERRACE);
 	   planner.localizations.set("cr");
 	   planner.setWidth(900);
 

@@ -88,6 +88,7 @@
 				<value>/WEB-INF/spring/reply.xml</value>
 				<value>/WEB-INF/spring/resumedetail.xml</value>
 				<value>/WEB-INF/spring/resumeinfo.xml</value>
+				<value>/WEB-INF/spring/schedule.xml</value>
 			</list>
 		</property>
 	</bean>
