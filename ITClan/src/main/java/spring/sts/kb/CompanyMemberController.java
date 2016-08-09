@@ -132,6 +132,7 @@ public class CompanyMemberController {
 		CompanyMemberDTO dto = (CompanyMemberDTO) dao.read(companyID);
 
 		model.addAttribute("dto", dto);
+		model.addAttribute("companyID", companyID);
 
 		return "/companymember/read";
 	}
@@ -172,7 +173,7 @@ public class CompanyMemberController {
 
 			}
 
-			session.setAttribute("id", companyID);
+			session.setAttribute("companyID", companyID);
 			session.setAttribute("grade", grade);
 
 		}

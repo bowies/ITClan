@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<% %>
 <!DOCTYPE html> 
 <html> 
 <head> 
@@ -17,19 +18,16 @@ if(confirm("정말탈퇴 하겠습니까?")){
 }
  
 }
+
 </script>
 </head> 
 <!-- *********************************************** -->
 <body leftmargin="0" topmargin="0">
  
+ 
 <DIV class="title">${dto.companyID}의 회원정보</DIV>
  
   <TABLE class='table'>
-    <TR>
-      <TD colspan="2">
-       <img style="width: 50%"  src="../storage/${dto.companyName}">
-      </TD>
-    </TR>
     <TR>
       <TH>아이디</TH>
       <TD>${dto.companyID}</TD>

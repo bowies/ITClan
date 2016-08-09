@@ -41,6 +41,9 @@
   
   <DIV class='bottom'>
     <input type='submit' value='로그인'>
+    
+    <input type='button' value='ID찾기' onclick="location.href='./idFind'">
+    <input type='button' value='Password찾기' onclick="location.href='./pwFind'">
     <input type='button' value='회원가입' onclick="location.href='./agree'">
   </DIV>
 </FORM>
