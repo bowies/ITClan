@@ -9,11 +9,26 @@
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([           
-		  ['${dto.content1}', '${sdto.ans1}'],
-          ['${dto.content2}', '${sdto.ans2}'],
-          ['${dto.content3}', '${sdto.ans3}'],
-          ['${dto.content4}', '${sdto.ans4}']
+    	  var ans1 = ${sdto.ans1};
+    	  var ans2 = ${sdto.ans2};
+    	  var ans3 = ${sdto.ans3};
+    	  var ans4 = ${sdto.ans4};
+    	 
+        var data = google.visualization.arrayToDataTable([
+		  ['Content', 'Vote'],
+		  ['${dto.content1}', ans1],
+		  ['${dto.content2}', ans2],
+		  ['${dto.content3}', ans3],
+		  ['${dto.content4}', ans4]
+		
+// 		  [cd, abc],
+			
+//           ['Task', 'Hours per Day'],
+//           ['Work',     11],
+//           ['Eat',      2],
+//           ['Commute',  2],
+//           ['Watch TV', 2],
+//           ['Sleep',    7]
          
         ]);
 

@@ -18,6 +18,10 @@ public class SurveyDAO implements DAOMyBatisInter {
 		this.mybatis = mybatis;
 	}
 	
+	public int up_viewcnt(int preNum){
+		return mybatis.update("survey.up_viewcnt", preNum);
+	}
+	
 	public int up_sub(int preNum){
 		return mybatis.update("survey.up_sub", preNum);
 	}

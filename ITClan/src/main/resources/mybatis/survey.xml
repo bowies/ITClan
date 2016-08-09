@@ -7,8 +7,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <delete id="delete" parameterType="int">
 delete from survey where preNum = #{preNum}
 </delete>
+<update id="up_viewcnt" parameterType="int">
+update survey
+set 
+viewcnt = viewcnt +1
+where preNum = #{preNum}
+</update>
+
 <update id="up_sub" parameterType="int">
-update set survey
+update survey
 set
 sub = sub +1
 where preNum = #{preNum}

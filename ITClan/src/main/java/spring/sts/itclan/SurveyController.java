@@ -46,7 +46,7 @@ public class SurveyController {
 		
 		model.addAttribute("dto", dto);
 		model.addAttribute("sdto", sdto);
-		
+				
 		return "/survey/chart";
 	}
 	
@@ -99,13 +99,12 @@ public class SurveyController {
 				surID = surCook.getValue();
 			}
 		}
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
-		
+
+		dao.up_viewcnt(preNum);
 		model.addAttribute("dto", dto);
 		model.addAttribute("sdto", sdto);
 		model.addAttribute("surID", surID);		
-		model.addAttribute("date", sdf.format(date));
+
 	
 		return "/survey/read";
 	}

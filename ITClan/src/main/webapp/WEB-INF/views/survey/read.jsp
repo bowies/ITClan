@@ -20,11 +20,7 @@ function chE(memberID){
 		alert("결과보기를 클릭하세요");
 		return false;
 	}
-	if('${date}> ${dto.enddate}'){
-		alert("설문기간이 지났습니다.");
-		return false;
-	}
-	
+
 }
 function chart(preNum){
 		

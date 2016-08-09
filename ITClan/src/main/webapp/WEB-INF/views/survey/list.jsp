@@ -40,6 +40,11 @@ function read(preNum,sub,enddate){
 	
 	
 }
+function del(preNum){
+	var url = "./delete";
+	url += "?preNum="+preNum;
+	location.href = url;
+}
 </script>
 </head>
 <body>
@@ -67,6 +72,9 @@ function read(preNum,sub,enddate){
 <td style="background-color: #FAF4C0">Title</td>
 <td style="background-color: #FAF4C0">viewCnt</td>
 <td style="background-color: #FAF4C0">Date</td>
+<c:if test="${sessionScope.grade == 'A'}">
+<td style="background-color: #FAF4C0">delete</td>
+</c:if>
 </tr>
 <c:choose>
 <c:when test="${empty list}">
@@ -81,6 +89,9 @@ function read(preNum,sub,enddate){
 <td><a href="javascript:read('${dto.preNum}','${dto.sub }','${dto.enddate }')"> ${dto.title }</a></td>
 <td>${dto.viewcnt }</td>
 <td>${fn:substring(dto.regdate,0,10)}~${dto.enddate }</td>
+<c:if test="${sessionScope.grade == 'A'}">
+<td><a href="javascript:del('${dto.preNum}')">삭제</a></td>
+</c:if>
 </tr>
 </c:forEach>
 </c:otherwise>
