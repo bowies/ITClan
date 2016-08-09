@@ -9,8 +9,7 @@
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([
-                                                          
+        var data = google.visualization.arrayToDataTable([           
 		  ['${dto.content1}', '${sdto.ans1}'],
           ['${dto.content2}', '${sdto.ans2}'],
           ['${dto.content3}', '${sdto.ans3}'],
