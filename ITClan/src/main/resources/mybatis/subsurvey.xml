@@ -14,28 +14,28 @@ values(#{preNum})
 <update id="updatecnt1" parameterType="int">
 update subsurvey
 set
-ans1 = #{ans1} +1
+ans1 = ans1 +1
 where preNum = #{preNum}
 
 </update>
 <update id="updatecnt2" parameterType="int">
 update subsurvey
 set
-ans2 = #{ans2} +1
+ans2 = ans2 +1
 where preNum = #{preNum}
 
 </update>
 <update id="updatecnt3" parameterType="int">
 update subsurvey
 set
-ans3 = #{ans3} +1
+ans3 = ans3 +1
 where preNum = #{preNum}
 
 </update>
 <update id="updatecnt4" parameterType="int">
 update subsurvey
 set
-ans4 = #{ans4} +1
+ans4 = ans4 +1
 where preNum = #{preNum}
 
 </update>

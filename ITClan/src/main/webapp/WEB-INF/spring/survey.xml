@@ -22,6 +22,10 @@
 		<put-attribute name="title" value="Default Page"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/survey/create.jsp" />
 	</definition>
+	<definition name="/survey/read" extends="main">
+		<put-attribute name="title" value="Default Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/survey/read.jsp" />
+	</definition>
 	
 </tiles-definitions> 
 

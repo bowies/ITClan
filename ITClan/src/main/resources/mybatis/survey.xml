@@ -7,7 +7,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <delete id="delete" parameterType="int">
 delete from survey where preNum = #{preNum}
 </delete>
-
 <update id="up_sub" parameterType="int">
 update set survey
 set
@@ -32,11 +31,11 @@ select title ,content1,content2,content3,content4, regdate , enddate,preNum
 from survey where preNum = #{preNum}
   </select>
 	<select id="list" parameterType="Map" resultType="SurveyDTO">
-	select preNum,title,regdate,enddate,viewcnt,r
+	select preNum,title,regdate,enddate,viewcnt,sub,r
 	from(
-	select preNum,title,regdate,enddate,viewcnt,rownum r
+	select preNum,title,regdate,enddate,viewcnt,sub,rownum r
 	from(
-		select preNum,title,regdate,enddate,viewcnt
+		select preNum,title,regdate,enddate,viewcnt,sub
 		from survey
 		<where>
 		<if test="col == 'title'">

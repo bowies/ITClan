@@ -22,13 +22,26 @@ tr td{
 
 </style>
 <script type="text/javascript">
-function read(surID,memberID){
-	if(memberID == null){
+function read(preNum,sub,enddate){
+	var dateObj = new Date();
+	var year = dateObj.getFullYear();
+	var month = dateObj.getMonth()+1;
+	var day = dateObj.getDate();
+	var today = year + "-" + month + "-" + day;
+	if('${sessionScope.memberID}'==""){
 		alert("로그인을하세요");
-	}else if(memberID == surID){
-		alert("이미 설문을 하였습니다.");
-		
+		return false;
+	}else if(today > enddate){
+		alert("설문조사 기간이 지났습니다.");
+		return false;
 	}else{
+		var url = "./read";
+		url += "?preNum="+preNum;
+		url += "&sub="+sub;
+		url += "&nowPage=${nowPage}";
+		url += "&col=${col}";
+		url += "&word=${word}";
+		location.href = url;
 		
 	}
 	
@@ -37,6 +50,7 @@ function read(surID,memberID){
 </script>
 </head>
 <body>
+<div>
 <FORM method="POST" action="./list">
 <select name="col" >
 <option value="name"
@@ -52,11 +66,11 @@ function read(surID,memberID){
 <input type="text" name="word" value="${param.word }">
 <input type="submit" value="검색" />
 </FORM>
-</DIV>
+</div>
 
 <table>
 <tr>
-<td style="background-color: #FAF4C0">Number</td>
+<td style="background-color: #FAF4C0">Number ${surID}</td>
 <td style="background-color: #FAF4C0">Title</td>
 <td style="background-color: #FAF4C0">viewCnt</td>
 <td style="background-color: #FAF4C0">Date</td>
@@ -71,7 +85,7 @@ function read(surID,memberID){
 <c:forEach items="${list}" var="dto">
 <tr>
 <td>${dto.preNum }</td>
-<td><a href="javascript:read(${surID},${sessionScope.memberID })"> ${dto.title }</a></td>
+<td><a href="javascript:read('${dto.preNum}','${dto.sub }','${dto.enddate }')"> ${dto.title }</a></td>
 <td>${dto.viewcnt }</td>
 <td>${fn:substring(dto.regdate,0,10)}~${dto.enddate }</td>
 </tr>

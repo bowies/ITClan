@@ -40,42 +40,57 @@ public class SurveyController {
 	
 	@RequestMapping(value="/survey/read",method=RequestMethod.POST)
 	public String readIn(String str,int preNum,HttpSession session,
-			HttpServletResponse response,String surID){
+			HttpServletResponse response,Model model,String col,String word,int nowPage){
 		if(str.equals("ans1")){
 			sdao.update1(preNum);
-		}else if(str.equals("ans2")){
+		}
+		if(str.equals("ans2")){
 			sdao.update2(preNum);
-		}else if(str.equals("ans3")){
+		}
+		if(str.equals("ans3")){
 			sdao.update3(preNum);
-		}else{
+		}
+		if(str.equals("ans4")){
 			sdao.update4(preNum);
 		}
-		
+		String surID= (String) session.getAttribute("memberID");
 		Cookie surCook = new Cookie("surID",surID);
 		surCook.setMaxAge(60*62*24*7);
 		response.addCookie(surCook);
 		
+		
+		model.addAttribute("col", col);
+		model.addAttribute("word", word);
+		model.addAttribute("nowPage", nowPage);
 		return "redirect:/survey/list";
 	}
 	
 	@RequestMapping(value="/survey/read",method=RequestMethod.GET)
 	public String readIn(int preNum ,SurveyDTO dto,Model model,SubSurveyDTO sdto,
-			HttpServletRequest request,String col,String word,int nowPage) throws Exception{
-		dto = (SurveyDTO) dao.read(preNum);
-		
-		
-		
-		if(dto.getSub() > 0){
-		sdto =	(SubSurveyDTO) sdao.read(preNum);
-				
-		}else{
+			HttpServletRequest request,String col,String word,int nowPage,int sub,
+			HttpSession session) throws Exception{
+		if(sub == 0){
 			sdao.createS(preNum);
+			dao.up_sub(preNum);
 		}
+		
+		dto = (SurveyDTO) dao.read(preNum);
+		sdto =	(SubSurveyDTO) sdao.read(preNum);
+		
+		String surID = "";
+		Cookie[] cookies = request.getCookies();
+	
+		for (int i = 0; i < cookies.length; i++) {
+			Cookie surCook = cookies[i];
+			if(surCook.getName().equals("surID")){
+				surID = surCook.getValue();
+			}
+		}
+	
 		model.addAttribute("dto", dto);
 		model.addAttribute("sdto", sdto);
-		model.addAttribute("col", col);
-		model.addAttribute("word", word);
-		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("surID", surID);		
+	
 		return "/survey/read";
 	}
 	
@@ -111,15 +126,7 @@ public class SurveyController {
 		int sno = ((nowPage -1)*recordPerPage)+1;
 		int eno = nowPage * recordPerPage;
 		
-		String surID = "";
-		Cookie[] cookies = request.getCookies();
-		Cookie surCook = null;
-		for (int i = 0; i < cookies.length; i++) {
-			surCook = cookies[i];
-			if(surCook.getName().equals("surID")){
-				surID = surCook.getValue();
-			}
-		}
+	
 		
 		Map map = new HashMap();
 		map.put("col", col);
@@ -142,7 +149,7 @@ public class SurveyController {
 		model.addAttribute("col", col);
 		model.addAttribute("word", word);
 		model.addAttribute("paging", paging);
-		model.addAttribute("surID", surID);
+
 		
 		
 		return "/survey/list";
