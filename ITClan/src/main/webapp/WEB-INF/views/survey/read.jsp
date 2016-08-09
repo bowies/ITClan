@@ -15,12 +15,29 @@ table {
 </style>
 <script type="text/javascript">
 function chE(memberID){
+
 	if('${surID}'==memberID){
 		alert("결과보기를 클릭하세요");
 		return false;
 	}
+	if('${date}> ${dto.enddate}'){
+		alert("설문기간이 지났습니다.");
+		return false;
+	}
 	
 }
+function chart(preNum){
+		
+		
+		var url="./chart";
+		url = url + "?preNum="+preNum;
+		url = url + "&nowPage=${param.nowPage}";
+	 	url = url + "&col=${param.col}";
+	 	url = url + "&word=${param.word}";
+
+		wr = window.open(url,"chart","width=900,height=500"); 
+		wr.moveTo((window.screen.width-900)/2, (window.screen.height-500)/2);
+} 
 </script>
 </head>
 <body>
@@ -52,7 +69,7 @@ function chE(memberID){
 </table>
 <div style="margin: auto;">
 <input type="submit" value="확인">
-<input type="button" value="결과" name="last" onclick="./read?preNum=${param.preNum}">
+<input type="button" value="결과" name="last" onclick="javascript:chart('${param.preNum}')">
 </div>
 </form> 
 

@@ -1,5 +1,7 @@
 package spring.sts.itclan;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +39,17 @@ public class SurveyController {
 		mgr.Delete(preNum);		
 		return "redirect:/survey/list";
 	}
+	@RequestMapping("/survey/chart")
+	public String chart(SurveyDTO dto , SubSurveyDTO sdto,Model model,int preNum) throws Exception{
+		dto = (SurveyDTO) dao.read(preNum);
+		sdto = (SubSurveyDTO) sdao.read(preNum);
+		
+		model.addAttribute("dto", dto);
+		model.addAttribute("sdto", sdto);
+		
+		return "/survey/chart";
+	}
+	
 	
 	@RequestMapping(value="/survey/read",method=RequestMethod.POST)
 	public String readIn(String str,int preNum,HttpSession session,
@@ -86,10 +99,13 @@ public class SurveyController {
 				surID = surCook.getValue();
 			}
 		}
-	
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
+		
 		model.addAttribute("dto", dto);
 		model.addAttribute("sdto", sdto);
 		model.addAttribute("surID", surID);		
+		model.addAttribute("date", sdf.format(date));
 	
 		return "/survey/read";
 	}

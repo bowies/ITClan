@@ -23,16 +23,9 @@ tr td{
 </style>
 <script type="text/javascript">
 function read(preNum,sub,enddate){
-	var dateObj = new Date();
-	var year = dateObj.getFullYear();
-	var month = dateObj.getMonth()+1;
-	var day = dateObj.getDate();
-	var today = year + "-" + month + "-" + day;
+
 	if('${sessionScope.memberID}'==""){
 		alert("로그인을하세요");
-		return false;
-	}else if(today > enddate){
-		alert("설문조사 기간이 지났습니다.");
 		return false;
 	}else{
 		var url = "./read";
