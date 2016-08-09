@@ -7,7 +7,7 @@
 ul#menu li{
 display : inline;
 }
-ul#menu li a{
+ul#menu li a{ 
 background-color: #3399ff;
 color:white;
 padding : 10px 20px;
@@ -58,9 +58,9 @@ padding-right: 30px
      <li><a href="${pageContext.request.contextPath}/bbs/create">글생성</a></li>
      <li><a href="${pageContext.request.contextPath}/memo/list">메모목록</a></li>
      <li><a href="${pageContext.request.contextPath}/memo/create">메모생성</a></li>
-     <li><a href="${pageContext.request.contextPath}/image/list">이미지목록</a></li>
-     <li><a href="${pageContext.request.contextPath}/image/create">이미지생성</a></li>
-     <li><a href="${pageContext.request.contextPath}/cal/calendar">일정관리</a></li>
+     <li><a href="${pageContext.request.contextPath}/notice/list">공지사항리스트</a></li>
+     <li><a href="${pageContext.request.contextPath}/notice/create">공지사항생성</a></li>
+     <li><a href="${pageContext.request.contextPath}/notice/list">공지사항</a></li>
      
      <c:if test="${not empty sessionScope.id and sessionScope.grade == 'A'}">
      <li id="admin"><a href="${pageContext.request.contextPath}/admin/list">회원목록</a></li>

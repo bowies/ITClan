@@ -28,11 +28,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<select id="list" resultType="NoticeDTO" parameterType="Map">
-		select  noticeNum , title, content, viewCnt, regDate, r
+	select  noticeNum , title, content, viewCnt, regDate, r
 		from(
 			select  noticeNum , title, content, viewCnt, regDate, rowNum r
 			from(
-				select noticeNum , title, content, viewCnt, regDate 
+				select noticeNum, title, content, viewCnt, regDate 
 				from notice  
 		<where>
 			<choose>

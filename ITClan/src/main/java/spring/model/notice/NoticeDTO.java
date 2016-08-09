@@ -6,6 +6,7 @@ public class NoticeDTO {
 	private String content;
 	private int viewCnt;
 	private String regDate;
+
 	public int getNoticeNum() {
 		return noticeNum;
 	}
