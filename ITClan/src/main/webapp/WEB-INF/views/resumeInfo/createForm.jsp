@@ -34,6 +34,23 @@ function input(f) {
 		f.disableGrade[0].focus();
 		return false;
 	}
+/* 	if(f.disableGrade[0].checked==false){
+		f.disableGrade[0].checked==false;
+	}
+	if(f.disableGrade[1].selectedIndex==0){
+		f.disableGrade[1].options.val="";
+	}
+	if(f.disableGrade[2].checked==false){
+		f.disableGrade[2].checked==false;
+	} */
+	  /* for(var i=0;i<document.f.disableGrade.length;i++){ //폼의 원소를 따라 반복하여
+		//원소가 라디오나, 체크박스라면,
+		   if(document.f.disableGrade[i].type=='radio'||document.f.disableGrade[i].type=='select'){
+			   document.f.disableGrade[i].checked=false; //체크된 내용을 없애고,
+			   alert(document.f.disableGrade[i].value);
+		   }
+		   
+		 } */
 	
 	if(f.military[0].checked==false && f.military[1].checked==false && f.military[2].checked==false){
 		alert("병역사항을 선택해주세요.");
@@ -83,73 +100,174 @@ function input(f) {
 		f.exField.focus();
 		return false;
 	}
-}
-
-function licenseCreate(limax){
-	if(limax>=5){
-		alert("5개 이상");
+/*  	if(f.schoolName[0].value && f.schoolName[1].value){
+		f.schoolName[0].value() || f.schoolName[1].value();
+		f.schoolName[0].value;
+		f.schoolName[1].value;
 		return false;
-	}else {
-	var url = "../license/create";
-	wr = window.open(url,"자격증","width=500,height=400"); 
-    wr.moveTo((window.screen.width-500)/2, (window.screen.height - 400)/2);// x, y 
-	
-	}
-}
-
-function externalactivityCreate(exmax){
-	if(exmax>=5){
-		alert("5개 이상");
-		return false;
-	}else{
-	var url = "../externalActivity/create";
-	wr = window.open(url,"대외활동","width=500,height=400"); 
-    wr.moveTo((window.screen.width-500)/2, (window.screen.height - 400)/2);// x, y
-	}
+	} */
 }
 
 </script>
+ 
+ <!--   <script type="text/javascript">
+   
+       $(document).ready(function(){
+            $('#post').click(function() {
+            	url="../license/create"  // GET 
+                    wr = window.open(url,"아이디검색","width=500,height=400"); 
+                    wr.moveTo((window.screen.width-500)/2, (window.screen.height-400)/2),// x, y 
+                   
+                 function(data){
+                     $('#createForm').html(data);
+                 };
+            });
+       });
+   </script> -->
+
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script type="text/javascript">
 
-$(function(){
-	$("#t1").val("0000").css("color","#000000").one("focus",function(){
-		$(this).val("").css("color","#000000");
-	});
-	$("#t2").val("00").css("color","#000000").one("focus",function(){
-		$(this).val("").css("color","#000000");
-	});
-	$("#t3").val("0000").css("color","#000000").one("focus",function(){
-		$(this).val("").css("color","#000000");
-	});
-	$("#t4").val("00").css("color","#000000").one("focus",function(){
-		$(this).val("").css("color","#000000");
-	});
-	$("#t5").val("0000").css("color","#000000").one("focus",function(){
-		$(this).val("").css("color","#000000");
-	});
-	$("#t6").val("00").css("color","#000000").one("focus",function(){
-		$(this).val("").css("color","#000000");
-	});
-	$("#t7").val("0000").css("color","#000000").one("focus",function(){
-		$(this).val("").css("color","#000000");
-	});
-	$("#t8").val("00").css("color","#000000").one("focus",function(){
-		$(this).val("").css("color","#000000");
-	});
-});
+/* function aa(){
+	var url ="http://www.work.go.kr/common/popup/PopJobsSrchList.do?returnFunction=setJobCd&returnKey=0&popupType=Y&parentType=insert&keywords=N&isDelegateJobYn=N#";
+     wr = window.open(url,"아이디검색","width=500,height=400"); 
+     wr.moveTo((window.screen.width-500)/2, (window.screen.height-400)/2);// x, y
+     
+} */
+/* $(document).ready(function(){
+	  $("#post").click(function(){
+		  $.post("/license/create");
+				 
+		  
+		   $.ajax({
+			    method: "POST",
+			    url: "/license/create",
+			    data: $('#createForm').serialize(),  // 폼데이터 직렬화
+			    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+			    dataType: "json",   // 데이터타입을 JSON형식으로 지정
+			    success: function(data) { // data: 백엔드에서 requestBody 형식으로 보낸 데이터를 받는다.
+			        if(data.code == '0') {
+			            alert("code:"+ data.code + "\n" + "msg:" + data.msg);
+			        } else {
+			            alert("code:" + data.code);
+			        }    
+			    },
+			    error: function(jqXHR, textStatus, errorThrown) {
+			        //에러코드
+			    }
+			}); 
 
+	  });
+}); */ 
+
+
+var cnt=1;
+
+function licenseCreate(){
+	if(cnt<=4){
+		alert(cnt)
+		cnt+=1;
+		var copyval = $(".license").find("#lidiv").clone();
+		  
+		copyval.find("#lidel").click(function(){
+			alert("자격증을 삭제하시겠습니까?");
+			  cnt-=1;
+			  $(this).closest("#lidiv").remove();
+		});
+		$("#TD").append(copyval);
+	}else{
+		alert("5개 이상을 추가할수없습니다.");
+		return false;
+	}
+}
+$(document).ready(function() {
+	  $("#TDdel").click(function(){
+		  alert("자격증을 삭제하시겠습니까?");
+		  cnt-=1;
+		  $(this).closest("#TDdiv").remove();
+	  }); 
+}); 
+
+
+function externalactivityCreate(){
+if(cnt<=4){
+	cnt+=1;
+	  var copyval = $(".activity").find("#actdiv");
+	  alert(cnt);
+	  copyval.find("#actdel").click(function(){
+		 if(cnt == 1){
+			  alert("경력사항 항목은 최소 1개 이상 입력하셔야 합니다.");
+		  }else {
+			  alert("경력사항을 삭제하시겠습니까?");
+			  cnt-=1;
+			  $(this).closest("#actdiv").remove();
+		  } 
+	  });
+	  $("#TB").append(copyval); 
+}else {
+	alert("5개 이상을 추가할수없습니다.");
+	return false;
+	}
+} 
+$(document).ready(function() {
+	  $("#TBdel").click(function(){
+		   if(cnt == 1){	   
+				  alert("경력사항 항목은 최소 1개 이상 입력하셔야 합니다.");
+		  }else {
+			  alert("경력사항을 삭제하시겠습니까?");
+			  cnt-=1;
+			  $(this).closest("#TBdiv").remove();
+		  } 
+	  }); 
+}); 
+
+//---------------------------------------------------------------------------------------
+
+	//재학기간
+	$(function() {
+		$("#t1").val("0000").css("color", "#000000").one("focus", function() {
+			$(this).val("").css("color", "#000000");
+		});
+		$("#t2").val("00").css("color", "#000000").one("focus", function() {
+			$(this).val("").css("color", "#000000");
+		});
+		$("#t3").val("0000").css("color", "#000000").one("focus", function() {
+			$(this).val("").css("color", "#000000");
+		});
+		$("#t4").val("00").css("color", "#000000").one("focus", function() {
+			$(this).val("").css("color", "#000000");
+		});
+		$("#t5").val("0000").css("color", "#000000").one("focus", function() {
+			$(this).val("").css("color", "#000000");
+		});
+		$("#t6").val("00").css("color", "#000000").one("focus", function() {
+			$(this).val("").css("color", "#000000");
+		});
+		$("#t7").val("0000").css("color", "#000000").one("focus", function() {
+			$(this).val("").css("color", "#000000");
+		});
+		$("#t8").val("00").css("color", "#000000").one("focus", function() {
+			$(this).val("").css("color", "#000000");
+		});
+	});
+	//---------------------------------------//
+
+	//장애등급
 	$(document).ready(function() {
 		$("#grade").hide();
 		$("#disable").click(function() {
 			$("#grade").show();
 		});
-		$("#normal").click(function () {
+		$("#normal").click(function() {
 			$("#grade").hide();
 		});
 	});
+	//---------------------------------------//
+
 	
+	
+	//사진 보여주기
 	$(document).ready(function() {
 		function readURL(input) {
 			if (input.files && input.files[0]) {
@@ -171,64 +289,88 @@ $(function(){
 			readURL(this);
 		});
 	});
+	//---------------------------------------//
 
+	//경력사항
+	$(document).ready(function() {
+		 $("#activity").hide();
+		$("#artadd").hide();
+		$("#TB").hide();
+		$("#newcomer").click(function() {
+			$("#activity").hide();
+			$("#artadd").hide();	
+			$("#TB").hide();
+		});
+	});
+
+	$(document).ready(function() {
+		$("#career").click(function() {
+			$("#activity").hide();
+			$("#artadd").show();
+			$("#TB").show();
+
+		});
+	});
+	//---------------------------------------//
+
+	//학력사항
 	$(document).ready(function() {
 		$("#shigh").hide();
 		$("#sgreat").hide();
-		$("#edhigh").click(function () {
+		$("#edhigh").click(function() {
 			$("#shigh").show();
 			$("#sgreat").hide();
 		});
 	});
-	
+
 	$(document).ready(function() {
 		$("#shigh").hide();
 		$("#sgreat").hide();
-		$("#edgreat").click(function () {
+		$("#edgreat").click(function() {
 			$("#sgreat").show();
 			$("#shigh").hide();
 		});
 	});
-	
+
 	$(document).ready(function() {
 		$("#shigh").hide();
 		$("#sgreat").hide();
-		$("#edgreat2").click(function () {
+		$("#edgreat2").click(function() {
 			$("#sgreat").show();
 			$("#shigh").hide();
 		});
 	});
-	
+
 	$(document).ready(function() {
 		$("#shigh").hide();
 		$("#sgreat").hide();
-		$("#edgreat3").click(function () {
+		$("#edgreat3").click(function() {
 			$("#sgreat").show();
 			$("#shigh").hide();
 		});
 	});
-	
+
 	$(document).ready(function() {
-	$("#edu").click(function () {
-		$("#shigh").hide();
-		$("#sgreat").hide();
-	});
-});
-	
-	$(document).ready(function() {
-		$("#edu2").click(function () {
+		$("#edu").click(function() {
 			$("#shigh").hide();
 			$("#sgreat").hide();
 		});
 	});
-</script>
 
+	$(document).ready(function() {
+		$("#edu2").click(function() {
+			$("#shigh").hide();
+			$("#sgreat").hide();
+		});
+	});
+	//---------------------------------------//
+</script>
 </head>
 <body>
 	<form action="./create" method="post"
 		 enctype="multipart/form-data" onsubmit="return input(this)">
 		 
-		<input type="hidden" name="memberID" value="${personalmemberdto.memberID }">
+		<input type="hidden" name="memberID" value="${memberID }">
 		
 		<div style="width: 960px; margin: auto;">
 			<h1>회원정보</h1>
@@ -293,7 +435,9 @@ $(function(){
 
 			<tr>
 				<th>이메일</th>
-				<td>${personalmemberdto.email }</td>
+				<td>${personalmemberdto.email }
+				<input type="button" onclick="aa()">
+				</td>
 			</tr>
 
 
@@ -328,7 +472,7 @@ $(function(){
 		</div>
 		<br>
 		
-<!-- 		<div id="shigh">
+ 		<div id="shigh">
 		<div style="width: 960px; margin: auto;">
 			<label>=고등학교</label>
 		</div>
@@ -377,8 +521,9 @@ $(function(){
 				</td>
 			<tr>		
 		</table>
-		</div> -->
+		</div>
 		
+		<div id="sgreat">
 		<div style="width: 960px; margin: auto;">
 			<label>=대학·대학교·대학원</label>
 		</div>
@@ -391,7 +536,8 @@ $(function(){
 			
 			<tr>
 				<th style="text-align: center; background-color: #D9E5FF;">학교명</th>
-				<td><input type="text" name="schoolName" placeholder="학교명을입력하세요." style="width: 340px;"></td>
+				<td><input type="text" name="schoolName" placeholder="학교명을입력하세요." style="width: 340px;">
+				</td>
 			</tr>
 			
 			<tr>
@@ -432,110 +578,164 @@ $(function(){
 				</td>		
 			</tr>
 		</table>
+		</div>
 		
-		<br><br>
+		 <br><br>
 		<div style="width: 960px; margin: auto;">
-			<h1>경력사항</h1>
+			<h1>경력사항
+			<label style="font-size: small;">(최대 5개 입력)</label>
+			</h1>
 		</div>
 		
 		<div style="text-align: center; margin: auto; background-color: #D9E5FF; border: 2px solid #2478FF; padding-bottom: 15px; padding-top: 15px; width: 960px;">
 			<b>경력사항 *</b>
-			<input type="radio" name="career" value="신입">신입
-			<input type="radio" name="career" value="경력">경력
-			<select name="career">
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-				<option value=""></option>
-			</select>
+			<input type="radio" name="career" id="newcomer" value="신입">신입
+			<input type="radio" name="career" id="career" value="경력">경력
 		</div>
-		
-		<br><br>
+			
+			<div id="activity" class="activity" style="display:none">
+			<div id="actdiv">
+			<table  border="1" style="width: 960px; margin: auto; border: 1px solid #2478FF; margin-bottom: 15px; margin-top: 15px; ">
+			<tr  style="background-color: #D9E5FF;">
+			<th align="left" colspan="2">대외활동
+			<input style="float: right;" type="button" id="actdel" value="-삭제">
+			<input type="hidden" name="memberID" value="${memberID }">
+			</th>
+			</tr>
+			
+			<tr>
+			<th style="text-align: center; background-color: #D9E5FF;">활동구분</th>
+			<td>
+			<input type="text" name="actSector">
+			</td>
+			</tr>
+			
+			<tr>
+			<th style="text-align: center; background-color: #D9E5FF;">활동기간</th>
+			<td>
+			<input type="text" name="actPeriod">
+			</td>
+			</tr>
+			
+			<tr>
+			<th style="text-align: center; background-color: #D9E5FF;">활동내용</th>
+			<td>
+			<input type="text" name="actContent">
+			</td>
+			</tr>
+			</table>
+			</div>
+			</div>
+			
+			<br>
+			<div id="TB">
+			<div id="TBdiv">
+			<table  border="1" style="width: 960px; margin: auto; border: 1px solid #2478FF; margin-bottom: 15px; margin-top: 15px; ">
+			<tr  style="background-color: #D9E5FF;">
+			<th align="left" colspan="2">대외활동
+			<input style="float: right;" type="button" id="TBdel" value="-삭제">
+			<input type="hidden" name="memberID" value="${memberID }">
+			</th>
+			</tr>
+			
+			<tr>
+			<th style="text-align: center; background-color: #D9E5FF;">활동구분</th>
+			<td>
+			<input type="text" name="actSector">
+			</td>
+			</tr>
+			
+			<tr>
+			<th style="text-align: center; background-color: #D9E5FF;">활동기간</th>
+			<td>
+			<input type="text" name="actPeriod">
+			</td>
+			</tr>
+			
+			<tr>
+			<th style="text-align: center; background-color: #D9E5FF;">활동내용</th>
+			<td>
+			<input type="text" name="actContent">
+			</td>
+			</tr>
+			</table>
+			</div>
+			</div>
+			
+			<br>
+			<div style="width: 960px; margin: auto;">
+			<input style="float: right;" type="button" value="+추가" id="artadd" onclick="externalactivityCreate()">
+			</div>
+			
+			
+		 <br><br>	
 		<div style="width: 960px; margin: auto;">
 			<h1>자격증
 			<label style="font-size: small;">(최대 5개 입력)</label>
 			</h1>
-			
-			<input type="button" value="+추가" onclick="licenseCreate('${limax}')"><br><br>
- 			<c:forEach var="licensedto" items="${licenselist }">
-			<input type="hidden" name="licenseNum" value="${licensedto.licenseNum }">
-			<input type="hidden" name="memberID" value="${licenselistdto.memberID }">
-			<div style=" margin: auto; background-color: #D9E5FF; border: 2px solid #2478FF; padding-bottom: 15px; padding-top: 15px; width: 960px;">
-			<div>
-			<label>자격증</label>
-			<label style="float: right;"> 
-			<input type="button" value="-삭제" onclick="location.href='../license/delete'">
-			</label>
-			</div>
-			<hr>
-			
-			<div>
-			<label>자격증명</label>
-			<label>
-			${licensedto.qualification }
-			</label>
-			</div>
-			<hr>
-			
-			<div>
-			<label>취득일자</label>
-			<label>
-			${licensedto.takeDate }
-			</label>
-			</div>
-			</div>
-			<br>
-			</c:forEach>
+			<input type="button" value="+추가" onclick="licenseCreate()">
 		</div>
-		
-		<br><br>
-		<div style="width: 960px; margin: auto;">
-			<h1>대외활동
-			<label style="font-size: small;">(최대 5개 입력)</label>
-			</h1>
-			
-			<input type="button" value="+추가" onclick="externalactivityCreate('${exmax}')"><br><br>
-			
- 			<c:forEach var="externalactivitydto" items="${externalactivitylist }">
-			<input type="hidden" name="actNum" value="${externalactivitydto.actNum }">
-			<input type="hidden" name="memberID" value="${externalactivitydto.memberID }">
-			<div style=" margin: auto; background-color: #D9E5FF; border: 2px solid #2478FF; padding-bottom: 15px; padding-top: 15px; width: 960px;">
-			<div>
-			<label>대외활동</label>
-			<label style="float: right;"> 
-			<input type="button" value="-삭제" onclick="location.href='../externalactivity/delete'">
-			</label>
-			</div>
-			<hr>
-			
-			<div>
-			<label>활동구분</label>
-			<label>
-			${externalactivitydto.actSector }
-			</label>
-			</div>
-			<hr>
-			
-			<div>
-			<label>활동기간</label>
-			<label>
-			${externalactivitydto.actPeriod }
-			</label>
-			</div>
-			<hr>
-			
-			<div>
-			<label>활동내용</label>
-			<label>
-			${externalactivitydto.actContent }
-			</label>
-			</div>
-			</div>
 			<br>
-			</c:forEach>
-		</div>
+			
+			<div class="license">
+			<div id="lidiv">
+			<table border="1" style="width: 960px; margin: auto; border: 1px solid #2478FF; margin-bottom: 15px; margin-top: 15px; ">
+			<tr style="background-color: #D9E5FF;">
+			<th align="left" colspan="2">자격증
+			<input type="hidden" name="memberID" value="${memberID }">
+			<input style="float: right;" type="button" id="lidel" value="-삭제">
+			</th>
+			</tr>
+			
+			<tr>
+			<th style="text-align: center; background-color: #D9E5FF;">자격증명</th>
+			<td>
+			<input type="text" name="qualification">
+			</td>
+			</tr>
+			
+			<tr>
+			<th style="text-align: center; background-color: #D9E5FF;">취득일자</th>
+			<td>
+			<input type="text" name=takeDate>
+			<input type="button" value="확인">
+			</td>
+			</tr>
+			</table>
+			</div>
+			</div>
+
+
+			<div id="TD">
+			<div id="TDdiv">
+			<table border="1" style="width: 960px; margin: auto; border: 1px solid #2478FF; margin-bottom: 15px; margin-top: 15px; ">
+			<tr style="background-color: #D9E5FF;">
+			<th  align="left" colspan="2">자격증
+			<input type="hidden" name="memberID" value="${memberID }">
+			<input style="float: right;" type="button" id="TDdel" value="-삭제">
+			</th>
+			</tr>
+			
+			<tr>
+			<th style="text-align: center; background-color: #D9E5FF;">자격증명</th>
+			<td>
+			<input type="text" name="qualification">
+			</td>
+			</tr>
+			
+			<tr>
+			<th style="text-align: center; background-color: #D9E5FF;">취득일자</th>
+			<td>
+			<input type="text" name=takeDate>
+			<input type="button" value="확인" style="float: right;">
+			</td>
+			</tr>
+			</table>
+			</div>
+			</div>
+			
+			<div id="createForm">
+			</div>
 		
  		<br><br>
 		<div style="width: 960px; margin: auto;">
@@ -610,7 +810,7 @@ $(function(){
 				<tr>
 					<th>지원분야</th>
 					<td>
-						<input type="button" id="parentId" name="exField">
+						<input type="text" name="exField">
 					</td>
 				</tr>
 			</table> 
@@ -621,6 +821,5 @@ $(function(){
 			<input type="submit" value="전송">
 		</div>
 	</form> 
-
 </body>
 </html>

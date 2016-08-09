@@ -578,7 +578,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 			if ( privates )
 			{
 				var originalConstructor = $;
-				$ = function()
+				ㅂ = function()
 				{
 					// Create (and get) the private namespace.
 					var _ = this._ || ( this._ = {} );

@@ -7,11 +7,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <resultMap type="PortFolioDTO" id="ManyMap">
 	<result property="portfolioNum" column="portfolioNum"/>
+	<result property="portfolioName" column="portfolioName"/>
+	<result property="memberID" column="memberID"/>
+	<collection property="portfolioList" column="memberID" javaType="List" ofType="PersonalMemberDTO"
+				resultMap="portfolio.PortFolioDTOListMap"/>
 </resultMap>
-<select id="list" parameterType="Map" resultType="PortFolioDTO">
-	select portfolioNum, portfolioName
-	from portFolio
-	where memberID = #{memberID}
+<resultMap type="PersonalMemberDTO" id="PortFolioDTOListMap">
+	<result property="memberID" column="memberID"/>
+</resultMap>
+
+<select id="list" parameterType="Map" resultMap="ManyMap">
+	select r.memberID, p.portfolioNum, p.portfolioName
+	from personalMember r, portFolio p
+	where r.memberID = p.memberID 
+	and r.memberID = #{memberID}
 	order by portfolioNum ASC
 </select>
 

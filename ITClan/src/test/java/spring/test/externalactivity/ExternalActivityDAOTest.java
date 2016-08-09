@@ -68,7 +68,7 @@ public class ExternalActivityDAOTest {
 		dto.setActPeriod("2015.09~2016.04");
 		dto.setActSector("아르바이트");
 		dto.setActContent("편의점");
-		dto.setMemberID("ccc");
+		dto.setMemberID("aaa");
 		assertEquals(1, dao.create(dto));
 	}
 

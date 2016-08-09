@@ -50,7 +50,7 @@ public class LicenseDAOTest {
 		Map map = new HashMap();
 		map.put("memberID", "aaa");
 		List<LicenseDTO> list = dao.list(map);
-		assertEquals(1, list.size());
+		assertEquals(2, list.size());
 	}
 
 	@Test @Ignore

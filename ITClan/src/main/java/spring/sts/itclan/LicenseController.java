@@ -24,7 +24,7 @@ public class LicenseController {
 		if(memberID==null){
 			memberID = (String)session.getAttribute(memberID);
 		}
-		memberID = "aaa";
+		memberID = "aaaa";
 				
 		model.addAttribute("memberID", memberID);
 		
@@ -32,12 +32,20 @@ public class LicenseController {
 	}
 	
 	@RequestMapping(value="/license/create",method=RequestMethod.POST)
-	public String create( Model model,String memberID, LicenseDTO licensedto) throws Exception{
+	public String create(Model model,String memberID, LicenseDTO licensedto) throws Exception{
 		
 		if(licensedao.create(licensedto)>0){
 			return "/license/createProc";
 		}else {
 			return "error/error";
 		}
+	}
+	
+	@RequestMapping(value="/license/delete")
+	public String delete(int licenseNum) throws Exception{
+		
+		licensedao.delete(licenseNum);
+		return "redirect:../resumeInfo/create";
+		
 	}
 }

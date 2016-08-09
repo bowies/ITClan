@@ -5,10 +5,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+/* function input(f){
+	$(opener.document).find("#parentId").append(html);
+	
+} */
+function one(){
+	window.self.close();
+}
+
+</script>
 </head>
 <body>
-<form action="./create" method="post">
+<form action="./create" method="post" >
 <input type="text" name="memberID" value="${memberID }">
+<div id="bbb">
 <div>
 <label>활동구분
 <input type="text" name="actSector">
@@ -21,10 +32,11 @@
 </div>
 <div>
 <label>활동내용
-<input type="text" name="actContent">
+<input type="text" name="actContent" >
 </label>
 </div>
-<input type="submit" value="전송">
+</div>
+<input type="submit" value="전송" onclick="one()">
 </form>
 </body>
 </html>

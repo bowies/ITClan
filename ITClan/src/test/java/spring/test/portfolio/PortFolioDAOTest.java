@@ -48,15 +48,15 @@ public class PortFolioDAOTest {
 		Map map = new HashMap();
 		map.put("memberID", "bbb");
 		List<PortFolioDTO> list = dao.list(map );
-		assertEquals(3, list.size());
+		assertEquals(0, list.size());
 	}
 
 	@Test @Ignore
 	public void testCreate() throws Exception {
 		PortFolioDAO dao = (PortFolioDAO)beans.getBean("portfoliodao");
 		PortFolioDTO dto = new PortFolioDTO();
-		dto.setMemberID("bbb");
-		dto.setPortfolioName("포트폴리오.hwp");;
+		dto.setMemberID("ccc");
+		dto.setPortfolioName("포트폴리오.hwp");
 		assertEquals(1, dao.create(dto));
 	}
 

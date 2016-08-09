@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import spring.model.license.LicenseDAO;
 import spring.model.license.LicenseDTO;
 import spring.model.personalmember.PersonalMemberDAO;
 import spring.model.personalmember.PersonalMemberDTO;
+import spring.model.portfolio.PortFolioDAO;
 import spring.model.resume.ResumeDAO;
 import spring.model.resumeinfo.ResumeInfoDAO;
 import spring.model.resumeinfo.ResumeInfoDTO;
@@ -44,21 +47,27 @@ public class ResumeInfoController {
 	@Autowired
 	private ResumeDAO resumedao;
 	
+	@Autowired
+	private PortFolioDAO portfoliodao;
+	
 	
 	@RequestMapping(value="/resumeInfo/create",method=RequestMethod.GET)
-	public String create(Model model, HttpSession session, String memberID) throws Exception {
+	public String create(ResumeInfoDTO resumeinfodto, Model model, HttpSession session) throws Exception {
 		
-		if(memberID==null){
+		String memberID = "";
+		
+		if(memberID==""){
 		memberID = (String)session.getAttribute(memberID);
 		}
-		memberID = "aaa";
+		memberID = "ccc";
 		
 		PersonalMemberDTO personalmemberdto = (PersonalMemberDTO) personalmemberdao.read(memberID);
 		
-		model.addAttribute("personalmemberdto", personalmemberdto);
-		
 		Map map = new HashMap();
 		map.put("memberID", memberID);
+		
+		model.addAttribute("memberID", memberID);
+		model.addAttribute("personalmemberdto", personalmemberdto);
 		
 		//자격증
 		List<LicenseDTO>licenselist = licensedao.list(map);
@@ -98,9 +107,8 @@ public class ResumeInfoController {
 	}
 	
 	@RequestMapping(value="/resumeInfo/create",method=RequestMethod.POST)
-	public String create(HttpServletRequest request, Model model, ResumeInfoDTO resumeinfodto, PersonalMemberDTO personalmemberdto) throws Exception {
+	public String create( HttpServletRequest request, Model model, ResumeInfoDTO resumeinfodto, LicenseDTO licensedto, ExternalActivityDTO externalactivitydto) throws Exception {
 	
-		
 		String basePath = request.getRealPath("/storage/resumeInfo_img");
 		String picture = "";
 		
@@ -116,23 +124,25 @@ public class ResumeInfoController {
 		
 		resumeinfodto.setPicture(picture);
 		
-		
-		if(resumeinfodao.create(resumeinfodto)>0){
-			model.addAttribute("personalmemberdto", personalmemberdto);
-			return "redirect:/";
+		model.addAttribute("resumeinfodto", resumeinfodto);
+		model.addAttribute("licensedto", licensedto);
+		model.addAttribute("externalactivitydto", externalactivitydto);
+		return "/resumeInfo/createProc";
+/*		if(resumeinfodao.create(resumeinfodto)>0){
+			return "../";
 		}
 		else{
 			return "error/error";
-		}
+		}*/
 	}
 	
 	@RequestMapping("/resumeInfo/read")
-	public String read(LicenseDTO licensedto, String memberID, HttpSession session, Model model, PersonalMemberDTO personalmemberdto) throws Exception{
+	public String read(LicenseDTO licensedto, String memberID, HttpSession session, Model model) throws Exception{
 		
 		if(memberID==null){
 		memberID = (String)session.getAttribute(memberID);
 		}
-		memberID = "aaa";
+		memberID = "ccc";
 		
 		Map map = new HashMap();
 		map.put("memberID", memberID);
@@ -141,10 +151,16 @@ public class ResumeInfoController {
 		int limax = licensedao.total(memberID);
 		
 		List<ExternalActivityDTO> externalactivitylist = externalactivitydao.list(map);
-		int exmax = externalactivitydao.total(memberID);
+		
+		int exmax = 0;
+		int i = 1;
+		while(i>0){
+			exmax = exmax+ i;
+			i++;
+		}
 		
 		ResumeInfoDTO resumeinfodto = (ResumeInfoDTO) resumeinfodao.read(memberID);
-		personalmemberdto = (PersonalMemberDTO) personalmemberdao.read(memberID);
+		PersonalMemberDTO personalmemberdto = (PersonalMemberDTO) personalmemberdao.read(memberID);
 		
 		model.addAttribute("resumeinfodto",resumeinfodto);
 		model.addAttribute("personalmemberdto",personalmemberdto);

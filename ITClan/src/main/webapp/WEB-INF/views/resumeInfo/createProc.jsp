@@ -1,0 +1,87 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div>
+학교명 :
+${resumeinfodto.schoolName }
+</div>
+<div>
+학점
+${resumeinfodto.major }
+</div>
+<div>
+전공
+${resumeinfodto.GPA }
+</div>
+<div>
+아이디
+${resumeinfodto.memberID }
+</div>
+<div>
+경력
+${resumeinfodto.education }
+</div>
+<div>
+학력
+${resumeinfodto.career }
+</div>
+<div>
+고용형태
+${resumeinfodto.employmentType }
+</div>
+<div>
+월급
+${resumeinfodto.exSalary }
+</div>
+<div>
+장애등급
+${resumeinfodto.disableGrade }
+</div>
+<div>
+사진
+${resumeinfodto.picture }
+</div>
+<div>
+근무지
+${resumeinfodto.exArea }
+</div>
+<div>
+지원분야
+${resumeinfodto.exField }
+</div>
+<div>
+병역
+${resumeinfodto.military }
+</div>
+<div>
+재학기간
+${resumeinfodto.termTime }
+</div>
+<div>
+자격증명
+${licensedto.qualification }
+</div>
+<div>
+자격증 딴 기간
+${licensedto.takeDate }
+</div>
+<div>
+대외활동
+${externalactivitydto.actPeriod }
+</div>
+<div>
+대외활동 기간
+${externalactivitydto.actSector }
+</div>
+<div>
+대외활동내용
+${externalactivitydto.actContent }
+</div>
+</body>
+</html>

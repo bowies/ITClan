@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<result property="military" column="military"/>
 	<result property="schoolName" column="schoolName"/>
 	<result property="major" column="major"/>
-	<result property="termtime" column="termtime"/>
+	<result property="termTime" column="termTime"/>
 	<result property="GPA" column="GPA"/>
 	<result property="pmdto.memberID" column="memberID"/>
 	<result property="pmdto.name" column="name"/>
@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="read" parameterType="String" resultMap="oneMap">
 select r.memberID, r.education, r.career, r.employmentType, r.exSalary,
 		r.disableGrade, r.picture, r.exArea, r.exField, r.military,
-		r.schoolName, r.major, r.termtime, r.GPA,
+		r.schoolName, r.major, r.termTime, r.GPA,
 		p.memberID, p.name, p.birth, p.email, p.phone, p.address, p.address2
 from ResumeInfo r, PersonalMember p 
 where r.memberID = p.memberID
@@ -40,10 +40,10 @@ and r.memberID = #{memberID}
 </select>
 
 <insert id="create" parameterType="ResumeInfoDTO">
-insert into ResumeInfo (memberID, education, schoolName, major, termtime, GPA,
+insert into ResumeInfo (memberID, education, schoolName, major, termTime, GPA,
  						career, employmentType, exSalary, disableGrade, picture, 
  						exArea, exField, military)
-		values (#{memberID}, #{education}, #{schoolName}, #{major}, #{termtime}, #{GPA},
+		values (#{memberID}, #{education}, #{schoolName}, #{major}, #{termTime}, #{GPA},
 				#{career}, #{employmentType}, #{exSalary}, #{disableGrade}, #{picture}, 
 				#{exArea}, #{exField}, #{military})
 </insert>
@@ -54,7 +54,7 @@ set
 education = #{education},
 schoolName = #{schoolName},
 major = #{major},
-termtime = #{termtime},
+termTime = #{termTime},
 GPA = #{GPA},
 career = #{career},
 employmentType = #{employmentType},

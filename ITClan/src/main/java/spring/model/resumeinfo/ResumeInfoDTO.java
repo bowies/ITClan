@@ -18,7 +18,7 @@ public class ResumeInfoDTO {
     private String military       ;
     private String schoolName	  ;
     private String major		  ;
-    private String termtime		  ;
+    private String termTime		  ;
     private String GPA			  ;
     
     private MultipartFile pictureMF;
@@ -49,13 +49,6 @@ public class ResumeInfoDTO {
 		this.major = major;
 	}
 
-	public String getTermtime() {
-		return termtime;
-	}
-
-	public void setTermtime(String termtime) {
-		this.termtime = termtime;
-	}
 
 	public String getGPA() {
 		return GPA;
@@ -153,6 +146,11 @@ public class ResumeInfoDTO {
 		this.pmdto = pmdto;
 	}
 
-	
-    
+	public String getTermTime() {
+		return termTime;
+	}
+
+	public void setTermTime(String termTime) {
+		this.termTime = termTime;
+	}
 }

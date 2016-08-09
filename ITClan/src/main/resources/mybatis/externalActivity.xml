@@ -11,16 +11,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<result property="actSector" column="actsector"/>
 	<result property="actContent" column="actcontent"/>
 	<result property="memberID" column="memberID"/>
-	<collection property="exActList" column="memberID" javaType="List" ofType="ResumeInfoDTO"
+	<collection property="exActList" column="memberID" javaType="List" ofType="PersonalMemberDTO"
 				resultMap="externalactivity.ExternalActivityDTOListMap"/>
 </resultMap>
-<resultMap type="ResumeInfoDTO" id="ExternalActivityDTOListMap">
+<resultMap type="PersonalMemberDTO" id="ExternalActivityDTOListMap">
 	<result property="memberID" column="memberID"/>
 </resultMap>
 
 <select id="list" parameterType="Map" resultMap="ManyMap">
-		select r.memberID, a.memberID
-		from ResumeInfo r, ExternalActivity a
+		select r.memberID, a.memberID, a.actNum, a.actPeriod, a.actSector, a.actContent
+		from personalMember r, ExternalActivity a
 		where r.memberID = a.memberID
 		and r.memberID = #{memberID}
 		order by actNum ASC

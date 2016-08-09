@@ -35,9 +35,17 @@ public class ExternalActivityController {
 	public String create( Model model,String memberID, ExternalActivityDTO externalactivitydto) throws Exception{
 		
 		if(externalactivitydao.create(externalactivitydto)>0){
-			return "/externalActivity/createProc";
+			return "/externalActivity/createForm";
 		}else {
 			return "error/error";
 		}
+	}
+	
+	@RequestMapping(value="/externalActivity/delete")
+	public String delete(int actNum) throws Exception{
+		
+		externalactivitydao.delete(actNum);
+		return "redirect:../resumeInfo/create";
+		
 	}
 }
