@@ -26,8 +26,7 @@
 
 <DIV class="content">
 
-	<FORM method="POST" action="./list">
-
+	<FORM name ='personalmember' method="POST" action="./list">
 		<select name="col">
 			<option value="title"
 				<c:if test="${col==title}">selected='selected'</c:if>>제목</option>
@@ -43,10 +42,10 @@
 		<c:if test="${sessionScope.grade == 'C'}">
 			<input type='button' value='채용공고 등록'
 				onclick="location.href='../offer/create'">
+			<input type='button' value='지원자 목록'
+				onclick="location.href='../offer/alist'">	
 		</c:if>
-
 	</FORM>
-	<FORM method="GET" action="./list"></FORM>
 </DIV>
 
 <c:forEach var="dto" items="${list}">
