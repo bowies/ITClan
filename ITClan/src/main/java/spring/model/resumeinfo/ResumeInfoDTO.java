@@ -1,5 +1,7 @@
 package spring.model.resumeinfo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import spring.model.personalmember.PersonalMemberDTO;
 
 public class ResumeInfoDTO {
@@ -8,20 +10,30 @@ public class ResumeInfoDTO {
     private String education      ;
     private String career         ;
     private String employmentType ;
-    private int exSalary          ;
+    private String exSalary       ;
     private String disableGrade   ;
     private String picture        ;
     private String exArea         ;
     private String exField        ;
     private String military       ;
-    private String schoolName ;
-    private String major;
-    private String termtime;
-    private String GPA;
+    private String schoolName	  ;
+    private String major		  ;
+    private String termTime		  ;
+    private String GPA			  ;
     
-    
+    private MultipartFile pictureMF;
+
+	private PersonalMemberDTO pmdto;
 	
-    public String getSchoolName() {
+    public MultipartFile getPictureMF() {
+		return pictureMF;
+	}
+
+	public void setPictureMF(MultipartFile pictureMF) {
+		this.pictureMF = pictureMF;
+	}
+	
+	public String getSchoolName() {
 		return schoolName;
 	}
 
@@ -37,13 +49,6 @@ public class ResumeInfoDTO {
 		this.major = major;
 	}
 
-	public String getTermtime() {
-		return termtime;
-	}
-
-	public void setTermtime(String termtime) {
-		this.termtime = termtime;
-	}
 
 	public String getGPA() {
 		return GPA;
@@ -52,8 +57,6 @@ public class ResumeInfoDTO {
 	public void setGPA(String gPA) {
 		GPA = gPA;
 	}
-
-	private PersonalMemberDTO pmdto;
 
 	public String getMemberID() {
 		return memberID;
@@ -87,11 +90,11 @@ public class ResumeInfoDTO {
 		this.employmentType = employmentType;
 	}
 
-	public int getExSalary() {
+	public String getExSalary() {
 		return exSalary;
 	}
 
-	public void setExSalary(int exSalary) {
+	public void setExSalary(String exSalary) {
 		this.exSalary = exSalary;
 	}
 
@@ -143,6 +146,11 @@ public class ResumeInfoDTO {
 		this.pmdto = pmdto;
 	}
 
-	
-    
+	public String getTermTime() {
+		return termTime;
+	}
+
+	public void setTermTime(String termTime) {
+		this.termTime = termTime;
+	}
 }

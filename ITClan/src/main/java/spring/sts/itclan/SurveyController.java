@@ -68,7 +68,7 @@ public class SurveyController {
 		}
 		String surID= (String) session.getAttribute("memberID");
 		Cookie surCook = new Cookie("surID",surID);
-		surCook.setMaxAge(60*62*24*7);
+		surCook.setMaxAge(60*60*24*7);
 		response.addCookie(surCook);
 		
 		

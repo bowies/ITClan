@@ -29,6 +29,21 @@ public class PersonalMemberDAO implements DAOMyBatisInter{
 	public void setMybatis(SqlSessionTemplate mybatis) {
 		this.mybatis = mybatis;
 	}
+	
+	public int resumeCheck(String memberID){
+		return mybatis.selectOne("personalmember.resumeCheck", memberID);
+	}
+	
+	public String resumepic(String memberID){
+		return mybatis.selectOne("personalmember.resumepic", memberID);
+	}
+	public int updatepic(String memberID,String picture){
+		Map map = new HashMap();
+		map.put("memberID", memberID);
+		map.put("picture", picture);
+		return mybatis.update("personalmember.updatepic", map);
+	}
+	
 	public String pwFind(String memberID , String email){
 		Map map = new HashMap();
 		map.put("memberID", memberID);

@@ -28,6 +28,26 @@ public class PersonalmemberController {
 	@Autowired
 	private PersonalMemberMgr mgr;
 	
+	@RequestMapping(value="/personal/updatepic",method=RequestMethod.GET)
+	public String updatepic(String memberID, String picture,Model model){
+		model.addAttribute("picture", picture);
+		model.addAttribute("memberID", memberID);
+		return "/personalmember/updatepic";
+	}
+	
+	@RequestMapping("/personal/main_p")
+	public String main_p(String memberID,HttpSession session,Model model){
+		if(memberID == null){
+		memberID = (String) session.getAttribute("memberID");
+		}
+		int cnt = dao.resumeCheck(memberID);
+		String picture = dao.resumepic(memberID);
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("picture", picture);
+		model.addAttribute("memberID", memberID);
+		return "/personalmember/main_p";
+	}
+	
 	@RequestMapping("/personal/deletePwC")
 	public String deletePwC(String memberID , String passwd,Model model){
 		if(dao.passwdCheck(memberID, passwd)>0){
