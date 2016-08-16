@@ -22,7 +22,7 @@
 	
 	<definition name="/onebyone/reply" extends="main">
 		<put-attribute name="title" value="onebyone agreement!"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/onebyone/replyForm.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/onebyone/reply.jsp"/>
 	</definition>
 
 	<definition name="/onebyone/create" extends="main">
@@ -55,4 +55,3 @@
 	</definition>
 	
 </tiles-definitions> 
-

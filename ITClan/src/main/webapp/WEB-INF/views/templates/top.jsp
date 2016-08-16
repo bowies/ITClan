@@ -56,6 +56,12 @@ padding-right: 30px
      <c:if test="${not empty sessionScope.memberID }">
        <li><a href="${pageContext.request.contextPath}/applycompany/list_personal">글목록</a></li>
      <li><a href="${pageContext.request.contextPath}/applycompany/read_personal">글생성</a></li>
+      <li><a href="${pageContext.request.contextPath}/cal/calendar">일정관리</a></li>
+     <li><a href="${pageContext.request.contextPath}/qna/custom">고객센터</a></li>
+     <li><a href="${pageContext.request.contextPath}/qna/create">qna생성</a></li>
+     <li><a href="${pageContext.request.contextPath}/qna/list">qna목록</a></li>
+     <li><a href="${pageContext.request.contextPath}/onebyone/list">onebyone목록</a></li>
+    <li> <a href="${pageContext.request.contextPath}/onebyone/create"> onebyone 생성 </a></li>
      </c:if>   
    
      <li><a href="${pageContext.request.contextPath}/memo/list">메모목록</a></li>

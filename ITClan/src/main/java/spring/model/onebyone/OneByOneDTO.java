@@ -1,5 +1,7 @@
 package spring.model.onebyone;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class OneByOneDTO {
 
 	private int oneByOneNum;
@@ -7,14 +9,21 @@ public class OneByOneDTO {
 	private String mail;
 	private String title;
 	private String filename;
-
+	private String name;
 	private String id;
 	private int viewcnt;
 	private String regdate;
-	private int grpno;
+	private int grpnum;
 	private int indent;
 	private int ansnum;
-	
+	private MultipartFile filenameMF;
+	public void setFilenameMF(MultipartFile filenameMF) {
+		this.filenameMF = filenameMF;
+	}
+
+	public MultipartFile getFilenameMF() {
+		return filenameMF;
+	}
 
 	public int getViewcnt() {
 		return viewcnt;
@@ -32,13 +41,6 @@ public class OneByOneDTO {
 		this.regdate = regdate;
 	}
 
-	public int getGrpno() {
-		return grpno;
-	}
-
-	public void setGrpno(int grpno) {
-		this.grpno = grpno;
-	}
 
 	public int getIndent() {
 		return indent;
@@ -73,6 +75,7 @@ public class OneByOneDTO {
 	}
 
 	public String getTitle() {
+//		System.out.println("title:"+title);
 		return title;
 	}
 
@@ -102,6 +105,23 @@ public class OneByOneDTO {
 
 	public void setOneByOneNum(int oneByOneNum) {
 		this.oneByOneNum = oneByOneNum;
+	}
+
+	public String getName() {
+		
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getGrpnum() {
+		return grpnum;
+	}
+
+	public void setGrpnum(int grpnum) {
+		this.grpnum = grpnum;
 	}
 
 
