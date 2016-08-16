@@ -104,7 +104,6 @@ $(document).ready(function(){
 <body>
 
 
-
 <div id="wrap">
 <!-- style="width:auto;" -->
 	<div class="w3-navbar w3-light-grey" style="height:400px; width:1250px; margin:auto;"  >
@@ -115,18 +114,9 @@ $(document).ready(function(){
 	<div class="img">
 	    <img width="400px" src="../img/자주찾는.jpg" alt="Fjords">
 	    <ul>
-	  	<li><a href="${pageContext.request.contextPath}/qna/list">글목록 </li></a>
+	  	<li><a href="${pageContext.request.contextPath}/qna/list">Q & A 목록 </li></a>
 	  	</ul>
-	<!--  <div class="desc"> -->
-	<!--   <nav1> -->
-	
-	<!--   <li><a href="">	개인회원 </li></a> -->
-	<!--   <li><a href="">	기업회원</li></a> -->
-		
-	  	
-	<!--   </ul> -->
-	<!--   </nav1> -->
-	<!-- </div> -->
+
 	</div>
 	
 	<div class="img">
@@ -157,6 +147,7 @@ $(document).ready(function(){
 	  </a>
 	   <ul>
 	    <li><a href="${pageContext.request.contextPath}/onebyone/create">1:1 고객상담하기</li></a>
+	    <li><a href="${pageContext.request.contextPath}/qna/chat">실시간 질문하기</li></a>
 	   </ul>
 	
 	</div>
@@ -330,11 +321,7 @@ $(document).ready(function(){
 						    </td>
 						  </tr>
 						  
-					<tr>
-					<td colspan="2">
-							<li><a href="${pageContext.request.contextPath}/qna/chat">임시제작 채팅</a></li>
-					</td>
-					</tr>
+					
 						  
 						  
 						<tr><td colspan="2">&nbsp;</td></tr>	
@@ -343,8 +330,6 @@ $(document).ready(function(){
 
 </table>
 </div>  
-	
-
 
 
 
