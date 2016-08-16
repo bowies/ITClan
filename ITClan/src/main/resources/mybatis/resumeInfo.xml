@@ -43,7 +43,7 @@ and r.memberID = #{memberID}
 insert into ResumeInfo (memberID, education, schoolName, major, termTime, GPA,
  						career, employmentType, exSalary, disableGrade, picture, 
  						exArea, exField, military)
-		values (#{memberID}, #{education}, #{schoolName}, #{major}, #{termTime}, #{GPA},
+		values (#{memberID}, #{education}, #{schoolName}, #{major}, #{termTime}, #{GPA}, 
 				#{career}, #{employmentType}, #{exSalary}, #{disableGrade}, #{picture}, 
 				#{exArea}, #{exField}, #{military})
 </insert>
@@ -60,7 +60,6 @@ career = #{career},
 employmentType = #{employmentType},
 exSalary = #{exSalary},
 disableGrade = #{disableGrade},
-picture = #{picture},
 exArea = #{exArea},
 exField = #{exField},
 military = #{military}

@@ -18,10 +18,8 @@ width: 960px;
 }
 </style>
 <script type="text/javascript">
-	function update(oldpicture) {
+	function update() {
 		var url = "update";
-		url += "?oldpicture=" + oldpicture;
-
 		location.href = url;
 	}
 	
@@ -40,22 +38,50 @@ width: 960px;
 			 
 			location.href=url;
 	}
+		
 </script>
 <body>
-
-	<div style="width: 960px; margin : auto ;">
-
+<div style="width: 960px; margin : auto ;">
 <h1>회원정보</h1>
 </div>
 <table border="1" style="border-collapse: collapse; height: 270px;" >
 <tr >
-<td style="width: 80px;" align="center" rowspan="8">
+<td style="width: 80px;" align="center" rowspan="10">
 <img id="photo" src="../storage/resumeInfo_img/${resumeinfodto.picture }" style="width: 165px; height: 165px;">
 </td>
 </tr>
 <tr style="width: 100px;">
 <th colspan="2">이름  *</th>
-<td colspan="4">${personalmemberdto.name }&nbsp; ${2016-(personalmemberdto.birth.substring(0,2)+1900) }세 / ${personalmemberdto.memberID}</td>
+<td colspan="4">${personalmemberdto.name }&nbsp; ${2016-(personalmemberdto.birth.substring(0,2)+1900) }세 / ${personalmemberdto.memberID} </td>
+</tr>
+
+<tr style="width: 100px;">
+<c:choose>
+<c:when test="${resumeinfodto.military.substring(0,2)=='미필' }">
+</c:when>
+<c:otherwise>
+<th colspan="2">병역사항</th>
+<td colspan="4">${resumeinfodto.military }</td>
+</c:otherwise>
+</c:choose>
+</tr>
+
+<tr style="width: 100px;">
+<th colspan="2">장애여부</th>
+<c:choose>
+<c:when test="${resumeinfodto.disableGrade.substring(0,1)=='-' }">
+<td colspan="4">
+${resumeinfodto.disableGrade.substring(5,8) }
+</td>
+</c:when>
+<c:otherwise>
+<td colspan="4">
+${resumeinfodto.disableGrade.substring(0,2) }
+(${resumeinfodto.disableGrade.substring(3) })
+</td>
+</c:otherwise>
+</c:choose>
+
 </tr>
 
 <tr>
@@ -78,17 +104,9 @@ ${personalmemberdto.email }
 
 
 <tr>
-<th rowspan="3" colspan="2">주소</th>
-</tr>
-
-<tr>
+<th colspan="2">주소</th>
 <td colspan="4">
 ${personalmemberdto.address }
-</td>
-</tr>
-
-<tr>
-<td colspan="4">
 ${personalmemberdto.address2 }
 </td>
 </tr>
@@ -130,10 +148,12 @@ ${exmax }번
 <tr>
 <th colspan="3">희망근무지<br><br>
 <div style="text-align: center; padding-bottom: 20px;">
-${resumeinfodto.exArea }
+${resumeinfodto.exArea.substring(0,2)}
+>
+${resumeinfodto.exArea.substring(4)}
 </div>
 </th>
-<th colspan="3">지원분야<br><br>
+<th colspan="4">지원분야<br><br>
 <div style="text-align: center; padding-bottom: 20px;">
 ${resumeinfodto.exField }
 </div>
@@ -146,12 +166,94 @@ ${resumeinfodto.exField }
 </div>
 </th>
 
-<th colspan="3">자기소개서
+<th colspan="4">자기소개서
 <div style="text-align: center; padding-bottom: 10px;">
 </div>
 </th>
 </tr>
 </table>
+
+<br><br>
+<c:choose>
+	<c:when test="${resumeinfodto.termTime.substring(0,1)==',' }">
+<div style="width: 960px; margin : auto ;">
+<h1>학력사항
+<label style="font-size: small;">(${resumeinfodto.education})</label>
+</h1>
+</div>
+	</c:when>
+<c:otherwise>
+<div style="width: 960px; margin : auto ;">
+<h1>학력사항
+<label style="font-size: small;">(${resumeinfodto.education})</label>
+</h1>
+</div>
+<table border="1" style="border-collapse :collapse; ">
+<tr style="background-color: #AFE1FF;">
+<th style="text-align: center ;">재학기간</th>
+<th style="text-align: center ;">학교명</th>
+<th style="text-align: center ;">전공</th>
+
+<c:choose>
+<c:when test="${resumeinfodto.GPA.substring(0,1)==',' }">
+</c:when>
+<c:otherwise>
+<th style="text-align: center ;">
+학점
+</th>
+</c:otherwise>
+</c:choose>
+
+</tr>
+
+<tr style="text-align: center;">
+  <td>
+${resumeinfodto.termTime.substring(0,4) }년
+${resumeinfodto.termTime.substring(5,7) }월
+(${resumeinfodto.termTime.substring(8,10) })
+~
+${resumeinfodto.termTime.substring(11,15) }년
+${resumeinfodto.termTime.substring(16,18) }월
+(${resumeinfodto.termTime.substring(19) })
+</td>
+
+<td>
+${resumeinfodto.schoolName }
+</td>
+
+<c:choose>
+<c:when test="${resumeinfodto.major.substring(0,1)==','}">
+<td>
+${resumeinfodto.major.substring(1)}
+</td>
+</c:when>
+<c:otherwise>
+<td>
+${resumeinfodto.major.substring(0,majorlast-1) }
+</td>
+</c:otherwise>
+</c:choose>
+
+<c:choose>
+<c:when test="${resumeinfodto.GPA.substring(0,1)==',' }">
+</c:when>
+<c:when test="${resumeinfodto.GPA.substring(GPAlast-4,GPAlast-3)==',' }">
+<td>
+${resumeinfodto.GPA.substring(0,GPAlast-4)} /
+${resumeinfodto.GPA.substring(GPAlast-3)}
+</td>
+</c:when>
+<c:otherwise>
+<td>
+${resumeinfodto.GPA }
+</td>
+</c:otherwise>
+</c:choose>
+</tr>
+</table>
+	</c:otherwise>
+</c:choose>
+
 
 <c:choose>
 <c:when test="${empty licenselist }">
@@ -219,7 +321,16 @@ ${externalactivitydto.actSector }
 		작성자 : <b>${personalmemberdto.name }</b>
 </div>
 
+<c:choose>
+<c:when test="${empty memberID }">
+</c:when>
+<c:otherwise>
+<br>
+<div style="width: 960px; margin : auto ; text-align: center;">
 	<input type="button" value="수정"
-		onclick="update('${resumedto.picture}')">
+		onclick="update()">
+</div>
+</c:otherwise>
+</c:choose>
 </body>
 </html>

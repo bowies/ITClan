@@ -52,24 +52,24 @@ public class ResumeInfoController {
 	
 	
 	@RequestMapping(value="/resumeInfo/create",method=RequestMethod.GET)
-	public String create(ResumeInfoDTO resumeinfodto, Model model, HttpSession session) throws Exception {
-		
+	public String create(HttpServletResponse response, ResumeInfoDTO resumeinfodto, Model model, HttpSession session) throws Exception {
+	
 		String memberID = "";
 		
-		if(memberID==""){
+	/*	if(memberID==""){
 		memberID = (String)session.getAttribute(memberID);
-		}
+		}*/
 		memberID = "ccc";
 		
 		PersonalMemberDTO personalmemberdto = (PersonalMemberDTO) personalmemberdao.read(memberID);
 		
-		Map map = new HashMap();
-		map.put("memberID", memberID);
+/*		Map map = new HashMap();
+		map.put("memberID", memberID);*/
 		
 		model.addAttribute("memberID", memberID);
 		model.addAttribute("personalmemberdto", personalmemberdto);
 		
-		//자격증
+/*		//자격증
 		List<LicenseDTO>licenselist = licensedao.list(map);
 		
 		int limax = licensedao.total(memberID);
@@ -83,7 +83,7 @@ public class ResumeInfoController {
 		int exmax = externalactivitydao.total(memberID);
 		
 		model.addAttribute("externalactivitylist", externalactivitylist);
-		model.addAttribute("exmax", exmax);
+		model.addAttribute("exmax", exmax);*/
 		
 		/*//자기소개서
 		List<ResumeDetailDTO>resumedetaillist = resumedetaildao.list(map);
@@ -107,37 +107,63 @@ public class ResumeInfoController {
 	}
 	
 	@RequestMapping(value="/resumeInfo/create",method=RequestMethod.POST)
-	public String create( HttpServletRequest request, Model model, ResumeInfoDTO resumeinfodto, LicenseDTO licensedto, ExternalActivityDTO externalactivitydto) throws Exception {
-	
-		String basePath = request.getRealPath("/storage/resumeInfo_img");
-		String picture = "";
+	public String create(String memberID, Model model, ResumeInfoDTO resumeinfodto, LicenseDTO licensedto, ExternalActivityDTO externalactivitydto) throws Exception {
 		
-		if(picture==""){
-			picture = "member.jpg";
-		}
-		
-		int size = (int)resumeinfodto.getPictureMF().getSize();
-		
-		if(size>0){
-			picture = Utility.saveFile(resumeinfodto.getPictureMF(), basePath);
-		}
-		
-		resumeinfodto.setPicture(picture);
-		
+
 		model.addAttribute("resumeinfodto", resumeinfodto);
-		model.addAttribute("licensedto", licensedto);
-		model.addAttribute("externalactivitydto", externalactivitydto);
-		return "/resumeInfo/createProc";
-/*		if(resumeinfodao.create(resumeinfodto)>0){
-			return "../";
+		if(resumeinfodao.create(resumeinfodto)>0) {
+			return "redirect:/";
 		}
 		else{
 			return "error/error";
-		}*/
+		}
+	}
+	
+	@RequestMapping(value="/resumeInfo/nextcreate",method=RequestMethod.POST)
+	public String nextcreate(HttpServletRequest request, ExternalActivityDTO externalactivitydto, Model model,String memberID, ResumeInfoDTO resumeinfodto) throws Exception{
+		
+			String basePath = request.getRealPath("/storage/resumeInfo_img");
+			String picture = "";
+			
+			if(picture==""){
+				picture = "member.jpg";
+			}
+			
+			int size = (int)resumeinfodto.getPictureMF().getSize();
+			
+			if(size>0){
+				picture = Utility.saveFile(resumeinfodto.getPictureMF(), basePath);
+			}
+			
+			resumeinfodto.setPicture(picture);
+		
+				Map map = new HashMap();
+				map.put("memberID", memberID);
+		
+				model.addAttribute("memberID", memberID);
+				model.addAttribute("resumeinfodto", resumeinfodto);
+
+				//자격증
+				List<LicenseDTO>licenselist = licensedao.list(map);
+				
+				int limax = licensedao.total(memberID);
+				
+				model.addAttribute("licenselist", licenselist);
+				model.addAttribute("limax", limax);
+				
+				//대외활동
+				List<ExternalActivityDTO>externalactivitylist = externalactivitydao.list(map);
+				
+				int exmax = externalactivitydao.total(memberID);
+				
+				model.addAttribute("externalactivitylist", externalactivitylist);
+				model.addAttribute("exmax", exmax);
+			
+		return "/resumeInfo/nextcreate";
 	}
 	
 	@RequestMapping("/resumeInfo/read")
-	public String read(LicenseDTO licensedto, String memberID, HttpSession session, Model model) throws Exception{
+	public String read( String memberID, HttpSession session, Model model) throws Exception{
 		
 		if(memberID==null){
 		memberID = (String)session.getAttribute(memberID);
@@ -151,62 +177,92 @@ public class ResumeInfoController {
 		int limax = licensedao.total(memberID);
 		
 		List<ExternalActivityDTO> externalactivitylist = externalactivitydao.list(map);
+		int exmax = externalactivitydao.total(memberID);
 		
-		int exmax = 0;
-		int i = 1;
-		while(i>0){
-			exmax = exmax+ i;
-			i++;
-		}
 		
 		ResumeInfoDTO resumeinfodto = (ResumeInfoDTO) resumeinfodao.read(memberID);
 		PersonalMemberDTO personalmemberdto = (PersonalMemberDTO) personalmemberdao.read(memberID);
 		
+		int majorlast = resumeinfodto.getMajor().length();
+		int GPAlast = resumeinfodto.getGPA().length();
+		
+		model.addAttribute("memberID",memberID);
 		model.addAttribute("resumeinfodto",resumeinfodto);
 		model.addAttribute("personalmemberdto",personalmemberdto);
 		model.addAttribute("licenselist", licenselist);
 		model.addAttribute("externalactivitylist", externalactivitylist);
 		model.addAttribute("limax", limax);
 		model.addAttribute("exmax", exmax);
-		
+		model.addAttribute("majorlast", majorlast);
+		model.addAttribute("GPAlast", GPAlast);
 		return "/resumeInfo/read";
 	}
 
 	@RequestMapping(value="/resumeInfo/update",method=RequestMethod.GET)
-	public String update(String memberID, Model model, String oldpicture) throws Exception{
+	public String update(HttpSession session, String memberID, Model model) throws Exception{
+		
+		if(memberID==null){
+			memberID = (String)session.getAttribute(memberID);
+			}
+			memberID = "ccc";
 		
 		ResumeInfoDTO resumeinfodto = (ResumeInfoDTO) resumeinfodao.read(memberID);
+		PersonalMemberDTO personalmemberdto = (PersonalMemberDTO) personalmemberdao.read(memberID);
+		
+		int termTimelast = resumeinfodto.getTermTime().length();
+		int GPAlast = resumeinfodto.getGPA().length();
 		
 		model.addAttribute("resumeinfodto",resumeinfodto);
-		model.addAttribute("oldpicture", oldpicture);
+		model.addAttribute("personalmemberdto",personalmemberdto);
+		model.addAttribute("memberID", memberID);
+		model.addAttribute("termTimelast", termTimelast);
+		model.addAttribute("GPAlast", GPAlast);
 		
 		return "/resumeInfo/update";
 	}
 	
 	@RequestMapping(value="/resumeInfo/update",method=RequestMethod.POST)
-	public String update(MultipartFile pictureMF, HttpServletRequest request, String memberID, Model model, String oldpicture) throws Exception{
+	public String update(String memberID, ResumeInfoDTO resumeinfodto, Model model, ExternalActivityDTO externalactivitydto) throws Exception{
 		
-		String picture = "";
-		
-		String basePath = request.getRealPath("/storage/img_image");
-		
-		int size = (int) pictureMF.getSize();
-		
-		if(size>0) {
-			if(oldpicture!=null) {
-				Utility.deleteFile(basePath, oldpicture);
-			}
-			picture = Utility.saveFile(pictureMF, basePath);
+		if(resumeinfodto.getCareer()=="신입"){
+			externalactivitydao.deleteinfo(memberID);
 		}
 		
-		ResumeInfoDTO resumeinfodto = (ResumeInfoDTO) resumeinfodao.read(memberID);
-		
-		resumeinfodto.setPicture(picture);
-		
 		if(resumeinfodao.update(resumeinfodto)>0) {
+
+			model.addAttribute("resumeinfodto", resumeinfodto);
 			return "redirect:/";
 		}else{
 			return "error/error";
 		}
+	}
+	
+	@RequestMapping(value="/resumeInfo/nextupdate",method=RequestMethod.POST)
+	public String nextcreate(ExternalActivityDTO externalactivitydto, Model model,String memberID, ResumeInfoDTO resumeinfodto) throws Exception{
+		
+		
+				Map map = new HashMap();
+				map.put("memberID", memberID);
+		
+				model.addAttribute("memberID", memberID);
+				model.addAttribute("resumeinfodto", resumeinfodto);
+
+				//자격증
+				List<LicenseDTO>licenselist = licensedao.list(map);
+				
+				int limax = licensedao.total(memberID);
+				
+				model.addAttribute("licenselist", licenselist);
+				model.addAttribute("limax", limax);
+				
+				//대외활동
+				List<ExternalActivityDTO>externalactivitylist = externalactivitydao.list(map);
+				
+				int exmax = externalactivitydao.total(memberID);
+				
+				model.addAttribute("externalactivitylist", externalactivitylist);
+				model.addAttribute("exmax", exmax);
+			
+		return "/resumeInfo/nextupdate";
 	}
 }

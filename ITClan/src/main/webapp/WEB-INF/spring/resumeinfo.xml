@@ -36,6 +36,15 @@
 		<put-attribute name="body" value="/WEB-INF/views/resumeInfo/updateForm.jsp" />
 	</definition>
 	
+	<definition name="/resumeInfo/nextcreate" extends="main">
+		<put-attribute name="title" value="Bbs update Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/resumeInfo/nextcreateForm.jsp" />
+	</definition>
 	
+	<definition name="/resumeInfo/nextupdate" extends="main">
+		<put-attribute name="title" value="Bbs update Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/resumeInfo/nextupdateForm.jsp" />
+	</definition>
+		
 </tiles-definitions> 
 

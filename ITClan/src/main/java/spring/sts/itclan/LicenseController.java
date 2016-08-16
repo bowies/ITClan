@@ -24,7 +24,7 @@ public class LicenseController {
 		if(memberID==null){
 			memberID = (String)session.getAttribute(memberID);
 		}
-		memberID = "aaaa";
+		memberID = "ccc";
 				
 		model.addAttribute("memberID", memberID);
 		
@@ -45,7 +45,7 @@ public class LicenseController {
 	public String delete(int licenseNum) throws Exception{
 		
 		licensedao.delete(licenseNum);
-		return "redirect:../resumeInfo/create";
+		return "redirect:../resumeInfo/nextcreate";
 		
 	}
 }

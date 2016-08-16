@@ -611,8 +611,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 
 			if ( proto )
 				this.extend( $.prototype, proto, true );
-
-			if ( statics )
+f
 				this.extend( $, statics, true );
 
 			return $;

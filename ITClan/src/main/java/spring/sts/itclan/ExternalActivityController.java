@@ -1,5 +1,9 @@
 package spring.sts.itclan;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,28 +28,34 @@ public class ExternalActivityController {
 		if(memberID==null){
 			memberID = (String)session.getAttribute(memberID);
 		}
-		memberID = "aaa";
+		memberID = "ccc";
 				
 		model.addAttribute("memberID", memberID);
-		
+		model.addAttribute("externalactivitydto", externalactivitydto);
 		return "/externalActivity/createForm";
 	}
 	
 	@RequestMapping(value="/externalActivity/create",method=RequestMethod.POST)
-	public String create( Model model,String memberID, ExternalActivityDTO externalactivitydto) throws Exception{
+	public String create(HttpSession session, String memberID, Model model, ExternalActivityDTO externalactivitydto) throws Exception{
+		
+			Map map = new HashMap();
+			map.put("memberID", memberID);
 		
 		if(externalactivitydao.create(externalactivitydto)>0){
-			return "/externalActivity/createForm";
+			List<ExternalActivityDTO>externalactivitylist =  externalactivitydao.list(map);
+			model.addAttribute("externalactivitylist", externalactivitylist);
+			return "/externalActivity/createProc";
 		}else {
 			return "error/error";
 		}
 	}
 	
 	@RequestMapping(value="/externalActivity/delete")
-	public String delete(int actNum) throws Exception{
+	public String delete(int actNum, Model model) throws Exception{
 		
 		externalactivitydao.delete(actNum);
-		return "redirect:../resumeInfo/create";
+	
+		return "redirect:/resumeInfo/nextcreate";
 		
 	}
 }

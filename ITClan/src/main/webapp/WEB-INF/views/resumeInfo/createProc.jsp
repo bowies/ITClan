@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,11 +13,11 @@
 ${resumeinfodto.schoolName }
 </div>
 <div>
-학점
+전공
 ${resumeinfodto.major }
 </div>
 <div>
-전공
+학점
 ${resumeinfodto.GPA }
 </div>
 <div>
@@ -43,6 +44,7 @@ ${resumeinfodto.exSalary }
 장애등급
 ${resumeinfodto.disableGrade }
 </div>
+
 <div>
 사진
 ${resumeinfodto.picture }
@@ -71,17 +73,20 @@ ${licensedto.qualification }
 자격증 딴 기간
 ${licensedto.takeDate }
 </div>
-<div>
-대외활동
+<table>
+<c:forEach var="externalactivitydto" items="${externalactivitylist }">
+<tr style="text-align: center;">
+<td>
 ${externalactivitydto.actPeriod }
-</div>
-<div>
-대외활동 기간
-${externalactivitydto.actSector }
-</div>
-<div>
-대외활동내용
+</td>
+<td>
 ${externalactivitydto.actContent }
-</div>
+</td>
+<td>
+${externalactivitydto.actSector }
+</td>
+</tr>
+</c:forEach>
+</table>
 </body>
 </html>

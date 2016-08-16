@@ -6,20 +6,29 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-/* function input(f){
-	$(opener.document).find("#parentId").append(html);
-	
-} */
-function one(){
-	window.self.close();
-}
 
+function input(f) {
+	if(f.actSector.value==""){
+		alert("활동 입력해주세요");
+	return false;
+	}
+	
+	if(f.actPeriod.value==""){
+		alert("활동기간을 입력해주세요");
+	return false;
+	}
+	
+	if(f.actContent.value==""){
+		alert("활동내용을 입력해주세요");
+	return false;
+	}	
+}
 </script>
 </head>
 <body>
-<form action="./create" method="post" >
+<form name="frm" action="./create" method="post" onsubmit="return input(this)">
 <input type="text" name="memberID" value="${memberID }">
-<div id="bbb">
+<input type="text" name="actNum" value="${externalactivitydto.actNum }">
 <div>
 <label>활동구분
 <input type="text" name="actSector">
@@ -35,8 +44,7 @@ function one(){
 <input type="text" name="actContent" >
 </label>
 </div>
-</div>
-<input type="submit" value="전송" onclick="one()">
+<input type="submit" value="전송">
 </form>
 </body>
 </html>

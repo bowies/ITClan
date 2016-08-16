@@ -12,6 +12,7 @@ function input(f) {
 		alert("자격증 입력해주세요");
 	return false;
 	}
+	
 	if(f.takeDate.value==""){
 		alert("날짜를 입력해주세요");
 	return false;

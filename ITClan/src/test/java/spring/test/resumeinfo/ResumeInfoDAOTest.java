@@ -45,7 +45,7 @@ public class ResumeInfoDAOTest {
 		ResumeInfoDTO dto = (ResumeInfoDTO) dao.read(memberID);
 	}
 
-	@Test //@Ignore
+	@Test @Ignore
 	public void testCreate() throws Exception {
 		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumeinfodao");
 		ResumeInfoDTO dto = new ResumeInfoDTO();
@@ -66,7 +66,7 @@ public class ResumeInfoDAOTest {
 		assertEquals(1, dao.create(dto));
 	}
 	
-	@Test @Ignore
+	@Test //@Ignore
 	public void testUpdate() throws Exception {
 		ResumeInfoDAO dao = (ResumeInfoDAO)beans.getBean("resumeinfodao");
 		
@@ -77,13 +77,12 @@ public class ResumeInfoDAOTest {
 		dto.setEducation("고등학교 졸업");
 		dto.setSchoolName("안산고등학교 안산");
 		dto.setMajor("이과");
-		dto.setTermtime("2010.03 ~ 2012.02");
+		dto.setTermTime("2010.03 ~ 2012.02");
 		dto.setGPA("pk");
 		dto.setCareer("신입");
 		dto.setEmploymentType("정규직");
 		dto.setExSalary("3500");
 		dto.setDisableGrade("비장애");
-		dto.setPicture("img.jpg");
 		dto.setExArea("서울 종로");
 		dto.setExField("웹개발자");
 		dto.setMilitary("군필");
