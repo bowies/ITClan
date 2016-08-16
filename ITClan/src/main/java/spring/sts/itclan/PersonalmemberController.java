@@ -28,6 +28,11 @@ public class PersonalmemberController {
 	@Autowired
 	private PersonalMemberMgr mgr;
 	
+	@RequestMapping(value="/personal/updatepic",method=RequestMethod.POST)
+	public String updatepic(){
+		
+		return "/personalmember/updatepic";
+	}
 	@RequestMapping(value="/personal/updatepic",method=RequestMethod.GET)
 	public String updatepic(String memberID, String picture,Model model){
 		model.addAttribute("picture", picture);
