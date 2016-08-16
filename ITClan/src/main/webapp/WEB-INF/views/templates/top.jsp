@@ -83,8 +83,6 @@ padding-right:10px
      <c:otherwise>
      <li><a href="${pageContext.request.contextPath}/companymember/logout">로그아웃</a></li>
      <li><a href="${pageContext.request.contextPath}/companymember/read">나의정보</a></li>
-     <li><a href="${pageContext.request.contextPath}/companymember/update">회원수정</a><li>
-     <li><a href="${pageContext.request.contextPath}/companymember/delete">회원탈퇴</a><li>     
      <li><a href="${pageContext.request.contextPath}/companyinfo/read?companyID=${sessionScope.companyID}">회사정보</a></li>
    
      </c:otherwise>

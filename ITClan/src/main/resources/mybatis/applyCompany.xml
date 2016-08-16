@@ -9,11 +9,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<selectKey order="BEFORE" keyProperty="applyCode" resultType="int">
 	SELECT NVL(MAX(applyCode), 0) + 1 as applyCode FROM applycompany
 	</selectKey>
-	insert into applycompany(applyCode,memberID,applydate,offerNum)
-	values(#{applyCode},#{memberID},sysdate,#{offerNum})
+	insert into applycompany(applyCode,memberID,applyDate,offerNum,resumeNum,portfolioNum)
+	values(#{applyCode},#{memberID},sysdate,#{offerNum},#{resumeNum},#{portfolioNum})
 	
 	</insert>
+	
+	
+	<select id="memberIDCheck" resultType="int" parameterType="Map">
+	select count(*) from applycompany
+	where memberID =#{memberID} and offerNum =#{offerNum} 
+	</select>
 	<delete id="delete_personal" parameterType="String">
+	delete from applycompany
+	where memberID =#{memberID} and offerNum =#{offerNum} 
+	</delete>
+	<delete id="delete_personalA" parameterType="String">
 	delete from applycompany
 	where memberID =#{memberID}
 	</delete>
@@ -28,15 +38,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where a.offerNum = o.offerNum
 		and a.memberID = #{memberID}
 	</select>
-<resultMap type="ApplyCompanyDTO" id="manyMap">
-<result property="applyDate" column="applydate"/>
+<resultMap type="ApplyCompanyDTO" id="PersonalMap">
 <result property="applyCode" column="applyCode"/>
+<result property="applyDate" column="applyDate"/>
 <result property="memberID" column="memberID"/>
 <result property="offerNum" column="offerNum"/>
+<result property="resumeNum" column="resumeNum"/>
+<result property="portfolioNum" column="portfolioNum"/>
+<result property="viewCheck" column="viewCheck"/>
+<result property="pfdto.portfolioName" column="portfolioName"/>
+<result property="redto.resumeName" column="resumeName"/>
+<result property="ridto.education" column="education"/>
+<result property="ridto.career" column="career"/>
+<result property="ridto.employmentType" column="employmentType"/>
+<result property="ridto.exSalary" column="exSalary"/>
+<result property="ridto.disableGrade" column="disableGrade"/>
+<result property="ridto.picture" column="picture"/>
+<result property="ridto.exArea" column="exArea"/>
+<result property="ridto.exField" column="exField"/>
+<result property="ridto.military" column="military"/>
+<result property="ridto.schoolName" column="schoolName"/>
+<result property="ridto.major" column="major"/>
+<result property="ridto.termtime" column="termtime"/>
+<result property="ridto.GPA" column="GPA"/>
 <collection property="offerList" column="offerNum" javaType="List" ofType="OfferDTO"
  resultMap="applycompany.OfferDTOListMap"/>
-<collection property="resumeInfoList" column="memberID" javaType="List" ofType="ResumeInfoDTO"
- resultMap="applycompany.ResumeInfoDTOListMap"/>
+<collection property="personalmemberList" column="memberID" javaType="List" ofType="PersonalMemberDTO"
+ resultMap="applycompany.PersonalMemberDTOListMap"/>
+
 </resultMap>
 <resultMap type="OfferDTO" id="OfferDTOListMap">
 <result property="offerNum" column="offerNum"/>
@@ -44,58 +73,91 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <result property="companyName" column="companyName"/>
 <result property="recruitment" column="recruitment"/>
 </resultMap>
-<resultMap type="ResumeInfoDTO" id="ResumeInfoDTOListMap">
+<resultMap type="PersonalMemberDTO" id="PersonalMemberDTOListMap">
 <result property="memberID" column="memberID"/>
-<result property="education" column="education"/>
-<result property="career" column="career"/>
-<result property="employmentType" column="employmenttype"/>
-<result property="exSalary" column="exsalary"/>
-<result property="disableGrade" column="disablegrade"/>
-<result property="picture" column="picture"/>
-<result property="exArea" column="exarea"/>
-<result property="exField" column="exfield"/>
+<result property="name" column="name"/>
+<result property="birth" column="birth"/>
+<result property="phone" column="phone"/>
+<result property="address" column="address"/>
+<result property="address2" column="address2"/>
+<result property="email" column="email"/>
 </resultMap>
-	<select id="list_personal" parameterType="Map" resultMap = "manyMap">
-		select applydate , memberID,offerNum , title,companyName,recruitment,
+
+<select id="read_c" parameterType="Map" resultMap="PersonalMap">
+	select  name,memberID,birth,phone,address,address2,email,education,
+		career,employmentType,exSalary,disablegrade,picture,schoolName,major,termtime,GPA,
+	exArea,exField,military,resumeName,portfolioName
+	from(
+	select p.name,a.memberID,p.birth,p.phone,p.address,p.address2,p.email, r.education,
+		r.career,r.employmentType,r.exSalary,r.disablegrade,r.picture,r.schoolName,r.major,r.termtime,r.GPA,
+	r.exArea,r.exField,r.military,re.resumeName,pf.portfolioName,pf.portfolioNum , re.resumeNum,a.offerNum
+	from resumeinfo r ,applycompany a ,personalmember p ,resume re , portfolio pf
+	where p.memberID = r.memberID and r.memberID = a.memberID
+	and p.memberID = re.memberID and p.memberID = pf.memberID 
+	)
+	where memberID = #{memberID} and offerNum = #{offerNum}
+	 and resumeNum =#{resumeNum} and portfolioNum = #{portfolioNum}
+</select>
+
+
+	<select id="list_personal" parameterType="Map" resultMap = "PersonalMap">
+		select applyDate , memberID,offerNum,viewCheck , title,companyName,recruitment,resumeNum,portfolioNum,
 		r
 		from(
-		select applydate , memberID,offerNum , title,companyName,recruitment,rownum
+		select applyDate , memberID,offerNum ,viewCheck, title,companyName,recruitment,resumeNum,portfolioNum,rownum
 		r
 		from(
-		select a.applydate , a.memberID,a.offerNum ,
-		o.title,o.companyName,o.recruitment
+		select a.applyDate , a.memberID,a.offerNum ,a.viewCheck,
+		o.title,o.companyName,o.recruitment,a.resumeNum,a.portfolioNum
 		from applycompany a,offer o
 		where o.offerNum = a.offerNum
 		and a.memberID=#{memberID}
+		order by a.applyDate desc
 		)
 		)
 	<![CDATA[
 	where r >=#{sno} and r<=#{eno}
 	]]>
+	
 	</select>
 
-
-	<select id="list_company" parameterType="Map" resultMap="manyMap">
-	select memberID , education,career,employmenttype,exsalary,disablegrade,picture,
-	exarea,exfield,military,title,applydate,r2
-	from(
-	select memberID , education,career,employmenttype,exsalary,disablegrade,picture,
-	exarea,exfield,military,title,applydate , rownum r2
-	from(
-	select r.memberID , r.education,r.career,r.employmenttype,r.exsalary,r.disablegrade,r.picture,
-	r.exarea,r.exfield,r.military,o.title,a.applydate
-	from resumeinfo r ,applycompany a , offer o
-	where  r.memberID = a.memberID
-	and o.offerNum = a.offerNum
-	and a.offerNum = #{offerNum}
+	<select id="read_p" parameterType="Map" resultMap="PersonalMap">
+	select o.title,a.offerNum,o.companyName,o.recruitment,pm.name,pf.portfolioName,a.portfolioNum,re.resumeName,a.resumeNum
+from offer o ,applycompany a , resume re , personalmember pm ,portfolio pf
+where o.offerNum = a.offerNum and pm.memberID = pf.memberID and pm.memberID = re.memberID and a.memberID = pm.memberID
+and a.offerNum = #{offerNum} and a.memberID = #{memberID} and pf.portfolioNum = #{portfolioNum} and re.resumeNum = #{resumeNum}
+	</select>
+	
+<select id="list_company" parameterType="Map" resultMap="PersonalMap">
+ select memberID,name,applyDate,resumeNum,portfolioNum,email,r	
+ 	from(
+ 	select memberID , name, applyDate,resumeNum,portfolioNum,email,rownum r
+ 	from(
+ 	select a.memberID, p.name , a.applyDate,a.resumeNum , a.portfolioNum,p.email
+	from Personalmember p , applycompany a
+	where p.memberID = a.memberID and a.offerNum = #{offerNum}
 	)
 	)
 	<![CDATA[
-	where r2 >=#{sno} and r2<=#{eno}
+	where r >=#{sno} and r<=#{eno}
 	]]>
-	</select>
+		order by applyDate asc
 	
-	<select id="total_company" parameterType="int" resultType="int">
+</select>
+	
+	<update id="viewup" parameterType="int">
+	update applycompany
+	set
+	viewCheck = viewCheck + 1
+	where viewCheck = 0 and offerNum = #{offerNum} and memberID = #{memberID}
+	</update>
+	
+<select id="viewCheck">
+select viewCheck from applycompany
+where offerNum = #{offerNum} and memberID = #{memberID}
+</select>
+	
+		<select id="total_company" parameterType="int" resultType="int">
 	 select count(*) 
  from applycompany a , offer o 
  where a.offerNum = o.offerNum
@@ -108,16 +170,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 where offerNum =#{offerNum}
 	</delete>
 	<!-- resumedetail (list/read) -->
-	<select id="list_resumedetail" parameterType="Map" resultType="ResumeDetailDTO" >
-	select * from resumedetail
-	where memberID = #{memberID} and resumenum = #{resumenum}
+
+	<select id="list_resume" parameterType="String" resultType="ResumeDTO">
+	select resumeNum,memberID ,resumeName from resume
+	where memberID=#{memberID}
+</select>
+
+	<select id="list_portfolio" parameterType="String" resultType="PortFolioDTO">
+	select portfolioNum , memberID, portfolioName 
+	from portfolio
+	where memberID = #{memberID}
 	</select>
+	
+	
 	<select id="list_License" parameterType="String" resultType="LicenseDTO" >
-	select * from license
+	select takeDate,qualification from license
 where memberID = #{memberID}
 	</select>
 	<select id="list_externalactivity" parameterType="String" resultType="externalactivityDTO" >
-	select * from externalactivity
+	select actPeriod,actContent,actSector from externalactivity
 where memberID = #{memberID}
 	</select>
 	

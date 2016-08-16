@@ -12,7 +12,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	delete from personalmember
 where memberID = #{memberID}
 	</delete>
+	<select id="getGrade" parameterType="String" resultType="PersonalMemberDTO">
+	select grade,name from personalmember
+	where memberID =#{memberID}
+	</select>
 	
+	<select id="login" parameterType="Map" resultType="int">
+	select count(*) from personalmember
+	where memberID = #{memberID} and passwd = #{passwd}
+	</select>
 	<select id="pwFind" parameterType="Map" resultType="String">
 	select passwd from personalmember
 	where memberID = #{memberID} and email = #{email}

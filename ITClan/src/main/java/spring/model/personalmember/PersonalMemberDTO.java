@@ -1,17 +1,27 @@
 package spring.model.personalmember;
 
+import java.util.List;
+
 public class PersonalMemberDTO {
 	 private String memberID ;            
      private String name           ;
-     private int birth            ;
+     private String birth            ;
      private String email           ;
      private String phone           ;
      private String passwd          ;
      private String grade           ;
      private String address         ;
      private String address2        ;
-	
+
      
+     
+     
+     
+     
+
+	public void setApplyCompanyList(List applyCompanyList) {
+		applyCompanyList = applyCompanyList;
+	}
 	public String getMemberID() {
 		return memberID;
 	}
@@ -24,10 +34,10 @@ public class PersonalMemberDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-	public void setBirth(int birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 	public String getEmail() {

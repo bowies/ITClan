@@ -73,4 +73,9 @@ where actNum = #{actNum} and memberID = #{memberID}
 delete from ExternalActivity
 where actNum = #{actNum} and memberID = #{memberID}
 </delete>
+
+<delete id="deleteinfo" parameterType="String">
+delete from ExternalActivity
+where memberID = #{memberID}
+</delete>
 </mapper>

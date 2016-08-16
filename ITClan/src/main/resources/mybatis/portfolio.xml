@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="portfolio">
+
+<select id="list" parameterType="Map" resultType="PortFolioDTO">
+	select portfolioNum, portfolioName
+	from portFolio
+	where memberID = #{memberID}
+	order by portfolioNum ASC
+</select>
+
+<select id="total" parameterType="String" resultType="int">
+select count(*)
+from portFolio
+where memberID = #{memberID}
+</select>
+
+<insert id="create" parameterType="PortFolioDTO">
+insert into portFolio (portfolioNum, memberID, portfolioName)
+	values ((select nvl(max(portfolioNum),0)+1 from portFolio), #{memberID}, #{portfolioName})
+</insert>
+
+
+<delete id="delete" parameterType="int">
+delete from portFolio
+where portfolioNum = #{portfolioNum}
+</delete>
+
+<delete id="deleteinfo" parameterType="String">
+delete from portFolio
+where memberID = #{memberID}
+</delete>
+</mapper>

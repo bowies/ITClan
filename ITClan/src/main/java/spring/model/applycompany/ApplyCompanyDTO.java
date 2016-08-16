@@ -2,13 +2,95 @@ package spring.model.applycompany;
 
 import java.util.List;
 
+import spring.model.personalmember.PersonalMemberDTO;
+import spring.model.portfolio.PortFolioDTO;
+import spring.model.resume.ResumeDTO;
+import spring.model.resumeinfo.ResumeInfoDTO;
+
 public class ApplyCompanyDTO {
 	private int applyCode;
 	private String applyDate;
 	private String memberID;
 	private int offerNum;
+	private int resumeNum;
+	private int portfolioNum;
+	private int viewCheck;
 	private List offerList;
-	private List resumeInfoList;
+	private List personalmemberList;
+
+	private PortFolioDTO pfdto;
+	private ResumeDTO redto;
+	private ResumeInfoDTO ridto;
+	
+	
+	
+	
+	public List getPersonalmemberList() {
+		return personalmemberList;
+	}
+	
+	public void setPersonalmemberList(List personalmemberList) {
+		this.personalmemberList = personalmemberList;
+	}
+	
+	
+	public ResumeInfoDTO getRidto() {
+		return ridto;
+	}
+
+	public void setRidto(ResumeInfoDTO ridto) {
+		this.ridto = ridto;
+	}
+
+	public PortFolioDTO getPfdto() {
+		return pfdto;
+	}
+
+	public void setPfdto(PortFolioDTO pfdto) {
+		this.pfdto = pfdto;
+	}
+
+	public ResumeDTO getRedto() {
+		return redto;
+	}
+
+	public void setRedto(ResumeDTO redto) {
+		this.redto = redto;
+	}
+
+
+	public List getOfferList() {
+		return offerList;
+	}
+
+	public void setOfferList(List offerList) {
+		this.offerList = offerList;
+	}
+
+	public int getViewCheck() {
+		return viewCheck;
+	}
+
+	public void setViewCheck(int viewCheck) {
+		this.viewCheck = viewCheck;
+	}
+
+
+	public int getResumeNum() {
+		return resumeNum;
+	}
+
+	public void setResumeNum(int resumeNum) {
+		this.resumeNum = resumeNum;
+	}
+
+	public int getPortfolioNum() {
+		return portfolioNum;
+	}
+
+	public void setPortfolioNum(int portfolioNum) {
+		this.portfolioNum = portfolioNum;
+	}
 
 	public int getApplyCode() {
 		return applyCode;
@@ -42,20 +124,5 @@ public class ApplyCompanyDTO {
 		this.offerNum = offerNum;
 	}
 
-	public List getOfferList() {
-		return offerList;
-	}
-
-	public void setOfferList(List offerList) {
-		this.offerList = offerList;
-	}
-
-	public List getResumeInfoList() {
-		return resumeInfoList;
-	}
-
-	public void setResumeInfoList(List resumeInfoList) {
-		this.resumeInfoList = resumeInfoList;
-	}
 
 }

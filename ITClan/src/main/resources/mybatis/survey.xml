@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="survey">
+<delete id="delete" parameterType="int">
+delete from survey where preNum = #{preNum}
+</delete>
+<update id="up_viewcnt" parameterType="int">
+update survey
+set 
+viewcnt = viewcnt +1
+where preNum = #{preNum}
+</update>
+
+<update id="up_sub" parameterType="int">
+update survey
+set
+sub = sub +1
+where preNum = #{preNum}
+</update>
+<insert id="create" parameterType="SurveyDTO">
+insert into survey(preNum,title,content1,content2,content3,content4,regdate,enddate,sub)
+values((select NVL(MAX(preNum),0)+1 as preNum from survey ),
+#{title},#{content1},#{content2},#{content3},#{content4},sysdate,#{enddate},0)
+</insert>
+<select id="total" parameterType="Map" resultType="int">
+select count(*) from survey
+		<where>
+		<if test="col == 'title'">
+		title like '%' || #{word} || '%'
+		</if>
+		</where>
+</select>
+<select id="read" parameterType="int" resultType="SurveyDTO">
+select title ,content1,content2,content3,content4, regdate , enddate,preNum
+from survey where preNum = #{preNum}
+  </select>
+	<select id="list" parameterType="Map" resultType="SurveyDTO">
+	select preNum,title,regdate,enddate,viewcnt,sub,r
+	from(
+	select preNum,title,regdate,enddate,viewcnt,sub,rownum r
+	from(
+		select preNum,title,regdate,enddate,viewcnt,sub
+		from survey
+		<where>
+		<if test="col == 'title'">
+		title like '%' || #{word} || '%'
+		</if>
+		</where>
+		order by regdate desc
+)
+)
+<![CDATA[
+	where r >= #{sno} and r <= #{eno}
+]]>
+	</select>
+</mapper>

@@ -75,6 +75,7 @@
 		<property name="definitions">
 			<list>
 				<value>/WEB-INF/spring/applycompany.xml</value>
+				<value>/WEB-INF/spring/survey.xml</value>
 				<value>/WEB-INF/spring/companyinfo.xml</value>
 				<value>/WEB-INF/spring/companymember.xml</value>
 				<value>/WEB-INF/spring/externalactivity.xml</value>
@@ -88,7 +89,6 @@
 				<value>/WEB-INF/spring/reply.xml</value>
 				<value>/WEB-INF/spring/resumedetail.xml</value>
 				<value>/WEB-INF/spring/resumeinfo.xml</value>
-				<value>/WEB-INF/spring/schedule.xml</value>
 			</list>
 		</property>
 	</bean>
