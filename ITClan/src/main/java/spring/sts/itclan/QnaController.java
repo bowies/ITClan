@@ -21,6 +21,17 @@ public class QnaController {
 	@Autowired
 	private QnADAO dao;
 	
+	@RequestMapping(value = "/qna/custom")
+	public String custom(Model model) {
+		
+		return "/qna/custom";
+	}
+	@RequestMapping(value = "/qna/chat")
+	public String chat(Model model) {
+		
+		return "/qna/chat";
+	}
+	
 	@RequestMapping(value="/qna/delete",method=RequestMethod.POST)
 	public String delete(Model model,HttpServletRequest request,int qnANum) throws Exception{
 		model.addAttribute("nowPage",request.getParameter("nowPage"));
@@ -31,8 +42,7 @@ public class QnaController {
 			return "redirect:/qna/list";
 		}else{
 			return "/error";
-		}
-		
+		}		
 	}
 	@RequestMapping(value="/qna/delete",method=RequestMethod.GET)
 	public String delete(Model model,HttpServletRequest request){
@@ -41,6 +51,8 @@ public class QnaController {
 		model.addAttribute("word",request.getParameter("word"));
 		return "/qna/delete";
 	}
+	
+	
 	@RequestMapping(value="/qna/update",method=RequestMethod.POST)
 	public String update(QnADTO dto,Model model,HttpServletRequest request) throws Exception{
 		model.addAttribute("nowPage",request.getParameter("nowPage"));
@@ -70,11 +82,11 @@ public class QnaController {
 		
 		dto = (QnADTO) dao.read(qnANum);
     	String content = dto.getContent().replaceAll("\r\n", "<br>");
-    	String wdate = dto.getRegdate().substring(0,10);
+    	String regdate = dto.getRegdate().substring(0,10);
     
     	model.addAttribute("dto", dto);
     	model.addAttribute("content", content);
-    	model.addAttribute("wdate", wdate);
+    	model.addAttribute("regdate", regdate);
 		return "/qna/read";
 	}
 	@RequestMapping(value="/qna/create",method=RequestMethod.POST)

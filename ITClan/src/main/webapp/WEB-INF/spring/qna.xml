@@ -58,6 +58,10 @@
 		<put-attribute name="title" value="custom Page"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/qna/custom.jsp" />
 	</definition>
-	
+		<definition name="/qna/chat" extends="main">
+		<put-attribute name="title" value="custom Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/qna/chat.jsp" />
+	</definition>
+
 </tiles-definitions> 
 
