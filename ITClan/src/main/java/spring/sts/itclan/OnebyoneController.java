@@ -27,23 +27,23 @@ public class OnebyoneController {
 //	private OneByOneService service; //댓글 삭제할 때 필요한것	
 
 	@RequestMapping(value = "/onebyone/delete", method = RequestMethod.POST)
-	public String delete(int oneByOneNum, String id, Model model, HttpServletRequest request, int nowPage, String col, String word) {
-		int pcnt = dao.checkId(oneByOneNum, id);
+	public String delete(int oneByOneNum, String id, Model model, HttpServletRequest request, int nowPage, String col, String word) throws Exception {
+//		int pcnt = dao.checkId(oneByOneNum, id);
 		
 		String url = "./error/passwdError";
 		
-		if (pcnt > 0) {
-			 try{ 
+//		if (pcnt > 0) {
+//			 try{ 
 	                dao.delete(oneByOneNum);//게시판글 삭제
 	                  model.addAttribute("nowPage", nowPage);
 	                  model.addAttribute("word", word);
 	                  model.addAttribute("col", col);
 	                  url = "redirect:./onebyone/list";
-	            }catch(Exception e){
-	                 e.printStackTrace();
-	                url = "/error/passwderror";
-	           }
-		}
+//	            }catch(Exception e){
+//	                 e.printStackTrace();
+//	                url = "/error/passwderror";
+//	           }
+//		}
 		return url;
 			
 
@@ -62,7 +62,9 @@ public class OnebyoneController {
 		model.addAttribute("nowPage", request.getParameter("nowPage"));
 		model.addAttribute("col", request.getParameter("col"));
 		model.addAttribute("word", request.getParameter("word"));
-		dao.addAnsnum(dto.getGrpno(), dto.getAnsnum());
+
+		
+		dao.addAnsnum(dto.getGrpnum(), dto.getAnsnum());
 		if (dao.reply(dto) > 0) {
 			return "redirect:/onebyone/list";
 		} else {
@@ -76,13 +78,11 @@ public class OnebyoneController {
 		model.addAttribute("col", request.getParameter("col"));
 		model.addAttribute("word", request.getParameter("word"));
 		dto = dao.readReply(oneByOneNum);
-
+		System.out.println(dto.getGrpnum());
 		model.addAttribute("dto", dto);
 
 		return "/onebyone/reply";
-	}
-
-	
+	}	
 	
 	@RequestMapping(value = "/onebyone/update", method = RequestMethod.POST)
 	public String update(OneByOneDTO dto, Model model, HttpServletRequest request) throws Exception {
@@ -158,10 +158,16 @@ public class OnebyoneController {
 	}
 
 	@RequestMapping(value = "/onebyone/create", method = RequestMethod.POST)
-	public String create(OneByOneDTO dto) throws Exception {
-
-		int cnt = dao.create(dto);
-		if (cnt == 1) {
+	public String create(OneByOneDTO dto, HttpServletRequest request) throws Exception {
+		String basePath= request.getRealPath("/storage/onebyone");
+		String filename="nofile.jpg";
+		int size= (int)dto.getFilenameMF().getSize();
+		if(size>0){
+			filename = Utility.saveFile(dto.getFilenameMF(), basePath);
+		}
+		dto.setFilename(filename);
+		
+		if ( dao.create(dto) == 1) {
 			return "redirect:/onebyone/list";
 		} else {
 			return "/error";
@@ -176,6 +182,9 @@ public class OnebyoneController {
 
 	@RequestMapping("/onebyone/list")
 	public String list(HttpServletRequest request, Model model) throws Exception {
+		
+		
+		
 		int nowPage = 1; // 현재페이지
 		if (request.getParameter("nowPage") != null) {
 			nowPage = Integer.parseInt(request.getParameter("nowPage"));

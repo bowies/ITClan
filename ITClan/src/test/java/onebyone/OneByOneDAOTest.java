@@ -83,7 +83,7 @@ public class OneByOneDAOTest {
 		OneByOneDTO dto = dao.readReply(4);  //답변을 위해 부모글을 읽어옴
 		assertEquals(0,dto.getIndent());
 		assertEquals(0,dto.getAnsnum());
-		assertEquals(4,dto.getGrpno());
+		assertEquals(4,dto.getGrpnum());
 		assertEquals("제목4",dto.getTitle());
 	}
 	
@@ -160,7 +160,7 @@ public class OneByOneDAOTest {
 		dto.setMail("test@mail.com");
 		dto.setName("테스터");
 		dto.setId("k@mail.com");
-		dto.setGrpno(0);
+		dto.setGrpnum(0);
 		assertEquals(1, dao.create(dto));
 		
 		

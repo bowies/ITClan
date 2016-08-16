@@ -46,7 +46,7 @@ function input(frm){ //f 는 form
 	  action='update'
 	  onsubmit="return input(this)"
 	  enctype="multipart/form-data">
-<input type="hidden" name="imgno" value="${param.oneByOneNum }">
+<input type="hidden" name="oneByOneNum" value="${param.oneByOneNum }">
 <input type="hidden" name="oldfile" value="${param.oldfile }">
 <input type="hidden" name="col" value="${param.col }">
 <input type="hidden" name="word" value="${param.word }">
@@ -54,7 +54,9 @@ function input(frm){ //f 는 form
   <TABLE class='table'>
     <TR>
       <TH>성명</TH>
-      <TD><input type="text" name="name" value="${dto.name }"></TD>
+      
+<%--       <TD><input type="text" name="name" value="${sessionScope.name }"></TD> --%>
+      <TD><input type="text" name="name" value="<%=session.getAttribute("name") %>"></TD>
     </TR>
     <TR>
       <TH>제목</TH>

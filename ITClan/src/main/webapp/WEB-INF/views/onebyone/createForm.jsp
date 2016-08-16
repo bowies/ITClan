@@ -22,16 +22,13 @@ function checkemailaddy(){
 
 </script>
 <body>
-<%-- <jsp:include page="/menu/top.jsp" flush="false"/> --%>
 <fieldset>
 
 		
 			<legend>1:1 고객상담</legend>
 			<div class="mbrSec mbrCC">
 				<h2 class="mbrHeading2"><img src="../img/dot.gif" alt="1:1 고객상담"></h2>
-<!-- 				<div class="mbrTplDesc"> -->
 					<p>서비스 이용 중 궁금하신 사항에 대해서 문의해 주세요.</p>
-<!-- 				</div> -->
 				<p class="notice"><img  src="../img/dot.gif"> 필수 입력사항</p>
 		<div class="mbrTplData2">
 				<FORM name='form' method='POST' action='./create'
@@ -46,8 +43,20 @@ function checkemailaddy(){
 							<th scope="row"><label for="Member_ID"><img alt="필수입력사항" src="../img/dot.gif"> 아이디</label></th>
 							<td>
 								<div class="mbrHelpWrap">		
-									<%String id =(String)session.getAttribute("memberID");%>
-<%-- 									 ${sessionScope.memberID} --%>
+								
+							<%		String id ="";		
+									if(session.getAttribute("memberID")==null){
+									 id =(String)session.getAttribute("memberID");
+									}
+									else{
+										 id =(String)session.getAttribute("companyID");
+									}
+									%>
+								
+<%-- 									<%String id =(String)session.getAttribute("memberID");%> --%>
+
+
+
 									<input type="text" id="Member_ID" name="id" maxlength="20" 
 											style="width:200px;" class="ipText" value="<%=id%>" readonly />
 								

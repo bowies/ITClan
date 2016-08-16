@@ -27,9 +27,16 @@
 				
 				<p class="notice"><img  src="../img/dot.gif"> 필수 입력사항</p>
 		<div class="mbrTplData2">
-				<FORM name='form' method='POST' action='./create'
+				<FORM name='form' method='POST' action='./reply'
 					enctype='multipart/form-data' onsubmit="return inputCheck(this)">
 				
+				<input type="hidden" name="oneByOneNum" value="${dto.oneByOneNum }">
+				<input type="hidden" name="grpnum" value="${dto.grpnum }">
+				<input type="hidden" name="indent" value="${dto.indent }">
+				<input type="hidden" name="ansnum" value="${dto.ansnum }">
+				<input type="hidden" name="col" 	value="${param.col }">
+				<input type="hidden" name="word"	 value="${param.word }">
+				<input type="hidden" name="nowPage" value="${param.nowPage }">
 					<table>
 					
 						<tbody>		

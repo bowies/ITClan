@@ -37,10 +37,14 @@
 		<table class="padding5" width="680" border="0" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF">
 		<tbody><tr bgcolor="62B5DF"><td height="1" colspan="4"></td></tr>
 		<tr>
-		<td width="83" bgcolor="#F3EEEB"><div align="center">제목</div></td>
-		<td width="372"><div align="left"><input name="title" type="text" class="textareabg" size="60" value=""></div></td>
-		<td width="93" bgcolor="#F3EEEB"><center>작성자</center></td>
-		<td width="92">글쓴이</td>
+		<td width="83" bgcolor="#F3EEEB">제목</td>
+		<td width="372"  bgcolor="#F3EEEB"><div align="left"><input name="title" type="text" class="textareabg" size="60" value=""></div></td>
+		<td width="92" bgcolor="#F3EEEB">글쓴이</td>
+		<td width="93" bgcolor="#F3EEEB">
+						<input type="text" id="name" name="name" maxlength="20" 
+											style="width:200px;" class="ipText" value="관리자" readonly />
+		
+		</td>
 		<%-- 		 ${sessionScope.userLoginInfo.Name} --%>
 		</tr>
 		<tr bgcolor="62B5DF"><td height="1" colspan="4"></td></tr>

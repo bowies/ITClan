@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="resume">
+
+<select id="list" parameterType="Map" resultType="ResumeDTO">
+	select resumeNum, resumeName
+	from resume
+	where memberID = #{memberID}
+	order by resumeNum ASC
+</select>
+
+<select id="total" parameterType="String" resultType="int">
+select count(*)
+from resume
+where memberID = #{memberID}
+</select>
+
+<insert id="create" parameterType="ResumeDTO">
+insert into resume (resumeNum, memberID, resumeName)
+	values ((select nvl(max(resumeNum),0)+1 from resume), #{memberID}, #{resumeName})
+</insert>
+
+
+<delete id="delete" parameterType="int">
+delete from resume
+where resumeNum = #{resumeNum}
+</delete>
+
+<delete id="deleteinfo" parameterType="String">
+delete from resume
+where memberID = #{memberID}
+</delete>
+</mapper>

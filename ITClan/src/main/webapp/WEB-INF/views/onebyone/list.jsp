@@ -24,17 +24,19 @@
 </head>
 <body>
 <!-- *********************************************** -->
- 
+ <div class="aaa">
 <DIV class="title">1:1 게시판 목록</DIV>
 
 <div class="search">
+
 <FORM name='frm' method='post' action='list'>
 	
 	
 	<select name="col">
-		<option value="name"
+			<option value="id"
 			<c:if test="${col=='id' }">selected</c:if>
 			>ID</option> 
+			<option value="name"
 			<c:if test="${col=='name' }">selected</c:if>
 			>성명</option>
 			<option value="title" 
@@ -52,7 +54,7 @@
 </FORM>
 </div> 
 
-<table style="width: 80%">
+<table width="1100px" border="0" cellspacing="0" cellpadding="3">
 	<tr>
 <!-- 		<th>등록</th> -->
 <!-- 		<th>이미지</th> -->
@@ -65,7 +67,7 @@
 		
 	</tr>
 	<c:choose>
-	<c:when test="${empty list }">
+	<c:when test="${empty list}">
 	<tr>
 		<td colspan="8" align="center">등록된 글 없음 </td>
 	</tr>
@@ -75,46 +77,40 @@
 	<tr>
 		<td>${dto.oneByOneNum}</td>
 		
-		<td width=50%>
-		<c:forEach begin="1" end="${dto.indent }">		
-		&nbsp;&nbsp;
-		<c:if test="${dto.indent>0 }">
+		<td>
+			
+		<c:forEach begin="1" end="${dto.indent}">		
+		&nbsp;
+			
+		<c:if test="${dto.indent > 0 }">
 		[답변]
 		</c:if>
-		</c:forEach>
-			 <a href="javascript:read(${dto.oneByOneNum })">${dto.title}</a>		
-		</td>
+		</c:forEach>	
+		<a href="javascript:read(${dto.oneByOneNum })">${dto.title}</a>		
+		</td>	
 		
-		
-<%-- 		<%
-		String id = (String)session.getAttribute("memberID");
-		 %> --%>
-		 
-<%-- 		 <td><%=id%></td> --%>
-		<td>${dto.id}</td>
-		
+
+		<td>${dto.id}</td>		
 		 
 		<td>${dto.viewcnt}</td>
 		
 		<td>${fn:substring(dto.regdate,0,10)}</td>
 <%-- 		<td>${dto.filename}</td> --%>
 		<td><a href="${pageContext.request.contextPath }/download?dir=/storage/onebyone&filename=${dto.filename}">${dto.filename}</a></td>
-<%-- 		location.href='${pageContext.request.contextPath }/download?dir=/storage/onebyone&filename=${dto.filename}' --%>
-		
 	</tr>
 	</c:forEach>
 	</c:otherwise>
 	</c:choose>
 </table> 
-  
+
   
   <DIV class='bottom'>
   <br>
   	${paging}
-    <input type='button' value='등록' onclick="location.href='./create'"  style=" margin: 5px">
+    <input type='button' value='등록' onclick="location.href='./create'"  style="margin: 5px">
   </DIV>
 
-
+</div>
  
 </body>
 </html>

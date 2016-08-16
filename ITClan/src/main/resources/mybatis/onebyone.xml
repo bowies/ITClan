@@ -5,26 +5,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="onebyone"> 
 
+<!-- SELECT oneByOneNum, title,content, id,regdate, grpnum,indent,ansnum  -->
 <select id="readReply" parameterType="int" resultType="OneByOneDTO">
-SELECT oneByOneNum, title,content, id,regdate, grpnum,indent,ansnum 
+SELECT oneByOneNum, title, id,regdate, grpnum,indent,ansnum 
 FROM OneByOne                           
 WHERE oneByOneNum = #{oneByOneNum}                 
 
 </select>
-<!-- INSERT INTO OneByOne(oneByOneNum, title, content, id, regdate, grpnum, indent, ansnum)
-VALUES((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
-  #{title}, #{content},#{id},
-  sysdate, #{grpnum}, #{indent}+1, #{ansnum}+1) -->
+
 
 <insert id="reply" parameterType="OneByOneDTO">  
 INSERT INTO OneByOne(oneByOneNum , title, content, id, regdate, grpnum, indent, ansnum)
 values((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
-#{title}, #{content}, #{mail}, #{id}, sysdate,
+#{title}, #{content}, #{id}, sysdate,
 #{grpnum}, #{indent}+1, #{ansnum}+1)  
 </insert>
-
-
-
 
 
 <select id="checkId" parameterType="Map" resultType="int">
@@ -57,15 +52,12 @@ values((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
 
 
 
-
-
-
 <select id="list" resultType="OneByOneDTO" parameterType="Map">
-	select oneByOneNum, id, mail, title,content,regdate, viewcnt,  r  
+	select oneByOneNum, id, mail, title,content,regdate, viewcnt, grpnum, ansnum, indent, r  
 		from(                                                                  
-			select oneByOneNum,  id, mail, title,content,regdate, viewcnt,  rownum r 
+			select oneByOneNum,  id, mail, title,content,regdate, viewcnt,  grpnum, ansnum, indent, rownum r 
 			from(                                                                
-			select oneByOneNum, id, mail, title,content,viewcnt, regdate   
+			select oneByOneNum, id, mail, title,content,viewcnt, regdate  , grpnum, ansnum, indent
 			from OneByOne                                                                                                              
             <where>
             <choose>

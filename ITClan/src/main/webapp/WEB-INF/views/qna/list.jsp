@@ -40,7 +40,7 @@ function readB(qnANum) {
 	<h2>자주찾는 FAQ</h2>
 
 
-   <div id="css_tabs"  style="height:200px; width:1250px; margin:auto; border: 1px   solid  black ;" >
+   <div id="css_tabs"  style="height:400px; width:1250px; margin:auto; border: 1px   solid  black ;" >
         <!-- 라디오 버튼 -->
         <input id="tab1" type="radio" name="tab" checked="checked" />
         <input id="tab2" type="radio" name="tab" />
@@ -53,10 +53,19 @@ function readB(qnANum) {
 
         <!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 -->
 <!--      div style="border:1px; padding:0px 50px 0px 50px ;" -->
-        <div style="border: 1px   solid  blue ;" class="tab1_content">
+        <div style="border: 1px   solid  blue ; height:350px; " class="tab1_content">
  		<ul>
-	 		<li>회원가입·로그인</li>
-	 		<li>이력서</li>
+	 		<li><button class="accordion">잡코리아를 탈퇴하면 어떻게 되나요?</button>
+				<div class="panel">
+				  <p>탈퇴 시, 해당 아이디로 사이트를 이용하셨던 이력서, 지원내역 등 모든 정보가 삭제 됩니다. </p>
+				</div>
+				
+			</li>
+	 		<li><button class="accordion">이력서 등록을 하고 싶은데 절차가 어떻게 되나요?</button>
+				<div class="panel">
+				  <p>회원가입 후  이력서를 등록하실 수 있습니다.  </p>
+				</div>
+				</li>
 	 		<li>입사지원</li>
 	 		<li>채용정보</li>
 		</ul> 		
@@ -82,29 +91,6 @@ function readB(qnANum) {
 
 
 
-<!-- ============ -->
-<button class="accordion">잡코리아를 탈퇴하면 어떻게 되나요?</button>
-<div class="panel">
-  <p>탈퇴 시, 해당 아이디로 사이트를 이용하셨던 이력서, 지원내역 등 모든 정보가 삭제 됩니다. </p>
-</div>
-
-<button class="accordion">Section 2</button>
-<div class="panel">
-  <p>2.</p>
-</div>
-
-<button class="accordion">Section 3</button>
-<div class="panel">
-  <p>3.</p>
-</div>
-<button class="accordion">Section 4</button>
-<div class="panel">
-  <p>4.</p>
-</div>
-<button class="accordion">Section 5</button>
-<div class="panel">
-  <p>5.</p>
-</div>
 
 
 <script>
@@ -123,9 +109,9 @@ for (i = 0; i < acc.length; i++) {
 </script>
 
 
-<table width="680" border="0" cellspacing="0" cellpadding="0" align="center">
+<table width="1250px" border="0" cellspacing="0" cellpadding="0" align="center">
 <tbody><tr><td height="50" align="center">
-<table width="680" border="0" cellspacing="0" cellpadding="0">
+<table width="1250px" border="0" cellspacing="0" cellpadding="0">
 <h2> Q & A</h2>
 ${fn:substring(dto.regdate,0,10)}
 
@@ -137,7 +123,7 @@ ${fn:substring(dto.regdate,0,10)}
 <tr><td>
 
 <div class="helpdesk-qna-list">
-<table class="padding3" width="680" border="0" cellspacing="0" cellpadding="3">
+<table class="padding3" width="1250px" border="0" cellspacing="0" cellpadding="3">
 <tbody>
 
 <tr bgcolor="62B5DF"><td height="1" colspan="5" style="padding:0"></td></tr>
@@ -162,7 +148,7 @@ ${fn:substring(dto.regdate,0,10)}
   <td>
   <a href="javascript:readB('${dto.qnANum }')">${dto.title}</a>
    <c:if test="${uti:newImg(fn:substring(dto.regdate,0,10)) }">
-   <img src="../images/new.gif">
+<!--    <img src="../images/new.gif"> -->
    </c:if>
     </td>
   <td>${dto.name}</td>

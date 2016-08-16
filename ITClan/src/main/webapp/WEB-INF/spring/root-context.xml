@@ -47,10 +47,19 @@
 	destroy-method="close"
 	class="org.apache.commons.dbcp.BasicDataSource" 
 	p:driverClassName="oracle.jdbc.driver.OracleDriver" 
-	p:url="jdbc:oracle:thin:@172.16.3.16:1521:XE" 
+	p:url="jdbc:oracle:thin:@172.16.3.15:1521:XE" 
 	p:username="goldstar"  
 	p:password="lucky"  
 	/> 
+	 
+<!-- 	<bean id="dataSource"  -->
+<!-- 	destroy-method="close" -->
+<!-- 	class="org.apache.commons.dbcp.BasicDataSource"  -->
+<!-- 	p:driverClassName="oracle.jdbc.driver.OracleDriver"  -->
+<!-- 	p:url="jdbc:oracle:thin:@localhost:1521:XE"  -->
+<!-- 	p:username="soldesk"   -->
+<!-- 	p:password="1234"   -->
+<!-- 	/>  -->
 	 	
  	
 <!-- MyBatis SQL 실행 클래스  --> 
