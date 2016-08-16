@@ -52,7 +52,6 @@ function readB(qnANum) {
         <label style="border:1px solid black;"for="tab3">Tab 3</label>
 
         <!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 -->
-<!--      div style="border:1px; padding:0px 50px 0px 50px ;" -->
         <div style="border: 1px   solid  blue ; height:350px; " class="tab1_content">
  		<ul>
 	 		<li><button class="accordion">잡코리아를 탈퇴하면 어떻게 되나요?</button>
