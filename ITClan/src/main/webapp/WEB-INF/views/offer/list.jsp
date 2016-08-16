@@ -43,7 +43,7 @@
 			<input type='button' value='채용공고 등록'
 				onclick="location.href='../offer/create'">
 			<input type='button' value='지원자 목록'
-				onclick="location.href='../offer/alist'">	
+				onclick="location.href='#'">	
 		</c:if>
 	</FORM>
 </DIV>
