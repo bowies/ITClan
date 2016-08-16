@@ -85,13 +85,15 @@ padding-right:10px
      <li><a href="${pageContext.request.contextPath}/companymember/read">나의정보</a></li>
      <li><a href="${pageContext.request.contextPath}/companymember/update">회원수정</a><li>
      <li><a href="${pageContext.request.contextPath}/companymember/delete">회원탈퇴</a><li>     
+     <li><a href="${pageContext.request.contextPath}/companyinfo/read?companyID=${sessionScope.companyID}">회사정보</a></li>
+   
      </c:otherwise>
      </c:choose>
-        
      
-     
-     <c:if test="${not empty sessionScope.companyId and sessionScope.grade == 'A'}">
+     <c:if test="${sessionScope.grade == 'A'}">
      <li id="Admin"><a href="${pageContext.request.contextPath}/companymember/list">회원목록</a></li>
+     <li id="Admin"><a href="${pageContext.request.contextPath}/companyinfo/list">회사정보목록</a></li>
+  
 	</c:if>
  
     </ul>

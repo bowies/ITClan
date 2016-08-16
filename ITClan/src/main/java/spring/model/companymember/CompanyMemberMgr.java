@@ -13,9 +13,11 @@ public class CompanyMemberMgr {
 	@Autowired
 	private CompanyInfoDAO cidao;
 
+	
 	public void delete(String CompanyID) throws Exception {
 
 		cmdao.delete(CompanyID);
 		cidao.delete(CompanyID);
 	}
+	
 }

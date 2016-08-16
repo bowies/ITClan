@@ -40,11 +40,11 @@
 			value="/WEB-INF/views/industrycategory/read.jsp" />
 	</definition>
 
-	<definition name="/industrycategory/delete" extends="main">
-		<put-attribute name="title" value="업종 분류 삭제"></put-attribute>
-		<put-attribute name="body"
-			value="/WEB-INF/views/industrycategory/deleteForm.jsp" />
-	</definition>
+<!-- 	<definition name="/industrycategory/delete" extends="main"> -->
+<!-- 		<put-attribute name="title" value="업종 분류 삭제"></put-attribute> -->
+<!-- 		<put-attribute name="body" -->
+<!-- 			value="/WEB-INF/views/industrycategory/deleteForm.jsp" /> -->
+<!-- 	</definition> -->
 	
 	
 	<definition name="/industrycategory/list" extends="main">
