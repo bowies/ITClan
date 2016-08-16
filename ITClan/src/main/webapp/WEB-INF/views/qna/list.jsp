@@ -58,7 +58,7 @@ function readB(qnANum) {
 				<div class="panel">
 				  <p>탈퇴 시, 해당 아이디로 사이트를 이용하셨던 이력서, 지원내역 등 모든 정보가 삭제 됩니다. </p>
 				</div>
-				
+				 
 			</li>
 	 		<li><button class="accordion">이력서 등록을 하고 싶은데 절차가 어떻게 되나요?</button>
 				<div class="panel">
