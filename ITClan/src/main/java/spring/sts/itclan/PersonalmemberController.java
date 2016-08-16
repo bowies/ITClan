@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import spring.model.personalmember.*;
 import spring.model.resumeinfo.ResumeInfoDAO;
+import spring.model.resumeinfo.ResumeInfoDTO;
 import spring.utility.itclan.*;
 
 @Controller
@@ -27,10 +28,19 @@ public class PersonalmemberController {
 	
 	@Autowired
 	private PersonalMemberMgr mgr;
-	
+	//수정중!!
 	@RequestMapping(value="/personal/updatepic",method=RequestMethod.POST)
-	public String updatepic(){
-		
+	public String updatepic(HttpServletRequest request,ResumeInfoDTO dto,String oldfile){
+		String basePath = request.getRealPath("/storage/resumeinfo_img");
+
+		String picture = "member.jpg";
+		int size = (int) dto.getPictureMF().getSize();
+		if (size > 0) {
+			if (oldfile != null && !oldfile.equals("member.jpg"))
+				Utility.deleteFile(basePath, oldfile);
+			picture = Utility.saveFile(dto.getPictureMF(), basePath);
+		}
+		dto.setPicture(picture);
 		return "/personalmember/updatepic";
 	}
 	@RequestMapping(value="/personal/updatepic",method=RequestMethod.GET)
