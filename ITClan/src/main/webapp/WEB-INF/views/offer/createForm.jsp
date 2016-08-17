@@ -6,6 +6,7 @@
 <title></title> 
 
 <link href="./css/style.css" rel="Stylesheet" type="text/css">
+
 <script type="text/javascript">
 function input(){
 	var f = document.frm;
@@ -41,7 +42,7 @@ function input(){
     </TR>
     <TR>
       <TH>회사이름</TH>
-      <TD><input type="text" name="companyName"></TD>
+      <TD><input type="text" name="companyName" size="30"></TD>
     </TR>
     <TR>
       <TH>제목</TH>
@@ -49,35 +50,35 @@ function input(){
     </TR>
     <TR>
       <TH>채용마감일</TH>
-      <TD><input type="text" name="offerDate"></TD>
+      <TD><input type="text" name="offerDate" size="30"></TD>
     </TR>
     <TR>
   	  <TH>지원자격</TH>
-      <TD><input type="text" name="qualification"></TD>
+      <TD><input type="text" name="qualification" size="30"></TD>
     </TR>
     <TR>
       <TH>채용분야</TH>
-      <TD><input type="text" name="employmentSector"></TD>
+      <TD><input type="text" name="employmentSector" size="30"></TD>
     </TR>
     <TR>
       <TH>근무지역</TH>
-      <TD><input type="text" name="workingArea"></TD>
+      <TD><input type="text" name="workingArea" size="30"></TD>
     </TR>
     <TR>
       <TH>급여</TH>
-      <TD><input type="text" name="salary"></TD>
+      <TD><input type="text" name="salary" size="30"></TD>
     </TR>
     <TR>
       <TH>모집인원</TH>
-      <TD><input type="text" name="recruitment"></TD>
+      <TD><input type="text" name="recruitment" size="30"></TD>
     </TR>
     <TR>
       <TH>주요업무</TH>
-      <TD><input type="text" name="task"></TD>
+      <TD><textarea cols="32" rows="5" name="task"></textarea></TD>
     </TR>
     <TR>
       <TH>채용상세</TH>
-      <TD><textarea cols="30" rows="10" name="detail"></textarea></TD>
+      <TD><textarea cols="32" rows="15" name="detail"></textarea></TD>
     </TR>
   </TABLE>
   

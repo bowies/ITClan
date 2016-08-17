@@ -1,4 +1,4 @@
-package spring.sts.hsm;
+package spring.sts.kmk;
 
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +31,7 @@ public class OfferController {
 			return "redirect:/offer/list";
 		}else{
 			return "error/error";
-		} 
+		}
 	}
 	@RequestMapping(value="/offer/create", method=RequestMethod.GET)
 	public String create(){
@@ -139,7 +139,7 @@ public class OfferController {
 		List<OfferDTO> list=dao.list(map);
 
 		int total=dao.total(map);
-		String paging=new Paging().paging2(total, nowPage, recordPerPage, col, word); 
+		String paging=new Paging().paging2(total, nowPage, recordPerPage, col, word);
 		
 		model.addAttribute("col", col);
 		model.addAttribute("list", list);

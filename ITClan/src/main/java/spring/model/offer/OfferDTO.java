@@ -13,9 +13,7 @@ public class OfferDTO {
 	private String	workingArea         ;
 	private String	recruitment         ;
 	private String	salary			    ;
-	private int viewCnt;
-	
-	
+	private int  viewCnt				;
 	
 	public int getViewCnt() {
 		return viewCnt;
@@ -96,7 +94,7 @@ public class OfferDTO {
 	public void setSalary(String salary) {
 		this.salary = salary;
 	}
-	
+
 
 			
 }

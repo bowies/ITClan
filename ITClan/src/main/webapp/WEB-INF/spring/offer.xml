@@ -31,19 +31,19 @@
 	</definition>
 
 	<definition name="/offer/delete" extends="main">
-		<put-attribute name="title" value="offer delete Page"></put-attribute>
+		<put-attribute name="title" value="offer Delete Page"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/offer/deleteForm.jsp" />
 	</definition>
 
 	<definition name="/offer/update" extends="main">
-		<put-attribute name="title" value="offer update Page"></put-attribute>
+		<put-attribute name="title" value="offer Update Page"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/offer/updateForm.jsp" />
 	</definition>
 	
 	<definition name="/offer/list" extends="main">
-		<put-attribute name="title" value="offer password change Page"></put-attribute>
+		<put-attribute name="title" value="offer List Page"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/offer/list.jsp" />
 	</definition>
-	
+
 </tiles-definitions> 
 

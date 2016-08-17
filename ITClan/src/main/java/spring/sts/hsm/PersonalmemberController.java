@@ -1,22 +1,30 @@
 package spring.sts.hsm;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
-import javax.servlet.http.*;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.junit.internal.matchers.SubstringMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
-import spring.model.personalmember.*;
+import spring.model.personalmember.PersonalMemberDAO;
+import spring.model.personalmember.PersonalMemberDTO;
+import spring.model.personalmember.PersonalMemberMgr;
 import spring.model.resumeinfo.ResumeInfoDAO;
-import spring.utility.itclan.*;
+import spring.model.resumeinfo.ResumeInfoDTO;
+import spring.utility.itclan.Paging;
+import spring.utility.itclan.Utility;
 
 @Controller
 public class PersonalmemberController {
@@ -27,6 +35,46 @@ public class PersonalmemberController {
 	
 	@Autowired
 	private PersonalMemberMgr mgr;
+	
+	//수정중!!
+	@RequestMapping(value="/personal/updatepic",method=RequestMethod.POST)
+	public String updatepic(HttpServletRequest request,ResumeInfoDTO dto,String oldfile){
+		String basePath = request.getRealPath("/storage/resumeInfo_img");
+
+		String picture = "member.jpg";
+		int size = (int) dto.getPictureMF().getSize();
+		if (size > 0) {
+			if (oldfile != null && !oldfile.equals("member.jpg"))
+			Utility.deleteFile(basePath, oldfile);
+			picture = Utility.saveFile(dto.getPictureMF(), basePath);
+		}
+		dto.setPicture(picture);
+		if(dao.updatepic(dto)>0){
+			return "redirect:/personal/main_p";
+		}else{
+			return "/error/error";
+		}
+
+	}
+	@RequestMapping(value="/personal/updatepic",method=RequestMethod.GET)
+	public String updatepic(String memberID, String oldfile,Model model){
+		model.addAttribute("oldfile", oldfile);
+		model.addAttribute("memberID", memberID);
+		return "/personalmember/updatepic";
+	}
+	
+	@RequestMapping("/personal/main_p")
+	public String main_p(String memberID,HttpSession session,Model model){
+		if(memberID == null){
+		memberID = (String) session.getAttribute("memberID");
+		}
+		int cnt = dao.resumeCheck(memberID);
+		String picture = dao.resumepic(memberID);
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("picture", picture);
+		model.addAttribute("memberID", memberID);
+		return "/personalmember/main_p";
+	}
 	
 	@RequestMapping("/personal/deletePwC")
 	public String deletePwC(String memberID , String passwd,Model model){
@@ -283,31 +331,10 @@ public class PersonalmemberController {
 			memberID = (String)session.getAttribute("memberID");
 		}
 		
-			dto = (PersonalMemberDTO) dao.read(memberID);
+		dto = (PersonalMemberDTO) dao.read(memberID);
 		
-		String birth1 = dto.getBirth();
-		
-		
-		StringBuffer birth = new StringBuffer();
-		birth.append(birth1.substring(0,2));
-		birth.append("년 ");
-		birth.append(birth1.substring(2,4));
-		birth.append("월 ");
-		birth.append(birth1.substring(4,6));
-		birth.append("일");
-		model.addAttribute("birth", birth);
 		model.addAttribute("dto",dto);
 		return "/personalmember/read";
-	}
-	@RequestMapping("/personal/main_p")
-	public String main_p(String memberID,Model model,HttpSession session){
-		if(memberID == null){
-			memberID = (String)session.getAttribute("memberID");
-		}
-		String picture = ridao.viewPic(memberID);
-		
-		model.addAttribute("picture", picture);
-		return "/personalmember/main_p";
 	}
 	
 	@RequestMapping(value="/personal/create",method=RequestMethod.POST)
@@ -329,9 +356,12 @@ public class PersonalmemberController {
 		return "/personalmember/createProc";
 	}
 	@RequestMapping(value="/personal/create",method=RequestMethod.GET)
-	public String create(){
-
+	public String create(Model model){
+		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+		Date currentTime = new Date ( );
+		String mTime = mSimpleDateFormat.format ( currentTime );
 		
+		model.addAttribute("mTime", mTime);
 		return "/personalmember/create";
 	}
 	@RequestMapping("/personal/agree")
