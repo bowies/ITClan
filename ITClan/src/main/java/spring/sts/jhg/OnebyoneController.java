@@ -1,4 +1,4 @@
-package spring.sts.jbs;
+package spring.sts.jhg;
 
 import java.util.HashMap;
 import java.util.List;

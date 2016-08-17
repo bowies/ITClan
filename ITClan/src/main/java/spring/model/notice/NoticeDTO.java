@@ -6,7 +6,7 @@ public class NoticeDTO {
 	private String content;
 	private int viewCnt;
 	private String regDate;
-	
+
 	public int getNoticeNum() {
 		return noticeNum;
 	}
@@ -25,7 +25,6 @@ public class NoticeDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-
 	public int getViewCnt() {
 		return viewCnt;
 	}
@@ -39,4 +38,7 @@ public class NoticeDTO {
 		this.regDate = regDate;
 	}
 	
+	
+	
+
 }
