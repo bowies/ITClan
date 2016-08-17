@@ -56,7 +56,7 @@ public class ApplycomanyDAOTest {
 		ApplyCompanyDAO dao = (ApplyCompanyDAO)beans.getBean("applycompanydao");
 		ApplyCompanyDTO dto = new ApplyCompanyDTO();
 		dto.setMemberID("bbb");
-		dto.setOfferNum(2);
+		dto.setOfferNum(4);
 		dto.setResumeNum(4);
 		dto.setPortfolioNum(4);
 		assertEquals(1, dao.create(dto));

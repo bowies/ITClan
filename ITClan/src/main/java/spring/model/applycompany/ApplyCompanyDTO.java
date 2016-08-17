@@ -2,6 +2,7 @@ package spring.model.applycompany;
 
 import java.util.List;
 
+import spring.model.offer.OfferDTO;
 import spring.model.personalmember.PersonalMemberDTO;
 import spring.model.portfolio.PortFolioDTO;
 import spring.model.resume.ResumeDTO;
@@ -21,6 +22,7 @@ public class ApplyCompanyDTO {
 	private PortFolioDTO pfdto;
 	private ResumeDTO redto;
 	private ResumeInfoDTO ridto;
+	
 	
 	
 	
