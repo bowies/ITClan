@@ -104,7 +104,6 @@ for (i = 0; i < acc.length; i++) {
         this.nextElementSibling.classList.toggle("show");
     }
 }
-
 </script>
 
 
@@ -209,16 +208,11 @@ p{padding:0; margin:0}
 .layer_main02{width:633px; position:absolute;  background:url(http://www.saraminimage.co.kr/event_2011/1124_contact/layer_main02.gif) no-repeat;}
 .layer_main03{width:775px; position:absolute;  background:url(http://www.saraminimage.co.kr/event_2011/1124_contact/layer_join01.gif) no-repeat;}
 </style>
-<script type="text/javascript">
-<!--
-//-->
-</script>
+
 
 
   </div>
   
-    
-  <div style="clear:both"></div>
 </div>
 
 
