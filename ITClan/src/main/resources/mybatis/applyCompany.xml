@@ -59,7 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <result property="ridto.military" column="military"/>
 <result property="ridto.schoolName" column="schoolName"/>
 <result property="ridto.major" column="major"/>
-<result property="ridto.termtime" column="termtime"/>
+<result property="ridto.termTime" column="termtime"/>
 <result property="ridto.GPA" column="GPA"/>
 <collection property="offerList" column="offerNum" javaType="List" ofType="OfferDTO"
  resultMap="applycompany.OfferDTOListMap"/>
