@@ -90,30 +90,18 @@
 		url += "&nowPage=${param.nowPage}";
 		location.href = url;
 	}
-	function replyB() {
-		var url = "./reply"
-		url += "?col=${param.col}";
-		url += "&word=${param.word}";
-		url += "&noticeNum=${dto.noticeNum}";
-		url += "&nowPage=${param.nowPage}";
-
-		location.href = url;
-	}
 </script>
 </head>
 <!-- *********************************************** -->
 <body>
 	<!-- *********************************************** -->
 
-	<DIV class="title">조회</DIV>
+	<DIV class="title"></DIV>
 
 	<TABLE class='table'>
 		<TR>
 			<TH>제목</TH>
 			<TD>${dto.title}</TD>
-		</TR>
-		<TR>
-			<TD colspan="2">${dto.content}</TD>
 		</TR>
 		<TR>
 			<TH>조회수</TH>
@@ -123,14 +111,18 @@
 			<TH>등록일</TH>
 			<TD>${dto.regDate}</TD>
 		</TR>
+		<TR>
+			<TD colspan="2">${dto.content}</TD>
+		</TR>
 	</TABLE>
 
 	<DIV class='bottom'>
+		<c:if test="${sessionScope.grade == 'A'}">
 		<input type='button' value='등록' onclick="location.href='./create'">
 		<input type='button' value='목록' onclick="listB()"> 
-		<input type='button' value='수정' onclick="updateB()"> 
 		<input type='button' value='삭제' onclick="deleteM()"> 
-			<input type='button' value='답변' onclick="replyB()">
+		<input type='button' value='수정' onclick="updateB()"> 
+		</c:if>
 	</DIV>
 	<hr>
 	<c:forEach var="rdto" items="${rlist}">

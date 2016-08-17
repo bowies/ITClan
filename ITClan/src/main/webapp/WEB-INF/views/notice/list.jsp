@@ -44,7 +44,6 @@ function read(noticeNum){
     <TH>번호</TH>
     <TH>제목</Th>
     <TH>조회수</Th>
-    <TH>등록일</TH>
   </TR>
 <c:choose>
 <c:when test="${empty list}">
@@ -59,10 +58,10 @@ function read(noticeNum){
   	<TD>
   	<a href="javascript:read('${dto.noticeNum}')">${dto.title}<c:if test="${rcount>0 }">
             <span style="color:red;">(${rcount})</span>
-          </c:if></a>  	
+          </c:if></a><br> 	
+          ${dto.regDate}
   	</TD>
   	<TD>${dto.viewCnt}</TD>
-  	<TD>${dto.regDate}</TD>
   </TR>
 </c:forEach>
 </c:otherwise>
@@ -70,7 +69,9 @@ function read(noticeNum){
 </TABLE> 
 <DIV class='bottom'>
     ${paging}
+<c:if test="${sessionScope.grade == 'A'}">
     <input type='button' value='등록' onclick="location.href='create'">
+</c:if>
 </DIV>
 </body>
 <!-- *********************************************** -->

@@ -17,7 +17,7 @@
 	Configure the location of uploaded files. See the following article for more details:
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
 	★경로 수정-->
-	<baseDir>D:\javadb\spring\ojt_workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ITClan\ckstorage</baseDir>
+	<baseDir>D:\javadb\ojt\git\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ITClan\ckstorage</baseDir>
 	<baseURL>/itclan/ckstorage</baseURL>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>

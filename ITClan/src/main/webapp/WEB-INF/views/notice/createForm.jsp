@@ -24,7 +24,7 @@
       <TD><input type="text" name="title" size='40'  maxlength="33"></TD>
     </TR>
     <TR>
-      <TD colspan="2"><textarea name="content" rows='10' cols='40'  maxlength=""></textarea></TD>
+      <TD colspan="2"><textarea id="content" name="content" rows='10' cols='40'  maxlength=""></textarea></TD>
     </TR>
   </TABLE>
   
