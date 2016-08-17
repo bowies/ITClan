@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import spring.model.itclan.DAOMyBatisInter;
+import spring.model.resumeinfo.ResumeInfoDTO;
 @Component
 public class PersonalMemberDAO implements DAOMyBatisInter{
 	
@@ -37,11 +38,9 @@ public class PersonalMemberDAO implements DAOMyBatisInter{
 	public String resumepic(String memberID){
 		return mybatis.selectOne("personalmember.resumepic", memberID);
 	}
-	public int updatepic(String memberID,String picture){
-		Map map = new HashMap();
-		map.put("memberID", memberID);
-		map.put("picture", picture);
-		return mybatis.update("personalmember.updatepic", map);
+	public int updatepic(ResumeInfoDTO dto){
+		
+		return mybatis.update("personalmember.updatepic", dto);
 	}
 	
 	public String pwFind(String memberID , String email){

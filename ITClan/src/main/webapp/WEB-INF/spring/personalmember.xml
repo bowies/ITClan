@@ -29,6 +29,10 @@
 		<put-attribute name="title" value="PersonalMemberMain"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/personalmember/main_p.jsp" />
 	</definition>
+	<definition name="/personalmember/updatepic" extends="main">
+		<put-attribute name="title" value="PersonalMemberMain"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/personalmember/updatepic.jsp" />
+	</definition>
 
 	<definition name="/personalmember/create" extends="main">
 		<put-attribute name="title" value="개인회원 가입"></put-attribute>

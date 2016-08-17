@@ -12,6 +12,7 @@ table tr td {
 }
 
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	function readURL(input) {
@@ -42,7 +43,7 @@ onsubmit="return input(this)" enctype="multipart/form-data">
 <table style="margin: auto;">
 
 <tr><td>
-<img id="photo" src="../storage/resumeinfo_img/${picture }" style="width: 170px; height: 170px;">
+<img id="photo" src="../storage/resumeInfo_img/${oldfile}"  style="width: 170px; height: 170px;">
 </td></tr>
 <tr><td>
 <input style="text-align: center; width: 77px; margin-top: 10px;" type="file" id="imgInp" name="pictureMF">

@@ -15,9 +15,9 @@ table tr td {
 
 <script type="text/javascript">
 function updatepic(memberID){
-	var url = "updatepic";
+	var url = "./updatepic";
 	url += "?memberID=" + memberID;
-	url += "&picture=${picture}";
+	url += "&oldfile=${picture}";
 	location.href=url;
 }
 function create(memberID){
@@ -32,7 +32,7 @@ function create(memberID){
 <table style="margin: auto;">
 <tr>
 <td rowspan="2">
-<img src="../storage/resumeinfo_img/${picture}" width="300px" height="200px"><br>
+<img src="${pageContext.request.contextPath}/storage/resumeInfo_img/${picture}" width="200px" height="200px"><br>
 <input type="button" onclick="updatepic('${memberID}')" value="사진수정">
 
 </td>

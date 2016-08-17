@@ -12,7 +12,7 @@ where memberID =#{memberID}
 select picture from resumeinfo
 where memberID = #{memberID}
 </select>
-<update id="updatepic" parameterType="Map">
+<update id="updatepic" parameterType="ResumeInfoDTO">
 update resumeinfo
 set
 picture = #{picture}
