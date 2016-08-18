@@ -9,8 +9,7 @@ public class ExternalActivityDTO {
    private String actSector  ;
    private String actContent ;
    private String memberID   ;
-   
-   private List exActList;
+
 
 public int getActNum() {
 	return actNum;
@@ -50,14 +49,6 @@ public String getMemberID() {
 
 public void setMemberID(String memberID) {
 	this.memberID = memberID;
-}
-
-public List getExActList() {
-	return exActList;
-}
-
-public void setExActList(List exActList) {
-	this.exActList = exActList;
 }
 
    

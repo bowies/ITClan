@@ -9,7 +9,6 @@ public class LicenseDTO {
     private String takeDate      ;
     private String memberID      ;
     
-    private List licenseList;
 
 	public int getLicenseNum() {
 		return licenseNum;
@@ -43,12 +42,6 @@ public class LicenseDTO {
 		this.memberID = memberID;
 	}
 
-	public List getLicenseList() {
-		return licenseList;
-	}
 
-	public void setLicenseList(List licenseList) {
-		this.licenseList = licenseList;
-	}
     
 }

@@ -1,5 +1,6 @@
 package spring.model.license;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -60,6 +61,11 @@ public class LicenseDAO implements DAOMyBatisInter {
 	public int deleteinfo(String memberID) {
 		
 		return mybatis.delete("license.deleteinfo", memberID);
+	}
+	
+	public int total(String memberID) {
+		
+		return mybatis.selectOne("license.total", memberID);
 	}
 
 }

@@ -23,7 +23,7 @@
 
 	<definition name="/resumeInfo/read" extends="main">
 		<put-attribute name="title" value="Bbs Join Page"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/resumeinfo/read.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/resumeInfo/read.jsp" />
 	</definition>
 
 	<definition name="/resumeInfo/delete" extends="main">

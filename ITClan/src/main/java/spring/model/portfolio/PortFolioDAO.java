@@ -18,6 +18,9 @@ public class PortFolioDAO implements DAOMyBatisInter {
 	public void setMybatis(SqlSessionTemplate mybatis) {
 		this.mybatis = mybatis;
 	}
+	public int pfCheck(String memberID){
+		return mybatis.selectOne("portfolio.pfCheck",memberID);
+	}
 
 	@Override
 	public int create(Object dto) throws Exception {

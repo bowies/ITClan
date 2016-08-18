@@ -5,52 +5,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="license">
 
-<resultMap type="LicenseDTO" id="ManyMap">
-	<result property="licenseNum" column="licenseNum"/>
-	<result property="qualification" column="qualification"/>
-	<result property="takeDate" column="takedate"/>
-	<result property="memberID" column="memberID"/>
-	<collection property="licenseList" column="memberID" javaType="List" ofType="ResumeInfoDTO"
-				resultMap="license.LicenseDTOListMap"/>
-</resultMap>
-<resultMap type="ResumeInfoDTO" id="LicenseDTOListMap">
-	<result property="memberID" column="memberID"/>
-	<result property="education" column="education"/>
-	<result property="career" column="career"/>
-	<result property="employmentType" column="employmentType"/>
-	<result property="exSalary" column="exSalary"/>
-	<result property="disableGrade" column="disableGrade"/>
-	<result property="picture" column="picture"/>
-	<result property="exArea" column="exArea"/>
-	<result property="exField" column="exField"/>
-	<result property="military" column="military"/>
-</resultMap>
-<select id="list" parameterType="Map" resultMap="ManyMap">
-select  memberID, education, career, employmentType, exSalary,
-		disableGrade, picture, exArea, exField, military,
-		licenseNum, qualification, takeDate, r
-from(
-	select 	memberID, education, career, employmentType, exSalary,
-			disableGrade, picture, exArea, exField, military,
-			licenseNum, qualification, takeDate, rownum r
-	from(
-		select  r.memberID, r.education, r.career, r.employmentType, r.exSalary,
-				r.disableGrade, r.picture, r.exArea, r.exField, r.military,
-				l.licenseNum, l.qualification, l.takedate
-		from ResumeInfo r, license l
-		where r.memberID = l.memberID
-		and r.memberid = #{memberID}
+
+<select id="list" parameterType="Map" resultType="LicenseDTO">
+		select  memberID, licenseNum, qualification, takedate
+		from license 
+		where memberID = #{memberID}
 		order by licenseNum ASC
-	)
-)
-<![CDATA[
-where r>=#{sno} and r<=#{eno}
-]]>
 </select>
 
-<select id="read" parameterType="Map" resultType="LicenseDTO">
+<select id="total" parameterType="String" resultType="int">
+select count(*)
+from license
+where memberID = #{memberID}
+</select>
+
+<select id="read" parameterType="int" resultType="LicenseDTO">
 select * from license
-where licenseNum = #{licenseNum} and memberID = #{memberID}
+where licenseNum = #{licenseNum}
 </select>
 
 <insert id="create" parameterType="LicenseDTO">
@@ -63,13 +34,14 @@ update license
 set
 qualification = #{qualification},
 takeDate = #{takeDate}
-where licenseNum = #{licenseNum} and memberID = #{memberID}
+where licenseNum = #{licenseNum}
 </update>
 
-<delete id="delete" parameterType="Map">
+<delete id="delete" parameterType="int">
 delete from license
-where licenseNum = #{licenseNum} and memberID = #{memberID}
+where licenseNum = #{licenseNum}
 </delete>
+
 <delete id="deleteinfo" parameterType="String">
 delete from license
 where memberID = #{memberID}
