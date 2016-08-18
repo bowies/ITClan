@@ -162,8 +162,6 @@ $(document).ready(function() {
 	});
 	//---------------------------------------//
 
-	
-	
 	//사진 보여주기
 	$(document).ready(function() {
 		function readURL(input) {
@@ -274,7 +272,7 @@ $(document).ready(function() {
 		<table border="1">
 			<tr>
 				<td style="width: 80px;" align="center" rowspan="12">
-				<img id="photo" src="../images/no_image.JPG" style="width: 170px; height: 170px;">
+				<img id="photo" src="../storage/resumeInfo_img/no_image.JPG" style="width: 170px; height: 170px;">
 				<input style="text-align: center; width: 77px; margin-top: 10px;" type="file" id="imgInp" name="pictureMF">
 				</td>
 			</tr>
@@ -391,15 +389,15 @@ $(document).ready(function() {
 			<tr>
 				<th style="text-align: center; background-color: #D9E5FF;">재학기간</th>
 				<td>
-				<input type="text" name="termTime" placeholder="0000" style="width: 45px;"> .
-				<input type="text" name="termTime" placeholder="00" style="width: 25px;">
+				<input type="text" name="termTime" placeholder="0000" maxlength="4" style="width: 45px;"> .
+				<input type="text" name="termTime" placeholder="00" maxlength="2" style="width: 25px;">
 				<select name="termTime">
 					<option value="입학">입학</option>
 					<option value="편입">편입</option>
 				</select>
 				~
-				<input type="text" name="termTime" placeholder="0000" style="width: 45px;"> .
-				<input type="text" name="termTime" placeholder="00" style="width: 25px;">
+				<input type="text" name="termTime" placeholder="0000" maxlength="4" style="width: 45px;"> .
+				<input type="text" name="termTime" placeholder="00" maxlength="2" style="width: 25px;">
 				<select name="termTime">
 					<option value="졸업">졸업</option>
 					<option value="졸업예정">졸업예정</option>
@@ -520,7 +518,7 @@ $(document).ready(function() {
 
 		<br><br>
 		<div style="text-align: center;">
-			<input type="submit" value="전송">
+			<input type="submit" value="다음단계">
 		</div>
 	</form> 
 </body>

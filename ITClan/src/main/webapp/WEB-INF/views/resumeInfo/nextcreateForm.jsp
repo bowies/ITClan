@@ -41,6 +41,7 @@ if(${exmax>0 }){
 
 	});
 }
+
 //------------------------------------------
 
 //경력사항 추가 팝업창
@@ -66,39 +67,62 @@ function licenseCreate(limax){
 	}
 }
 
+function portfolioCreate(){
+	var url = "../portfolio/create";
+	wr = window.open(url,"포트폴리오","width=565,height=500"); 
+    wr.moveTo((window.screen.width-500)/2, (window.screen.height - 400)/2);// x, y
+	}
+
 //경력사항 삭제
-
-function deleteL(licenseNum) {
-	var url = "../license/delete"
-	url += "?licenseNum="+licenseNum;
+	function deleteL(licenseNum) {
+		var url = "../license/delete";
+		url += "?licenseNum="+licenseNum;
+		wr = window.open(url,"삭제알림","width=300,height=200"); 
+	    wr.moveTo((window.screen.width-300)/2, (window.screen.height - 800)/2);// x, y
+		}
 	
-	location.href=url;
-}
+	function deleteEX(actNum) {
+		var url = "../externalActivity/delete";
+		url += "?actNum="+actNum;
+		wr = window.open(url,"삭제알림","width=300,height=200"); 
+	    wr.moveTo((window.screen.width-300)/2, (window.screen.height - 800)/2);// x, y
+		}
 
-function deleteEX(actNum) {
-	var url ="../externalActivity/delete";
-	url += "?actNum="+actNum;
-	
-	location.href=url;
-}
+//다운로드
+ 	 function downresumeFile(resumeName){
+			var url = "${pageContext.request.contextPath}/download";
+			url = url + "?dir=/storage/resume";
+			url = url + "&filename="+resumeName;
+			 
+			location.href=url;
+	 }
+
+		function downportfolioFile(portfolioName){
+			var url = "${pageContext.request.contextPath}/download";
+			url = url + "?dir=/storage/portfolio";
+			url = url + "&filename="+portfolioName;
+			 
+			location.href=url;
+	}
+
 </script>
 </head>
 <body>
 	<form action="./create" method="post"
 		 onsubmit="return input(this)">
-			<input type="hidden" name="memberID" value="${memberID }">
-			<input type="hidden" name="education" value="${resumeinfodto.education }">
-			<input type="hidden" name="employmentType" value="${resumeinfodto.employmentType }">
-			<input type="hidden" name="exSalary" value="${resumeinfodto.exSalary }">
-			<input type="hidden" name="disableGrade" value="${resumeinfodto.disableGrade }">
-			<input type="hidden" name="exArea" value="${resumeinfodto.exArea }">
-			<input type="hidden" name="exField" value="${resumeinfodto.exField }">
-			<input type="hidden" name="military" value="${resumeinfodto.military }">
-			<input type="hidden" name="schoolName" value="${resumeinfodto.schoolName }">
-			<input type="hidden" name="major" value="${resumeinfodto.major }">
-			<input type="hidden" name="termTime" value="${resumeinfodto.termTime }">
-			<input type="hidden" name="GPA" value="${resumeinfodto.GPA }">
-			<input type="hidden" name="picture" value="${resumeinfodto.picture }">
+			<input type="text" name="memberID" value="${memberID }">
+			<input type="text" name="education" value="${resumeinfodto.education }">
+			<input type="text" name="employmentType" value="${resumeinfodto.employmentType }">
+			<input type="text" name="exSalary" value="${resumeinfodto.exSalary }">
+			<input type="text" name="disableGrade" value="${resumeinfodto.disableGrade }">
+			<input type="text" name="exArea" value="${resumeinfodto.exArea }">
+			<input type="text" name="exField" value="${resumeinfodto.exField }">
+			<input type="text" name="military" value="${resumeinfodto.military }">
+			<input type="text" name="schoolName" value="${resumeinfodto.schoolName }">
+			<input type="text" name="major" value="${resumeinfodto.major }">
+			<input type="text" name="termTime" value="${resumeinfodto.termTime }">
+			<input type="text" name="GPA" value="${resumeinfodto.GPA }">
+			<input type="text" name="picture" value="${resumeinfodto.picture }">
 		
 		<div style="width: 960px; margin: auto;">
 			<h1>경력사항
@@ -126,7 +150,7 @@ function deleteEX(actNum) {
 			<div>
 			<label>대외활동</label>
 			<label style="float: right;"> 
-			<a href="javascript:deleteEX('${externalactivitydto.actNum}')">-삭제</a>
+			<a href="#" onclick="deleteEX('${externalactivitydto.actNum}')">-삭제</a>
 			</label>
 			</div>
 			<hr>
@@ -166,13 +190,13 @@ function deleteEX(actNum) {
 			</h1>
 			
 			<input type="button" value="+추가" onclick="licenseCreate('${limax}')"><br><br>
-			<div id="parentId">
+			<div>
  			<c:forEach var="licensedto" items="${licenselist }">
 			<div style=" margin: auto; background-color: #D9E5FF; border: 2px solid #2478FF; padding-bottom: 15px; padding-top: 15px; width: 960px;">
 			<div>
 			<label>자격증</label>
-			<label style="float: right;"> 
-			<a href="javascript:deleteL('${licensedto.licenseNum}')">-삭제</a>
+			<label style="float: right;">
+			<a href="#" onclick="deleteL('${licensedto.licenseNum}')">-삭제</a>
 			</label>
 			</div>
 			<hr>
@@ -197,8 +221,49 @@ function deleteEX(actNum) {
 			</div>
 			</div>
 			
+			<br>	
+			<div style="width: 960px; margin: auto;">
+			<h1>포트폴리오</h1>
+			<div>포토폴리오 및 자기소개서 등록할 수 있습니다.</div>
+			<hr>
+			<input style="float: left;" type="button" value="+추가" onclick="portfolioCreate()">
+			<br><br>
+			<table id="port" border="2" style=" border 1px ; margin: auto; text-align:center; width: 960px;">
+			<tr>
+			<th>[자기소개서]
+			</th>
+			</tr>
+			
+			<c:forEach var="resumedto" items="${resumelist }">
+			<tr>
+			<td>
+			<a href="javascript:downresumeFile('${resumedto.resumeName }')">${resumedto.resumeName }</a>
+			<a href="#" style="float: right;">삭제</a>
+			</td>
+			</tr>
+			</c:forEach>
+			</table>
+			
+			<br><hr><br>
+			
+			<table id="port" border="2" style=" border 1px ; margin: auto; text-align:center; width: 960px;">
+			<tr>
+			<th>[포트폴리오]</th>
+			</tr>
+			
+			<c:forEach var="portfoliodto" items="${portfoliolist }">
+			<tr>
+			<td>
+			<a href="javascript:downportfolioFile('${portfoliodto.portfolioName }')">${portfoliodto.portfolioName }</a>
+			<a href="#" style="float: right;">삭제</a>
+			</td>
+			</tr>
+			</c:forEach>
+			</table>
+			</div>
+			<br>
 			<div style="width: 960px; margin: auto; text-align: center;">
-			<input type="button" value="뒤로" onclick="javascript:history.back();">	
+			<input type="button" value="뒤로" onclick="javascript:history.back();">
 			<input type="submit" value="확인">	
 			</div>
 </form>

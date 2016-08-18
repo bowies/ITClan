@@ -9,7 +9,7 @@
 </head>
 <body>
 <form action="./delete" method="post">
-<input type="hidden" name="actNum" value="${actNum }">
+<input type="hidden" name="licenseNum" value="${licenseNum }">
 <div style="margin: auto; text-align: center;">
 삭제하시겠습니까?
 </div><br>

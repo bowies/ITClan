@@ -27,8 +27,7 @@ function input(f) {
 </head>
 <body>
 <form name="frm" action="./create" method="post" onsubmit="return input(this)">
-<input type="text" name="memberID" value="${memberID }">
-<input type="text" name="actNum" value="${externalactivitydto.actNum }">
+<input type="hidden" name="memberID" value="${memberID }">
 <div>
 <label>활동구분
 <input type="text" name="actSector">

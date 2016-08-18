@@ -1,5 +1,8 @@
 eclipse.preferences.version=1
 encoding//src/main/webapp/WEB-INF/views/externalActivity/createProc.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/externalActivity/deleteForm.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/externalActivity/deleteProc.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/license/createProc.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/license/deleteProc.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/portfolio/createForm.jsp=UTF-8
 encoding/<project>=UTF-8

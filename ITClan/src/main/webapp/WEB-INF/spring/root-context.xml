@@ -86,8 +86,9 @@
 				<value>/WEB-INF/spring/personalmember.xml</value>
 				<value>/WEB-INF/spring/qna.xml</value>
 				<value>/WEB-INF/spring/reply.xml</value>
-				<value>/WEB-INF/spring/resumedetail.xml</value>
+				<value>/WEB-INF/spring/resume.xml</value>
 				<value>/WEB-INF/spring/resumeinfo.xml</value>
+				<value>/WEB-INF/spring/portfolio.xml</value>
 			</list>
 		</property>
 	</bean>

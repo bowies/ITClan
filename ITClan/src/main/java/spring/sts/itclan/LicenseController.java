@@ -41,11 +41,24 @@ public class LicenseController {
 		}
 	}
 	
-	@RequestMapping(value="/license/delete")
-	public String delete(int licenseNum) throws Exception{
+	@RequestMapping(value="/license/delete",method=RequestMethod.GET)
+	public String delete(int licenseNum, Model model) throws Exception{
 		
-		licensedao.delete(licenseNum);
-		return "redirect:../resumeInfo/nextcreate";
+		model.addAttribute("licenseNum", licenseNum);
+		
+		return "/license/deleteForm";
 		
 	}
+	
+	@RequestMapping(value="/license/delete",method=RequestMethod.POST)
+	public String delete(int licenseNum) throws Exception{
+		
+		if(licensedao.delete(licenseNum)>0){
+			return "/license/deleteProc";
+		
+		}else {
+			return "error/error";
+		}		
+	}
+	
 }

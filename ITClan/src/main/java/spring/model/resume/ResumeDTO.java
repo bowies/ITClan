@@ -36,7 +36,7 @@ public class ResumeDTO {
 		return memberID;
 	}
 	public void setMemberID(String memberID) {
-		memberID = memberID;
+		this.memberID = memberID;
 	}
 	public String getResumeName() {
 		return resumeName;

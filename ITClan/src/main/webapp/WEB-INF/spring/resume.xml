@@ -15,21 +15,21 @@
 	
 	
 
-	<definition name="/resumeDetail/create" extends="main">
+	<definition name="/resume/create" extends="main">
 		<put-attribute name="title" value="Bbs Join Page"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/resumeDetail/createForm.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/resume/createForm.jsp" />
 	</definition>
 
 
-	<definition name="/resumeDetail/delete" extends="main">
+	<definition name="/resume/delete" extends="main">
 		<put-attribute name="title" value="Bbs information delete Page"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/resumeDetail/deleteForm.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/resume/deleteForm.jsp" />
 	</definition>
 	
 	
-	<definition name="/resumeDetail/list" extends="main">
+	<definition name="/resume/list" extends="main">
 		<put-attribute name="title" value="Bbs password change Page"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/resumeDetail/list.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/resume/list.jsp" />
 	</definition>
 	
 </tiles-definitions> 

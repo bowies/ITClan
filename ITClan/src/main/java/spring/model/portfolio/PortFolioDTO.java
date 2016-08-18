@@ -30,7 +30,7 @@ public class PortFolioDTO {
 		return memberID;
 	}
 	public void setMemberID(String memberID) {
-		memberID = memberID;
+		this.memberID = memberID;
 	}
 	public String getPortfolioName() {
 		return portfolioName;
@@ -43,5 +43,9 @@ public class PortFolioDTO {
 	}
 	public void setPortfolioList(List portfolioList) {
 		this.portfolioList = portfolioList;
+	}
+	public String getRealPath(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -42,7 +42,7 @@ public class PortFolioDAOTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test //@Ignore
+	@Test @Ignore
 	public void testList() throws Exception {
 		PortFolioDAO dao = (PortFolioDAO)beans.getBean("portfoliodao");
 		Map map = new HashMap();
@@ -51,12 +51,12 @@ public class PortFolioDAOTest {
 		assertEquals(0, list.size());
 	}
 
-	@Test @Ignore
+	@Test //@Ignore
 	public void testCreate() throws Exception {
 		PortFolioDAO dao = (PortFolioDAO)beans.getBean("portfoliodao");
 		PortFolioDTO dto = new PortFolioDTO();
-		dto.setMemberID("ccc");
-		dto.setPortfolioName("포트폴리오.hwp");
+		dto.setMemberID("bbb");
+		dto.setPortfolioName("폴리오.hwp");
 		assertEquals(1, dao.create(dto));
 	}
 

@@ -22,6 +22,7 @@ public class ExternalActivityController {
 	@Autowired
 	private ExternalActivityDAO externalactivitydao;
 	
+	
 	@RequestMapping(value="/externalActivity/create",method=RequestMethod.GET)
 	public String create(ExternalActivityDTO externalactivitydto, Model model, String memberID, HttpSession session) throws Exception{
 		
@@ -50,12 +51,23 @@ public class ExternalActivityController {
 		}
 	}
 	
-	@RequestMapping(value="/externalActivity/delete")
+	@RequestMapping(value="/externalActivity/delete",method=RequestMethod.GET)
 	public String delete(int actNum, Model model) throws Exception{
 		
-		externalactivitydao.delete(actNum);
+		model.addAttribute("actNum", actNum);
 	
-		return "redirect:/resumeInfo/nextcreate";
+		return "/externalActivity/deleteForm";
 		
+	}
+	
+	@RequestMapping(value="/externalActivity/delete",method=RequestMethod.POST)
+	public String delete(int actNum) throws Exception{
+		
+		if(externalactivitydao.delete(actNum)>0){
+			return "/externalActivity/deleteProc";
+		
+		}else {
+			return "error/error";
+		}
 	}
 }

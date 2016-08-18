@@ -217,9 +217,18 @@ ${resumeinfodto.termTime.substring(16,18) }월
 (${resumeinfodto.termTime.substring(19) })
 </td>
 
-<td>
-${resumeinfodto.schoolName }
-</td>
+<c:choose>
+	<c:when test="${resumeinfodto.schoolName.substring(0,1)==','}">
+	<td>
+	${resumeinfodto.schoolName.substring(1) }
+	</td>	
+	</c:when>
+	<c:otherwise>
+	<td>
+	${resumeinfodto.schoolName.substring(0,schoollast-1) }
+	</td>
+	</c:otherwise>
+</c:choose>
 
 <c:choose>
 <c:when test="${resumeinfodto.major.substring(0,1)==','}">
