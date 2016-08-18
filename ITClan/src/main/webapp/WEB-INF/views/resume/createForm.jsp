@@ -33,7 +33,7 @@ function input(f){
 		return false;
 	}
 	
-	if(f.a.checked==true && f.portfolioMF.value==""){	
+	if(f.a.checked==true && f.resumeMF.value==""){	
 		alert("파일이 없습니다.");
 		return false;
 	}
@@ -62,10 +62,9 @@ function contentLayAutoWidth() {
 }
 
 $(document).ready(function() {
-		$("#portfolioFile").hide();
-	$("#portfolio").click(function() {
-		$("#portfolioFile").show();
-
+		$("#resumeFile").hide();
+	$("#resume").click(function() {
+		$("#resumeFile").show();
 	});
 });	
 </script>
@@ -80,20 +79,17 @@ $(document).ready(function() {
 	<br>
 	
     <div style="text-align: center;">
-    <label style="margin-right: 20px;">
-    <input type="radio" name="a" value="포트폴리오" id="portfolio">포트폴리오
-    </label>
+    <label>
+    <input type="radio" name="a" value="자기소개서" id="resume">자기소개서
+    </label> 
     </div>
        
     <br>
     <div>
-    <label id="portfolioFile">
-    <input style=" width: 180px;" type="file" name="portfolioMF">
+    <label id="resumeFile">
+   	<input style="margin-left:30px; width: 180px;" type="file" name="resumeMF">
     </label>
     
-<!--     <label id="resumeFile">
-   	<input style="margin-left:30px; width: 180px;" type="file" name="resumeMF">
-    </label> -->
     <label style="float: right;" id="submit">
     <input type="submit">
     </label>
@@ -102,13 +98,13 @@ $(document).ready(function() {
 
 </div>
 
-<div id="ed">
-	<div style="text-align: center; margin-bottom: 7px; background-color: #D9E5FF; ">포트폴리오</div>
-	<c:forEach var="portfoliodto" items="${portfoliolist }">
-	<div style="text-align: center; margin-bottom: 10px;">${portfoliodto.portfolioName }</div>
+<%-- <div id="ed">
+	<div style="text-align: center; margin-bottom: 7px; background-color: #D9E5FF; ">자기소개서</div>
+	<c:forEach var="resumedto" items="${resumelist }">
+	<div style="text-align: center; margin-bottom: 10px;">${resumedto.resumeName }</div>
 	<hr>
 	</c:forEach>
-</div>
+</div> --%>
 </div>
 </form>
 </body>

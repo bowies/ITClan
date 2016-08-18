@@ -15,7 +15,6 @@ function input(f){
 	}
 }
 </script>
-
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script type="text/javascript">
@@ -67,12 +66,18 @@ function licenseCreate(limax){
 	}
 }
 
-function portfolioCreate(){
+	function portfolioCreate(){
 	var url = "../portfolio/create";
 	wr = window.open(url,"포트폴리오","width=565,height=500"); 
     wr.moveTo((window.screen.width-500)/2, (window.screen.height - 400)/2);// x, y
-	}
-
+	} 
+	
+	function resumeCreate(){
+		var url = "../resume/create";
+		wr = window.open(url,"자기소개서","width=565,height=500"); 
+	    wr.moveTo((window.screen.width-500)/2, (window.screen.height - 400)/2);// x, y
+		} 		
+	
 //경력사항 삭제
 	function deleteL(licenseNum) {
 		var url = "../license/delete";
@@ -106,6 +111,9 @@ function portfolioCreate(){
 	}
 
 </script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<form action="./create" method="post"
@@ -226,42 +234,48 @@ function portfolioCreate(){
 			<h1>포트폴리오</h1>
 			<div>포토폴리오 및 자기소개서 등록할 수 있습니다.</div>
 			<hr>
-			<input style="float: left;" type="button" value="+추가" onclick="portfolioCreate()">
-			<br><br>
-			<table id="port" border="2" style=" border 1px ; margin: auto; text-align:center; width: 960px;">
-			<tr>
-			<th>[자기소개서]
-			</th>
-			</tr>
-			
-			<c:forEach var="resumedto" items="${resumelist }">
-			<tr>
-			<td>
-			<a href="javascript:downresumeFile('${resumedto.resumeName }')">${resumedto.resumeName }</a>
-			<a href="#" style="float: right;">삭제</a>
-			</td>
-			</tr>
-			</c:forEach>
-			</table>
-			
-			<br><hr><br>
-			
-			<table id="port" border="2" style=" border 1px ; margin: auto; text-align:center; width: 960px;">
-			<tr>
-			<th>[포트폴리오]</th>
-			</tr>
-			
+
+ <div class="container">
+  <ul class="nav nav-tabs" style="width: 930px;">
+    <li><a data-toggle="tab" href="#port">포트폴리오</a></li>
+    <li><a data-toggle="tab" href="#resume">자기소개서</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="port" class="tab-pane fade">
+    <br>
+	    <div style="width: 930px;">
+			<a href="javascript:portfolioCreate()">+추가</a>
+		</div>	
+		
+  			<hr style="width: 930px; float: left;">
 			<c:forEach var="portfoliodto" items="${portfoliolist }">
-			<tr>
-			<td>
-			<a href="javascript:downportfolioFile('${portfoliodto.portfolioName }')">${portfoliodto.portfolioName }</a>
-			<a href="#" style="float: right;">삭제</a>
-			</td>
-			</tr>
-			</c:forEach>
-			</table>
+			<div style="width: 930px;">
+				<a href="javascript:downportfolioFile('${portfoliodto.portfolioName }')">${portfoliodto.portfolioName }</a>
+				<a href="#" style="float: right;">삭제</a>
 			</div>
 			<br>
+			</c:forEach>		
+    </div>
+    
+    <div id="resume" class="tab-pane fade">
+    <br>
+	    <div style="width: 930px;">
+			<a href="javascript:resumeCreate()">+추가</a>
+		</div>
+		
+			<hr style="width: 930px; float: left;">
+			<c:forEach var="resumedto" items="${resumelist }">
+			<div style="width: 930px;">
+				<a href="javascript:downresumeFile('${resumedto.resumeName }')">${resumedto.resumeName }</a>
+				<a href="#" style="float: right;">삭제</a>
+			</div>
+			<br>
+			</c:forEach>		
+    </div>
+    </div>
+    </div>
+    <br><br>
 			<div style="width: 960px; margin: auto; text-align: center;">
 			<input type="button" value="뒤로" onclick="javascript:history.back();">
 			<input type="submit" value="확인">	
