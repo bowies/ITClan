@@ -38,6 +38,12 @@
      }
     
  }
+ function resumeInput(){
+	 var url = "../resumeinfo/create";
+		url += "?memberID=${memberID}"
+		open(url,"_blank");
+		self.close();
+ }
 
  </script>
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
@@ -62,6 +68,18 @@
     </tr>
  </c:when>
 <c:otherwise>
+<c:choose>
+<c:when test="${pmcnt ==0 }">
+<tr>
+<td align="center" colspan="2">
+이력서 등록이 되어있지 않습니다.<br>
+이력서를 등록하십시오<br>
+<input type="button" onclick="javascript:resumeInput(this)" value="resume 등록">
+
+</td>
+</tr>
+</c:when>
+<c:otherwise>
 <tr>
       <TH colspan="2">지원하시겠습니까?</TH>
 </tr>
@@ -77,19 +95,19 @@
 </c:forEach>
 </td>
 </tr>
-
+<tr>
+<td colspan="2">
+  <input type='submit' value='등록'>
+   <input type='button' value='취소' onclick="window.close();">
+</td>
+</tr>
+</c:otherwise>
+</c:choose>
 </c:otherwise>
 </c:choose>
  </table>
-  <c:choose>
-  <c:when test="${cnt>0 }">
-      <input type='button' value='취소' onclick="window.close();">
-  </c:when>
-  <c:otherwise>
-  <input type='submit' value='등록'>
-   <input type='button' value='취소' onclick="window.close();">
-  </c:otherwise>
-  </c:choose>
+
+
 </FORM>
  
  

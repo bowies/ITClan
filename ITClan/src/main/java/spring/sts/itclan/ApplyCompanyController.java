@@ -17,6 +17,7 @@ import spring.model.applycompany.*;
 import spring.model.externalactivity.ExternalActivityDTO;
 import spring.model.license.LicenseDTO;
 import spring.model.offer.OfferDTO;
+import spring.model.personalmember.PersonalMemberDAO;
 import spring.model.personalmember.PersonalMemberDTO;
 import spring.model.portfolio.PortFolioDTO;
 import spring.model.resume.ResumeDTO;
@@ -28,6 +29,8 @@ import spring.utility.itclan.Utility;
 public class ApplyCompanyController {
 	@Autowired
 	private ApplyCompanyDAO dao;
+	@Autowired
+	private PersonalMemberDAO pmdao;
 
 	@RequestMapping("/a_company/read")
 	public String read_company(int offerNum,String memberID,int resumeNum,int portfolioNum,
@@ -112,8 +115,9 @@ public class ApplyCompanyController {
 		int cnt = dao.memberIDCheck(memberID, offerNum);
 		List<ResumeDTO> reList = dao.list_resume(memberID);
 		List<PortFolioDTO> pfList = dao.List_portfolio(memberID);
-		
+		int pmcnt = pmdao.resumeCheck(memberID);
 		model.addAttribute("cnt", cnt);
+		model.addAttribute("pmcnt", pmcnt);
 		model.addAttribute("reList", reList);
 		model.addAttribute("pfList", pfList);
 		model.addAttribute("offerNum", offerNum);
