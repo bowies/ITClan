@@ -41,6 +41,10 @@ if(${exmax>0 }){
 	});
 }
 
+$(document).ready(function() {
+	$("#activity").show();
+
+});
 //------------------------------------------
 
 //경력사항 추가 팝업창
@@ -66,17 +70,27 @@ function licenseCreate(limax){
 	}
 }
 
-	function portfolioCreate(){
+	function portfolioCreate(pomax){
+		if(pomax>=5){
+			alert("5개 이상");
+			return false;			
+		}else{
 	var url = "../portfolio/create";
 	wr = window.open(url,"포트폴리오","width=565,height=500"); 
     wr.moveTo((window.screen.width-500)/2, (window.screen.height - 400)/2);// x, y
 	} 
+}
 	
-	function resumeCreate(){
-		var url = "../resume/create";
-		wr = window.open(url,"자기소개서","width=565,height=500"); 
-	    wr.moveTo((window.screen.width-500)/2, (window.screen.height - 400)/2);// x, y
-		} 		
+	function resumeCreate(remax){
+		if(remax>=5){
+			alert("5개 이상");
+			return false;			
+		}else{
+	var url = "../resume/create";
+	wr = window.open(url,"포트폴리오","width=565,height=500"); 
+    wr.moveTo((window.screen.width-500)/2, (window.screen.height - 400)/2);// x, y
+	} 		
+}
 	
 //경력사항 삭제
 	function deleteL(licenseNum) {
@@ -118,20 +132,20 @@ function licenseCreate(limax){
 <body>
 	<form action="./create" method="post"
 		 onsubmit="return input(this)">
-			<input type="text" name="memberID" value="${memberID }">
-			<input type="text" name="education" value="${resumeinfodto.education }">
-			<input type="text" name="employmentType" value="${resumeinfodto.employmentType }">
-			<input type="text" name="exSalary" value="${resumeinfodto.exSalary }">
-			<input type="text" name="disableGrade" value="${resumeinfodto.disableGrade }">
-			<input type="text" name="exArea" value="${resumeinfodto.exArea }">
-			<input type="text" name="exField" value="${resumeinfodto.exField }">
-			<input type="text" name="military" value="${resumeinfodto.military }">
-			<input type="text" name="schoolName" value="${resumeinfodto.schoolName }">
-			<input type="text" name="major" value="${resumeinfodto.major }">
-			<input type="text" name="termTime" value="${resumeinfodto.termTime }">
-			<input type="text" name="GPA" value="${resumeinfodto.GPA }">
-			<input type="text" name="picture" value="${resumeinfodto.picture }">
-		
+			<input type="hidden" name="memberID" value="${memberID }">
+			<input type="hidden" name="education" value="${resumeinfodto.education }">
+			<input type="hidden" name="employmentType" value="${resumeinfodto.employmentType }">
+			<input type="hidden" name="exSalary" value="${resumeinfodto.exSalary }">
+			<input type="hidden" name="disableGrade" value="${resumeinfodto.disableGrade }">
+			<input type="hidden" name="exArea" value="${resumeinfodto.exArea }">
+			<input type="hidden" name="exField" value="${resumeinfodto.exField }">
+			<input type="hidden" name="military" value="${resumeinfodto.military }">
+			<input type="hidden" name="schoolName" value="${resumeinfodto.schoolName }">
+			<input type="hidden" name="major" value="${resumeinfodto.major }">
+			<input type="hidden" name="termTime" value="${resumeinfodto.termTime }">
+			<input type="hidden" name="GPA" value="${resumeinfodto.GPA }">
+			<input type="hidden" name="picture" value="${resumeinfodto.picture }">
+		<br>
 		<div style="width: 960px; margin: auto;">
 			<h1>경력사항
 			<label style="font-size: small;">(최대 5개 입력)</label>
@@ -146,7 +160,7 @@ function licenseCreate(limax){
 					<input type="radio" name="career" id="career" value="경력" checked="checked">경력
 				</c:when>
 				<c:otherwise>
-					<input type="radio" name="career" id="newcomer" value="신입">신입
+					<input type="radio" name="career" id="newcomer" value="신입" checked="checked">신입
 					<input type="radio" name="career" id="career" value="경력">경력
 				</c:otherwise>
 			</c:choose>
@@ -245,9 +259,8 @@ function licenseCreate(limax){
     <div id="port" class="tab-pane fade">
     <br>
 	    <div style="width: 930px;">
-			<a href="javascript:portfolioCreate()">+추가</a>
+			<a href="javascript:portfolioCreate('${pomax }')">+추가</a>
 		</div>	
-		
   			<hr style="width: 930px; float: left;">
 			<c:forEach var="portfoliodto" items="${portfoliolist }">
 			<div style="width: 930px;">
@@ -257,13 +270,12 @@ function licenseCreate(limax){
 			<br>
 			</c:forEach>		
     </div>
-    
+
     <div id="resume" class="tab-pane fade">
     <br>
 	    <div style="width: 930px;">
-			<a href="javascript:resumeCreate()">+추가</a>
+			<a href="javascript:resumeCreate('${remax }')">+추가</a>
 		</div>
-		
 			<hr style="width: 930px; float: left;">
 			<c:forEach var="resumedto" items="${resumelist }">
 			<div style="width: 930px;">

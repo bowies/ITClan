@@ -88,7 +88,7 @@ $(document).ready(function() {
     <br>
     <div>
     <label id="portfolioFile">
-    <input style=" width: 180px;" type="file" name="portfolioMF">
+    <input style="margin-left:30px; width: 180px;" type="file" name="portfolioMF">
     </label>
     
 <!--     <label id="resumeFile">

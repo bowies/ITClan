@@ -12,13 +12,6 @@
 		<put-attribute name="footer"
 			value="/WEB-INF/views/templates/bottom.jsp" />
 	</definition>
-	
-	
-	
-	<definition name="/portfolio/create" extends="main">
-		<put-attribute name="title" value="Bbs Join Page"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/portfolio/createForm.jsp" />
-	</definition>
 
 
 	<definition name="/portfolio/read" extends="main">

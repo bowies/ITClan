@@ -12,14 +12,6 @@
 		<put-attribute name="footer"
 			value="/WEB-INF/views/templates/bottom.jsp" />
 	</definition>
-	
-	
-
-	<definition name="/resume/create" extends="main">
-		<put-attribute name="title" value="Bbs Join Page"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/resume/createForm.jsp" />
-	</definition>
-
 
 	<definition name="/resume/delete" extends="main">
 		<put-attribute name="title" value="Bbs information delete Page"></put-attribute>
