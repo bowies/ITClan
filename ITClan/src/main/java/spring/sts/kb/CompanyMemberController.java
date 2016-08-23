@@ -180,7 +180,7 @@ public class CompanyMemberController {
 
 		String url = "./error/passwdError";
 		if (cnt == 1) {
-			url = "redirect:../offer/list";
+			url = "redirect:../offer";
 		}
 
 		return url;

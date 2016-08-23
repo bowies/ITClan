@@ -75,24 +75,47 @@ padding-right:10px
      <li><a style="float: left;"  href="${pageContext.request.contextPath}/">홈</a></li>    
     
     <c:choose>
-    <c:when test="${empty sessionScope.companyID}">
+
+    <c:when test="${empty sessionScope.grade}">
      <li><a href="${pageContext.request.contextPath}/companymember/login">기업회원로그인</a></li>
+     <li><a href="${pageContext.request.contextPath}/personal/login">개인회원로그인</a></li>
      <li><a href="${pageContext.request.contextPath}/companymember/agree">회원가입</a></li>
      
 	</c:when>
      <c:otherwise>
-     <li><a href="${pageContext.request.contextPath}/companymember/logout">로그아웃</a></li>
+     <c:choose>
+     <c:when test="${sessionScope.grade =='C' }">
+     
      <li><a href="${pageContext.request.contextPath}/companymember/read">나의정보</a></li>
      <li><a href="${pageContext.request.contextPath}/companyinfo/read?companyID=${sessionScope.companyID}">회사정보</a></li>
-   
+     </c:when>
+     <c:otherwise>
+      <c:choose>
+      <c:when test="${sessionScope.grade=='P' }">
+     <li><a href="${pageContext.request.contextPath}/personal/logout">로그아웃</a></li>
+     <li><a href="${pageContext.request.contextPath}/personal/read">나의정보</a></li>
+     <li><a href="${pageContext.request.contextPath}/personal/read">회사정보</a></li>      
+      </c:when>
+      <c:otherwise>
+     <li id="Admin"><a href="${pageContext.request.contextPath}/companymember/list">회원목록</a></li>
+     <li id="Admin"><a href="${pageContext.request.contextPath}/companyinfo/list">회사정보목록</a></li>
+      <c:choose>
+      <c:when test="${empty sessionScope.memberID }">
+       <li id="Admin"><a href="${pageContext.request.contextPath}/companymember/logout">로그아웃</a></li>
+      </c:when>
+      <c:otherwise>
+      <li id="Admin"><a href="${pageContext.request.contextPath}/personal/logout">로그아웃</a></li>
+      </c:otherwise>
+      </c:choose>
+     
+      </c:otherwise>
+      </c:choose>
      </c:otherwise>
      </c:choose>
      
-     <c:if test="${sessionScope.grade == 'A'}">
-     <li id="Admin"><a href="${pageContext.request.contextPath}/companymember/list">회원목록</a></li>
-     <li id="Admin"><a href="${pageContext.request.contextPath}/companyinfo/list">회사정보목록</a></li>
-  
-	</c:if>
+     </c:otherwise>
+     </c:choose>
+
  
     </ul>
     
