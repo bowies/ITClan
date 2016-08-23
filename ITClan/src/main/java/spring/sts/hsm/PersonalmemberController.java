@@ -181,7 +181,7 @@ public class PersonalmemberController {
 				cookie.setMaxAge(0); // 5분유지
 				response.addCookie(cookie);
 			}
-			return "redirect:/";
+			return "redirect:../offer/list";
 		}else{
 			return "/error/passwderror";
 		}
