@@ -5,24 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="externalactivity">
 
-<resultMap type="ExternalActivityDTO" id="ManyMap">
-	<result property="actNum" column="actNum"/>
-	<result property="actPeriod" column="actperiod"/>
-	<result property="actSector" column="actsector"/>
-	<result property="actContent" column="actcontent"/>
-	<result property="memberID" column="memberID"/>
-	<collection property="exActList" column="memberID" javaType="List" ofType="ResumeInfoDTO"
-				resultMap="externalactivity.ExternalActivityDTOListMap"/>
-</resultMap>
-<resultMap type="ResumeInfoDTO" id="ExternalActivityDTOListMap">
-	<result property="memberID" column="memberID"/>
-</resultMap>
 
-<select id="list" parameterType="Map" resultMap="ManyMap">
-		select r.memberID, a.memberID
-		from ResumeInfo r, ExternalActivity a
-		where r.memberID = a.memberID
-		and r.memberID = #{memberID}
+<select id="list" parameterType="Map" resultType="ExternalActivityDTO">
+		select memberID, actNum, actPeriod, actSector, actContent
+		from  ExternalActivity 
+		where memberID = #{memberID}
 		order by actNum ASC
 </select>
 

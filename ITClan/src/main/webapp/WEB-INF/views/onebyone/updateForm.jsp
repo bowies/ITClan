@@ -29,8 +29,6 @@ function input(frm){ //f 는 form
 		frm.content.focus();//focus가 name으로 간다.
 		return false;
 	}
-
-
 	
 }
     </script>

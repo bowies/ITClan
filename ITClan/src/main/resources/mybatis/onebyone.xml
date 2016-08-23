@@ -15,9 +15,9 @@ WHERE oneByOneNum = #{oneByOneNum}
 
 
 <insert id="reply" parameterType="OneByOneDTO">  
-INSERT INTO OneByOne(oneByOneNum , title, content, id, regdate, grpnum, indent, ansnum)
+INSERT INTO OneByOne(oneByOneNum , title, mail, content, id, regdate, grpnum, indent, ansnum)
 values((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
-#{title}, #{content}, #{id}, sysdate,
+#{title}, #{mail}, #{content}, #{id}, sysdate,
 #{grpnum}, #{indent}+1, #{ansnum}+1)  
 </insert>
 
@@ -52,6 +52,7 @@ values((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
 
 
 
+
 <select id="list" resultType="OneByOneDTO" parameterType="Map">
 	select oneByOneNum, id, mail, title,content,regdate, viewcnt, grpnum, ansnum, indent, r  
 		from(                                                                  
@@ -75,7 +76,7 @@ values((SELECT NVL(MAX(oneByOneNum), 0) + 1 as oneByOneNum FROM OneByOne),
             </when>           
             </choose>      
             </where>                                                                 
-         ORDER BY oneByOneNum desc                                            
+         order by grpnum desc,ansnum                                           
         
         )
     )                                                                            

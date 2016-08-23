@@ -7,19 +7,17 @@
 <title>고객센터 - 1:1 문의</title>
 </head>
 <script language="Javascript">
-
-function checkemailaddy(){
-        if (form.email_select.value == '1') {
-            form.mail.readonly = false;
-            form.mail.value = '';
-            form.mail.focus();
-        }
-        else {
-            form.mail.readonly = true;
-            form.mail.value = form.email_select.value;
-        }
-    }
-
+// function checkemailaddy(){
+//         if (form.email_select.value == '1') {
+//             form.mail.readonly = false;
+//             form.mail.value = '';
+//             form.mail.focus();
+//         }
+//         else {
+//             form.mail.readonly = true;
+//             form.mail.value = form.email_select.value;
+//         }
+//     }
 </script>
 <body>
 <fieldset>
@@ -43,21 +41,22 @@ function checkemailaddy(){
 							<th scope="row"><label for="Member_ID"><img alt="필수입력사항" src="../img/dot.gif"> 아이디</label></th>
 							<td>
 								<div class="mbrHelpWrap">		
-								
-							<%		String id ="";		
+
+							
+							<%		String id ="null";		
 									if(session.getAttribute("memberID")==null){
-									 id =(String)session.getAttribute("memberID");
+									 id =(String)session.getAttribute("companyID");
 									}
-									else{
-										 id =(String)session.getAttribute("companyID");
+									else if (session.getAttribute("companyID")==null){
+										 id =(String)session.getAttribute("memberID");
 									}
-									%>
-								
-<%-- 									<%String id =(String)session.getAttribute("memberID");%> --%>
+							%>
 
 
 
-									<input type="text" id="Member_ID" name="id" maxlength="20" 
+
+
+									<input type="text" id="ID" name="id" maxlength="20" 
 											style="width:200px;" class="ipText" value="<%=id%>" readonly />
 								
 								</div>
@@ -66,30 +65,22 @@ function checkemailaddy(){
 						<tr>
 							<th scope="row"><label for="Email_ID"><img alt="필수입력사항" src="../img/dot.gif"> 전송받을 e-메일</label></th>
 							<td>
-								<div class="mbrHelpWrap">
 
 										
 									
-										<input name="mail" type="text" class="box" id="mail2" size="40">
-										<select name="email_select" class="box" id="email_select" onChange="checkemailaddy();">
-										    <option value="" selected>선택하세요</option>
-										    <option value="@naver.com">naver.com</option>
-										    <option value="@gmail.com">gmail.com</option>
-										    <option value="@nate.com">nate.com</option>
-										    <option value="@hanmail.com">hanmail.com</option>
-										    <option value="@hotmail.com">hotmail.com</option>
-										    <option value="@yahoo.co.kr">yahoo.co.kr</option>
-										    <option value="1">직접입력</option>
-										</select>
-										  
+										<input type="text" name="mail"  class="box" id="mail2" size="40">
+<!-- 										<select name="email_select" class="box" id="email_select" onChange="checkemailaddy();"> -->
+<!-- 										    <option value="" selected>선택하세요</option> -->
+<!-- 										    <option value="@naver.com">naver.com</option> -->
+<!-- 										    <option value="@gmail.com">gmail.com</option> -->
+<!-- 										    <option value="@nate.com">nate.com</option> -->
+<!-- 										    <option value="@hanmail.com">hanmail.com</option> -->
+<!-- 										    <option value="@hotmail.com">hotmail.com</option> -->
+<!-- 										    <option value="@yahoo.co.kr">yahoo.co.kr</option> -->
+<!-- 										    <option value="1">직접입력</option> -->
+<!-- 										</select> -->
+										  									
 										
-									<div style="left:535px; display:none;" class="mbrTplLayer mbrTplLayer_1 mbrLayerHelp">
-										<div class="desc">
-											<p>e-메일 주소를 입력해 주세요.</p>
-										</div>
-										<span class="arrow"></span>
-									</div>		
-								</div>
 							</td>
 						</tr>
 						<tr>

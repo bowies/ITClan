@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="subsurvey">
+<delete id="delete_sub" parameterType="int">
+delete from subsurvey where preNum = #{preNum}
+</delete>
+<insert id="create" parameterType="int">
+insert into subsurvey(preNum)
+values(#{preNum})
+</insert>
+<update id="updatecnt1" parameterType="int">
+update subsurvey
+set
+ans1 = ans1 +1
+where preNum = #{preNum}
+
+</update>
+<update id="updatecnt2" parameterType="int">
+update subsurvey
+set
+ans2 = ans2 +1
+where preNum = #{preNum}
+
+</update>
+<update id="updatecnt3" parameterType="int">
+update subsurvey
+set
+ans3 = ans3 +1
+where preNum = #{preNum}
+
+</update>
+<update id="updatecnt4" parameterType="int">
+update subsurvey
+set
+ans4 = ans4 +1
+where preNum = #{preNum}
+
+</update>
+
+<select id="read" parameterType="int" resultType="SubSurveyDTO">
+select ans1,ans2,ans3,ans4 from subsurvey 
+where preNum = #{preNum}
+</select>
+</mapper>

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="uti" uri="/ELFunctions" %>
-
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,11 +12,7 @@
 <style type="text/css">
 /* table li ul li{ */
 /* font-size: 12px; }*/
-
 /* Style the buttons that are used to open and close the accordion panel */
-
-
-
 </style>
 <script type="text/javascript">
 function readB(qnANum) {
@@ -52,13 +48,14 @@ function readB(qnANum) {
         <label style="border:1px solid black;"for="tab3">Tab 3</label>
 
         <!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 -->
+<!--      div style="border:1px; padding:0px 50px 0px 50px ;" -->
         <div style="border: 1px   solid  blue ; height:350px; " class="tab1_content">
  		<ul>
 	 		<li><button class="accordion">잡코리아를 탈퇴하면 어떻게 되나요?</button>
 				<div class="panel">
 				  <p>탈퇴 시, 해당 아이디로 사이트를 이용하셨던 이력서, 지원내역 등 모든 정보가 삭제 됩니다. </p>
 				</div>
-				 
+				
 			</li>
 	 		<li><button class="accordion">이력서 등록을 하고 싶은데 절차가 어떻게 되나요?</button>
 				<div class="panel">
@@ -93,11 +90,9 @@ function readB(qnANum) {
 
 
 <script>
-
 /* Toggle between adding and removing the "active" and "show" classes when the user clicks on one of the "Section" buttons. The "active" class is used to add a background color to the current button when its belonging panel is open. The "show" class is used to open the specific accordion panel */
 var acc = document.getElementsByClassName("accordion");
 var i;
-
 for (i = 0; i < acc.length; i++) {
     acc[i].onclick = function(){
         this.classList.toggle("active");
@@ -208,11 +203,16 @@ p{padding:0; margin:0}
 .layer_main02{width:633px; position:absolute;  background:url(http://www.saraminimage.co.kr/event_2011/1124_contact/layer_main02.gif) no-repeat;}
 .layer_main03{width:775px; position:absolute;  background:url(http://www.saraminimage.co.kr/event_2011/1124_contact/layer_join01.gif) no-repeat;}
 </style>
-
+<script type="text/javascript">
+<!--
+//-->
+</script>
 
 
   </div>
   
+    
+  <div style="clear:both"></div>
 </div>
 
 

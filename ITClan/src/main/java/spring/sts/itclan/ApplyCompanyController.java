@@ -14,27 +14,56 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import spring.model.applycompany.*;
+import spring.model.externalactivity.ExternalActivityDTO;
+import spring.model.license.LicenseDTO;
+import spring.model.offer.OfferDTO;
+import spring.model.personalmember.PersonalMemberDAO;
 import spring.model.personalmember.PersonalMemberDTO;
+import spring.model.portfolio.PortFolioDTO;
+import spring.model.resume.ResumeDTO;
+import spring.model.resumeinfo.ResumeInfoDTO;
+import spring.utility.itclan.Paging;
 import spring.utility.itclan.Utility;
 
 @Controller
 public class ApplyCompanyController {
 	@Autowired
 	private ApplyCompanyDAO dao;
+	@Autowired
+	private PersonalMemberDAO pmdao;
 
 	@RequestMapping("/a_company/read")
 	public String read_company(int offerNum,String memberID,int resumeNum,int portfolioNum,
-			Model model){
+			Model model,PersonalMemberDTO pmdto,ResumeDTO redto,ResumeInfoDTO ridto,
+			PortFolioDTO pfdto){
 		dao.viewup(offerNum, memberID);
 		Map map = new HashMap();
 		map.put("memberID", memberID);
 		map.put("offerNum", offerNum);
 		map.put("resumeNum", resumeNum);
 		map.put("portfolioNum", portfolioNum);
-		PersonalMemberDTO dto= dao.read_c(map);
+		ApplyCompanyDTO dto= dao.read_c(map);
+		List pmlist = dto.getPersonalmemberList();
+		for(int i =0;i<pmlist.size();i++){
+			pmdto=(PersonalMemberDTO) pmlist.get(i);
+		}
+		
+		redto = dto.getRedto();
+		ridto = dto.getRidto();
+		pfdto = dto.getPfdto();
+		
+		List<LicenseDTO> licenseList = dao.list_L(memberID);
+		List<ExternalActivityDTO> eaList = dao.list_A(memberID);
+		
 		model.addAttribute("dto", dto);
+		model.addAttribute("pmdto", pmdto);
+		model.addAttribute("ridto", ridto);
+		model.addAttribute("redto", redto);
+		model.addAttribute("pfdto", pfdto);
+		model.addAttribute("licenseList", licenseList);
+		model.addAttribute("eaList", eaList);
 
-		return "/applycompamy/read_company";
+		return "/applycompany/read_c";
 	}
 	@RequestMapping("/a_company/list")
 	public String list_company(HttpServletRequest request,int offerNum,
@@ -53,6 +82,7 @@ public class ApplyCompanyController {
 		map.put("eno", eno);
 		map.put("offerNum", offerNum);
 		List<ApplyCompanyDTO> list = dao.list_company(map);
+
 		model.addAttribute("list", list);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("offerNum", offerNum);
@@ -60,15 +90,12 @@ public class ApplyCompanyController {
 	}
 	@RequestMapping("/applycompany/delete")
 	public String delete_personal(String memberID, int offerNum){
-		if(dao.viewCheck(memberID, offerNum)>0){
 		if(dao.deletePersonal(memberID, offerNum)>0){
 			return "redirect:/personal/read";
 		}else{
 			return "/error/passwderror";
 		}
-		}else{
-			return "/error/checkerror";
-		}
+
 	}
 	
 	@RequestMapping(value="/applycompany/create",method=RequestMethod.POST)
@@ -78,26 +105,57 @@ public class ApplyCompanyController {
 		model.addAttribute("memberID", memberID);
 		model.addAttribute("offerNum", offerNum);
 		
-		return "/applycompany/create";
+		return "/applycompany/createProc";
 	}
 	
 	@RequestMapping(value="/applycompany/create",method=RequestMethod.GET)
-	public String create(HttpSession session, int offerNum,Model model){
-		String memberID = (String)session.getAttribute("memberID");
+	public String create(HttpSession session, int offerNum,Model model,String memberID){
+		
 		
 		int cnt = dao.memberIDCheck(memberID, offerNum);
+		List<ResumeDTO> reList = dao.list_resume(memberID);
+		List<PortFolioDTO> pfList = dao.List_portfolio(memberID);
+		int pmcnt = pmdao.resumeCheck(memberID);
 		model.addAttribute("cnt", cnt);
+		model.addAttribute("pmcnt", pmcnt);
+		model.addAttribute("reList", reList);
+		model.addAttribute("pfList", pfList);
 		model.addAttribute("offerNum", offerNum);
 		model.addAttribute("memberID", memberID);
 		
 		return "/applycompany/create";
 	}
 	
+	@RequestMapping("/applycompany/read_p")
+	public String read_p(String memberID,int offerNum,int resumeNum , int portfolioNum, int nowPage,
+			Model model,ApplyCompanyDTO dto,PortFolioDTO pfdto,PersonalMemberDTO pmdto,ResumeDTO redto){
+		Map map = new HashMap();
+		map.put("memberID", memberID);
+		map.put("offerNum", offerNum);
+		map.put("resumeNum", resumeNum);
+		map.put("portfolioNum", portfolioNum);
+		dto = dao.read_personal(map);
+		List<OfferDTO> olist = dto.getOfferList();
+		OfferDTO odto= new OfferDTO();
+		for(int i = 0;i<olist.size(); i++){
+			odto = (OfferDTO)olist.get(i);
+		}
+		List pmlist = dto.getPersonalmemberList();
+		for(int i =0;i<pmlist.size();i++){
+			pmdto=(PersonalMemberDTO) pmlist.get(i);
+		}
+		
+		pfdto = dto.getPfdto();
+		redto = dto.getRedto();
+		model.addAttribute("dto", dto);
+		model.addAttribute("odto", odto);
+		model.addAttribute("pfdto", pfdto);
+		model.addAttribute("redto", redto);
+		model.addAttribute("pmdto", pmdto);
+		return "/applycompany/read_p";
+	}
 	
-	
-	
-	
-	@RequestMapping("/applycomapny/list_personal")
+	@RequestMapping("/applycompany/list_personal")
 	public String list_personal(HttpServletRequest request,HttpSession session,
 			Model model) throws Exception{
 		int nowPage = 1;
@@ -107,8 +165,8 @@ public class ApplyCompanyController {
 		int recordPerPage = 5;
 		int sno = ((nowPage-1)* recordPerPage) + 1;
 		int eno = nowPage * recordPerPage;
-		
 		String memberID = (String)session.getAttribute("memberID");
+		int total = dao.total_personal(memberID);
 		
 		Map map = new HashMap();
 		map.put("sno", sno);
@@ -117,9 +175,11 @@ public class ApplyCompanyController {
 
 		
 		List<ApplyCompanyDTO> list = dao.list(map);
+		String paging = new Paging().pagingApplyCompnay(total, nowPage, recordPerPage);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("nowPage", nowPage);		
+		model.addAttribute("paging", paging);		
 		
 		
 		

@@ -13,6 +13,11 @@ public class PersonalMemberDTO {
      private String address         ;
      private String address2        ;
 
+     
+     
+     
+     
+     
 
 	public void setApplyCompanyList(List applyCompanyList) {
 		applyCompanyList = applyCompanyList;

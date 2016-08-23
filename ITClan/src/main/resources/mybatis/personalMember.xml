@@ -4,6 +4,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="personalmember">
+<select id="resumeCheck" parameterType="String" resultType="int" >
+select count(*) from resumeinfo
+where memberID =#{memberID}
+</select>
+<select id="resumepic" parameterType="String" resultType="String">
+select picture from resumeinfo
+where memberID = #{memberID}
+</select>
+<update id="updatepic" parameterType="ResumeInfoDTO">
+update resumeinfo
+set
+picture = #{picture}
+where memberID = #{memberID}
+</update>
+
 	<insert id="create" parameterType="PersonalMemberDTO">
 		insert into	personalmember(memberID,name,birth,email,phone,passwd,address,address2)
 		values(#{memberID},#{name},#{birth},#{email},#{phone},#{passwd},#{address},#{address2})
@@ -12,8 +27,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	delete from personalmember
 where memberID = #{memberID}
 	</delete>
-	<select id="getGrade" parameterType="String" resultType="String">
-	select grade from personalmember
+	<select id="getGrade" parameterType="String" resultType="PersonalMemberDTO">
+	select grade,name from personalmember
 	where memberID =#{memberID}
 	</select>
 	
@@ -21,7 +36,6 @@ where memberID = #{memberID}
 	select count(*) from personalmember
 	where memberID = #{memberID} and passwd = #{passwd}
 	</select>
-	
 	<select id="pwFind" parameterType="Map" resultType="String">
 	select passwd from personalmember
 	where memberID = #{memberID} and email = #{email}

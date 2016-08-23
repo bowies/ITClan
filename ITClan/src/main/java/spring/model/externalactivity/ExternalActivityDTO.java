@@ -3,14 +3,13 @@ package spring.model.externalactivity;
 import java.util.List;
 
 public class ExternalActivityDTO {
-
-   private int actNum        ;
+	int test;
+   private int actNum            ;
    private String actPeriod  ;
    private String actSector  ;
    private String actContent ;
    private String memberID   ;
-   
-   private List exActList;
+
 
 public int getActNum() {
 	return actNum;
@@ -50,14 +49,6 @@ public String getMemberID() {
 
 public void setMemberID(String memberID) {
 	this.memberID = memberID;
-}
-
-public List getExActList() {
-	return exActList;
-}
-
-public void setExActList(List exActList) {
-	this.exActList = exActList;
 }
 
    

@@ -15,6 +15,9 @@
 	
 	
 	<!-- definition의 이름은 qnacontroller에서 리턴되는 뷰의 이름 -->	
+
+	
+	
 	<definition name="/qna/home" extends="main">
 		<put-attribute name="title" value="Default Page"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
@@ -64,4 +67,3 @@
 	</definition>
 
 </tiles-definitions> 
-

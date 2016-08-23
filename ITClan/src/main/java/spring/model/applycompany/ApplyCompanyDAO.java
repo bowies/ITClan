@@ -12,6 +12,8 @@ import spring.model.externalactivity.ExternalActivityDTO;
 import spring.model.itclan.DAOMyBatisInter;
 import spring.model.license.LicenseDTO;
 import spring.model.offer.OfferDTO;
+import spring.model.personalmember.PersonalMemberDTO;
+import spring.model.portfolio.PortFolioDTO;
 import spring.model.resume.ResumeDTO;
 
 @Component
@@ -19,16 +21,15 @@ public class ApplyCompanyDAO implements DAOMyBatisInter{
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
+	
 	public void setMybatis(SqlSessionTemplate mybatis) {
 		this.mybatis = mybatis;
 	}
-	
-	
-	
+
+
 	public int total_personal(String memberID){
 		return mybatis.selectOne("applycompany.total_personal", memberID);
 	}
-	
 
 	//-------------------------------------------------------company
 	public int total_company(int offerNum){
@@ -37,12 +38,18 @@ public class ApplyCompanyDAO implements DAOMyBatisInter{
 	public List<ApplyCompanyDTO> list_company(Map map){
 		return mybatis.selectList("applycompany.list_company", map);
 	}
-	public ResumeDTO list_D(String memberID,int resumenum){
-		Map map = new HashMap();
-		map.put("memberID", memberID);
-		map.put("resumenum", resumenum);
-		return (ResumeDTO)mybatis.selectOne("applycompany.list_resumedetail", map);
+	public ApplyCompanyDTO read_c(Map map){
+		return mybatis.selectOne("applycompany.read_c", map);
 	}
+	//----------------------------------------------------------------------------------
+	public List<ResumeDTO> list_resume(String memberID){
+		return mybatis.selectList("applycompany.list_resume", memberID);
+	}
+	public List<PortFolioDTO> List_portfolio(String memberID){
+		return mybatis.selectList("applycompany.list_portfolio", memberID);
+	}
+	
+	//-----------------------------------------------------------------------------------
 	
 	public List<LicenseDTO> list_L(String memberID){
 		return mybatis.selectList("applycompany.list_License", memberID);
@@ -53,7 +60,9 @@ public class ApplyCompanyDAO implements DAOMyBatisInter{
 	public int delete_company(int offerNum){
 		return mybatis.delete("applycompany.delete_company", offerNum);
 	}
-	
+	public ApplyCompanyDTO read_personal(Map map){
+		return (ApplyCompanyDTO)mybatis.selectOne("applycompany.read_p", map);
+	}
 	//---------------------------------------------------------------------------------
 	@Override
 	public int create(Object dto) throws Exception {
@@ -75,14 +84,42 @@ public class ApplyCompanyDAO implements DAOMyBatisInter{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	//전부삭제
 	@Override
 	public int delete(Object pk) throws Exception {
 		String memberID = (String)pk;
-		return mybatis.delete("applycompany.delete_personal", memberID);
+		return mybatis.delete("applycompany.delete_personalA", memberID);
 	}
 	@Override
 	public int total(Map map) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	//개인적 삭제
+	public int deletePersonal(String memberID,int offerNum){
+		Map map = new HashMap();
+		map.put("memberID", memberID);
+		map.put("offerNum", offerNum);
+		return mybatis.delete("applycompany.delete_personal", map);
+	}
+	public int memberIDCheck(String memberID, int offerNum){
+		Map map = new HashMap();
+		map.put("memberID", memberID);
+		map.put("offerNum", offerNum);
+		return mybatis.selectOne("applycompany.memberIDCheck", map);
+	}
+	public void viewup(int offerNum , String memberID){
+		Map map = new HashMap();
+	map.put("memberID", memberID);
+	map.put("offerNum", offerNum);
+		mybatis.update("applycompany.viewup", map);
+	}
+	public int viewCheck(String memberID,int offerNum){
+		Map map = new HashMap();
+		map.put("memberID", memberID);
+		map.put("offerNum", offerNum);
+		return mybatis.selectOne("applycompany.viewCheck", map);
+	}
+	
+	
 }

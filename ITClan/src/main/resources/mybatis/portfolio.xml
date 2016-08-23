@@ -5,9 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="portfolio">
 
+<select id="pfCheck" parameterType="String" resultType="int">
+select count(*) from portFolio
+where memberID = #{memberID}
+</select>
 <select id="list" parameterType="Map" resultType="PortFolioDTO">
-	select portfolioNum, portfolioName
-	from portFolio
+	select memberID, portfolioNum, portfolioName
+	from portFolio 
 	where memberID = #{memberID}
 	order by portfolioNum ASC
 </select>

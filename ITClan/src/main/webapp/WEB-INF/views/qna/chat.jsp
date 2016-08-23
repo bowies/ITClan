@@ -4,16 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>chat</title>
 </head>
 
 
 <body>
 
-<div id="rt-69fdaa856ba6a9c09a59704319abebc6"></div>
-<script language="JavaScript" type="text/javascript" 
-src="https://www.rumbletalk.com/client/?xj!e2uP!"></script>
-
+<div id="rt-aa873c95f0f423ff70736de58f14e2ab"></div>
+<script src="https://www.rumbletalk.com/client/?kq:S*q2k"></script>
 
 </body>
 </html>

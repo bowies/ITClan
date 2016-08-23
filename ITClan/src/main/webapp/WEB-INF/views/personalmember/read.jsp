@@ -84,7 +84,7 @@ function updatepw(memberID) {
     </tr> 
     <tr> 
       <th>생년월일</th> 
-      <td>${birth }</td> 
+      <td>${dto.birth }</td> 
     </tr>                 
     <tr> 
       <th>전화번호</th> 

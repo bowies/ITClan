@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="uti" uri="/ELFunctions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -36,7 +35,6 @@ function deleteB() {
 	location.href=url;
 	
 }
-
 function replyB() {
 	var url = "reply";
 	url += "?oneByOneNum=${dto.oneByOneNum}";
@@ -46,7 +44,6 @@ function replyB() {
 	
 	location.href=url;	
 }
-
 </script>
 
 </head>
@@ -67,7 +64,7 @@ function replyB() {
     </TR>
     <TR>
       <TH>ID</TH>
-      <TD>${dto.id }</TD>
+      <TD>${dto.id}</TD>
     </TR>
     <TR>
       <th>내용</th>
@@ -145,5 +142,3 @@ function replyB() {
 
 </body>
 </html>
-
-
