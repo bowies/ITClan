@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,6 +13,15 @@ width: 100px;
 table{
 margin: auto;
 width: 960px;
+}
+
+#resumeborder{
+ #83532F
+
+}
+
+#resumebackground{
+background-color: #FFE4B5;
 }
 </style>
 <script type="text/javascript">
@@ -47,8 +56,25 @@ function input(f) {
 		alert("학력사항을 선택해주세요.");
 		f.education[0].focus();
 		return false;
-	}	
+	}
 	
+	if(f.education[2].checked==true || f.education[3].checked==true ||
+			f.education[4].checked==true || f.education[5].checked==true) {
+		if(f.schoolName.value==""){
+		alert("학교명을 입력하세요.");
+		f.schoolName.focus();
+		return false;
+		}
+	}
+		if(f.education[2].checked==true || f.education[3].checked==true ||
+				f.education[4].checked==true || f.education[5].checked==true) {
+			if(f.termTime[0].value>f.termTime[2].value){
+				alert("기간이 잘못 되었습니다. 확인해 주십시오.");
+				f.termTime[2].focus();
+				return false;
+			}
+	}
+		
 	if(f.employmentType[0].checked==false && f.employmentType[1].checked==false &&
 			f.employmentType[2].checked==false && f.employmentType[3].checked==false &&
 			f.employmentType[4].checked==false && f.employmentType[5].checked==false &&
@@ -83,70 +109,6 @@ function input(f) {
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script type="text/javascript">
-
-
-/*  var cnt=1;
-
-function licenseCreate(){
-	if(cnt<=4){
-		alert(cnt)
-		cnt+=1;
-		var copyval = $(".license").find("#lidiv").clone();
-		  
-		copyval.find("#lidel").click(function(){
-			alert("자격증을 삭제하시겠습니까?");
-			  cnt-=1;
-				alert(cnt)
-			  $(this).closest("#lidiv").remove();
-		});
-		$("#TD").append(copyval);
-	}else{
-		alert("5개 이상을 추가할수없습니다.");
-		return false;
-	}
-}
-$(document).ready(function() {
-	  $("#TDdel").click(function(){
-		  alert("자격증을 삭제하시겠습니까?");
-		  alert(cnt)
-		  cnt-=1;
-		  $(this).closest("#TDdiv").remove();
-	  }); 
-}); 
-
-
-function externalactivityCreate(){
-if(cnt<=4){
-	cnt+=1;
-	  var copyval = $(".activity").find("#actdiv").clone();
-	  alert(cnt);
-	  copyval.find("#actdel").click(function(){
-		 if(cnt == 1){
-			  alert("경력사항 항목은 최소 1개 이상 입력하셔야 합니다.");
-		  }else {
-			  alert("경력사항을 삭제하시겠습니까?");
-			  cnt-=1;
-			  $(this).closest("#actdiv").remove();
-		  } 
-	  });
-	  $("#TB").append(copyval);
-}else {
-	alert("5개 이상을 추가할수없습니다.");
-	return false;
-	}
-} 
-$(document).ready(function() {
-	  $("#TBdel").click(function(){
-		   if(cnt == 1){	   
-				  alert("경력사항 항목은 최소 1개 이상 입력하셔야 합니다.");
-		  }else {
-			  alert("경력사항을 삭제하시겠습니까?");
-			  cnt-=1;
-			  $(this).closest("#TBdiv").remove();
-		  } 
-	  }); 
-}); */
-
 
 //---------------------------------------------------------------------------------------
 
@@ -198,6 +160,15 @@ $(document).ready(function() {
 			$("#grlabel").hide();
 			$("#grth").hide();
 			$("#gPA").hide();
+			$("#schoolname").val("");
+			$("#entyear").val("");
+			$("#grayear").val("");
+			$("#gPAtext").val("");
+			$("#majortext").val("");
+			$("#selmajor").val("");
+			$("#selent").val("입학");
+			$("#selgra").val("졸업");
+			
 		});
 	});
 
@@ -211,6 +182,14 @@ $(document).ready(function() {
 			$("#hilabel").hide();
 			$("#hith").hide();
 			$("#gPA").show();
+			$("#schoolname").val("");
+			$("#entyear").val("");
+			$("#grayear").val("");
+			$("#gPAtext").val("");
+			$("#majortext").val("");
+			$("#selent").val("입학");
+			$("#selgra").val("졸업");
+			$("#selgPA").val("4.5");
 			
 		});
 	});
@@ -225,6 +204,14 @@ $(document).ready(function() {
 			$("#hilabel").hide();
 			$("#hith").hide();
 			$("#gPA").show();
+			$("#schoolname").val("");
+			$("#entyear").val("");
+			$("#grayear").val("");
+			$("#gPAtext").val("");
+			$("#majortext").val("");
+			$("#selent").val("입학");
+			$("#selgra").val("졸업");
+			$("#selgPA").val("4.5");
 			
 		});
 	});
@@ -239,7 +226,15 @@ $(document).ready(function() {
 			$("#hilabel").hide();
 			$("#hith").hide();
 			$("#gPA").show();
-		
+			$("#schoolname").val("");
+			$("#entyear").val("");
+			$("#grayear").val("");
+			$("#gPAtext").val("");
+			$("#majortext").val("");
+			$("#selent").val("입학");
+			$("#selgra").val("졸업");
+			$("#selgPA").val("4.5");
+			
 		});
 	});
 
@@ -254,6 +249,15 @@ $(document).ready(function() {
 		$("#edu2").click(function() {
 			$("#school").hide();
 			
+		});
+	});
+	
+	$(document).ready(function(){
+		$("#emp").click(function(){
+			$("#selsalary").val("");
+			$("#selarea").val("");
+			$("#textarea").val("");
+			$("#textfield").val("");
 		});
 	});
 	//---------------------------------------//
@@ -279,7 +283,7 @@ $(document).ready(function() {
 			<tr>
 				<th colspan="2">이름</th>
 				<td>${personalmemberdto.name }&nbsp;
-					${2016-(personalmemberdto.birth.substring(0,2)+1900) }세
+					${personalmemberdto.birth }세
 					/ ${personalmemberdto.memberID}</td>
 			</tr>
 
@@ -351,7 +355,7 @@ $(document).ready(function() {
 			<h1>학력사항</h1>
 		</div>
 		
-		<div style="text-align: center; margin: auto; background-color: #D9E5FF; border: 2px solid #2478FF; padding-bottom: 15px; padding-top: 15px; width: 960px;">
+		<div style="text-align: center; margin: auto; background-color: #FFCD9B; border: 2px solid #83532F; padding-bottom: 15px; padding-top: 15px; width: 960px;">
 		<input type="radio" name="education" value="초등학교 졸업" id="edu">초등학교
 		<input style="margin-left: 40px;" type="radio" name="education" value="중학교 졸업" id="edu2">중학교
 		<input style="margin-left: 40px;" type="radio" name="education" value="고등학교" id="edhigh">고등학교
@@ -361,17 +365,20 @@ $(document).ready(function() {
 
 		</div>
 		<div style="width: 960px; margin: auto;">
-		<label style="float: right;">+최근 졸업으로 기제해주시기바랍니다.</label>
+		<label style="float: right;">+최근 졸업으로 기제해주시기바랍니다.
+		${param.education }
+		-------------------------
+		</label>
 		</div>
 		<br>
-		
+
 		<div id="school" style="display: none;">
 		<div style="width: 960px; margin: auto;">
 			<label id="hilabel" style="display: none;">=고등학교</label>
 			<label id="grlabel" style="display: none;">=대학·대학교·대학원</label>
 		</div>
 		<table border="1" style="border-collapse: collapse;">
-			<tr style="background-color: #D9E5FF;">
+			<tr id="resumebackground" style="border: 2px solid #83532F ; ">
 				<th id="hith" style="text-align: left ; display: none;" colspan="2">
 				고등학교
 				</th>
@@ -381,24 +388,23 @@ $(document).ready(function() {
 			</tr>
 			
 			<tr>
-				<th style="text-align: center; background-color: #D9E5FF;">학교명</th>
-				<td><input type="text" name="schoolName" placeholder="학교명을입력하세요." style="width: 340px;">
+				<th style="text-align: center;" id="resumebackground">학교명</th>
+				<td>
+				<input id="schoolname" type="text" name="schoolName" placeholder="학교명을입력하세요." style="width: 340px;">
 				</td>
 			</tr>
 			
 			<tr>
-				<th style="text-align: center; background-color: #D9E5FF;">재학기간</th>
+				<th style="text-align: center;" id="resumebackground">재학기간</th>
 				<td>
-				<input type="text" name="termTime" placeholder="0000" maxlength="4" style="width: 45px;"> .
-				<input type="text" name="termTime" placeholder="00" maxlength="2" style="width: 25px;">
-				<select name="termTime">
+				<input id="entyear" type="month" name="termTime" max="2016-12" min="1910-01">.
+				<select name="termTime" id="selent">
 					<option value="입학">입학</option>
 					<option value="편입">편입</option>
 				</select>
 				~
-				<input type="text" name="termTime" placeholder="0000" maxlength="4" style="width: 45px;"> .
-				<input type="text" name="termTime" placeholder="00" maxlength="2" style="width: 25px;">
-				<select name="termTime">
+				<input id="grayear" type="month" name="termTime" max="2016-12" min="1910-01">.
+				<select name="termTime" id="selgra">
 					<option value="졸업">졸업</option>
 					<option value="졸업예정">졸업예정</option>
 					<option value="휴학">휴학</option>
@@ -409,9 +415,9 @@ $(document).ready(function() {
 			</tr>
 			
 			<tr>
-				<th style="text-align: center; background-color: #D9E5FF;">전공</th>
+				<th style="text-align: center;" id="resumebackground">전공</th>
 				<td id="himajor">
-				<select name="major">
+				<select name="major" id="selmajor">
 					<option value="">계열선택</option>
 					<option value="문과계열">문과계열</option>
 					<option value="이과계열">이과계열</option>
@@ -420,12 +426,14 @@ $(document).ready(function() {
 				</select>
 				</td>
 				<td id="grmajor">
-				<input type="text" name="major">학과
+				<input id="majortext" type="text" name="major">학과
 				</td>
+			</tr>
+				
 			<tr id="gPA" style="display: none;">
-				<th style="text-align: center; background-color: #D9E5FF;">학점</th>
-				<td><input type="text" name="gPA" placeholder="학점" style="width: 40px;"> / 
-				<select name="gPA">
+				<th style="text-align: center;" id="resumebackground">학점</th>
+				<td><input id="gPAtext" maxlength="3" type="text" name="gPA" placeholder="학점" style="width: 40px;"> / 
+				<select name="gPA" id="selgPA">
 					<option value="4.5">4.5</option>
 					<option value="4.3">4.3</option>
 					<option value="4.0">4.0</option>
@@ -436,7 +444,7 @@ $(document).ready(function() {
 			</tr>
 		</table>
 		</div>
-		
+	
  		<br><br>
 		<div style="width: 960px; margin: auto;">
 			<h1>희망근무조건</h1>
@@ -444,7 +452,7 @@ $(document).ready(function() {
 			<table border="1">
 				<tr>
 					<th>고용형태</th>
-					<td>
+					<td id="emp">
 						<input type="radio" name="employmentType" value="정규직">정규직&nbsp;&nbsp;
 						<input type="radio" name="employmentType" value="계약직">계약직&nbsp;&nbsp; 
 						<input type="radio" name="employmentType" value="병역특례">병역특례&nbsp;&nbsp; 
@@ -458,7 +466,7 @@ $(document).ready(function() {
  				<tr>
 					<th>희망연봉</th>
 					<td>
-					<select name="exSalary">
+					<select id="selsalary" name="exSalary">
 							<option value="면접후 결정">면접후 결정</option>
 							<option value="1400이하">1400이하</option>
 							<option value="1400~1600만원">1400~1600만원</option>
@@ -482,7 +490,7 @@ $(document).ready(function() {
 				<tr>
 					<th>희망근무지</th>
 					<td>
-						<select name="exArea">
+						<select id="selarea" name="exArea">
 							<option value="선택">선택</option>
 							<option value="서울 ">서울</option>
 							<option value="경기 ">경기</option>
@@ -502,7 +510,7 @@ $(document).ready(function() {
 							<option value="충북 ">충북</option>
 							<option value="제주 ">제주</option>
 						</select>
-						<input type="text" name="exArea" placeholder="상세지역">
+						<input id="textarea" type="text" name="exArea" placeholder="상세지역">
 					</td>
 				</tr>
 				<tr>
@@ -510,7 +518,7 @@ $(document).ready(function() {
 				<tr>
 					<th>지원분야</th>
 					<td>
-						<input type="text" name="exField">
+						<input id="textfield" type="text" name="exField">
 					</td>
 				</tr>
 			</table> 

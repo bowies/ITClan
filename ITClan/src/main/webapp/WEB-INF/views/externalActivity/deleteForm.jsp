@@ -14,8 +14,8 @@
 삭제하시겠습니까?
 </div><br>
 <div style="margin: auto; text-align: center;">
-<input style="margin-right: 10px;" type="button" value="취소" onclick="window.close(this)">
 <input type="submit" value="삭제">
+<input style="margin-right: 10px;" type="button" value="취소" onclick="window.close(this)">
 </div>
 </form>
 </body>

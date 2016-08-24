@@ -55,7 +55,7 @@ public class ResumeDAOTest {
 	public void testCreate() throws Exception {
 		ResumeDAO dao = (ResumeDAO)beans.getBean("resumedao");
 		ResumeDTO dto = new ResumeDTO();
-		dto.setMemberID("bbb");
+		dto.setMemberID("ccc");
 		dto.setResumeName("소개서.hwp");
 		assertEquals(1, dao.create(dto));
 	}

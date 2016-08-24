@@ -8,7 +8,7 @@
 <style type="text/css">
 .multiColumn #ed {
     width:170px;
-    height:270px;
+    height:230px;
     margin:0 2px;
     border:1px #ddd solid;
     float:left
@@ -16,7 +16,7 @@
 
 .multiColumn #fd {
     width:270px;
-    height:270px;
+    height:230px;
     margin:0 2px;
     border:1px #ddd solid;
     float:left
@@ -68,6 +68,14 @@ $(document).ready(function() {
 
 	});
 });	
+
+function pomax(pomax) {
+	if(pomax>=5){
+		alert("5개이상");
+		return false;
+	}
+	
+}
 </script>
 </head>
 <body>
@@ -91,9 +99,6 @@ $(document).ready(function() {
     <input style="margin-left:30px; width: 180px;" type="file" name="portfolioMF">
     </label>
     
-<!--     <label id="resumeFile">
-   	<input style="margin-left:30px; width: 180px;" type="file" name="resumeMF">
-    </label> -->
     <label style="float: right;" id="submit">
     <input type="submit">
     </label>

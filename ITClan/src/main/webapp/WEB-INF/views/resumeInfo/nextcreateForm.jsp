@@ -1,26 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="/ELFunctions" %>    
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-function input(f){
-	if(f.career[0].checked==false && f.career[1].checked==false){
-		alert("경력사항을 선택해주세요.");
-		f.career[0].focus();
-		return false;
-	}
-}
-</script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script type="text/javascript">
-
 //경력사항
  $(document).ready(function() {
+	 $("#exbutton").hide();
 	$("#activity").hide();
 	$("#newcomer").click(function() {
 		$("#activity").hide();
@@ -30,6 +22,7 @@ function input(f){
 $(document).ready(function() {
 	$("#career").click(function() {
 		$("#activity").show();
+		$("#exbutton").show();
 
 	});
 }); 
@@ -86,8 +79,8 @@ function licenseCreate(limax){
 			alert("5개 이상");
 			return false;			
 		}else{
-	var url = "../resume/create";
-	wr = window.open(url,"포트폴리오","width=565,height=500"); 
+	var url = "../resume/create"
+	wr = window.open(url,"자기소개서","width=565,height=500"); 
     wr.moveTo((window.screen.width-500)/2, (window.screen.height - 400)/2);// x, y
 	} 		
 }
@@ -106,7 +99,21 @@ function licenseCreate(limax){
 		wr = window.open(url,"삭제알림","width=300,height=200"); 
 	    wr.moveTo((window.screen.width-300)/2, (window.screen.height - 800)/2);// x, y
 		}
-
+	
+	function deleteRE(resumeNum) {
+		var url = "../resume/delete";
+		url += "?resumeNum="+resumeNum;
+		wr = window.open(url,"삭제알림","width=300,height=200"); 
+	    wr.moveTo((window.screen.width-300)/2, (window.screen.height - 800)/2);// x, y
+		}
+	
+	function deletePO(portfolioNum) {
+		var url = "../portfolio/delete";
+		url += "?portfolioNum="+portfolioNum;
+		wr = window.open(url,"삭제알림","width=300,height=200"); 
+	    wr.moveTo((window.screen.width-300)/2, (window.screen.height - 800)/2);// x, y
+		}		
+	
 //다운로드
  	 function downresumeFile(resumeName){
 			var url = "${pageContext.request.contextPath}/download";
@@ -124,27 +131,32 @@ function licenseCreate(limax){
 			location.href=url;
 	}
 
+		function create(){
+			var url = "create";
+			location.href = url;
+		}
 </script>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<form action="./create" method="post"
-		 onsubmit="return input(this)">
-			<input type="hidden" name="memberID" value="${memberID }">
-			<input type="hidden" name="education" value="${resumeinfodto.education }">
-			<input type="hidden" name="employmentType" value="${resumeinfodto.employmentType }">
-			<input type="hidden" name="exSalary" value="${resumeinfodto.exSalary }">
-			<input type="hidden" name="disableGrade" value="${resumeinfodto.disableGrade }">
-			<input type="hidden" name="exArea" value="${resumeinfodto.exArea }">
-			<input type="hidden" name="exField" value="${resumeinfodto.exField }">
-			<input type="hidden" name="military" value="${resumeinfodto.military }">
-			<input type="hidden" name="schoolName" value="${resumeinfodto.schoolName }">
-			<input type="hidden" name="major" value="${resumeinfodto.major }">
-			<input type="hidden" name="termTime" value="${resumeinfodto.termTime }">
-			<input type="hidden" name="GPA" value="${resumeinfodto.GPA }">
-			<input type="hidden" name="picture" value="${resumeinfodto.picture }">
+	<form name="frm" action="./create" method="post">
+			<input type="text" name="memberID" value="${memberID }">
+			<input type="text" name="education" value="${resumeinfodto.education }">
+			<input type="text" name="employmentType" value="${resumeinfodto.employmentType }">
+			<input type="text" name="exSalary" value="${resumeinfodto.exSalary }">
+			<input type="text" name="disableGrade" value="${resumeinfodto.disableGrade }">
+			<input type="text" name="exArea" value="${resumeinfodto.exArea }">
+			<input type="text" name="exField" value="${resumeinfodto.exField }">
+			<input type="text" name="military" value="${resumeinfodto.military }">
+			<input type="text" name="schoolName" value="${resumeinfodto.schoolName }">
+			<input type="text" name="major" value="${resumeinfodto.major }">
+			<input type="text" name="termTime" value="${resumeinfodto.termTime }">
+			<input type="text" name="GPA" value="${resumeinfodto.GPA }">
+			<input type="text" name="picture" value="${resumeinfodto.picture }">
+			
+			
 		<br>
 		<div style="width: 960px; margin: auto;">
 			<h1>경력사항
@@ -202,7 +214,7 @@ function licenseCreate(limax){
 			</div>
 			<br>
 			</c:forEach>		
-			<input style="float: right;" type="button" value="+추가" onclick="externalactivityCreate('${exmax}')">
+			<input id="exbutton" style="float: right;" type="button" value="+추가" onclick="externalactivityCreate('${exmax}')">
 			</div>		
 			
 			<br>	
@@ -251,12 +263,12 @@ function licenseCreate(limax){
 
  <div class="container">
   <ul class="nav nav-tabs" style="width: 930px;">
-    <li><a data-toggle="tab" href="#port">포트폴리오</a></li>
-    <li><a data-toggle="tab" href="#resume">자기소개서</a></li>
+    <li><a data-toggle="tab" href="#porttab">포트폴리오</a></li>
+    <li><a data-toggle="tab" href="#resumetab">자기소개서</a></li>
   </ul>
 
   <div class="tab-content">
-    <div id="port" class="tab-pane fade">
+    <div id="porttab" class="tab-pane fade">
     <br>
 	    <div style="width: 930px;">
 			<a href="javascript:portfolioCreate('${pomax }')">+추가</a>
@@ -265,13 +277,12 @@ function licenseCreate(limax){
 			<c:forEach var="portfoliodto" items="${portfoliolist }">
 			<div style="width: 930px;">
 				<a href="javascript:downportfolioFile('${portfoliodto.portfolioName }')">${portfoliodto.portfolioName }</a>
-				<a href="#" style="float: right;">삭제</a>
+				<a href="javascript:deletePO('${portfoliodto.portfolioNum }')" style="float:right;">삭제</a>
 			</div>
 			<br>
 			</c:forEach>		
     </div>
-
-    <div id="resume" class="tab-pane fade">
+    <div id="resumetab" class="tab-pane fade">
     <br>
 	    <div style="width: 930px;">
 			<a href="javascript:resumeCreate('${remax }')">+추가</a>
@@ -280,17 +291,18 @@ function licenseCreate(limax){
 			<c:forEach var="resumedto" items="${resumelist }">
 			<div style="width: 930px;">
 				<a href="javascript:downresumeFile('${resumedto.resumeName }')">${resumedto.resumeName }</a>
-				<a href="#" style="float: right;">삭제</a>
+				<a href="javascript:deleteRE('${resumedto.resumeNum }')" style="float: right;">삭제</a>
 			</div>
 			<br>
 			</c:forEach>		
     </div>
     </div>
     </div>
+    </div>
     <br><br>
 			<div style="width: 960px; margin: auto; text-align: center;">
-			<input type="button" value="뒤로" onclick="javascript:history.back();">
-			<input type="submit" value="확인">	
+			<input type="button" value="뒤로" onclick="create()">
+			<input type="submit" value="확인">
 			</div>
 </form>
 </body>

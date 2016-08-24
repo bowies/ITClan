@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,18 +23,18 @@ width: 960px;
 		location.href = url;
 	}
 	
-	 function downFile(biograph){
-			var url = "../download";
-			url = url + "?dir=../storage";
-			url = url + "&biograph="+biograph;
+	 function downresume(biograph){
+			var url = "${pageContext.request.contextPath }/download";
+			url = url + "?dir=/storage/resume/";
+			url = url + "&filename="+biograph;
 			 
 			location.href=url;
 	 }
 
-		function downFile(portfolio){
-			var url = "../download";
-			url = url + "?dir=../storage";
-			url = url + "&portfolio="+portfolio;
+		function downport(portfolio){
+			var url = "${pageContext.request.contextPath }/download";
+			url = url + "?dir=/storage/portfolio/";
+			url = url + "&filename="+portfolio;
 			 
 			location.href=url;
 	}
@@ -52,7 +52,7 @@ width: 960px;
 </tr>
 <tr style="width: 100px;">
 <th colspan="2">이름  *</th>
-<td colspan="4">${personalmemberdto.name }&nbsp; ${2016-(personalmemberdto.birth.substring(0,2)+1900) }세 / ${personalmemberdto.memberID} </td>
+<td colspan="4">${personalmemberdto.name }&nbsp; ${personalmemberdto.birth }세 / ${personalmemberdto.memberID} </td>
 </tr>
 
 <tr style="width: 100px;">
@@ -161,33 +161,59 @@ ${resumeinfodto.exField }
 </tr>
 
 <tr>
-<th colspan="3">포토폴리오<br>
-<div style="text-align: center; padding-bottom: 10px;">
-</div>
-</th>
+<th colspan="3" style="border-bottom-style: hidden;">포토폴리오</th>
+<th colspan="4" style="border-bottom-style: hidden;">자기소개서</th>
+</tr>
 
-<th colspan="4">자기소개서
-<div style="text-align: center; padding-bottom: 10px;">
-</div>
-</th>
+<tr>
+<td colspan="3" style="text-align: center;">
+<c:choose>
+<c:when test="${pomax ==0 }">
+<label>포트폴리오가 없습니다.</label>
+</c:when>
+
+<c:otherwise>
+<c:forEach items="${portfoliolist}" var="portfoliodto">
+<a href="javascript:downport('${portfoliodto.portfolioName}')">${portfoliodto.portfolioName}</a><hr>
+</c:forEach>
+</c:otherwise>
+</c:choose>
+</td>
+
+
+<td colspan="4" style="text-align: center;">
+<c:choose>
+<c:when test="${remax ==0 }">
+자기소개서가 없습니다.
+</c:when>
+
+<c:otherwise>
+<c:forEach items="${resumelist }" var="resumedto">
+<a href="javascript:downresume('${resumedto.resumeName}')">${resumedto.resumeName }</a><hr>
+</c:forEach>
+</c:otherwise>
+</c:choose>
+</td>
 </tr>
 </table>
 
 <br><br>
 <c:choose>
-	<c:when test="${resumeinfodto.termTime.substring(0,1)==',' }">
+<c:when test="${resumeinfodto.termTime.substring(0,1)==',' }">
 <div style="width: 960px; margin : auto ;">
 <h1>학력사항
 <label style="font-size: small;">(${resumeinfodto.education})</label>
 </h1>
 </div>
-	</c:when>
+</c:when>
+
 <c:otherwise>
 <div style="width: 960px; margin : auto ;">
 <h1>학력사항
 <label style="font-size: small;">(${resumeinfodto.education})</label>
 </h1>
 </div>
+
 <table border="1" style="border-collapse :collapse; ">
 <tr style="background-color: #AFE1FF;">
 <th style="text-align: center ;">재학기간</th>
@@ -197,38 +223,29 @@ ${resumeinfodto.exField }
 <c:choose>
 <c:when test="${resumeinfodto.GPA.substring(0,1)==',' }">
 </c:when>
+
 <c:otherwise>
 <th style="text-align: center ;">
 학점
 </th>
 </c:otherwise>
 </c:choose>
-
 </tr>
 
+
 <tr style="text-align: center;">
-  <td>
-${resumeinfodto.termTime.substring(0,4) }년
-${resumeinfodto.termTime.substring(5,7) }월
-(${resumeinfodto.termTime.substring(8,10) })
+ <td>
+${resumeinfodto.termTime.substring(0,7) }
+(${resumeinfodto.termTime.substring(8,10)})
 ~
-${resumeinfodto.termTime.substring(11,15) }년
-${resumeinfodto.termTime.substring(16,18) }월
-(${resumeinfodto.termTime.substring(19) })
+${resumeinfodto.termTime.substring(11,18) }
+(${resumeinfodto.termTime.substring(termTimelast-2,termTimelast)})
 </td>
 
-<c:choose>
-	<c:when test="${resumeinfodto.schoolName.substring(0,1)==','}">
-	<td>
-	${resumeinfodto.schoolName.substring(1) }
-	</td>	
-	</c:when>
-	<c:otherwise>
-	<td>
-	${resumeinfodto.schoolName.substring(0,schoollast-1) }
-	</td>
-	</c:otherwise>
-</c:choose>
+<td>
+${resumeinfodto.schoolName }
+</td>	
+
 
 <c:choose>
 <c:when test="${resumeinfodto.major.substring(0,1)==','}">
@@ -246,27 +263,24 @@ ${resumeinfodto.major.substring(0,majorlast-1) }
 <c:choose>
 <c:when test="${resumeinfodto.GPA.substring(0,1)==',' }">
 </c:when>
+
 <c:when test="${resumeinfodto.GPA.substring(GPAlast-4,GPAlast-3)==',' }">
 <td>
 ${resumeinfodto.GPA.substring(0,GPAlast-4)} /
 ${resumeinfodto.GPA.substring(GPAlast-3)}
 </td>
 </c:when>
-<c:otherwise>
-<td>
-${resumeinfodto.GPA }
-</td>
-</c:otherwise>
 </c:choose>
 </tr>
 </table>
-	</c:otherwise>
+</c:otherwise>
 </c:choose>
 
 
 <c:choose>
 <c:when test="${empty licenselist }">
 </c:when>
+
 <c:otherwise>
 <br><br>
 <div style="width: 960px; margin : auto ;">

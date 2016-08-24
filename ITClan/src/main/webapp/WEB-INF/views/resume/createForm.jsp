@@ -98,13 +98,13 @@ $(document).ready(function() {
 
 </div>
 
-<%-- <div id="ed">
+	 <div id="ed">
 	<div style="text-align: center; margin-bottom: 7px; background-color: #D9E5FF; ">자기소개서</div>
 	<c:forEach var="resumedto" items="${resumelist }">
 	<div style="text-align: center; margin-bottom: 10px;">${resumedto.resumeName }</div>
 	<hr>
 	</c:forEach>
-</div> --%>
+</div> 
 </div>
 </form>
 </body>

@@ -5,5 +5,7 @@ encoding//src/main/webapp/WEB-INF/views/externalActivity/deleteProc.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/license/createProc.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/license/deleteProc.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/portfolio/createForm.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/portfolio/deleteProc.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/resume=UTF-8
+encoding//src/main/webapp/WEB-INF/views/resume/deleteProc.jsp=UTF-8
 encoding/<project>=UTF-8

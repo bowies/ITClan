@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import spring.model.license.LicenseDAO;
 import spring.model.license.LicenseDTO;
 
-
 @Controller
 public class LicenseController {
 	

@@ -6,15 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-function input(f){
-	if(f.career[0].checked==false && f.career[1].checked==false){
-		alert("경력사항을 선택해주세요.");
-		f.career[0].focus();
-		return false;
-	}
-}
-</script>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
@@ -81,11 +72,49 @@ function deleteEX(actNum) {
 	
 	location.href=url;
 }
+
+function deleteRE(resumeNum) {
+	var url = "../resume/delete";
+	url += "?resumeNum="+resumeNum;
+	wr = window.open(url,"삭제알림","width=300,height=200"); 
+    wr.moveTo((window.screen.width-300)/2, (window.screen.height - 800)/2);// x, y
+	}
+
+function deletePO(portfolioNum) {
+	var url = "../portfolio/delete";
+	url += "?portfolioNum="+portfolioNum;
+	wr = window.open(url,"삭제알림","width=300,height=200"); 
+    wr.moveTo((window.screen.width-300)/2, (window.screen.height - 800)/2);// x, y
+	}		
+
+//다운로드
+	 function downresumeFile(resumeName){
+		var url = "${pageContext.request.contextPath}/download";
+		url = url + "?dir=/storage/resume";
+		url = url + "&filename="+resumeName;
+		 
+		location.href=url;
+ }
+
+	function downportfolioFile(portfolioName){
+		var url = "${pageContext.request.contextPath}/download";
+		url = url + "?dir=/storage/portfolio";
+		url = url + "&filename="+portfolioName;
+		 
+		location.href=url;
+}    
+
+/* 	function move(){
+		history.back();
+	} */
+	
 </script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<form action="./update" method="post"
-		 onsubmit="return input(this)">
+	<form action="./update" method="post">
 			<input type="hidden" name="memberID" value="${memberID }">
 			<input type="hidden" name="education" value="${resumeinfodto.education }">
 			<input type="hidden" name="employmentType" value="${resumeinfodto.employmentType }">
@@ -114,7 +143,7 @@ function deleteEX(actNum) {
 					<input type="radio" name="career" id="career" value="경력" checked="checked">경력
 				</c:when>
 				<c:otherwise>
-					<input type="radio" name="career" id="newcomer" value="신입">신입
+					<input type="radio" name="career" id="newcomer" value="신입" checked="checked">신입
 					<input type="radio" name="career" id="career" value="경력">경력
 				</c:otherwise>
 			</c:choose>
@@ -197,8 +226,55 @@ function deleteEX(actNum) {
 			</div>
 			</div>
 			
+			<br>	
+			<div style="width: 960px; margin: auto;">
+			<h1>포트폴리오</h1>
+			<div>포토폴리오 및 자기소개서 등록할 수 있습니다.</div>
+			<hr>
+
+ <div class="container">
+  <ul class="nav nav-tabs" style="width: 930px;">
+    <li><a data-toggle="tab" href="#porttab">포트폴리오</a></li>
+    <li><a data-toggle="tab" href="#resumetab">자기소개서</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="porttab" class="tab-pane fade">
+    <br>
+	    <div style="width: 930px;">
+			<a href="javascript:portfolioCreate('${pomax }')">+추가</a>
+		</div>	
+  			<hr style="width: 930px; float: left;">
+			<c:forEach var="portfoliodto" items="${portfoliolist }">
+			<div style="width: 930px;">
+				<a href="javascript:downportfolioFile('${portfoliodto.portfolioName }')">${portfoliodto.portfolioName }</a>
+				<a href="javascript:deletePO('${portfoliodto.portfolioNum }')" style="float:right;">삭제</a>
+			</div>
+			<br>
+			</c:forEach>		
+    </div>
+
+    <div id="resumetab" class="tab-pane fade">
+    <br>
+	    <div style="width: 930px;">
+			<a href="javascript:resumeCreate('${remax }')">+추가</a>
+		</div>
+			<hr style="width: 930px; float: left;">
+			<c:forEach var="resumedto" items="${resumelist }">
+			<div style="width: 930px;">
+				<a href="javascript:downresumeFile('${resumedto.resumeName }')">${resumedto.resumeName }</a>
+				<a href="javascript:deleteRE('${resumedto.resumeNum }')" style="float: right;">삭제</a>
+			</div>
+			<br>
+			</c:forEach>		
+    </div>
+    </div>
+    </div>
+    </div>
+    <br><br>	
+    		
 			<div style="width: 960px; margin: auto; text-align: center;">
-			<input type="button" value="뒤로" onclick="javascript:history.back();">	
+			<input type="button" value="뒤로" onclick="move()">
 			<input type="submit" value="확인">	
 			</div>
 </form>

@@ -52,7 +52,7 @@ public class ResumeInfoController {
 	
 	
 	@RequestMapping(value="/resumeInfo/create",method=RequestMethod.GET)
-	public String create(HttpServletResponse response, ResumeInfoDTO resumeinfodto, Model model, HttpSession session) throws Exception {
+	public String create(Model model, HttpSession session) throws Exception {
 	
 		String memberID = "";
 		
@@ -144,7 +144,6 @@ public class ResumeInfoController {
 
 				model.addAttribute("portfoliolist", portfoliolist);
 				model.addAttribute("pomax", pomax);				
-				
 			
 		return "/resumeInfo/nextcreate";
 	}
@@ -160,31 +159,47 @@ public class ResumeInfoController {
 		Map map = new HashMap();
 		map.put("memberID", memberID);
 		
+		//자격증
 		List<LicenseDTO> licenselist = licensedao.list(map);
 		int limax = licensedao.total(memberID);
+		model.addAttribute("licenselist", licenselist);
+		model.addAttribute("limax", limax);
+		/*---------------------------------------------------------------------------------*/
 		
+		//경력사항
 		List<ExternalActivityDTO> externalactivitylist = externalactivitydao.list(map);
 		int exmax = externalactivitydao.total(memberID);
+		model.addAttribute("externalactivitylist", externalactivitylist);
+		model.addAttribute("exmax", exmax);
+		/*---------------------------------------------------------------------------------*/
 		
+		//포트폴리오
+		List<PortFolioDTO> portfoliolist = portfoliodao.list(map);
+		int pomax = portfoliodao.total(memberID);
+		model.addAttribute("portfoliolist", portfoliolist);
+		model.addAttribute("pomax", pomax);		
+		/*---------------------------------------------------------------------------------*/
+		
+		//자기소개서
+		List<ResumeDTO> resumelist = resumedao.list(map);
+		int remax = resumedao.total(memberID);
+		model.addAttribute("resumelist", resumelist);
+		model.addAttribute("remax", remax);			
+		/*---------------------------------------------------------------------------------*/
 		
 		ResumeInfoDTO resumeinfodto = (ResumeInfoDTO) resumeinfodao.read(memberID);
 		PersonalMemberDTO personalmemberdto = (PersonalMemberDTO) personalmemberdao.read(memberID);
 		
 		int majorlast = resumeinfodto.getMajor().length();
 		int GPAlast = resumeinfodto.getGPA().length();
-		int schoollast = resumeinfodto.getSchoolName().length();
-		
+		int termTimelast = resumeinfodto.getTermTime().length();
 		
 		model.addAttribute("memberID",memberID);
 		model.addAttribute("resumeinfodto",resumeinfodto);
 		model.addAttribute("personalmemberdto",personalmemberdto);
-		model.addAttribute("licenselist", licenselist);
-		model.addAttribute("externalactivitylist", externalactivitylist);
-		model.addAttribute("limax", limax);
-		model.addAttribute("exmax", exmax);
 		model.addAttribute("majorlast", majorlast);
 		model.addAttribute("GPAlast", GPAlast);
-		model.addAttribute("schoollast", schoollast);
+		model.addAttribute("termTimelast", termTimelast);
 		
 		return "/resumeInfo/read";
 	}
@@ -192,9 +207,9 @@ public class ResumeInfoController {
 	@RequestMapping(value="/resumeInfo/update",method=RequestMethod.GET)
 	public String update(HttpSession session, String memberID, Model model) throws Exception{
 		
-		if(memberID==null){
+		/*if(memberID==null){
 			memberID = (String)session.getAttribute(memberID);
-			}
+			}*/
 			memberID = "ccc";
 		
 		ResumeInfoDTO resumeinfodto = (ResumeInfoDTO) resumeinfodao.read(memberID);

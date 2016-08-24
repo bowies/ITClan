@@ -17,8 +17,6 @@ import spring.model.portfolio.PortFolioDAO;
 import spring.model.portfolio.PortFolioDTO;
 import spring.utility.itclan.Utility;
 
-
-
 @Controller
 public class PortFolioController {
 
@@ -39,8 +37,8 @@ public class PortFolioController {
 		List<PortFolioDTO>portfoliolist =  portfoliodao.list(map);
 		
 		model.addAttribute("portfoliolist", portfoliolist);
-		
 		model.addAttribute("memberID", memberID);
+		
 		return "/portfolio/createForm";
 	}
 	
@@ -68,12 +66,32 @@ public class PortFolioController {
 		}
 	}
 	
-	@RequestMapping(value="/portfolio/delete")
-	public String delete(int actNum, Model model) throws Exception{
+	@RequestMapping(value="/portfolio/delete",method=RequestMethod.GET)
+	public String delete(int portfolioNum, Model model, PortFolioDTO portfoliodto) throws Exception{
 		
-		portfoliodao.delete(actNum);
+		model.addAttribute("portfolioNum", portfolioNum);
+		model.addAttribute("portfoliodto", portfoliodto);
+		
+		return "/portfolio/deleteForm";
+		
+	}
 	
-		return "redirect:/resumeInfo/nextcreate";
+	@RequestMapping(value="/portfolio/delete",method=RequestMethod.POST)
+	public String delete(HttpServletRequest request, int portfolioNum, PortFolioDTO portfoliodto) throws Exception{
 		
+		String upDir = request.getRealPath("/storage/portfolio");
+		String portfolioName = portfoliodto.getPortfolioName();
+		
+		if(portfoliodao.delete(portfolioNum)>0){
+			if(portfolioName != null){
+				Utility.deleteFile(upDir, portfolioName);
+			}
+			
+			return "/portfolio/deleteProc";
+		
+		}else{
+			
+			return "error/error";
+		}
 	}
 }

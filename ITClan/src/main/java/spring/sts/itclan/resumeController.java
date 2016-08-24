@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,7 @@ import spring.model.resume.ResumeDAO;
 import spring.model.resume.ResumeDTO;
 import spring.utility.itclan.Utility;
 
+@Controller
 public class resumeController {
 	
 	@Autowired
@@ -63,13 +65,25 @@ public class resumeController {
 		}
 	}
 	
-	@RequestMapping(value="/resume/delete")
-	public String delete(int actNum, Model model) throws Exception{
+	@RequestMapping(value="/resume/delete",method=RequestMethod.GET)
+	public String delete(int resumeNum, Model model) throws Exception{
 		
-		resumedao.delete(actNum);
+		model.addAttribute("resumeNum", resumeNum);
 	
-		return "redirect:/resumeInfo/nextcreate";
+		return "/resume/deleteForm";
 		
+	}
+	
+	@RequestMapping(value="/resume/delete",method=RequestMethod.POST)
+	public String delete(int resumeNum) throws Exception{
+		
+		if(resumedao.delete(resumeNum)>0){
+		
+			return "/resume/deleteProc";
+		
+		}else{
+			return "error/error";
+		}
 	}
 }
 
