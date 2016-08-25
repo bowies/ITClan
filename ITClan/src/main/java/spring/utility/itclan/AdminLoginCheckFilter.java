@@ -35,6 +35,9 @@ public class AdminLoginCheckFilter implements Filter {
             if (session.getAttribute("memberID") != null || session.getAttribute("companyID") != null
                     && session.getAttribute("grade").equals("A")) {
                 login = true;  // 관리자라면
+            }else if(session.getAttribute("companyID") != null 
+            		&& session.getAttribute("grade").equals("A")){
+            	login = true;
             }
         }
         
@@ -44,7 +47,7 @@ public class AdminLoginCheckFilter implements Filter {
         } else {
             // 로그인이 안되었다면 로그인 페이지로 이동
             RequestDispatcher dispatcher = 
-                request.getRequestDispatcher("/company/login");
+                request.getRequestDispatcher("/members/login");
             dispatcher.forward(request, response);
         }
     }

@@ -274,7 +274,7 @@ public class CompanyMemberController {
 		return "/companymember/agree";
 	}
 
-	@RequestMapping(value = "/companymember/list")
+	@RequestMapping(value = "/admin/list_company")
 	public String list(HttpServletRequest request, Model model) throws Exception {
 
 		// 검색관련

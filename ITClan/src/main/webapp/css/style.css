@@ -1,0 +1,110 @@
+
+/* 색성 컬러 내부 #FFCD9C
+        외부 컬러 #83532F
+*/
+
+table {
+	table - layout:fixed;word-break:break-all;
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1;
+    border-left: 1px solid #ccc;
+    margin: 1px 
+}
+
+table thead th {
+    padding: 2px;
+    font-weight: bold;
+
+    border-right: 1px solid #ccc;
+    border-bottom: 2px solid #c00;
+    background: #dcdcd1;
+}
+table tbody th {
+    width: 100px;
+    padding: 2px;
+    font-weight: bold;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background: #ececec;
+}
+table td {
+    width: 200px;
+    padding: 2px;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+ .offerlist{
+	width:300px; 
+	
+	
+	
+} 
+
+body{
+width:1000px; 
+margin: 0 auto;
+
+}
+
+#top {
+
+height:30px;
+opacity:0.8;
+margin: 0 auto;
+
+}
+
+#top2{
+
+height: 100px;
+margin: 0 auto;
+position: relative;
+
+
+}
+
+#top2 #logo{
+width:198px; height: 44px;
+
+position: absolute;
+top:20px;
+left:50px;
+
+}
+
+#top2 #search{
+    clear: both;
+    width: 300px;
+      height: 33px;
+    border: 2px solid #866538;
+position: absolute;
+top:20px;
+left:350px;
+}
+
+ul#menu li{
+display : inline;
+}
+
+
+ul#menu li a{
+color:black;
+float: right;
+text-decoration:none;
+margin-left: 10px;
+
+
+}
+
+li#admin{
+float:right;
+padding-right:10px
+} 
+
+
+
+

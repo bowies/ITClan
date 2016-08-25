@@ -43,5 +43,13 @@ public class HomeController {
 	public String hunting(){
 		return "/hunting";
 	}
+	@RequestMapping("/members/login")
+	public String login(){
+		return "/members/login";
+	}
+	@RequestMapping("/members/agree")
+	public String agree(){
+		return "/members/agree";
+	}
 	
 }

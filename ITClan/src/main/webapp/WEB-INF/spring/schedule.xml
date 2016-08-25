@@ -12,13 +12,7 @@
 		<put-attribute name="footer"
 			value="/WEB-INF/views/templates/bottom.jsp" />
 	</definition>
-	
-	
-	<!-- definition의 이름은controller에서 리턴되는 뷰의 이름 -->
-	<definition name="/home" extends="main">
-		<put-attribute name="title" value="기본 페이지"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
-	</definition>
+
 
 	<definition name="/schedule/scheduler" extends="main">
 		<put-attribute name="title" value="일정 관리"></put-attribute>

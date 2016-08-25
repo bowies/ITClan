@@ -282,7 +282,7 @@ public class PersonalmemberController {
 		
 	}
 	
-	@RequestMapping("/admin/list")
+	@RequestMapping("/admin/list_personal")
 	public String list(HttpServletRequest request,Model model) throws Exception{
 		String col = Utility.nullCheck(request.getParameter("col"));
 		String word = Utility.nullCheck(request.getParameter("word"));
