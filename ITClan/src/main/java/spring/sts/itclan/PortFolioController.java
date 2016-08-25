@@ -36,7 +36,10 @@ public class PortFolioController {
 		
 		List<PortFolioDTO>portfoliolist =  portfoliodao.list(map);
 		
+		int pomax = portfoliodao.total(memberID);
+		
 		model.addAttribute("portfoliolist", portfoliolist);
+		model.addAttribute("pomax", pomax);
 		model.addAttribute("memberID", memberID);
 		
 		return "/portfolio/createForm";

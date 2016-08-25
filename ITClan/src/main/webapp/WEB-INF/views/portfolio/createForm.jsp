@@ -37,7 +37,15 @@ function input(f){
 		alert("파일이 없습니다.");
 		return false;
 	}
-}
+	
+		var pomax = ${pomax}
+		if(pomax>=5){
+			alert("5개이상");
+			window.self.close();
+			return false;
+	}
+}	
+	
 
 $(function () {
     contentLayAutoWidth();
@@ -69,13 +77,6 @@ $(document).ready(function() {
 	});
 });	
 
-function pomax(pomax) {
-	if(pomax>=5){
-		alert("5개이상");
-		return false;
-	}
-	
-}
 </script>
 </head>
 <body>
@@ -99,8 +100,8 @@ function pomax(pomax) {
     <input style="margin-left:30px; width: 180px;" type="file" name="portfolioMF">
     </label>
     
-    <label style="float: right;" id="submit">
-    <input type="submit">
+    <label style="float: right;">
+    <input type="submit" value="(사진)전송">
     </label>
     </div>   
   	<br>

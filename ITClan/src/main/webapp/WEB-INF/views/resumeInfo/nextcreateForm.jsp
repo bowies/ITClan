@@ -130,11 +130,7 @@ function licenseCreate(limax){
 			 
 			location.href=url;
 	}
-
-		function create(){
-			var url = "create";
-			location.href = url;
-		}
+		
 </script>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -142,19 +138,19 @@ function licenseCreate(limax){
 </head>
 <body>
 	<form name="frm" action="./create" method="post">
-			<input type="text" name="memberID" value="${memberID }">
-			<input type="text" name="education" value="${resumeinfodto.education }">
-			<input type="text" name="employmentType" value="${resumeinfodto.employmentType }">
-			<input type="text" name="exSalary" value="${resumeinfodto.exSalary }">
-			<input type="text" name="disableGrade" value="${resumeinfodto.disableGrade }">
-			<input type="text" name="exArea" value="${resumeinfodto.exArea }">
-			<input type="text" name="exField" value="${resumeinfodto.exField }">
-			<input type="text" name="military" value="${resumeinfodto.military }">
-			<input type="text" name="schoolName" value="${resumeinfodto.schoolName }">
-			<input type="text" name="major" value="${resumeinfodto.major }">
-			<input type="text" name="termTime" value="${resumeinfodto.termTime }">
-			<input type="text" name="GPA" value="${resumeinfodto.GPA }">
-			<input type="text" name="picture" value="${resumeinfodto.picture }">
+			<input type="hidden" name="memberID" value="${memberID }">
+			<input type="hidden" name="education" value="${resumeinfodto.education }">
+			<input type="hidden" name="employmentType" value="${resumeinfodto.employmentType }">
+			<input type="hidden" name="exSalary" value="${resumeinfodto.exSalary }">
+			<input type="hidden" name="disableGrade" value="${resumeinfodto.disableGrade }">
+			<input type="hidden" name="exArea" value="${resumeinfodto.exArea }">
+			<input type="hidden" name="exField" value="${resumeinfodto.exField }">
+			<input type="hidden" name="military" value="${resumeinfodto.military }">
+			<input type="hidden" name="schoolName" value="${resumeinfodto.schoolName }">
+			<input type="hidden" name="major" value="${resumeinfodto.major }">
+			<input type="hidden" name="termTime" value="${resumeinfodto.termTime }">
+			<input type="hidden" name="GPA" value="${resumeinfodto.GPA }">
+			<input type="hidden" name="picture" value="${resumeinfodto.picture }">
 			
 			
 		<br>
@@ -301,7 +297,7 @@ function licenseCreate(limax){
     </div>
     <br><br>
 			<div style="width: 960px; margin: auto; text-align: center;">
-			<input type="button" value="뒤로" onclick="create()">
+			<input type="button" value="뒤로" onclick="history.back()">
 			<input type="submit" value="확인">
 			</div>
 </form>

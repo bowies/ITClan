@@ -196,27 +196,13 @@ function input(f) {
 	});
 	//---------------------------------------//
 	
-	$(document).one(function(){
-		window.location.reload(true);
-	});
-	
-	
-	/* 	setTimeout(function() {
-			window.location.reload();
-		}, 60000); */
-
-	
-	
-/* 	$(document).ready(function() {
-	      ...
-	      setTimeout("location.reload()", 60000);
-	setTimeout(function() {
-	alert("오즈의 순위왕 블로그로 이동합니다.");
-	location.href = "http://ozrank.co.kr";
-	}, 3000); // 3000ms(3초)가 경과하면 이 함수가 실행됩니다.
-	 
-	 ...
-	} */
+	/* 페이지 한번 새로고침 */
+	  if (self.name != 'reload') {
+         self.name = 'reload';
+         self.location.reload(true);
+     }
+     else self.name = ''; 
+	//---------------------------------------//
 </script>
 </head>
 <body>

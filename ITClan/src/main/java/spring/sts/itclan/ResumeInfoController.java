@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +51,7 @@ public class ResumeInfoController {
 	
 	
 	@RequestMapping(value="/resumeInfo/create",method=RequestMethod.GET)
-	public String create(Model model, HttpSession session) throws Exception {
+	public String create(HttpServletRequest request, Model model, HttpSession session) throws Exception {
 	
 		String memberID = "";
 		
@@ -60,6 +59,38 @@ public class ResumeInfoController {
 		memberID = (String)session.getAttribute(memberID);
 		}*/
 		memberID = "ccc";
+		
+		/*자기소개서 자동 삭제*/
+		ResumeDTO resumedto = new ResumeDTO();
+		
+		String resumeName = resumedto.getResumeName();
+		
+		String reupDir=request.getRealPath("/storage/resume");
+		
+		if(resumedao.deleteinfo(memberID)>0) {
+			if(resumeName != null) {
+			Utility.deleteFile(reupDir, resumeName);
+			}
+		}
+		
+		/*포트폴리오 자동 삭제*/
+		PortFolioDTO portfoliodto = new PortFolioDTO();
+		
+		String portfolioName = portfoliodto.getPortfolioName();
+		
+		String poupDir = request.getRealPath("/storage/portfolio");
+		
+		if(portfoliodao.deleteinfo(memberID)>0) {
+			if(portfolioName != null) {
+				Utility.deleteFile(poupDir, portfolioName);
+			}
+		}
+		
+		/*자격증 자동 삭제*/
+		licensedao.deleteinfo(memberID);
+		
+		/*경력사항 자동 삭제*/
+		externalactivitydao.deleteinfo(memberID);
 		
 		PersonalMemberDTO personalmemberdto = (PersonalMemberDTO) personalmemberdao.read(memberID);
 		
@@ -272,6 +303,22 @@ public class ResumeInfoController {
 				
 				model.addAttribute("externalactivitylist", externalactivitylist);
 				model.addAttribute("exmax", exmax);
+				
+				//자기소개서
+				List<ResumeDTO>resumelist = resumedao.list(map);
+				
+				int remax = resumedao.total(memberID);
+
+				model.addAttribute("resumelist", resumelist);
+				model.addAttribute("remax", remax);
+				
+				//포트폴리오
+				List<PortFolioDTO>portfoliolist = portfoliodao.list(map);
+				
+				int pomax = portfoliodao.total(memberID);
+
+				model.addAttribute("portfoliolist", portfoliolist);
+				model.addAttribute("pomax", pomax);
 			
 		return "/resumeInfo/nextupdate";
 	}

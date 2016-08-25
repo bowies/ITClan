@@ -36,8 +36,10 @@ public class resumeController {
 		
 		List<ResumeDTO>resumelist =  resumedao.list(map);
 
-		model.addAttribute("resumelist", resumelist);
+		int remax = resumedao.total(memberID);
 		
+		model.addAttribute("resumelist", resumelist);
+		model.addAttribute("remax", remax);
 		model.addAttribute("memberID", memberID);
 		
 		return "/resume/createForm";

@@ -8,6 +8,7 @@
 </head>
 <body>
 <script type="text/javascript">
+window.opener.parent.location.reload();
 document.location.href = "./create";
 </script>
 </body>

@@ -26,12 +26,31 @@ $(document).ready(function() {
 	});
 }); 
 
-if(${exmax>0 }){
+var exmax = ${exmax}
+if(exmax>0){
 	$(document).ready(function() {
 		$("#activity").show();
 
 	});
 }
+
+//포토폴리오 확인
+$(document).ready(function() {
+	$("#por").click(function() {
+		$("#portdiv").hide();
+		$("#rediv").hide();
+
+	});
+}); 
+
+//자기소개서 확인
+$(document).ready(function() {
+	$("#res").click(function() {
+		$("#rediv").hide();
+		$("#portdiv").hide();
+
+	});
+});
 //------------------------------------------
 
 //경력사항 추가 팝업창
@@ -60,18 +79,18 @@ function licenseCreate(limax){
 //경력사항 삭제
 
 function deleteL(licenseNum) {
-	var url = "../license/delete"
+	var url = "../license/delete";
 	url += "?licenseNum="+licenseNum;
-	
-	location.href=url;
-}
+	wr = window.open(url,"삭제알림","width=300,height=200"); 
+    wr.moveTo((window.screen.width-300)/2, (window.screen.height - 800)/2);// x, y
+	}
 
 function deleteEX(actNum) {
-	var url ="../externalActivity/delete";
+	var url = "../externalActivity/delete";
 	url += "?actNum="+actNum;
-	
-	location.href=url;
-}
+	wr = window.open(url,"삭제알림","width=300,height=200"); 
+    wr.moveTo((window.screen.width-300)/2, (window.screen.height - 800)/2);// x, y
+	}
 
 function deleteRE(resumeNum) {
 	var url = "../resume/delete";
@@ -102,11 +121,29 @@ function deletePO(portfolioNum) {
 		url = url + "&filename="+portfolioName;
 		 
 		location.href=url;
-}    
-
-/* 	function move(){
-		history.back();
-	} */
+}
+	
+	function portfolioCreate(pomax){
+		if(pomax>=5){
+			alert("5개 이상");
+			return false;			
+		}else{
+	var url = "../portfolio/create";
+	wr = window.open(url,"포트폴리오","width=565,height=500"); 
+    wr.moveTo((window.screen.width-500)/2, (window.screen.height - 400)/2);// x, y
+	} 
+}
+	
+	function resumeCreate(remax){
+		if(remax>=5){
+			alert("5개 이상");
+			return false;			
+		}else{
+	var url = "../resume/create"
+	wr = window.open(url,"자기소개서","width=565,height=500"); 
+    wr.moveTo((window.screen.width-500)/2, (window.screen.height - 400)/2);// x, y
+	} 		
+}	
 	
 </script>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -232,15 +269,23 @@ function deletePO(portfolioNum) {
 			<div>포토폴리오 및 자기소개서 등록할 수 있습니다.</div>
 			<hr>
 
- <div class="container">
-  <ul class="nav nav-tabs" style="width: 930px;">
-    <li><a data-toggle="tab" href="#porttab">포트폴리오</a></li>
-    <li><a data-toggle="tab" href="#resumetab">자기소개서</a></li>
-  </ul>
+	 <div class="container">
+	  <ul class="nav nav-tabs" style="width: 930px;">
+	    <li><a data-toggle="tab" id="por" href="#porttab">포트폴리오</a></li>
+	    <li><a data-toggle="tab" id="res" href="#resumetab">자기소개서</a></li>
+	  </ul>
+	
+	<br>
+ 	 <c:if test="${pomax>0 }">
+	 	<div id="portdiv">*포토폴리오</div>
+	 </c:if>
+	 
+	 <c:if test="${remax>0 }">
+	 	<div id="rediv">*자기소개서</div>
+	 </c:if> 
 
   <div class="tab-content">
     <div id="porttab" class="tab-pane fade">
-    <br>
 	    <div style="width: 930px;">
 			<a href="javascript:portfolioCreate('${pomax }')">+추가</a>
 		</div>	
@@ -255,7 +300,6 @@ function deletePO(portfolioNum) {
     </div>
 
     <div id="resumetab" class="tab-pane fade">
-    <br>
 	    <div style="width: 930px;">
 			<a href="javascript:resumeCreate('${remax }')">+추가</a>
 		</div>
@@ -274,7 +318,7 @@ function deletePO(portfolioNum) {
     <br><br>	
     		
 			<div style="width: 960px; margin: auto; text-align: center;">
-			<input type="button" value="뒤로" onclick="move()">
+			<input type="button" value="뒤로" onclick="history.back()">
 			<input type="submit" value="확인">	
 			</div>
 </form>

@@ -261,14 +261,22 @@ function input(f) {
 		});
 	});
 	//---------------------------------------//
+	
+	/* 페이지 한번 새로고침 */
+	  if (self.name != 'reload') {
+         self.name = 'reload';
+         self.location.reload(true);
+     }
+     else self.name = ''; 
+	//---------------------------------------//
+	
 </script>
 </head>
 <body>
 	<form action="./nextcreate" method="post"
 		enctype="multipart/form-data" onsubmit="return input(this)">
 		 
-		<input type="hidden" name="memberID" value="${personalmemberdto.memberID }">
-		
+		<input type="hidden" name="memberID" value="${memberID }">
 		<div style="width: 960px; margin: auto;">
 			<h1>회원정보</h1>
 		</div>
@@ -284,7 +292,7 @@ function input(f) {
 				<th colspan="2">이름</th>
 				<td>${personalmemberdto.name }&nbsp;
 					${personalmemberdto.birth }세
-					/ ${personalmemberdto.memberID}</td>
+					/ ${memberID}</td>
 			</tr>
 
 			<tr>
@@ -365,10 +373,7 @@ function input(f) {
 
 		</div>
 		<div style="width: 960px; margin: auto;">
-		<label style="float: right;">+최근 졸업으로 기제해주시기바랍니다.
-		${param.education }
-		-------------------------
-		</label>
+		<label style="float: right;">+최근 졸업으로 기제해주시기바랍니다.</label>
 		</div>
 		<br>
 
