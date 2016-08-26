@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dhtmlx.planner.DHXEv;
@@ -53,17 +54,17 @@ public class SchedulerController {
 	   planner.config.setFirstHour(9);
 	   planner.config.setLastHour(19);
 	   
-	   planner.data.dataprocessor.setURL("events.do");
+	   planner.data.dataprocessor.setURL("events");
 	   planner.parse(schedulerService.getEvent());
 	   model.addAttribute("schedule", planner.render());
 	   
       return "/schedule/scheduler";
    }
    
-   @RequestMapping("/events")
-   @ResponseBody 
+   @RequestMapping("/schedule/events")
+   @ResponseBody
    public String events(HttpServletRequest request, HttpSession session) throws Exception {
-	   
+	   System.out.println("이벤트");
        String value = request.getParameter("ids");
        String actions = "";
        if(value != null)
