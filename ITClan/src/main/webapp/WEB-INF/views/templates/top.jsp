@@ -90,12 +90,18 @@ padding-right:10px
      <li><a href="${pageContext.request.contextPath}/companymember/logout">로그아웃</a></li>
      <li><a href="${pageContext.request.contextPath}/companymember/read">나의정보</a></li>
      <li><a href="${pageContext.request.contextPath}/companyinfo/read?companyID=${sessionScope.companyID}">회사정보</a></li>
+<%--      <li><a href="${pageContext.request.contextPath}/companymember/idFind">아이디찾기</a></li> --%>
+<%--      <li><a href="${pageContext.request.contextPath}/companymember/pwFind">비밀번호찾기</a></li> --%>
+     <li><a href="${pageContext.request.contextPath}/companymember/update">정보수정</a></li>
+     <li><a href="${pageContext.request.contextPath}/companymember/updatePw">비번변경</a></li>
+<%--      <li><a href="${pageContext.request.contextPath}/companymember/delete">회원탈퇴</a></li> --%>
      </c:when>
      <c:otherwise>
       <c:choose>
       <c:when test="${sessionScope.grade=='P'}">
      <li><a href="${pageContext.request.contextPath}/personal/logout">로그아웃</a></li>
-     <li><a href="${pageContext.request.contextPath}/personal/read">나의정보</a></li>     
+     <li><a href="${pageContext.request.contextPath}/personal/main_p">나의정보</a></li>   
+      
       </c:when>
       <c:otherwise>
      <li id="Admin"><a href="${pageContext.request.contextPath}/admin/list_personal">개인회원목록</a></li>

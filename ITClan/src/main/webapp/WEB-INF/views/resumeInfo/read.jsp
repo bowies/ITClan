@@ -161,8 +161,8 @@ ${resumeinfodto.exField }
 </tr>
 
 <tr>
-<th colspan="3" style="border-bottom-style: hidden;">포토폴리오</th>
-<th colspan="4" style="border-bottom-style: hidden;">자기소개서</th>
+<td colspan="3" style="border-bottom-style: hidden; padding-bottom: 15px;">포토폴리오</td>
+<td colspan="4" style="border-bottom-style: hidden;padding-bottom: 15px;">자기소개서</td>
 </tr>
 
 <tr>

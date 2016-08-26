@@ -21,7 +21,7 @@ function updatepic(memberID){
 	location.href=url;
 }
 function create(memberID){
-	var url = "../resumeinfo/create";
+	var url = "../resumeInfo/create";
 	url += "?memberID=" + memberID;
 	location.href=url;
 }
@@ -40,7 +40,7 @@ function create(memberID){
 <td>
 <c:choose>
 <c:when test="${cnt>0 }">
-<a href="../resumeinfo/read">이력서</a>
+<a href="../resumeInfo/read">이력서</a>
 </c:when>
 <c:otherwise>
 이력서 없음!!

@@ -54,12 +54,8 @@ public class ResumeInfoController {
 	@RequestMapping(value="/resumeInfo/create",method=RequestMethod.GET)
 	public String create(HttpServletRequest request, Model model, HttpSession session) throws Exception {
 	
-		String memberID = "";
-		
-		if(memberID==""){
-		memberID = (String)session.getAttribute("memberID");
-		}
-		
+		String memberID = (String)session.getAttribute("memberID");
+	
 		/*자기소개서 자동 삭제*/
 		ResumeDTO resumedto = new ResumeDTO();
 		
@@ -180,11 +176,11 @@ public class ResumeInfoController {
 	}
 	
 	@RequestMapping("/resumeInfo/read")
-	public String read( String memberID, HttpSession session, Model model) throws Exception{
+	public String read(HttpSession session, Model model) throws Exception{
 		
-		if(memberID==null){
-		memberID = (String)session.getAttribute("memberID");
-		}
+		
+		 String memberID = (String)session.getAttribute("memberID");
+		
 		Map map = new HashMap();
 		map.put("memberID", memberID);
 		
