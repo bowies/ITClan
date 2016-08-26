@@ -5,10 +5,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="resume">
 
-<select id="list" parameterType="Map" resultType="ResumeDTO">
-	select resumeNum, resumeName
-	from resume
-	where memberID = #{memberID}
+<resultMap type="ResumeDTO" id="ManyMap">
+	<result property="resumeNum" column="resumeNum"/>
+	<result property="resumeName" column="resumeName"/>
+	<result property="memberID" column="memberID"/>
+	<collection property="resumeList" column="memberID" javaType="List" ofType="PersonalMemberDTO"
+				resultMap="resume.ResumeDTOListMap"/>
+</resultMap>
+
+<resultMap type="PersonalMemberDTO" id="ResumeDTOListMap">
+ <result property="memberID" column="memberID"/>
+</resultMap>
+
+<select id="list" parameterType="Map" resultMap="ManyMap">
+	select r.memberID, re.resumeNum, re.resumeName
+	from personalMember r, resume re
+	where r.memberID = re.memberID 
+	and r.memberID = #{memberID}
 	order by resumeNum ASC
 </select>
 
