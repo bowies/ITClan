@@ -10,13 +10,52 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style type="text/css">
-.aaa{
-	height:400px; 
-	width:900px;
-	margin-left:50px;
- 	position:absolute;
+/* tab */
+#css_tabs input:nth-of-type(1), #css_tabs input:nth-of-type(1) ~ div:nth-of-type(1),
+#css_tabs input:nth-of-type(2), #css_tabs input:nth-of-type(2) ~ div:nth-of-type(2),
+#css_tabs input:nth-of-type(3), #css_tabs input:nth-of-type(3) ~ div:nth-of-type(3) {
+    display:none
+}
+#css_tabs input:nth-of-type(1):checked ~ div:nth-of-type(1),
+#css_tabs input:nth-of-type(2):checked ~ div:nth-of-type(2),
+#css_tabs input:nth-of-type(3):checked ~ div:nth-of-type(3) {
+    display:block
 }
 
+/* The "show" class is added to the accordion panel when the user clicks on one of the buttons. This will show the panel content */
+div.panel.show {
+    display: block;
+}
+
+ div.panel 
+ { 
+ line-height: 30px; 
+ margin:auto; 
+ font-size:16px; 
+ padding:5px; 
+ background:#ffffff; 
+ display: none;
+/*  border:solid 1px #666;  */
+/*  border-radius:3px;  */
+ } 
+
+/* accordion */
+button.accordion {
+    background-color: #ffffff;
+    color: #444;
+    cursor: pointer;
+    padding: 8px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active, button.accordion:hover {
+    background-color: #99d0f9;
+}
 
 #css_tabs > label {
     display:inline-block;
@@ -33,6 +72,12 @@
     border:1px solid #ccc;
     border-width:1px 1px 0
 }
+#css_tabs > label:hover {
+    cursor:pointer
+}
+#css_tabs label[for=tab1] {
+    margin-left:1.5em
+}
 
 #css_tabs input:nth-of-type(1):checked ~ label:nth-of-type(1), #css_tabs > label[for=tab1]:hover {
     background:#0080ff;
@@ -46,14 +91,6 @@
     background:#0080ff;
     color:#fff
 }
-
-#css_tabs > label:hover {
-    cursor:pointer
-}
-#css_tabs label[for=tab1] {
-    margin-left:1.5em
-}
-
 
 </style>
 <script type="text/javascript">
@@ -87,6 +124,7 @@ function readB(qnANum) {
         <!-- 라벨 : 화면에 표시되는 탭 제목 -->
         <label style="border:1px solid black;" for="tab1">개인회원</label>
         <label style="border:1px solid black;"for="tab2">기업회원</label>
+  
         <label style="border:1px solid black;"for="tab3">Tab 3</label>
 
         <!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 -->
@@ -111,12 +149,7 @@ function readB(qnANum) {
         </div>
         <div class="tab2_content">
     	<ul>
-	 		<li><button class="accordion">잡코리아를 탈퇴하면 어떻게 되나요?</button>
-				<div class="panel">
-				  <p>탈퇴 시, 해당 아이디로 사이트를 이용하셨던 이력서, 지원내역 등 모든 정보가 삭제 됩니다. </p>
-				</div>
-				
-			</li>
+	 	
 	 		<li><button class="accordion">채용공고</button>
 				<div class="panel">
 				  <p>공고남겨주세요 </p>

@@ -9,6 +9,37 @@
 <title>W3.CSS</title>
 
 <style>
+button.accordion.active, button.accordion:hover {
+    background-color: #99d0f9;
+}
+div.panel.show {
+    display: block;
+}
+
+ div.panel 
+ { 
+ line-height: 30px; 
+ margin:auto; 
+ font-size:16px; 
+ padding:5px; 
+ background:#ffffff; 
+ display: none;
+/*  border:solid 1px #666;  */
+/*  border-radius:3px;  */
+ } 
+
+/* accordion */
+button.accordion {
+    background-color: #ffffff;
+    color: #444;
+    cursor: pointer;
+    padding: 8px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
 /* p0 p1 p2 p3 p4 p5{ */
 /* 	style="display: block;" */
 /* } */
@@ -52,7 +83,7 @@ cursor:pointer;
 	width:150px;
 	margin-left:0;
 	float:left;
-}
+} 
 
 .aaa{
 	height:400px; 

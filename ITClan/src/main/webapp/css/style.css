@@ -1,121 +1,85 @@
-/* tab */
-#css_tabs input:nth-of-type(1), #css_tabs input:nth-of-type(1) ~ div:nth-of-type(1),
-#css_tabs input:nth-of-type(2), #css_tabs input:nth-of-type(2) ~ div:nth-of-type(2),
-#css_tabs input:nth-of-type(3), #css_tabs input:nth-of-type(3) ~ div:nth-of-type(3) {
-    display:none
-}
-#css_tabs input:nth-of-type(1):checked ~ div:nth-of-type(1),
-#css_tabs input:nth-of-type(2):checked ~ div:nth-of-type(2),
-#css_tabs input:nth-of-type(3):checked ~ div:nth-of-type(3) {
-    display:block
-}
+
  
-/* The "show" class is added to the accordion panel when the user clicks on one of the buttons. This will show the panel content */
-div.panel.show {
-    display: block;
-}
 
- div.panel 
- { 
- line-height: 30px; 
- margin:auto; 
- font-size:16px; 
- padding:5px; 
- background:#ffffff; 
- display: none;
-/*  border:solid 1px #666;  */
-/*  border-radius:3px;  */
- } 
-
-/* accordion */
-button.accordion {
-    background-color: #ffffff;
-    color: #444;
-    cursor: pointer;
-    padding: 8px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    transition: 0.4s;
-}
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-button.accordion.active, button.accordion:hover {
-    background-color: #99d0f9;
-}
-
-.center{
-	width:1250px;
-	margin:auto;	
-}
+/* .center{ */
+/* 	width:900px; */
+/* 	margin:auto;	 */
+/* } */
+/* .left{ */
+/* 	width:150px; */
+/* 	margin-left:0; */
+/* 	float:left; */
+/* } */
 
 
-.w3-navbar w3-light-grey{
-/* margin:0px 0px 0px 200px; */
+/* .w3-navbar w3-light-grey{ */
+/* /* margin:0px 0px 0px 200px; */ */
 
-position:absolute;
-right:10px;
-}
+/* position:absolute; */
+/* right:10px; */
+/* } */
+/*  /* nav tag */ */
+/*  nav ul{ */
+/*  padding-top:10px;   			 */
+/*  text-align: right;  */
+/*  }                    */
+/*  nav ul li { */
+/*     display:inline;                         */
+/*     border-left:1px solid #999;            */
+/*     font:bold 20px Dotum;                     */
+/*     padding:0 10px;                         */
+/* } */
+/*  nav1 ul li { */
+/*     display:inline;                           */
+/*     font:bold 10px Dotum;                     */
+/*     padding:0 5px;                        */
+/* } */
+/* #a{ */
+/* 	display:inline;  */
+/* } */
+/*  nav ul li:first-child{border-left:none;}      */
+/* div.img { */
+/*     margin: 5px; */
+/*     border: 1px solid #ccc; */
+/*     float: left; */
+/*     width: 300px; */
+/* } */
 
- /* nav tag */
- nav ul{
- padding-top:10px;   			/*  �긽�떒 �뿬諛� 10px  */
- text-align: right; 
- }                   
- nav ul li {
-    display:inline;                         /*  �꽭濡쒕굹�뿴�쓣 媛�濡쒕굹�뿴濡� 蹂�寃� */
-    border-left:1px solid #999;             /* 媛� 硫붾돱�쓽 �쇊履쎌뿉 "|" �몴�떆(遺꾨쪟 �몴�떆) */
-    font:bold 20px Dotum;                     /* �룿�듃 �꽕�젙 - 12px�쓽 �룍��泥� 援듭� 湲��뵪濡� �몴�떆 */
-    padding:0 10px;                         /* 媛� 硫붾돱 媛꾧꺽 */
-}
- nav1 ul li {
-    display:inline;                         /*  �꽭濡쒕굹�뿴�쓣 媛�濡쒕굹�뿴濡� 蹂�寃� */
-/*     border-left:1px solid #999;             /* 媛� 硫붾돱�쓽 �쇊履쎌뿉 "|" �몴�떆(遺꾨쪟 �몴�떆) */ */
-    font:bold 10px Dotum;                     /* �룿�듃 �꽕�젙 - 12px�쓽 �룍��泥� 援듭� 湲��뵪濡� �몴�떆 */
-    padding:0 5px;                         /* 媛� 硫붾돱 媛꾧꺽 */
-}
-#a{
-	display:inline; 
-}
- nav ul li:first-child{border-left:none;}     
+/* div.img:hover { */
+/*     border: 1px solid #777; */
+/* } */
 
-
-div.img:hover {
-    border: 1px solid #777;
-}
-
-div.img img {
-    width: 100%;
-    height: auto;
-}
-
-div.desc {
-    padding: 15px;
-    text-align: center;
-}
-.img{
-	height : 200px;
-}
-
-.content{
-    position: relative;
-    margin-bottom: 30px;
-}
-
-.aa{
-	float:left;
-}
-.ab{
-	float:right;
-}
-table, td, th {
-	
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-table {
-    border-collapse: collapse;
+/* div.img img { */
 /*     width: 100%; */
-}
+/*     height: auto; */
+/* } */
+
+/* div.desc { */
+/*     padding: 15px; */
+/*     text-align: center; */
+/* } */
+/* .img{ */
+/* 	height : 400px; */
+/* } */
+
+/* .content{ */
+/*     position: relative; */
+/*     margin-bottom: 30px; */
+/* } */
+
+/* .aa{ */
+/* 	float:left; */
+/* } */
+/* .ab{ */
+/* 	float:right; */
+/* } */
+/* table, td, th { */
+	
+/*     border: 1px solid #ddd; */
+/*     text-align: left; */
+/* } */
+
+/* table { */
+/*     border-collapse: collapse; */
+/* /*     width: 100%; */ */
+/* } */
