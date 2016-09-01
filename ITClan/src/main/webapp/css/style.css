@@ -49,57 +49,6 @@ button.accordion.active, button.accordion:hover {
 	width:1250px;
 	margin:auto;	
 }
-.left{
-	width:150px;
-	margin-left:0;
-	float:left;
-}
-/* tab */
-
-.aaa{
-	height:400px; 
-	width:1250px;
-	margin-left:100px;
- 	position:absolute;
-}
-
-/* �씪踰� 湲곕낯 �뒪���씪 吏��젙 */
-#css_tabs > label {
-    display:inline-block;
-    font-variant:small-caps;
-    font-size:.9em;
-    padding:5px;
-    text-align:center;
-    width:20%;
-    line-height:1.8em;
-    font-weight:700;
-    border-radius:3px 3px 0 0;
-    background:#eee;
-    color:#777;
-    border:1px solid #ccc;
-    border-width:1px 1px 0
-}
-#css_tabs > label:hover {
-    cursor:pointer
-}
-#css_tabs label[for=tab1] {
-    margin-left:1.5em
-}
-
-/* �꽑�깮�맂 �씪踰�, 而ㅼ꽌瑜� �삱由� �씪踰� �뒪���씪 吏��젙 */
-#css_tabs input:nth-of-type(1):checked ~ label:nth-of-type(1), #css_tabs > label[for=tab1]:hover {
-    background:#0080ff;
-    color:#fff
-}
-#css_tabs input:nth-of-type(2):checked ~ label:nth-of-type(2), #css_tabs > label[for=tab2]:hover {
-    background:#0080ff;
-    color:#fff
-}
-#css_tabs input:nth-of-type(3):checked ~ label:nth-of-type(3), #css_tabs > label[for=tab3]:hover {
-    background:#0080ff;
-    color:#fff
-}
-
 
 
 .w3-navbar w3-light-grey{
@@ -108,17 +57,7 @@ button.accordion.active, button.accordion:hover {
 position:absolute;
 right:10px;
 }
-#wrap{
-/* position:absolute; */
-/* width:500px; */
-/*  height:800px;  */
-/* top:50%; */
 
-/* left:50%; */
-/* margin-left:-250px; */
-/* margin-top:-250px; */
-
-}
  /* nav tag */
  nav ul{
  padding-top:10px;   			/*  �긽�떒 �뿬諛� 10px  */
@@ -140,12 +79,7 @@ right:10px;
 	display:inline; 
 }
  nav ul li:first-child{border-left:none;}     
-div.img {
-    margin: 5px;
-    border: 1px solid #ccc;
-    float: left;
-    width: 300px;
-}
+
 
 div.img:hover {
     border: 1px solid #777;
@@ -161,7 +95,7 @@ div.desc {
     text-align: center;
 }
 .img{
-	height : 400px;
+	height : 200px;
 }
 
 .content{

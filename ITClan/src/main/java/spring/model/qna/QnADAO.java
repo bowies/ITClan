@@ -11,7 +11,7 @@ import spring.model.itclan.DAOMyBatisInter;
 
 @Component
 public class QnADAO implements DAOMyBatisInter {			
-	
+
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	

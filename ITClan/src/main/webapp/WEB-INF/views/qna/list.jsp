@@ -10,9 +10,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style type="text/css">
-/* table li ul li{ */
-/* font-size: 12px; }*/
-/* Style the buttons that are used to open and close the accordion panel */
+.aaa{
+	height:400px; 
+	width:900px;
+	margin-left:50px;
+ 	position:absolute;
+}
+
+
+#css_tabs > label {
+    display:inline-block;
+    font-variant:small-caps;
+    font-size:.9em;
+    padding:5px;
+    text-align:center;
+    width:20%;
+    line-height:1.8em;
+    font-weight:700;
+    border-radius:3px 3px 0 0;
+    background:#eee;
+    color:#777;
+    border:1px solid #ccc;
+    border-width:1px 1px 0
+}
+
+#css_tabs input:nth-of-type(1):checked ~ label:nth-of-type(1), #css_tabs > label[for=tab1]:hover {
+    background:#0080ff;
+    color:#fff
+}
+#css_tabs input:nth-of-type(2):checked ~ label:nth-of-type(2), #css_tabs > label[for=tab2]:hover {
+    background:#0080ff;
+    color:#fff
+}
+#css_tabs input:nth-of-type(3):checked ~ label:nth-of-type(3), #css_tabs > label[for=tab3]:hover {
+    background:#0080ff;
+    color:#fff
+}
+
+#css_tabs > label:hover {
+    cursor:pointer
+}
+#css_tabs label[for=tab1] {
+    margin-left:1.5em
+}
+
+
 </style>
 <script type="text/javascript">
 function readB(qnANum) {
@@ -29,14 +71,14 @@ function readB(qnANum) {
 }
 </script>
 
-<body class="w3-container">
+<body>
 
 
 <div class="aaa" >
 	<h2>자주찾는 FAQ</h2>
 
 
-   <div id="css_tabs"  style="height:400px; width:1250px; margin:auto; border: 1px   solid  black ;" >
+   <div id="css_tabs"  style="height:300px; width:900px; margin:auto; border: 1px   solid  black ;" >
         <!-- 라디오 버튼 -->
         <input id="tab1" type="radio" name="tab" checked="checked" />
         <input id="tab2" type="radio" name="tab" />
@@ -49,7 +91,7 @@ function readB(qnANum) {
 
         <!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 -->
 <!--      div style="border:1px; padding:0px 50px 0px 50px ;" -->
-        <div style="border: 1px   solid  blue ; height:350px; " class="tab1_content">
+        <div  class="tab1_content">
  		<ul>
 	 		<li><button class="accordion">잡코리아를 탈퇴하면 어떻게 되나요?</button>
 				<div class="panel">
@@ -67,17 +109,37 @@ function readB(qnANum) {
 		</ul> 		
  	
         </div>
-        <div style="border: 1px   solid  blue ;" class="tab2_content">
+        <div class="tab2_content">
     	<ul>
-	 		<li>회원가입·로그인</li>
-	 		<li>채용공고</li>
-	 		<li>인재정보</li>
-	 		<li>채용관리</li>
+	 		<li><button class="accordion">잡코리아를 탈퇴하면 어떻게 되나요?</button>
+				<div class="panel">
+				  <p>탈퇴 시, 해당 아이디로 사이트를 이용하셨던 이력서, 지원내역 등 모든 정보가 삭제 됩니다. </p>
+				</div>
+				
+			</li>
+	 		<li><button class="accordion">채용공고</button>
+				<div class="panel">
+				  <p>공고남겨주세요 </p>
+				</div>
+				
+			</li>
+	 			<li><button class="accordion">인재관련</button>
+				<div class="panel">
+				  <p>인재관련 궁금한점 남겨주세요 </p>
+				</div>
+				
+			</li>
+ 			<li><button class="accordion">채용관련</button>
+			<div class="panel">
+			  <p>채용관련 궁금한점 남겨주세요 </p>
+			</div>
+				
+			</li>
 	 		<li>기타 서비스</li>
 	 		
 		</ul> 		
         </div>
-        <div style="border: 1px   solid  blue ;" class="tab3_content">
+        <div  class="tab3_content">
             Tab3 내용<br />
              내용3~~~
         </div>
@@ -102,9 +164,9 @@ for (i = 0; i < acc.length; i++) {
 </script>
 
 
-<table width="1250px" border="0" cellspacing="0" cellpadding="0" align="center">
+<table width="900px" border="0" cellspacing="0" cellpadding="0" align="center">
 <tbody><tr><td height="50" align="center">
-<table width="1250px" border="0" cellspacing="0" cellpadding="0">
+<table width="900px" border="0" cellspacing="0" cellpadding="0">
 <h2> Q & A</h2>
 ${fn:substring(dto.regdate,0,10)}
 
@@ -116,7 +178,7 @@ ${fn:substring(dto.regdate,0,10)}
 <tr><td>
 
 <div class="helpdesk-qna-list">
-<table class="padding3" width="1250px" border="0" cellspacing="0" cellpadding="3">
+<table class="padding3" width="900px" border="0" cellspacing="0" cellpadding="3">
 <tbody>
 
 <tr bgcolor="62B5DF"><td height="1" colspan="5" style="padding:0"></td></tr>
@@ -196,12 +258,12 @@ ${fn:substring(dto.regdate,0,10)}
 </div>
 
 <style type="text/css">
-p{padding:0; margin:0}
-.layer_close{position:absolute; right:13px; top:10px;}
-.layer_end_day{font-size:13px; font-weight:bold; color:#555}
-.layer_main01{width:775px; position:absolute;  background:url(http://www.saraminimage.co.kr/event_2011/1124_contact/layer_main01.gif) no-repeat;}
-.layer_main02{width:633px; position:absolute;  background:url(http://www.saraminimage.co.kr/event_2011/1124_contact/layer_main02.gif) no-repeat;}
-.layer_main03{width:775px; position:absolute;  background:url(http://www.saraminimage.co.kr/event_2011/1124_contact/layer_join01.gif) no-repeat;}
+/* p{padding:0; margin:0} */
+/* .layer_close{position:absolute; right:13px; top:10px;} */
+/* .layer_end_day{font-size:13px; font-weight:bold; color:#555} */
+/* .layer_main01{width:775px; position:absolute;  background:url(http://www.saraminimage.co.kr/event_2011/1124_contact/layer_main01.gif) no-repeat;} */
+/* .layer_main02{width:633px; position:absolute;  background:url(http://www.saraminimage.co.kr/event_2011/1124_contact/layer_main02.gif) no-repeat;} */
+/* .layer_main03{width:775px; position:absolute;  background:url(http://www.saraminimage.co.kr/event_2011/1124_contact/layer_join01.gif) no-repeat;} */
 </style>
 <script type="text/javascript">
 <!--

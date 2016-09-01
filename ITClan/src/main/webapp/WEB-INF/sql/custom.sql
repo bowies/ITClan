@@ -83,6 +83,8 @@ from(
 where r >= 1 and r <= 5
 
 
+
+
 SELECT QnANum, title, content,name ,regdate ,  r 
 from(
 	SELECT QnANum, title, content,name, regdate,   rownum r 

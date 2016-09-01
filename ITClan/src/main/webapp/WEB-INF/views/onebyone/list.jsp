@@ -53,10 +53,8 @@
 </FORM>
 </div> 
 
-<table width="1100px" border="0" cellspacing="0" cellpadding="3">
+<table width="800px" border="0" cellspacing="0" cellpadding="3">
 	<tr>
-<!-- 		<th>등록</th> -->
-<!-- 		<th>이미지</th> -->
 		<th>글번호</th>
 		<th>제목</th>
 		<th>ID</th>
@@ -94,7 +92,6 @@
 		<td>${dto.viewcnt}</td>
 		
 		<td>${fn:substring(dto.regdate,0,10)}</td>
-<%-- 		<td>${dto.filename}</td> --%>
 		<td><a href="${pageContext.request.contextPath }/download?dir=/storage/onebyone&filename=${dto.filename}">${dto.filename}</a></td>
 	</tr>
 	</c:forEach>
