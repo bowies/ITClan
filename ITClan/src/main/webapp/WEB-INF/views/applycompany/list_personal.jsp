@@ -67,7 +67,7 @@ function del(offerNum,memberID) {
     ${offerList.title}</a></td>
     <td>${offerList.companyName }</td>
     <td>${offerList.recruitment }</td>
-    <td>${fn:substring(dto.applyDate,0,10) }</td>
+    <td>${fn:substring(dto.applyDate,0,10)}</td>
     <td>
     <c:choose>
     <c:when test="${dto.viewCheck >0 }">

@@ -68,7 +68,7 @@ function readC(offerNum,memberID,portfolioNum,resumeNum) {
     <td><a href="javascript:readC('${offerNum }','${dto.memberID }','${dto.portfolioNum }','${dto.resumeNum }')">
     ${pmdto.name}</a></td>
     <td>${pmdto.email }</td>
-    <td>${fn:substring(dto.applyDate,0,10) }</td>
+    <td>${fn:substring(dto.applyDate,0,10)}</td>
     </tr>
     </c:forEach>
   </c:forEach>
