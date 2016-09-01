@@ -54,7 +54,7 @@
 </div> 
 
 <table width="800px" border="0" cellspacing="0" cellpadding="3">
-	<tr>
+	<tr>  
 		<th>글번호</th>
 		<th>제목</th>
 		<th>ID</th>

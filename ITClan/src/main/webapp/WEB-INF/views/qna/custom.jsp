@@ -127,7 +127,7 @@ $(document).ready(function(){
 	  	</ul>
 
 <!-- 	</div> -->
-	
+	  
 <!-- 	<div class="img"> -->
 <!-- 	    <img src="../img/회원정보 관리.jpg"  > -->
 	   <ul>

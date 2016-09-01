@@ -257,18 +257,7 @@ ${fn:substring(dto.regdate,0,10)}
 </tbody></table>
 </div>
 
-<style type="text/css">
-/* p{padding:0; margin:0} */
-/* .layer_close{position:absolute; right:13px; top:10px;} */
-/* .layer_end_day{font-size:13px; font-weight:bold; color:#555} */
-/* .layer_main01{width:775px; position:absolute;  background:url(http://www.saraminimage.co.kr/event_2011/1124_contact/layer_main01.gif) no-repeat;} */
-/* .layer_main02{width:633px; position:absolute;  background:url(http://www.saraminimage.co.kr/event_2011/1124_contact/layer_main02.gif) no-repeat;} */
-/* .layer_main03{width:775px; position:absolute;  background:url(http://www.saraminimage.co.kr/event_2011/1124_contact/layer_join01.gif) no-repeat;} */
-</style>
-<script type="text/javascript">
-<!--
-//-->
-</script>
+
 
 
   </div>
