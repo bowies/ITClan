@@ -1,6 +1,5 @@
 package spring.sts.kbc;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,8 +53,10 @@ public class ResumeInfoController {
 	@RequestMapping(value="/resumeInfo/create",method=RequestMethod.GET)
 	public String create(HttpServletRequest request, Model model, HttpSession session) throws Exception {
 	
+		
 		String memberID = (String)session.getAttribute("memberID");
-	
+		
+		
 		/*자기소개서 자동 삭제*/
 		ResumeDTO resumedto = new ResumeDTO();
 		
@@ -106,7 +107,9 @@ public class ResumeInfoController {
 			externalactivitydao.deleteinfo(memberID);
 		}
 		
-		model.addAttribute("resumeinfodto", resumeinfodto);
+		/*model.addAttribute("resumeinfodto", resumeinfodto);*/
+		
+		/*return "/resumeInfo/testProc";*/
 		
 		if(resumeinfodao.create(resumeinfodto)>0) {
 			return "redirect:/";
@@ -178,8 +181,7 @@ public class ResumeInfoController {
 	@RequestMapping("/resumeInfo/read")
 	public String read(HttpSession session, Model model) throws Exception{
 		
-		
-		 String memberID = (String)session.getAttribute("memberID");
+		String memberID = (String)session.getAttribute("memberID");
 		
 		Map map = new HashMap();
 		map.put("memberID", memberID);
@@ -215,39 +217,42 @@ public class ResumeInfoController {
 		ResumeInfoDTO resumeinfodto = (ResumeInfoDTO) resumeinfodao.read(memberID);
 		PersonalMemberDTO personalmemberdto = (PersonalMemberDTO) personalmemberdao.read(memberID);
 		
-		int majorlast = resumeinfodto.getMajor().length();
-		int GPAlast = resumeinfodto.getGPA().length();
-		int termTimelast = resumeinfodto.getTermTime().length();
+		if(resumeinfodto.getTermTime()!=null && resumeinfodto.getGPA()!=null && resumeinfodto.getMajor()!=null){
+			int termTimelast = resumeinfodto.getTermTime().length();
+			int GPAlast = resumeinfodto.getGPA().length();	
+			int majorlast = resumeinfodto.getMajor().length();
+			
+			model.addAttribute("termTimelast", termTimelast);
+			model.addAttribute("GPAlast", GPAlast);	
+			model.addAttribute("majorlast", majorlast);
+		}
 		
 		model.addAttribute("memberID",memberID);
 		model.addAttribute("resumeinfodto",resumeinfodto);
 		model.addAttribute("personalmemberdto",personalmemberdto);
-		model.addAttribute("majorlast", majorlast);
-		model.addAttribute("GPAlast", GPAlast);
-		model.addAttribute("termTimelast", termTimelast);
 		
 		return "/resumeInfo/read";
 	}
 
 	@RequestMapping(value="/resumeInfo/update",method=RequestMethod.GET)
-	public String update(HttpSession session, String memberID, Model model) throws Exception{
+	public String update(HttpSession session, Model model) throws Exception{
 		
-		if(memberID==null){
-			memberID = (String)session.getAttribute("memberID");
-			}
-			
+		String memberID = (String)session.getAttribute("memberID");
 		
 		ResumeInfoDTO resumeinfodto = (ResumeInfoDTO) resumeinfodao.read(memberID);
 		PersonalMemberDTO personalmemberdto = (PersonalMemberDTO) personalmemberdao.read(memberID);
 		
-		int termTimelast = resumeinfodto.getTermTime().length();
-		int GPAlast = resumeinfodto.getGPA().length();
+		if(resumeinfodto.getTermTime()!=null && resumeinfodto.getGPA()!=null){
+			int termTimelast = resumeinfodto.getTermTime().length();
+			int GPAlast = resumeinfodto.getGPA().length();	
+			
+			model.addAttribute("termTimelast", termTimelast);
+			model.addAttribute("GPAlast", GPAlast);						
+		}
 		
 		model.addAttribute("resumeinfodto",resumeinfodto);
 		model.addAttribute("personalmemberdto",personalmemberdto);
 		model.addAttribute("memberID", memberID);
-		model.addAttribute("termTimelast", termTimelast);
-		model.addAttribute("GPAlast", GPAlast);
 		
 		return "/resumeInfo/update";
 	}

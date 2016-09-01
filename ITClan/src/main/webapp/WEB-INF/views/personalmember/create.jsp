@@ -252,9 +252,10 @@ table tr td {
 	</tr>
 	
 	</table>
+	
 	<div align="center" style="margin: auto; margin-top: 30px; width: 550px;">
 		<input type="submit" class="btu_personal" value="personalmember create!">
-		</div>
+    </div>
 		
 	</form>
 </body>

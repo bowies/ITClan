@@ -9,6 +9,35 @@
 <title>W3.CSS</title>
 
 <style>
+button.accordion.active, button.accordion:hover {
+    background-color: #99d0f9;
+}
+div.panel.show {
+    display: block;
+}
+ div.panel 
+ { 
+ line-height: 30px; 
+ margin:auto; 
+ font-size:16px; 
+ padding:5px; 
+ background:#ffffff; 
+ display: none;
+/*  border:solid 1px #666;  */
+/*  border-radius:3px;  */
+ } 
+/* accordion */
+button.accordion {
+    background-color: #ffffff;
+    color: #444;
+    cursor: pointer;
+    padding: 8px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
 /* p0 p1 p2 p3 p4 p5{ */
 /* 	style="display: block;" */
 /* } */
@@ -36,6 +65,28 @@ display:none;
 p.flip
 {
 cursor:pointer;
+}
+.img {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 100px;
+    height: 150px;
+}
+.wrap{
+   width: 250px;
+   height: 150px;
+}
+.left{
+	width:150px;
+	margin-left:0;
+	float:left;
+} 
+.aaa{
+	height:400px; 
+	width:900px;
+	margin-left:50px;
+ 	position:absolute;
 }
 </style>
 <!-- <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"> -->
@@ -88,23 +139,24 @@ $(document).ready(function(){
 <body>
 
 
-<div id="wrap">
+<!-- <div class="wrap"> -->
 <!-- style="width:auto;" -->
-	<div class="w3-navbar w3-light-grey" style="height:400px; width:1250px; margin:auto;"  >
+<!-- 	<div class="w3-navbar w3-light-grey" style="height:300px; width:900px; margin:auto;"  > -->
 	
 	<!--   <a href="#"><img src="../img/customer.gif" ></a> -->
 	
 	<!--   <a href="#"><img src="../img/서비스 안내.jpg"></a> -->
-	<div class="img">
-	    <img width="400px" src="../img/자주찾는.jpg" alt="Fjords">
+<!-- 	<div class="img"> -->
+<!-- 	    <img width="200px" src="../img/자주찾는.jpg"> -->
+
 	    <ul>
 	  	<li><a href="${pageContext.request.contextPath}/qna/list">Q & A 목록 </li></a>
 	  	</ul>
 
-	</div>
-	
-	<div class="img">
-	    <img src="../img/회원정보 관리.jpg" alt="Forest" >
+<!-- 	</div> -->
+	  
+<!-- 	<div class="img"> -->
+<!-- 	    <img src="../img/회원정보 관리.jpg"  > -->
 	   <ul>
 	  <li>	<a href="">아이디 찾기 </li></a>
 	  <li>	<a href="">회원정보 수정</li></a>
@@ -112,31 +164,22 @@ $(document).ready(function(){
 	  <li>	<a href="">회원탈퇴 신청</li>  </a>	
 	  </ul>
 	
-	</div>
+<!-- 	</div> -->
 	
-	
-	<div class="img">
-	    <img src="../img/서비스 안내.jpg" alt="Mountains" width="300" height="200">
-	    <ul>
-	
-	  	<li><a href="">메뉴 보류 </li></a>
-	    
-	 	</ul>
-	
-	</div>
-	
-	<div class="img">
+
+<!-- 	<div class="img"> -->
 	  <a target="_blank" href="">
-	    <img  src="../img/고객센터.gif" alt="Northern Lights" style="width:300px; height:185px;">
+<!-- 	    <img  src="../img/고객센터.gif"  style="width:200px; height:185px;"> -->
 	  </a>
 	   <ul>
 	    <li><a href="${pageContext.request.contextPath}/onebyone/create">1:1 고객상담하기</li></a>
 	    <li><a href="${pageContext.request.contextPath}/qna/chat">실시간 질문하기</li></a>
 	   </ul>
+	   
 	
-	</div>
-	</div>
- </div> <!--wrap  -->
+<!-- 	</div> -->
+<!-- 	</div> -->
+<!--  </div> wrap  -->
  
 
 <div class="aaa">
@@ -147,7 +190,7 @@ $(document).ready(function(){
 
 
 
-<table width="1100px" border="0" cellspacing="0" cellpadding="3">
+<table width="900px">
 
 
 <tr bgcolor="62B5DF"><td height="1" colspan="5" style="padding:0"></td></tr>
@@ -156,61 +199,18 @@ $(document).ready(function(){
 		<tbody>
 		
 
-					<tr>
-						<td colspan="2">검색어 입력
-			<!-- 				<form name="Search" method="post" action="./list" onsubmit="return search(this.form);"> -->
-								<form name="Search" method="post" action="./list" >
-								
-									<div class="search">
-										<span id="MemTypeUI2" class="ccSprite schSel">
-										</span>
-										<select name="col">
-											<option value="name"
-											<c:if test="${col =='name' }">selected</c:if>
-											>성명</option>
-											<option value="title"
-											<c:if test="${col =='title' }">selected</c:if>
-											>제목</option>
-											<option value="content"
-											<c:if test="${col =='content' }">selected</c:if>
-											>내용</option>
-											<option value="total"
-											<c:if test="${col =='total' }">selected</c:if>
-											>전체출력</option>
-										</select>
-								
-									<input type="text" name="word"  value="${word }" >
-									<input type="submit" value="검색">
-									</div>
-								
-								</form>
-						 </td>
-						
-					</tr>
-			
-
-				
-			  
-<!-- 				<div border="0" style="width:1100px; margin:auto;"> -->
-
 						  <div class="left">
 						  <tr>
 						    <th colspan="2" ><h3>개인회원 FAQ</h3></th>
 						 
 						  </tr>
 						</div>
-						<tr>
-						<td><button class="accordion">잡코리아를 탈퇴하면 어떻게 되나요?</button>
-						<div class="panel">
-						  <p>탈퇴 시, 해당 아이디로 사이트를 이용하셨던 이력서, 지원내역 등 모든 정보가 삭제 됩니다. </p>
-						</div>
-						</td>
-						</tr>
+				
 						
 
 						  <tr>
 						    <td colspan="2" >
-						    	<h4 class="flip0">페이스북 로그인으로 잡코리아를 이용하고 있는데 탈퇴하면 어떻게 되나요?</h4>
+						    	<h4 class="flip0">탈퇴하면 어떻게 되나요?</h4>
 						    <div class="panel0">	
 						 		<p>로그인으로 이용하시는 모든 서비스 이용에 제한을 받으실 수 있습니다.</p>
 						 	</div>	
@@ -222,7 +222,7 @@ $(document).ready(function(){
 						 		<h4 class="flip1" >비밀번호 변경은 어디에서 하나요?</h4>
 						 		    	
 						 	<div class="panel1">
-						  	  <p1>잡코리아 ID로 로그인 하신 회원의 경우, [회원정보 관리] 페이지에서 직접 변경이 가능합니다. 
+						  	  <p1>ID로 로그인 하신 회원의 경우, [회원정보 관리] 페이지에서 직접 변경이 가능합니다. 
 
 								<br>비밀번호를 변경하는 방법은 다음과 같습니다.
 								<br>1. 회원 로그인 후 [회원정보 관리] 클릭해 주세요.

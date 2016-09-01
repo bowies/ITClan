@@ -33,9 +33,12 @@
       action="./create"  
       onsubmit="return send();"> 
  
-<div class='title' style='width: 20%;'>약관동의</div> 
+<div class='title' style='width: 20% ; margin: 0 auto;'>
+ㅡㅡㅡㅡ약관동의ㅡㅡㅡㅡ</div> 
  
-<table border="0" cellspacing="0" cellpadding="2"  align="center"> 
+ 
+
+ <table border="0" cellspacing="0" cellpadding="2"  align="center" > 
     <tr>  
         <td align="center"> 
             <textarea cols="100" rows="20">
@@ -194,9 +197,12 @@
         </td> 
     </tr> 
 </table> 
+
+
+
  
 <div style="text-align: center"> 
-  <label><input type="checkbox" name="agree" value="1" > 약관에 동의합니다</input></lable>
+  <label><input type="checkbox" name="agree" value="1" > 약관에 동의합니다</input></label>
   <input type="submit" value="회원가입"></input>  
   <input type="button" value="취소" onclick="history.back();" /> 
 </div> 

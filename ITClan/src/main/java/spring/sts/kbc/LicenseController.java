@@ -1,6 +1,5 @@
 package spring.sts.kbc;
 
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +18,9 @@ public class LicenseController {
 	private LicenseDAO licensedao;
 	
 	@RequestMapping(value="/license/create",method=RequestMethod.GET)
-	public String create(LicenseDTO licensedto, Model model, String memberID, HttpSession session) throws Exception{
+	public String create(LicenseDTO licensedto, Model model, HttpSession session) throws Exception{
 		
-		if(memberID==null){
-			memberID = (String)session.getAttribute(memberID);
-		}
-		memberID = "ccc";
+		String memberID = (String)session.getAttribute("memberID");
 				
 		model.addAttribute("memberID", memberID);
 		

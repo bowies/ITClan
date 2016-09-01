@@ -65,15 +65,15 @@ ${resumeinfodto.military }
 재학기간
 ${resumeinfodto.termTime }
 </div>
-<div>
+<%-- <div>
 자격증명
 ${licensedto.qualification }
 </div>
 <div>
 자격증 딴 기간
 ${licensedto.takeDate }
-</div>
-<table>
+</div> --%>
+<%-- <table>
 <c:forEach var="externalactivitydto" items="${externalactivitylist }">
 <tr style="text-align: center;">
 <td>
@@ -87,6 +87,6 @@ ${externalactivitydto.actSector }
 </td>
 </tr>
 </c:forEach>
-</table>
+</table> --%>
 </body>
 </html>

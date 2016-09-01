@@ -24,12 +24,9 @@ public class PortFolioController {
 	private PortFolioDAO portfoliodao;
 	
 	@RequestMapping(value="/portfolio/create",method=RequestMethod.GET)
-	public String create(Model model, String memberID, HttpSession session) throws Exception{
+	public String create(Model model, HttpSession session) throws Exception{
 		
-	/*	if(memberID==null){
-			memberID = (String)session.getAttribute(memberID);
-		}*/
-		memberID = "ccc";
+		String memberID = (String)session.getAttribute("memberID");
 		
 		Map map = new HashMap();
 		map.put("memberID", memberID);
@@ -58,7 +55,7 @@ public class PortFolioController {
 		if(portfoliosize>0){
 			portfolioName = Utility.saveFile(portfoliodto.getPortfolioMF(), PortfoliobasePath);
 		}
-	
+		
 		portfoliodto.setPortfolioName(portfolioName);
 			
 		if(portfoliodao.create(portfoliodto)>0){

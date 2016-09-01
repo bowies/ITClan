@@ -6,15 +6,15 @@
 <meta charset="UTF-8"> 
 <title></title> 
 
-<link href="../css/style01.css" rel="Stylesheet" type="text/css">
+
 </head> 
 <!-- *********************************************** -->
-<body leftmargin="0" topmargin="0">
+<body>
 <!-- *********************************************** -->
  
-<DIV class="title">회원가입 처리</DIV>
+
  
-<DIV class="content" align="center">
+<DIV class="content">
 <c:choose>
 <c:when test="${flag }">
 ID 와 Email 이 중복입니다.
@@ -24,7 +24,10 @@ ID 와 Email 이 중복입니다.
 <c:otherwise>
 	<c:choose>
 	<c:when test="${cnt>0 }">
-	회원가입 되었습니다.
+	
+<img src="../image/welcome.png" style="position: absolute; top: 150px; left: 200px; width:800px; margin-bottom: 100px;">
+
+
 	  <input type='button' value='log-in' onclick="location.href='./login'" class = "btu">
   <input type='button' value='home' onclick="location.href='../'" class = "btu"> 
   	</c:when>

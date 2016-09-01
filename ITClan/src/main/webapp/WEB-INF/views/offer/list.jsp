@@ -48,7 +48,6 @@
 	</FORM>
 </DIV>
 
-<c:forEach var="dto" items="${list}">
 	<TABLE border='1' align='center' width='70%'>
 		<TR>
 			<TH>글번호</TH>
@@ -77,7 +76,7 @@
 
 	</TABLE>
 	<BR>
-</c:forEach>
+
 
 <DIV class="bottom">${paging}</DIV>
 

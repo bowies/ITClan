@@ -16,11 +16,8 @@ width: 960px;
 }
 
 #resumeborder{
-border: 1px solid #83532F;
-}
-
-#resumebackground{
-background-color: #FFE4B5;
+border: 2px solid #83532F;
+background-color: #FFD0A2;
 }
 </style>
 <script type="text/javascript">
@@ -362,7 +359,7 @@ function input(f) {
 			<h1>학력사항</h1>
 		</div>
 		
-		<div style="text-align: center; margin: auto; background-color: #FFCD9B; border: 2px solid #83532F; padding-bottom: 15px; padding-top: 15px; width: 960px;">
+		<div id="resumeborder" style="text-align: center; margin: auto; padding-bottom: 15px; padding-top: 15px; width: 960px;">
 		<input type="radio" name="education" value="초등학교 졸업" id="edu">초등학교
 		<input style="margin-left: 40px;" type="radio" name="education" value="중학교 졸업" id="edu2">중학교
 		<input style="margin-left: 40px;" type="radio" name="education" value="고등학교" id="edhigh">고등학교
@@ -382,7 +379,7 @@ function input(f) {
 			<label id="grlabel" style="display: none;">=대학·대학교·대학원</label>
 		</div>
 		<table border="1" style="border-collapse: collapse;">
-			<tr id="resumebackground" style="border: 2px solid #83532F ; ">
+			<tr id="resumeborder">
 				<th id="hith" style="text-align: left ; display: none;" colspan="2">
 				고등학교
 				</th>
@@ -392,14 +389,14 @@ function input(f) {
 			</tr>
 			
 			<tr>
-				<th style="text-align: center;" id="resumebackground">학교명</th>
+				<th id="resumeborder" style="text-align: center;">학교명</th>
 				<td>
 				<input id="schoolname" type="text" name="schoolName" placeholder="학교명을입력하세요." style="width: 340px;">
 				</td>
 			</tr>
 			
 			<tr>
-				<th style="text-align: center;" id="resumebackground">재학기간</th>
+				<th id="resumeborder" style="text-align: center;">재학기간</th>
 				<td>
 				<input id="entyear" type="month" name="termTime" max="2016-12" min="1910-01">.
 				<select name="termTime" id="selent">
@@ -419,7 +416,7 @@ function input(f) {
 			</tr>
 			
 			<tr>
-				<th style="text-align: center;" id="resumebackground">전공</th>
+				<th id="resumeborder" style="text-align: center;">전공</th>
 				<td id="himajor">
 				<select name="major" id="selmajor">
 					<option value="">계열선택</option>
@@ -435,7 +432,7 @@ function input(f) {
 			</tr>
 				
 			<tr id="gPA" style="display: none;">
-				<th style="text-align: center;" id="resumebackground">학점</th>
+				<th id="resumeborder" style="text-align: center;">학점</th>
 				<td><input id="gPAtext" maxlength="3" type="text" name="gPA" placeholder="학점" style="width: 40px;"> / 
 				<select name="gPA" id="selgPA">
 					<option value="4.5">4.5</option>

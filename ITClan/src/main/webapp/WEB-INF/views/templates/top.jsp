@@ -5,9 +5,10 @@
 <head>
 <style type="text/css">
 
-body{
+.topbody{
 width:1000px; 
 margin: 0 auto;
+
 
 }
 
@@ -16,12 +17,12 @@ margin: 0 auto;
 height:30px;
 opacity:0.8;
 margin: 0 auto;
-
+border-bottom: 2px solid #83532F;
 }
 
 #top2{
 
-height: 100px;
+height: 80px;
 margin: 0 auto;
 position: relative;
 
@@ -65,15 +66,23 @@ li#admin{
 float:right;
 padding-right:10px
 } 
+
+.topgra{
+height: 15px;
+margin-bottom: 50px;
+background: -webkit-linear-gradient(top, rgba(131,83,47,1) 0%,rgba(131,84,49,1) 1%,rgba(127,148,165,0) 64%,rgba(125,185,232,0) 100%);
+
+
+}
 </style>
 </head>
-<body>
+<body class="topbody">
 <!-- 상단 메뉴 -->
 <div id="top">
     
     <ul id="menu">
     
-     <li><a style="float: left;"  href="${pageContext.request.contextPath}/">홈</a></li>    
+         
   	  
     <c:choose>
 
@@ -82,6 +91,7 @@ padding-right:10px
     
      <li><a href="${pageContext.request.contextPath}/members/login">로그인</a></li>
      <li><a href="${pageContext.request.contextPath}/members/agree">회원가입</a></li>
+     <li><a href="${pageContext.request.contextPath}/qna/custom">고객지원</a></li>
           
 	</c:when>
      <c:otherwise>
@@ -90,18 +100,12 @@ padding-right:10px
      <li><a href="${pageContext.request.contextPath}/companymember/logout">로그아웃</a></li>
      <li><a href="${pageContext.request.contextPath}/companymember/read">나의정보</a></li>
      <li><a href="${pageContext.request.contextPath}/companyinfo/read?companyID=${sessionScope.companyID}">회사정보</a></li>
-<%--      <li><a href="${pageContext.request.contextPath}/companymember/idFind">아이디찾기</a></li> --%>
-<%--      <li><a href="${pageContext.request.contextPath}/companymember/pwFind">비밀번호찾기</a></li> --%>
-     <li><a href="${pageContext.request.contextPath}/companymember/update">정보수정</a></li>
-     <li><a href="${pageContext.request.contextPath}/companymember/updatePw">비번변경</a></li>
-<%--      <li><a href="${pageContext.request.contextPath}/companymember/delete">회원탈퇴</a></li> --%>
      </c:when>
      <c:otherwise>
       <c:choose>
       <c:when test="${sessionScope.grade=='P'}">
      <li><a href="${pageContext.request.contextPath}/personal/logout">로그아웃</a></li>
-     <li><a href="${pageContext.request.contextPath}/personal/main_p">나의정보</a></li>   
-      
+     <li><a href="${pageContext.request.contextPath}/personal/read">나의정보</a></li>     
       </c:when>
       <c:otherwise>
      <li id="Admin"><a href="${pageContext.request.contextPath}/admin/list_personal">개인회원목록</a></li>
@@ -129,8 +133,10 @@ padding-right:10px
     
 </div>
 <div id="top2">
-	<div id="logo"><img src="${pageContext.request.contextPath}/image/sample.png">
-	
+	<div id="logo">
+	<a href="${pageContext.request.contextPath}/">
+	<img src="${pageContext.request.contextPath}/image/sample.png">
+	</a>
 	</div>
 	
 	
@@ -142,5 +148,10 @@ padding-right:10px
 
 
 </div>
+<div class="topgra">
+
+
+</div>
+
 
 </body>

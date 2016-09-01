@@ -1,6 +1,5 @@
 package spring.sts.kbc;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,11 +24,9 @@ public class resumeController {
 	private ResumeDAO resumedao;
 	
 	@RequestMapping(value="/resume/create",method=RequestMethod.GET)
-	public String create(Model model, String memberID, HttpSession session) throws Exception{
+	public String create(Model model, HttpSession session) throws Exception{
 		
-		if(memberID==null){
-			memberID = (String)session.getAttribute("memberID");
-		}
+		String memberID = (String)session.getAttribute("memberID");
 		
 		Map map = new HashMap();
 		map.put("memberID", memberID);

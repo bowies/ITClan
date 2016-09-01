@@ -14,7 +14,7 @@
 <body leftmargin="0" topmargin="0">
 	<!-- *********************************************** -->
 
-	<DIV class="title">회원가입 처리</DIV>
+	<DIV class="title"></DIV>
 
 	<DIV class="content">
 	
@@ -25,7 +25,10 @@
 	<c:otherwise>
 		<c:choose>
 		<c:when test="${cnt==1}">
-			회원가입을 했습니다.<br>
+			<a href = "javascript:offer()" target="_self">
+<img src="./image/welcome.png"; style="position: absolute; top: 150px; left: 200px; width: 400px;">
+
+</a>
 			<DIV class='bottom'>
 			<input type='button' value='로그인' onclick="location.href='login'">
 			<input type='button' value='홈' onclick="location.href='../'">

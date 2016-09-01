@@ -24,12 +24,9 @@ public class ExternalActivityController {
 	
 	
 	@RequestMapping(value="/externalActivity/create",method=RequestMethod.GET)
-	public String create(ExternalActivityDTO externalactivitydto, Model model, String memberID, HttpSession session) throws Exception{
+	public String create(ExternalActivityDTO externalactivitydto, Model model, HttpSession session) throws Exception{
 		
-		if(memberID==null){
-			memberID = (String)session.getAttribute("memberID");
-		}
-		
+		String memberID = (String)session.getAttribute("memberID");
 				
 		model.addAttribute("memberID", memberID);
 		model.addAttribute("externalactivitydto", externalactivitydto);

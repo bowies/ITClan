@@ -7,37 +7,53 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+tr,th {
+text-align: left;
+width: 100px;
+}
+table{
+margin: auto;
+width: 960px;
+}
+#resumeborder{
+border: 1px solid #83532F;
+background-color: #FFD0A2;
+}
+</style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script type="text/javascript">
 //경력사항
+//신입사원 눌렀을때
  $(document).ready(function() {
-	 $("#exbutton").hide();
 	$("#activity").hide();
+	$("#exadd").hide();
 	$("#newcomer").click(function() {
 		$("#activity").hide();
+		$("#exadd").hide();
 	});
 });
 
+//경력사항이 없고 경력을 눌렀을때
 $(document).ready(function() {
 	$("#career").click(function() {
 		$("#activity").show();
-		$("#exbutton").show();
+		$("#exadd").show();
 
 	});
 }); 
 
-if(${exmax>0 }){
+//경력사항이 한개라도 있을때
+	var exmax = ${exmax}
+if(exmax>0){
 	$(document).ready(function() {
 		$("#activity").show();
+		$("#exadd").show();
 
 	});
 }
 
-$(document).ready(function() {
-	$("#activity").show();
-
-});
 //------------------------------------------
 
 //경력사항 추가 팝업창
@@ -131,6 +147,23 @@ function licenseCreate(limax){
 			location.href=url;
 	}
 		
+		//포토폴리오 확인
+		$(document).ready(function() {
+			$("#por").click(function() {
+				$("#portdiv").hide();
+				$("#rediv").hide();
+
+			});
+		}); 
+
+		//자기소개서 확인
+		$(document).ready(function() {
+			$("#res").click(function() {
+				$("#rediv").hide();
+				$("#portdiv").hide();
+
+			});
+		});		
 </script>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -160,7 +193,7 @@ function licenseCreate(limax){
 			</h1>
 		</div>
 		
-		<div style="text-align: center; margin: auto; background-color: #D9E5FF; border: 2px solid #2478FF; padding-bottom: 15px; padding-top: 15px; width: 960px;">
+		<div id="resumeborder" style="text-align: center; margin: auto; padding-bottom: 15px; padding-top: 15px; width: 960px;">
 			<b>경력사항 *</b>
 			<c:choose>
 				<c:when test="${exmax>0 }">
@@ -173,85 +206,77 @@ function licenseCreate(limax){
 				</c:otherwise>
 			</c:choose>
 		</div>
+		
 			<br>
-			<div style="width: 960px; margin: auto;" id="activity">
- 			<c:forEach var="externalactivitydto" items="${externalactivitylist }">
-			<div style=" margin: auto; background-color: #D9E5FF; border: 2px solid #2478FF; padding-bottom: 15px; padding-top: 15px; width: 960px;">
-			<div>
-			<label>대외활동</label>
-			<label style="float: right;"> 
-			<a href="#" onclick="deleteEX('${externalactivitydto.actNum}')">-삭제</a>
-			</label>
-			</div>
-			<hr>
+			<c:forEach var="externalactivitydto" items="${externalactivitylist }">			
+			<table border="1" style="border-collapse: collapse;" id="activity">
+			<tr id="resumeborder">
+			<th colspan="2">대외활동
+			<a style="float: right;" href="javascript:deleteEX('${externalactivitydto.actNum}')">-삭제</a>
+			</th>
+			</tr>
 			
-			<div>
-			<label>활동구분</label>
-			<label>
+			<tr>
+			<th id="resumeborder">활동구분</th>
+			<td>
 			${externalactivitydto.actSector }
-			</label>
-			</div>
-			<hr>
+			</td>
+			</tr>
 			
-			<div>
-			<label>활동기간</label>
-			<label>
+			<tr>
+			<th id="resumeborder">활동기간</th>
+			<td>
 			${externalactivitydto.actPeriod }
-			</label>
-			</div>
-			<hr>
+			</td>
+			</tr>
 			
-			<div>
-			<label>활동내용</label>
-			<label>
+			<tr>
+			<th id="resumeborder">활동내용</th>
+			<td>
 			${externalactivitydto.actContent }
-			</label>
-			</div>
-			</div>
+			</td>
+			</tr>
+			</table>
 			<br>
-			</c:forEach>		
-			<input id="exbutton" style="float: right;" type="button" value="+추가" onclick="externalactivityCreate('${exmax}')">
-			</div>		
+			</c:forEach>
+			<div style="width: 960px; margin: auto;">
+			<input id="exadd" style="float: right;" type="button" value="+추가" onclick="externalactivityCreate('${exmax}')">
+			</div>	
 			
-			<br>	
+			<br><br><br>	
 			<div style="width: 960px; margin: auto;">
 			<h1>자격증
 			<label style="font-size: small;">(최대 5개 입력)</label>
 			</h1>
-			
 			<input type="button" value="+추가" onclick="licenseCreate('${limax}')"><br><br>
-			<div>
+			</div>
+			
  			<c:forEach var="licensedto" items="${licenselist }">
-			<div style=" margin: auto; background-color: #D9E5FF; border: 2px solid #2478FF; padding-bottom: 15px; padding-top: 15px; width: 960px;">
-			<div>
-			<label>자격증</label>
-			<label style="float: right;">
-			<a href="#" onclick="deleteL('${licensedto.licenseNum}')">-삭제</a>
-			</label>
-			</div>
-			<hr>
+			<table border="1" style="border-collapse: collapse;">
+			<tr id="resumeborder">
+			<th colspan="2">자격증
+			<a style="float: right;" href="javascript:deleteL('${licensedto.licenseNum}')">-삭제</a>
+			</th>
+			</tr>
 			
-			<div>
-			<label>자격증명</label>
-			<label>
+			<tr>
+			<th id="resumeborder">자격증명</th>
+			<td>
 			${licensedto.qualification }
-			</label>
-			</div>
-			<hr>
+			</td>
+			</tr>
 			
-			<div>
-			<label>취득일자</label>
-			<label>
+			<tr>
+			<th id="resumeborder">취득일자</th>
+			<td>
 			${licensedto.takeDate }
-			</label>
-			</div>
-			</div>
+			</td>
+			</tr>
+			</table>
 			<br>
 			</c:forEach>
-			</div>
-			</div>
 			
-			<br>	
+			<br><br><br>	
 			<div style="width: 960px; margin: auto;">
 			<h1>포트폴리오</h1>
 			<div>포토폴리오 및 자기소개서 등록할 수 있습니다.</div>
@@ -259,9 +284,18 @@ function licenseCreate(limax){
 
  <div class="container">
   <ul class="nav nav-tabs" style="width: 930px;">
-    <li><a data-toggle="tab" href="#porttab">포트폴리오</a></li>
-    <li><a data-toggle="tab" href="#resumetab">자기소개서</a></li>
+    <li><a data-toggle="tab" id="por" href="#porttab">포트폴리오</a></li>
+    <li><a data-toggle="tab" id="res" href="#resumetab">자기소개서</a></li>
   </ul>
+
+	<br>
+ 	 <c:if test="${pomax>0 }">
+	 	<div id="portdiv">*포토폴리오</div>
+	 </c:if>
+	 
+	 <c:if test="${remax>0 }">
+	 	<div id="rediv">*자기소개서</div>
+	 </c:if> 
 
   <div class="tab-content">
     <div id="porttab" class="tab-pane fade">

@@ -5,7 +5,17 @@
 <head>
 
 <title>Home</title>
-	
+	<script type="text/javascript">
+	function read(offerNum) {
+		var url = "read";
+		url += "?offerNum=" + offerNum;
+		url += "&col=${col}";
+		url += "&word=${word}";
+		url += "&nowPage=${nowPage}";
+
+		location.href = url;
+	}
+</script>
 	
 	
 	<style>
@@ -67,15 +77,73 @@
 <body>
 
 
-
-
 <div id = "content1">
-	<div id="login"> 로그인 창이다! 여기에 넣어라!</div>
-	<div id="board1"> 구인게시판!! 직종별 </div>
+	<div id="login"> 
+	</div>
+	
+	<div id="board1">
+	<DIV class="content">
+
+	<FORM name ='personalmember' method="POST" action="./list">
+		<select name="col">
+			<option value="title"
+				<c:if test="${col==title}">selected='selected'</c:if>>제목</option>
+			<option value="CompanyName"
+				<c:if test="${col==CompanyName}">selected='selected'</c:if>>회사이름</option>
+			<option value="WorkingArea"
+				<c:if test="${col==WorkingArea}">selected='selected'</c:if>>지역</option>
+			<option value="total"
+				<c:if test="${col==total}">selected='selected'</c:if>>전체출력</option>
+		</select> <input type="text" name="word" value="${word}"> <input
+			type="submit" value="검색" />
+
+		<c:if test="${sessionScope.grade == 'C'}">
+			<input type='button' value='채용공고 등록'
+				onclick="location.href='../offer/create'">
+			<input type='button' value='지원자 목록'
+				onclick="location.href='#'">	
+		</c:if>
+	</FORM>
+</DIV>
+
+	<TABLE border='1'>
+		<TR>
+			<TH>글번호</TH>
+			<TD>${dto.offerNum}</TD>
+		</TR>
+		<TR>
+			<TH width='20%'>채용공고</TH>
+			<TD width='60%'><A href="javascript:read('${dto.offerNum}')">${dto.title}</A></TD>
+		</TR>
+		<TR>
+			<TH>회사이름</TH>
+			<TD>${dto.companyName}</TD>
+		</TR>
+		<TR>
+			<TH>모집인원</TH>
+			<TD>${dto.recruitment}</TD>
+		</TR>
+		<TR>
+			<TH>채용마감일</TH>
+			<TD>${dto.offerDate}</TD>
+		</TR>
+		<TR>
+			<TH>조회수</TH>
+			<TD>${dto.viewCnt}</TD>
+		</TR>
+
+	</TABLE>
+	<BR>
+
+
+<DIV class="bottom">${paging}</DIV>
+	
+	
+ </div>
 	<div id="board2"> 구인게시판!! 지역별 </div>
 	<div id="board3"> 구인게시판!! 경력별 </div>
-</div>
-
+</div> 
+ 
 
 
 </body>

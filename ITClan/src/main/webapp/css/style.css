@@ -3,13 +3,15 @@
         외부 컬러 #83532F
 */
 
+
 table {
-	table - layout:fixed;word-break:break-all;
+	margin-top: 100px;
+	table-layout:fixed; word-break:break-all;
     border-collapse: collapse;
     text-align: left;
     line-height: 1;
     border-left: 1px solid #ccc;
-    margin: 1px 
+margin: 0 auto;
 }
 
 table thead th {
@@ -27,7 +29,7 @@ table tbody th {
     vertical-align: top;
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    background: #ececec;
+    background: #FFCD9C;
 }
 table td {
     width: 200px;
@@ -44,11 +46,7 @@ table td {
 	
 } 
 
-body{
-width:1000px; 
-margin: 0 auto;
 
-}
 
 #top {
 

@@ -3,10 +3,10 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 
 <!-- html5로 고쳐야 스케줄러가 돌아감-->
+<meta charset="UTF-8"> 
 <html>
 <head>
-<meta charset="UTF-8"> 
-<title><tiles:getAsString name="title"/></title>새로운 이벤트
+
 <link href="../css/style.css" rel="Stylesheet" type="text/css"> 
 </head>
 <body>

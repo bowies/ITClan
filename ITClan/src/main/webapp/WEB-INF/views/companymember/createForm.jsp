@@ -5,17 +5,16 @@
 <meta charset="UTF-8"> 
 <title></title> 
 
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
-
 </head> 
-<!-- *********************************************** -->
-<body leftmargin="0" topmargin="0">
-<!-- *********************************************** -->
+
+<body>
+
  
  
 <FORM name='frm' 
       method='POST' 
-      action='./createProc'>
+      action='./createProc'
+      >
       
   <TABLE class='table'>
        <tr>  
@@ -68,17 +67,17 @@
     
   </TABLE>
   
-  
-  <DIV class='bottom'>
+ 
+  <DIV align="center" style="margin-top: 50px;">
     <input type='submit' value='회원가입'>
     <input type='reset' value='취소'>
   </DIV>
-</FORM>
 
+ </FORM>
  
 
  
-<!-- *********************************************** -->
+
 </body>
-<!-- *********************************************** -->
+
 </html> 

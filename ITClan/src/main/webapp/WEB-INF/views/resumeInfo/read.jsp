@@ -16,6 +16,10 @@ table{
 margin: auto;
 width: 960px;
 }
+#resumeborder{
+border: 2px solid #83532F;
+background-color: #FFD0A2;
+}
 </style>
 <script type="text/javascript">
 	function update() {
@@ -161,8 +165,8 @@ ${resumeinfodto.exField }
 </tr>
 
 <tr>
-<td colspan="3" style="border-bottom-style: hidden; padding-bottom: 15px;">포토폴리오</td>
-<td colspan="4" style="border-bottom-style: hidden;padding-bottom: 15px;">자기소개서</td>
+<th colspan="3" style="border-bottom-style: hidden;">포토폴리오</th>
+<th colspan="4" style="border-bottom-style: hidden;">자기소개서</th>
 </tr>
 
 <tr>
@@ -215,7 +219,7 @@ ${resumeinfodto.exField }
 </div>
 
 <table border="1" style="border-collapse :collapse; ">
-<tr style="background-color: #AFE1FF;">
+<tr id="resumeborder">
 <th style="text-align: center ;">재학기간</th>
 <th style="text-align: center ;">학교명</th>
 <th style="text-align: center ;">전공</th>
@@ -286,7 +290,7 @@ ${resumeinfodto.GPA.substring(GPAlast-3)}
 <div style="width: 960px; margin : auto ;">
 <h1>자격증</h1>
 <table border="1" style="border-collapse :collapse; ">
-<tr style="background-color: #AFE1FF;">
+<tr id="resumeborder">
 <th style="text-align: center ;">취득일</th>
 <th style="text-align: center ;">자격증명</th>
 </tr>
@@ -314,7 +318,7 @@ ${licensedto.qualification }
 <div style="width: 960px; margin : auto ;">
 <h1>대외활동</h1>
 <table border="1" style="border-collapse :collapse; ">
-<tr style="background-color: #AFE1FF;">
+<tr id="resumeborder">
 <th style="text-align: center ;">활동기간</th>
 <th style="text-align: center ;">활동구분</th>
 <th style="text-align: center ;">활동내용</th>

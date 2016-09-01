@@ -14,6 +14,10 @@ table{
 margin: auto;
 width: 960px;
 }
+#resumeborder{
+border: 1px solid #83532F;
+background-color: #FFD0A2;
+}
 </style>
 <script type="text/javascript">
 
@@ -408,7 +412,7 @@ function input(f) {
 			<h1>학력사항</h1>
 		</div>
 
-		<div style="text-align: center; margin: auto; background-color: #D9E5FF; border: 2px solid #2478FF; padding-bottom: 15px; padding-top: 15px; width: 960px;">
+		<div id="resumeborder" style="text-align: center; margin: auto; padding-bottom: 15px; padding-top: 15px; width: 960px;">
 			<c:choose>
 				<c:when test="${resumeinfodto.education.substring(0,2)=='초등' }">
 					<input type="radio" name="education" value="초등학교 졸업" id="edu"
@@ -513,7 +517,7 @@ function input(f) {
 		</div>
 		
 		<table border="1" style="border-collapse: collapse;">
-			<tr style="background-color: #D9E5FF;">
+			<tr id="resumeborder">
 				<c:choose>
 					<c:when test="${resumeinfodto.education.substring(0,2)=='고등' }">
 					<th id="hith" style="text-align: left ;" colspan="2">
@@ -536,13 +540,13 @@ function input(f) {
 			</tr>
 			
 			<tr>
-				<th style="text-align: center; background-color: #D9E5FF;">학교명</th>
+				<th id="resumeborder" style="text-align: center;">학교명</th>
 				<td><input id="schoolname" type="text" name="schoolName" placeholder="학교명을입력하세요." value="${resumeinfodto.schoolName}" style="width: 340px;">
 				</td>
 			</tr>
 			
 			 <tr>
-				<th style="text-align: center; background-color: #D9E5FF;">재학기간</th>
+				<th id="resumeborder" style="text-align: center;">재학기간</th>
 				<td>
 				<input id="entyear" type="month" name="termTime" value="${resumeinfodto.termTime.substring(0,7) }" max="2016-12" min="1910-01">.
 				 <c:choose>
@@ -562,6 +566,7 @@ function input(f) {
 				~
 				<input id="grayear" type="month" name="termTime" value="${resumeinfodto.termTime.substring(11,18) }" max="2016-12" min="1910-01">.
 	 			<c:choose>
+	 				<c:when test="${not empty resumeinfodto.termTime }">
 					<c:when test="${resumeinfodto.termTime.substring(termTimelast-2,termTimelast)=='졸업'}">
 						<select name="termTime" id="selgra">
 						<option value="졸업" selected="selected">졸업</option>
@@ -607,12 +612,15 @@ function input(f) {
 						<option value="수료" selected="selected">수료</option>
 						</select>					
 					</c:when>
+					</c:when>
+					<c:otherwise>
+					</c:otherwise>
 				</c:choose>
 				</td>
 			</tr>
 			
 			 <tr>
- 				<th style="text-align: center; background-color: #D9E5FF;">전공</th>
+ 				<th id="resumeborder" style="text-align: center;">전공</th>
  				 <c:choose>
 					<c:when test="${resumeinfodto.major.substring(0,2)=='문과'}">
 					<td id="himajor">
@@ -692,7 +700,7 @@ function input(f) {
 			<c:choose>
 			<c:when test="${resumeinfodto.GPA.substring(0,1)==','}">
 			<tr id="gPA" style="display: none;">
-				<th style="text-align: center; background-color: #D9E5FF;">학점</th>
+				<th id="resumeborder" style="text-align: center;">학점</th>
 				<td><input id="gPAtext" maxlength="3" type="text" name="gPA" placeholder="학점" style="width: 40px;"> / 
 				
 				<select name="gPA" id="selgPA">
@@ -711,6 +719,7 @@ function input(f) {
 				<td>
 				<input id="textgpa" type="text" name="gPA" placeholder="학점" maxlength="3" value="${resumeinfodto.GPA.substring(0,GPAlast-4)}" style="width: 40px;"> / 
 				<c:choose>
+					<c:when test="${not empty resumeinfodto.GPA }">
 					<c:when test="${resumeinfodto.GPA.substring(GPAlast-3,GPAlast)=='4.5'}">
 						<select name="gPA" id="selgPA">
 						<option value="4.5" selected="selected">4.5</option>
@@ -751,6 +760,9 @@ function input(f) {
 						<option value="100">100</option>
 						</select>
 					</c:when>
+					</c:when>
+					<c:otherwise>
+					</c:otherwise>
 				</c:choose>
 				
 				</td>		

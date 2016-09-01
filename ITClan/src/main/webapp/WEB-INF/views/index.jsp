@@ -8,7 +8,13 @@
 
 <meta charset="UTF-8">
 <title>GOLD★STAR</title>
-
+<script type="text/javascript">
+function offer() {
+	var url = "offer";
+	
+	location.href = url;
+}
+</script>
 <style>
 body{background-image: url('./image/back (2).jpg')}
 
@@ -18,16 +24,25 @@ body{background-image: url('./image/back (2).jpg')}
 
 
 <div>
-<a href = "./offer" target="_self">
-<img src="./image/offer.jpg" style="position: absolute; top: 150px; left: 250px; width: 500px;">
+<a href = "javascript:offer()" target="_self">
+<img src="./image/offer.jpg" style="position: absolute; top: 150px; left: 200px; width: 400px;">
 
 </a>
 
 </div>
 
+
+
+
+
+
+
+
+
 <div>
 <a href = "./hunting" target="_self">
-<img src="./image/hunting.jpg"  style="position: absolute; top: 150px; left: 850px; width: 500px;">
+<img src="./image/hunting.jpg"  style="position: absolute; top: 150px; left: 700px; width: 400px;">
+</a>
  </div>
 
 </body>
