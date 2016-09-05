@@ -7,20 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<style type="text/css">
-tr,th {
-text-align: left;
-
-}
-table{
-margin: auto;
-width: 960px;
-}
-#resumeborder{
-border: 2px solid #83532F;
-background-color: #FFD0A2;
-}
-</style>
 <script type="text/javascript">
 	function update() {
 		var url = "update";
@@ -165,7 +151,7 @@ ${resumeinfodto.exField }
 </tr>
 
 <tr>
-<th colspan="3" style="border-bottom-style: hidden;">포토폴리오</th>
+<th colspan="3" style="border-bottom-style: hidden;">포트폴리오</th>
 <th colspan="4" style="border-bottom-style: hidden;">자기소개서</th>
 </tr>
 
@@ -178,7 +164,7 @@ ${resumeinfodto.exField }
 
 <c:otherwise>
 <c:forEach items="${portfoliolist}" var="portfoliodto">
-<a href="javascript:downport('${portfoliodto.portfolioName}')">${portfoliodto.portfolioName}</a><hr>
+<a href="javascript:downport('${portfoliodto.portfolioName}')">${portfoliodto.portfolioName}</a><br>
 </c:forEach>
 </c:otherwise>
 </c:choose>
@@ -193,7 +179,7 @@ ${resumeinfodto.exField }
 
 <c:otherwise>
 <c:forEach items="${resumelist }" var="resumedto">
-<a href="javascript:downresume('${resumedto.resumeName}')">${resumedto.resumeName }</a><hr>
+<a href="javascript:downresume('${resumedto.resumeName}')">${resumedto.resumeName }</a><br>
 </c:forEach>
 </c:otherwise>
 </c:choose>
@@ -218,7 +204,7 @@ ${resumeinfodto.exField }
 </h1>
 </div>
 
-<table border="1" style="border-collapse :collapse; ">
+<table border="1" style="border-collapse :collapse; width: 960px; ">
 <tr id="resumeborder">
 <th style="text-align: center ;">재학기간</th>
 <th style="text-align: center ;">학교명</th>
@@ -251,18 +237,10 @@ ${resumeinfodto.schoolName }
 </td>	
 
 
-<c:choose>
-<c:when test="${resumeinfodto.major.substring(0,1)==','}">
 <td>
-${resumeinfodto.major.substring(1)}
+${resumeinfodto.major}
+${resumeinfodto.GRmajor}
 </td>
-</c:when>
-<c:otherwise>
-<td>
-${resumeinfodto.major.substring(0,majorlast-1) }
-</td>
-</c:otherwise>
-</c:choose>
 
 <c:choose>
 <c:when test="${resumeinfodto.GPA.substring(0,1)==',' }">
@@ -289,7 +267,7 @@ ${resumeinfodto.GPA.substring(GPAlast-3)}
 <br><br>
 <div style="width: 960px; margin : auto ;">
 <h1>자격증</h1>
-<table border="1" style="border-collapse :collapse; ">
+<table border="1" style="border-collapse :collapse; width: 960px; ">
 <tr id="resumeborder">
 <th style="text-align: center ;">취득일</th>
 <th style="text-align: center ;">자격증명</th>
@@ -317,7 +295,7 @@ ${licensedto.qualification }
 <br><br>
 <div style="width: 960px; margin : auto ;">
 <h1>대외활동</h1>
-<table border="1" style="border-collapse :collapse; ">
+<table border="1" style="border-collapse :collapse; width: 960px; ">
 <tr id="resumeborder">
 <th style="text-align: center ;">활동기간</th>
 <th style="text-align: center ;">활동구분</th>

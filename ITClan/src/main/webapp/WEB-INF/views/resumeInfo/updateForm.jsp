@@ -5,17 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-tr, th {
-	text-align: left;
-	width: 100px;
-}
-
-table {
-	margin: auto;
-	width: 960px;
-}
-</style>
 <script type="text/javascript">
 	function input(f) {
 
@@ -37,7 +26,13 @@ table {
 				return false;
 			}
 		}
-
+		
+		if(f.major.selectedIndex==0 && f.GRmajor.value=="") {
+			alert("전공을 선택 하세요");
+			f.major.focus();
+			return false;
+		}
+		
 		if (f.exArea[0].selectedIndex == 0) {
 			alert("근무지역을 입력해주세요.");
 			f.exArea[0].focus();
@@ -79,11 +74,13 @@ table {
 	//학력사항
 
 	$(document).ready(function() {
+		$("#eleedu").hide();
 		$("#edhigh").click(function() {
 			$("#school").show();
 			$("#hilabel").show();
 			$("#hith").show();
 			$("#himajor").show();
+			$("#eleedu").show();
 			$("#grmajor").hide();
 			$("#grlabel").hide();
 			$("#grth").hide();
@@ -109,6 +106,7 @@ table {
 			$("#hilabel").hide();
 			$("#hith").hide();
 			$("#gPA").show();
+			$("#eleedu").show();
 			$("#schoolname").val("");
 			$("#entyear").val("");
 			$("#grayear").val("");
@@ -132,6 +130,7 @@ table {
 			$("#hilabel").hide();
 			$("#hith").hide();
 			$("#gPA").show();
+			$("#eleedu").show();
 			$("#schoolname").val("");
 			$("#entyear").val("");
 			$("#grayear").val("");
@@ -155,6 +154,7 @@ table {
 			$("#hilabel").hide();
 			$("#hith").hide();
 			$("#gPA").show();
+			$("#eleedu").show();
 			$("#schoolname").val("");
 			$("#entyear").val("");
 			$("#grayear").val("");
@@ -171,12 +171,14 @@ table {
 	$(document).ready(function() {
 		$("#edu").click(function() {
 			$("#school").hide();
+			$("#eleedu").hide();
 
 		});
 	});
 	$(document).ready(function() {
 		$("#edu2").click(function() {
 			$("#school").hide();
+			$("#eleedu").hide();
 
 		});
 	});
@@ -201,7 +203,7 @@ table {
 </script>
 </head>
 <body>
-	<form action="./nextupdate" method="post" onsubmit="return input(this)">
+	<form name="resumefrm" action="./nextupdate" method="post" onsubmit="return input(this)">
 		<input type="hidden" name="picture" value="${resumeinfodto.picture }">
 		<input type="hidden" name="memberID" value="${memberID }">
 
@@ -210,10 +212,10 @@ table {
 		</div>
 
 
-		<table border="1">
+		<table border="1" style="width: 960px;">
 			<tr>
 				<th colspan="2">이름</th>
-				<td>${personalmemberdto.name }&nbsp;${personalmemberdto.birth }세
+				<td colspan="3">${personalmemberdto.name }&nbsp;${personalmemberdto.birth }세
 					/ ${personalmemberdto.memberID}</td>
 			</tr>
 
@@ -245,7 +247,7 @@ table {
 					</c:when>
 					<c:when
 						test="${resumeinfodto.disableGrade.substring(0,2)=='장애' && resumeinfodto.disableGrade.substring(3,4)=='2'}">
-						<td><input type="radio" id="disable" name="disableGrade"
+						<td colspan="3"><input type="radio" id="disable" name="disableGrade"
 							value="장애" checked="checked">장애 <select id="grade"
 							name="disableGrade">
 								<option value="----">----
@@ -260,7 +262,7 @@ table {
 					</c:when>
 					<c:when
 						test="${resumeinfodto.disableGrade.substring(0,2)=='장애' && resumeinfodto.disableGrade.substring(3,4)=='3'}">
-						<td><input type="radio" id="disable" name="disableGrade"
+						<td colspan="3"><input type="radio" id="disable" name="disableGrade"
 							value="장애" checked="checked">장애 <select id="grade"
 							name="disableGrade">
 								<option value="----">----
@@ -275,7 +277,7 @@ table {
 					</c:when>
 					<c:when
 						test="${resumeinfodto.disableGrade.substring(0,2)=='장애' && resumeinfodto.disableGrade.substring(3,4)=='4'}">
-						<td><input type="radio" id="disable" name="disableGrade"
+						<td colspan="3"><input type="radio" id="disable" name="disableGrade"
 							value="장애" checked="checked">장애 <select id="grade"
 							name="disableGrade">
 								<option value="----">----
@@ -305,7 +307,7 @@ table {
 					</c:when>
 					<c:when
 						test="${resumeinfodto.disableGrade.substring(0,2)=='장애' && resumeinfodto.disableGrade.substring(3,4)=='6'}">
-						<td><input type="radio" id="disable" name="disableGrade"
+						<td colspan="3"><input type="radio" id="disable" name="disableGrade"
 							value="장애" checked="checked">장애 <select id="grade"
 							name="disableGrade">
 								<option value="----">----
@@ -319,7 +321,7 @@ table {
 							name="disableGrade" value="비장애">비장애</td>
 					</c:when>
 					<c:otherwise>
-						<td><input type="radio" id="disable" name="disableGrade"
+						<td colspan="3"><input type="radio" id="disable" name="disableGrade"
 							value="장애">장애 <select id="grade" name="disableGrade"
 							style="display: none;">
 								<option value="----">----
@@ -340,21 +342,21 @@ table {
 				<th colspan="2">병역사항</th>
 				<c:choose>
 					<c:when test="${resumeinfodto.military.substring(0,2)=='군필' }">
-						<td><input type="radio" value="군필" name="military"
+						<td colspan="3"><input type="radio" value="군필" name="military"
 							checked="checked">군필 <input style="margin-left: 15px"
 							type="radio" value="면제" name="military">면제 <input
 							style="margin-left: 15px" type="radio" value="미필" name="military">미필
 						</td>
 					</c:when>
 					<c:when test="${resumeinfodto.military.substring(0,2)=='면제' }">
-						<td><input type="radio" value="군필" name="military">군필
+						<td colspan="3"><input type="radio" value="군필" name="military">군필
 							<input style="margin-left: 15px" type="radio" value="면제"
 							name="military" checked="checked">면제 <input
 							style="margin-left: 15px" type="radio" value="미필" name="military">미필
 						</td>
 					</c:when>
 					<c:otherwise>
-						<td><input type="radio" value="군필" name="military">군필
+						<td colspan="3"><input type="radio" value="군필" name="military">군필
 							<input style="margin-left: 15px" type="radio" value="면제"
 							name="military">면제 <input style="margin-left: 15px"
 							type="radio" value="미필" name="military" checked="checked">미필
@@ -370,12 +372,12 @@ table {
 
 			<tr>
 				<th>휴대폰</th>
-				<td>${personalmemberdto.phone }</td>
+				<td colspan="3">${personalmemberdto.phone }</td>
 			</tr>
 
 			<tr>
 				<th>이메일</th>
-				<td>${personalmemberdto.email }</td>
+				<td colspan="3">${personalmemberdto.email }</td>
 			</tr>
 
 
@@ -398,8 +400,8 @@ table {
 			<h1>학력사항</h1>
 		</div>
 
-		<div
-			style="text-align: center; margin: auto; background-color: #D9E5FF; border: 2px solid #2478FF; padding-bottom: 15px; padding-top: 15px; width: 960px;">
+		<div style="text-align: center; margin: auto; padding-bottom: 15px; padding-top: 15px; width: 960px;" 
+				id="resumeborder">
 			<c:choose>
 				<c:when test="${resumeinfodto.education.substring(0,2)=='초등' }">
 					<input type="radio" name="education" value="초등학교 졸업" id="edu"
@@ -503,8 +505,8 @@ table {
 				</c:choose>
 			</div>
 
-			<table border="1" style="border-collapse: collapse;">
-				<tr style="background-color: #D9E5FF;">
+			<table border="1" style="border-collapse: collapse; width: 960px;">
+				<tr id="resumebackground">
 					<c:choose>
 						<c:when test="${resumeinfodto.education.substring(0,2)=='고등' }">
 							<th id="hith" style="text-align: left;" colspan="2">고등학교</th>
@@ -523,13 +525,12 @@ table {
 				<c:choose>
 					<c:when
 						test="${resumeinfodto.education.substring(0,2)=='초등' || resumeinfodto.education.substring(0,2)=='중학' }">
-					<div id="school" style="display: none;">
 							<div style="width: 960px; margin: auto;">
 								<label id="hilabel" style="display: none;">=고등학교</label> <label
 									id="grlabel" style="display: none;">=대학·대학교·대학원</label>
 							</div>
-							<table border="1" style="border-collapse: collapse;">
-								<tr id="resumeborder">
+							<table id="eleedu" border="1" style="border-collapse: collapse; width: 960px;">
+								<tr id="resumebackground">
 									<th id="hith" style="text-align: left; display: none;"
 										colspan="2">고등학교</th>
 									<th id="grth" style="text-align: left; display: none;"
@@ -537,13 +538,13 @@ table {
 								</tr>
 
 								<tr>
-									<th id="resumeborder" style="text-align: center;">학교명</th>
+									<th id="resumebackground" style="text-align: center;">학교명</th>
 									<td><input id="schoolname" type="text" name="schoolName"
 										placeholder="학교명을입력하세요." style="width: 340px;"></td>
 								</tr>
 
 								<tr>
-									<th id="resumeborder" style="text-align: center;">재학기간</th>
+									<th id="resumebackground" style="text-align: center;">재학기간</th>
 									<td><input id="entyear" type="month" name="termTime"
 										max="2016-12" min="1910-01">. <select name="termTime"
 										id="selent">
@@ -561,20 +562,22 @@ table {
 								</tr>
 
 								<tr>
-									<th id="resumeborder" style="text-align: center;">전공</th>
-									<td id="himajor"><select name="major" id="selmajor">
+									<th id="resumebackground" style="text-align: center;">전공</th>
+									<td id="himajor"><select name="elemajor" id="selmajor">
 											<option value="">계열선택</option>
 											<option value="문과계열">문과계열</option>
 											<option value="이과계열">이과계열</option>
 											<option value="전문(실업)계열">전문(실업)계열</option>
 											<option value="예체능계열">예체능계열</option>
-									</select></td>
+									</select>
+									</td>
+									
 									<td id="grmajor"><input id="majortext" type="text"
-										name="major">학과</td>
+										name="GRmajor">학과</td>
 								</tr>
 
 								<tr id="gPA" style="display: none;">
-									<th id="resumeborder" style="text-align: center;">학점</th>
+									<th id="resumebackground" style="text-align: center;">학점</th>
 									<td><input id="gPAtext" maxlength="3" type="text"
 										name="gPA" placeholder="학점" style="width: 40px;"> / <select
 										name="gPA" id="selgPA">
@@ -585,22 +588,22 @@ table {
 									</select></td>
 								</tr>
 							</table>
-						</div>
 					</c:when>
 
 					<c:otherwise>
 						<tr>
-							<th style="text-align: center; background-color: #D9E5FF;">학교명</th>
+							<th id="resumebackground" style="text-align: center;">학교명</th>
 							<td><input id="schoolname" type="text" name="schoolName"
 								placeholder="학교명을입력하세요." value="${resumeinfodto.schoolName}"
 								style="width: 340px;"></td>
 						</tr>
 
 						<tr>
-							<th style="text-align: center; background-color: #D9E5FF;">재학기간</th>
+							<th style="text-align: center;" id="resumebackground">재학기간</th>
 							<td><input id="entyear" type="month" name="termTime"
 								value="${resumeinfodto.termTime.substring(0,7) }" max="2016-12"
-								min="1910-01">. <c:choose>
+								min="1910-01">.
+								 <c:choose>
 									<c:when test="${resumeinfodto.termTime.substring(8,10)=='입학'}">
 										<select name="termTime" id="selent">
 											<option value="입학" selected="selected">입학</option>
@@ -615,7 +618,8 @@ table {
 									</c:when>
 								</c:choose> ~ <input id="grayear" type="month" name="termTime"
 								value="${resumeinfodto.termTime.substring(11,18) }"
-								max="2016-12" min="1910-01">. <c:choose>
+								max="2016-12" min="1910-01">. 
+								<c:choose>
 									<c:when
 										test="${resumeinfodto.termTime.substring(termTimelast-2,termTimelast)=='졸업'}">
 										<select name="termTime" id="selgra">
@@ -666,82 +670,59 @@ table {
 											<option value="수료" selected="selected">수료</option>
 										</select>
 									</c:when>
-								</c:choose></td>
+								</c:choose>
+								</td>
 						</tr>
-
+	
 						<tr>
-							<th style="text-align: center; background-color: #D9E5FF;">전공</th>
-							<c:choose>
-								<c:when test="${resumeinfodto.major.substring(0,2)=='문과'}">
-									<td id="himajor"><select name="major">
-											<option value="">계열선택</option>
-											<option value="문과계열" selected="selected">문과계열</option>
-											<option value="이과계열">이과계열</option>
-											<option value="전문(실업)계열">전문(실업)계열</option>
-											<option value="예체능계열">예체능계열</option>
-									</select></td>
-								</c:when>
+							<th style="text-align: center;" id="resumebackground">전공</th>
 
-								<c:when test="${resumeinfodto.major.substring(0,2)=='이과'}">
-									<td id="himajor"><select name="major">
-											<option value="">계열선택</option>
-											<option value="문과계열">문과계열</option>
-											<option value="이과계열" selected="selected">이과계열</option>
-											<option value="전문(실업)계열">전문(실업)계열</option>
-											<option value="예체능계열">예체능계열</option>
-									</select></td>
-								</c:when>
-
-								<c:when test="${resumeinfodto.major.substring(0,2)=='전문'}">
-									<td id="himajor"><select name="major">
-											<option value="">계열선택</option>
-											<option value="문과계열">문과계열</option>
-											<option value="이과계열">이과계열</option>
-											<option value="전문(실업)계열" selected="selected">전문(실업)계열</option>
-											<option value="예체능계열">예체능계열</option>
-									</select></td>
-								</c:when>
-
-								<c:when test="${resumeinfodto.major.substring(0,2)=='예체'}">
-									<td id="himajor"><select name="major">
-											<option value="">계열선택</option>
-											<option value="문과계열">문과계열</option>
-											<option value="이과계열">이과계열</option>
-											<option value="전문(실업)계열">전문(실업)계열</option>
-											<option value="예체능계열" selected="selected">예체능계열</option>
-									</select></td>
-								</c:when>
-
-								<c:otherwise>
-									<td id="himajor" style="display: none;"><select
-										name="major">
-											<option value="">계열선택</option>
-											<option value="문과계열">문과계열</option>
-											<option value="이과계열">이과계열</option>
-											<option value="전문(실업)계열">전문(실업)계열</option>
-											<option value="예체능계열">예체능계열</option>
-									</select></td>
-								</c:otherwise>
-							</c:choose>
-
-							<c:choose>
-								<c:when test="${resumeinfodto.major.substring(0,1)==',' }">
-									<td id="grmajor"><input id="textmajor" type="text"
-										name="major" value="${resumeinfodto.major.substring(1) }">학과
-									</td>
-								</c:when>
-								<c:otherwise>
-									<td id="grmajor" style="display: none;"><input
-										id="textmajor" type="text" name="major"
-										value="${resumeinfodto.major }">학과</td>
-								</c:otherwise>
-							</c:choose>
-						</tr>
+			<c:choose>
+				<c:when test="${resumeinfodto.education.substring(0,2)=='고등' }">
+					<td id="himajor">
+						<select name="major">
+						<option value="">계열선택</option>
+						<option value="문과계열">문과계열</option>
+						<option value="이과계열">이과계열</option>
+						<option value="전문(실업)계열">전문(실업)계열</option>
+						<option value="예체능계열">예체능계열</option>
+						</select>			
+   					<script type="text/javascript">
+					document.resumefrm.major.value='${resumeinfodto.major}';
+                    </script>																
+					</td>					
+                    
+					<td id="grmajor" style="display: none;"><input id="majortext" type="text"
+						name="GRmajor">학과
+					</td>				
+				</c:when>
+				
+				<c:otherwise>
+					<td id="himajor" style="display: none;">
+						<select name="major">
+						<option value="">계열선택</option>
+						<option value="문과계열">문과계열</option>
+						<option value="이과계열">이과계열</option>
+						<option value="전문(실업)계열">전문(실업)계열</option>
+						<option value="예체능계열">예체능계열</option>
+						</select>			
+   					<script type="text/javascript">
+					document.resumefrm.major.value='${resumeinfodto.major}';
+                    </script>																
+					</td>					
+                    
+					<td id="grmajor"><input id="majortext" type="text" name="GRmajor">학과
+					</td>				
+				</c:otherwise>
+			</c:choose>
+																	
+						</tr>					
+						
 
 						<c:choose>
 							<c:when test="${resumeinfodto.GPA.substring(0,1)==','}">
 								<tr id="gPA" style="display: none;">
-									<th style="text-align: center; background-color: #D9E5FF;">학점</th>
+									<th style="text-align: center;" id="resumebackground">학점</th>
 									<td><input id="gPAtext" maxlength="3" type="text"
 										name="gPA" placeholder="학점" style="width: 40px;"> / <select
 										name="gPA" id="selgPA">
@@ -755,11 +736,12 @@ table {
 
 							<c:otherwise>
 								<tr id="gPA">
-									<th style="text-align: center; background-color: #D9E5FF;">학점</th>
+									<th style="text-align: center;" id="resumebackground">학점</th>
 									<td><input id="textgpa" type="text" name="gPA"
 										placeholder="학점" maxlength="3"
 										value="${resumeinfodto.GPA.substring(0,GPAlast-4)}"
-										style="width: 40px;"> / <c:choose>
+										style="width: 40px;"> / 
+										<c:choose>
 											<c:when
 												test="${resumeinfodto.GPA.substring(GPAlast-3,GPAlast)=='4.5'}">
 												<select name="gPA" id="selgPA">
@@ -820,7 +802,7 @@ table {
 		<div style="width: 960px; margin: auto;">
 			<h1>희망근무조건</h1>
 
-			<table border="1">
+			<table border="1" style="width: 960px;">
 				<tr>
 					<th>고용형태</th>
 					<c:choose>
@@ -832,8 +814,8 @@ table {
 								<input type="radio" name="employmentType" value="병역특례">병역특례&nbsp;&nbsp;
 								<input type="radio" name="employmentType" value="프리랜서">프리랜서&nbsp;&nbsp;
 								<input type="radio" name="employmentType" value="헤드헌팅">헤드헌팅&nbsp;&nbsp;
-								<input type="radio" name="employmentType" value="파견대행">파견대행&nbsp;&nbsp;
-								<input type="radio" name="employmentType" value="인턴직">인턴직&nbsp;&nbsp;
+								<input type="radio" name="employmentType" value="파견대행">파견대행<br>
+								<input type="radio" name="employmentType" value="인턴직" style="margin-top: 7px;">인턴직
 							</td>
 						</c:when>
 						<c:when
@@ -844,8 +826,8 @@ table {
 								<input type="radio" name="employmentType" value="병역특례">병역특례&nbsp;&nbsp;
 								<input type="radio" name="employmentType" value="프리랜서">프리랜서&nbsp;&nbsp;
 								<input type="radio" name="employmentType" value="헤드헌팅">헤드헌팅&nbsp;&nbsp;
-								<input type="radio" name="employmentType" value="파견대행">파견대행&nbsp;&nbsp;
-								<input type="radio" name="employmentType" value="인턴직">인턴직&nbsp;&nbsp;
+								<input type="radio" name="employmentType" value="파견대행">파견대행<br>
+								<input type="radio" name="employmentType" value="인턴직" style="margin-top: 7px;">인턴직
 							</td>
 						</c:when>
 						<c:when
@@ -857,8 +839,8 @@ table {
 								checked="checked">병역특례&nbsp;&nbsp; <input type="radio"
 								name="employmentType" value="프리랜서">프리랜서&nbsp;&nbsp; <input
 								type="radio" name="employmentType" value="헤드헌팅">헤드헌팅&nbsp;&nbsp;
-								<input type="radio" name="employmentType" value="파견대행">파견대행&nbsp;&nbsp;
-								<input type="radio" name="employmentType" value="인턴직">인턴직&nbsp;&nbsp;
+								<input type="radio" name="employmentType" value="파견대행">파견대행<br>
+								<input type="radio" name="employmentType" value="인턴직" style="margin-top: 7px;">인턴직
 							</td>
 						</c:when>
 						<c:when
@@ -869,9 +851,9 @@ table {
 								type="radio" name="employmentType" value="병역특례">병역특례&nbsp;&nbsp;
 								<input type="radio" name="employmentType" value="프리랜서"
 								checked="checked">프리랜서&nbsp;&nbsp; <input type="radio"
-								name="employmentType" value="헤드헌팅">헤드헌팅&nbsp;&nbsp; <input
-								type="radio" name="employmentType" value="파견대행">파견대행&nbsp;&nbsp;
-								<input type="radio" name="employmentType" value="인턴직">인턴직&nbsp;&nbsp;
+								name="employmentType" value="헤드헌팅">헤드헌팅&nbsp;&nbsp;
+								<input type="radio" name="employmentType" value="파견대행">파견대행<br>
+								<input type="radio" name="employmentType" value="인턴직" style="margin-top: 7px;">인턴직								
 							</td>
 						</c:when>
 						<c:when
@@ -882,9 +864,9 @@ table {
 								type="radio" name="employmentType" value="병역특례">병역특례&nbsp;&nbsp;
 								<input type="radio" name="employmentType" value="프리랜서">프리랜서&nbsp;&nbsp;
 								<input type="radio" name="employmentType" value="헤드헌팅"
-								checked="checked">헤드헌팅&nbsp;&nbsp; <input type="radio"
-								name="employmentType" value="파견대행">파견대행&nbsp;&nbsp; <input
-								type="radio" name="employmentType" value="인턴직">인턴직&nbsp;&nbsp;
+								checked="checked">헤드헌팅&nbsp;&nbsp;
+								<input type="radio" name="employmentType" value="파견대행">파견대행<br>
+								<input type="radio" name="employmentType" value="인턴직" style="margin-top: 7px;">인턴직								
 							</td>
 						</c:when>
 						<c:when
@@ -895,9 +877,9 @@ table {
 								type="radio" name="employmentType" value="병역특례">병역특례&nbsp;&nbsp;
 								<input type="radio" name="employmentType" value="프리랜서">프리랜서&nbsp;&nbsp;
 								<input type="radio" name="employmentType" value="헤드헌팅">헤드헌팅&nbsp;&nbsp;
-								<input type="radio" name="employmentType" value="파견대행"
-								checked="checked">파견대행&nbsp;&nbsp; <input type="radio"
-								name="employmentType" value="인턴직">인턴직&nbsp;&nbsp;</td>
+								<input type="radio" name="employmentType" value="파견대행">파견대행<br>
+								<input type="radio" name="employmentType" value="인턴직" style="margin-top: 7px;">인턴직
+								</td>
 						</c:when>
 						<c:when
 							test="${resumeinfodto.employmentType.substring(0,2)=='인턴'}">
@@ -907,9 +889,9 @@ table {
 								type="radio" name="employmentType" value="병역특례">병역특례&nbsp;&nbsp;
 								<input type="radio" name="employmentType" value="프리랜서">프리랜서&nbsp;&nbsp;
 								<input type="radio" name="employmentType" value="헤드헌팅">헤드헌팅&nbsp;&nbsp;
-								<input type="radio" name="employmentType" value="파견대행">파견대행&nbsp;&nbsp;
-								<input type="radio" name="employmentType" value="인턴직"
-								checked="checked">인턴직&nbsp;&nbsp;</td>
+								<input type="radio" name="employmentType" value="파견대행">파견대행<br>
+								<input type="radio" name="employmentType" value="인턴직" style="margin-top: 7px;">인턴직
+								</td>
 						</c:when>
 					</c:choose>
 				</tr>

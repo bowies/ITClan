@@ -5,21 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-tr,th {
-text-align: left;
-width: 100px;
-}
-table{
-margin: auto;
-width: 960px;
-}
-
-#resumeborder{
-border: 2px solid #83532F;
-background-color: #FFD0A2;
-}
-</style>
 <script type="text/javascript">
 function input(f) {
 	if(f.pictureMF.value==''){
@@ -69,7 +54,18 @@ function input(f) {
 				f.termTime[2].focus();
 				return false;
 			}
-	}
+		}		
+			if(f.major.selectedIndex==0) {
+					alert("전공선택을 하세요");
+					f.major.focus();
+					return false;
+				}	
+			
+			if(f.GRmajor.value=="") {
+				alert("전공을 입력하세요");
+				f.GRmajor.focus();
+				return false;
+			}			
 		
 	if(f.employmentType[0].checked==false && f.employmentType[1].checked==false &&
 			f.employmentType[2].checked==false && f.employmentType[3].checked==false &&
@@ -277,16 +273,16 @@ function input(f) {
 			<h1>회원정보</h1>
 		</div>
 		
-		<table border="1">
+		<table border="1" style="width: 960px;">
 			<tr>
-				<td style="width: 80px;" align="center" rowspan="12">
+				<td align="center" rowspan="12">
 				<img id="photo" src="../storage/resumeInfo_img/no_image.JPG" style="width: 170px; height: 170px;">
 				<input style="text-align: center; width: 77px; margin-top: 10px;" type="file" id="imgInp" name="pictureMF">
 				</td>
 			</tr>
 			<tr>
 				<th colspan="2">이름</th>
-				<td>${personalmemberdto.name }&nbsp;
+				<td colspan="3">${personalmemberdto.name }&nbsp;
 					${personalmemberdto.birth }세
 					/ ${memberID}</td>
 			</tr>
@@ -302,7 +298,7 @@ function input(f) {
 
 			<tr>
 				<th colspan="2">장애등급</th>
-				<td>
+				<td colspan="3">
 				<input type="radio" id="disable" name="disableGrade" value="장애">장애 
 				<select id="grade" name="disableGrade">
 						<option value="----">----
@@ -319,7 +315,7 @@ function input(f) {
 
 			<tr>
 				<th colspan="2">병역사항</th>
-				<td>
+				<td colspan="3">
 				<input type="radio" value="군필" name="military">군필 
 				<input style="margin-left: 15px" type="radio" value="면제" name="military">면제
 				<input style="margin-left: 15px" type="radio" value="미필" name="military">미필
@@ -332,12 +328,12 @@ function input(f) {
 
 			<tr>
 				<th>휴대폰</th>
-				<td>${personalmemberdto.phone }</td>
+				<td colspan="3">${personalmemberdto.phone }</td>
 			</tr>
 
 			<tr>
 				<th>이메일</th>
-				<td>${personalmemberdto.email }
+				<td colspan="3">${personalmemberdto.email }
 				</td>
 			</tr>
 
@@ -353,7 +349,7 @@ function input(f) {
 			</tr>
 
 		</table>
-		
+
 		<br><br>
 		<div style="width: 960px; margin: auto;">
 			<h1>학력사항</h1>
@@ -378,8 +374,8 @@ function input(f) {
 			<label id="hilabel" style="display: none;">=고등학교</label>
 			<label id="grlabel" style="display: none;">=대학·대학교·대학원</label>
 		</div>
-		<table border="1" style="border-collapse: collapse;">
-			<tr id="resumeborder">
+		<table border="1" style="border-collapse: collapse; width: 960px;">
+			<tr id="resumebackground">
 				<th id="hith" style="text-align: left ; display: none;" colspan="2">
 				고등학교
 				</th>
@@ -389,14 +385,14 @@ function input(f) {
 			</tr>
 			
 			<tr>
-				<th id="resumeborder" style="text-align: center;">학교명</th>
+				<th id="resumebackground" style="text-align: center;">학교명</th>
 				<td>
 				<input id="schoolname" type="text" name="schoolName" placeholder="학교명을입력하세요." style="width: 340px;">
 				</td>
 			</tr>
 			
 			<tr>
-				<th id="resumeborder" style="text-align: center;">재학기간</th>
+				<th id="resumebackground" style="text-align: center;">재학기간</th>
 				<td>
 				<input id="entyear" type="month" name="termTime" max="2016-12" min="1910-01">.
 				<select name="termTime" id="selent">
@@ -416,7 +412,7 @@ function input(f) {
 			</tr>
 			
 			<tr>
-				<th id="resumeborder" style="text-align: center;">전공</th>
+				<th id="resumebackground" style="text-align: center;">전공</th>
 				<td id="himajor">
 				<select name="major" id="selmajor">
 					<option value="">계열선택</option>
@@ -427,12 +423,12 @@ function input(f) {
 				</select>
 				</td>
 				<td id="grmajor">
-				<input id="majortext" type="text" name="major">학과
+				<input id="majortext" type="text" name="GRmajor">학과
 				</td>
 			</tr>
 				
 			<tr id="gPA" style="display: none;">
-				<th id="resumeborder" style="text-align: center;">학점</th>
+				<th id="resumebackground" style="text-align: center;">학점</th>
 				<td><input id="gPAtext" maxlength="3" type="text" name="gPA" placeholder="학점" style="width: 40px;"> / 
 				<select name="gPA" id="selgPA">
 					<option value="4.5">4.5</option>
@@ -450,7 +446,7 @@ function input(f) {
 		<div style="width: 960px; margin: auto;">
 			<h1>희망근무조건</h1>
 			
-			<table border="1">
+			<table border="1" style="width: 960px;">
 				<tr>
 					<th>고용형태</th>
 					<td id="emp">
@@ -459,8 +455,8 @@ function input(f) {
 						<input type="radio" name="employmentType" value="병역특례">병역특례&nbsp;&nbsp; 
 						<input type="radio" name="employmentType" value="프리랜서">프리랜서&nbsp;&nbsp; 
 						<input type="radio" name="employmentType" value="헤드헌팅">헤드헌팅&nbsp;&nbsp; 
-						<input type="radio" name="employmentType" value="파견대행">파견대행&nbsp;&nbsp; 
-						<input type="radio" name="employmentType" value="인턴직">인턴직&nbsp;&nbsp;
+						<input type="radio" name="employmentType" value="파견대행">파견대행<br>
+						<input type="radio" name="employmentType" value="인턴직" style="margin-top: 7px;">인턴직
 					</td>
 				</tr>
 

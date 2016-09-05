@@ -158,9 +158,13 @@ public class PersonalmemberController {
 		cnt = dao.loginCheck(memberID, passwd);
 		if(cnt ==1){
 			PersonalMemberDTO member = dao.getGrade(memberID);
+			int recnt = dao.resumeCheck(memberID);
+			
+			
 			session.setAttribute("memberID", memberID);
 			session.setAttribute("grade", member.getGrade());
 			session.setAttribute("name", member.getName());
+			session.setAttribute("recnt", recnt);
 			
 			
 			Cookie cookie = null;

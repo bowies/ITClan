@@ -13,10 +13,15 @@ function input(f) {
 	return false;
 	}
 	
-	if(f.actPeriod.value==""){
+	if(f.actPeriod[0].value==""){
 		alert("활동기간을 입력해주세요");
 	return false;
 	}
+	
+	if(f.actPeriod[1].value==""){
+		alert("활동기간을 입력해주세요");
+	return false;
+	}	
 	
 	if(f.actContent.value==""){
 		alert("활동내용을 입력해주세요");
@@ -35,6 +40,7 @@ function input(f) {
 </div>
 <div>
 <label>활동기간
+<input type="date" name="actPeriod"> ~
 <input type="date" name="actPeriod">
 </label>
 </div>

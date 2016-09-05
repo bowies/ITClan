@@ -54,6 +54,7 @@ set
 education = #{education},
 schoolName = #{schoolName},
 major = #{major},
+GRmajor = #{GRmajor},
 termTime = #{termTime},
 GPA = #{GPA},
 career = #{career},

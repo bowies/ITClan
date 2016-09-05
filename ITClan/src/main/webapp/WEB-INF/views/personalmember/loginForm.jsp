@@ -6,7 +6,66 @@
 <meta charset="UTF-8"> 
 <title></title> 
 
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
+<style>
+.login{
+margin: 0 auto;
+position :relative;
+width:400px;
+margin-top:50px;
+margin-bottom:10px;
+background:url(../image/background.jpg) no-repeat;
+border: 2px solid #b4b4b4;
+border-radius: 7px;
+
+}
+
+.login h3{
+padding: 10px 0 16px 12px;
+margin-left: 75px;
+
+}
+.login.id, .login.pw{
+ margin-left: 18px;
+ 
+}
+
+.login.id{
+padding-bottom: 5px;
+}
+.login.id label{
+padding-right: 11px;
+}
+.login #logid{
+width:200px;
+height: 18px;
+border: 1px solid;
+margin-left: 18px;
+}
+
+ .login #logpw {
+width:200px;
+height: 18px;
+border: 1px solid;
+margin-left: 2px;
+}
+
+.login label{
+margin-top:4px;
+
+}
+
+.bottom input{
+margin-left: 20px;
+margin-bottom: 10px;
+
+}
+
+.id, .pw{
+margin-left: 20px;
+
+}
+
+</style>
 </head> 
 <!-- *********************************************** -->
 <body>
@@ -17,10 +76,10 @@
 <FORM name='frm' method='POST'
  action='${pageContext.request.contextPath }/personal/login'>
 
-  <TABLE style="width: 35% ; text-align: left; margin: auto;">
-    <TR>
-      <TH>아이디</TH>
-      <TD>
+  <div class='login'>
+     <h3><img src="/itclan/image/loginbutton.png" alt="로그인"/></h3>
+  <p class="id">
+  <label for="logid">로그인</label>
       <input type="text" name="memberID" value='${c_id_val }'>
          <c:choose>
          <c:when test="${c_id =='Y' }">
@@ -30,20 +89,24 @@
          <input type='checkbox' name='c_id' value='Y' > ID 저장 
          </c:otherwise>
          </c:choose>
-       </TD>
-    </TR>
-    <TR>
-      <TH>password</TH>
-      <TD>
+         
+         </p>
+      
+      <p class="pw">
+     <label for="logpw">패스워드</label>
+     
       <input type="password" name="passwd"> 
-      </TD>
-    </TR>
-  </TABLE>
+      </p>
+      
+   
+  
   
   <DIV class='bottom' align="center">
     <input type='submit' value='로그인' >
     <input type='button' value='회원가입' onclick="location.href='./agree'">
   </DIV>
+    </div>
+    
 </FORM>
  
  

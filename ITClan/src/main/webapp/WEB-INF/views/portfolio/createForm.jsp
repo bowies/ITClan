@@ -101,7 +101,7 @@ $(document).ready(function() {
     </label>
     
     <label style="float: right;">
-    <input type="submit" value="(사진)전송">
+    <input type="image"src="../image/화살표.png" width="50">
     </label>
     </div>   
   	<br>

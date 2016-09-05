@@ -98,7 +98,8 @@ public class ResumeInfoController {
 	}
 	
 	@RequestMapping(value="/resumeInfo/create",method=RequestMethod.POST)
-	public String create(String memberID, Model model, ResumeInfoDTO resumeinfodto, LicenseDTO licensedto, ExternalActivityDTO externalactivitydto) throws Exception {
+	public String create(HttpSession session, String memberID, Model model, ResumeInfoDTO resumeinfodto, LicenseDTO licensedto,
+			ExternalActivityDTO externalactivitydto) throws Exception {
 		
 
 		int cnt = resumeinfodto.getCareer().indexOf('입');
@@ -106,17 +107,14 @@ public class ResumeInfoController {
 		if(cnt > 0){
 			externalactivitydao.deleteinfo(memberID);
 		}
-		
-		/*model.addAttribute("resumeinfodto", resumeinfodto);*/
-		
-		/*return "/resumeInfo/testProc";*/
-		
-		if(resumeinfodao.create(resumeinfodto)>0) {
+		if(resumeinfodao.create(resumeinfodto)>0){
+			int recnt = personalmemberdao.resumeCheck(memberID);
+			session.setAttribute("recnt", recnt);
 			return "redirect:/";
+		}else{
+			return "/error/error";
 		}
-		else{
-			return "error/error";
-		}
+		
 	}
 	
 	@RequestMapping(value="/resumeInfo/nextcreate",method=RequestMethod.POST)
@@ -217,14 +215,12 @@ public class ResumeInfoController {
 		ResumeInfoDTO resumeinfodto = (ResumeInfoDTO) resumeinfodao.read(memberID);
 		PersonalMemberDTO personalmemberdto = (PersonalMemberDTO) personalmemberdao.read(memberID);
 		
-		if(resumeinfodto.getTermTime()!=null && resumeinfodto.getGPA()!=null && resumeinfodto.getMajor()!=null){
+		if(resumeinfodto.getTermTime()!=null && resumeinfodto.getGPA()!=null){
 			int termTimelast = resumeinfodto.getTermTime().length();
 			int GPAlast = resumeinfodto.getGPA().length();	
-			int majorlast = resumeinfodto.getMajor().length();
 			
 			model.addAttribute("termTimelast", termTimelast);
 			model.addAttribute("GPAlast", GPAlast);	
-			model.addAttribute("majorlast", majorlast);
 		}
 		
 		model.addAttribute("memberID",memberID);
@@ -247,12 +243,12 @@ public class ResumeInfoController {
 			int GPAlast = resumeinfodto.getGPA().length();	
 			
 			model.addAttribute("termTimelast", termTimelast);
-			model.addAttribute("GPAlast", GPAlast);						
+			model.addAttribute("GPAlast", GPAlast);		
 		}
-		
 		model.addAttribute("resumeinfodto",resumeinfodto);
 		model.addAttribute("personalmemberdto",personalmemberdto);
 		model.addAttribute("memberID", memberID);
+		
 		
 		return "/resumeInfo/update";
 	}
@@ -266,6 +262,7 @@ public class ResumeInfoController {
 		if(cnt > 0){
 			externalactivitydao.deleteinfo(memberID);
 		}
+	
 		
 		if(resumeinfodao.update(resumeinfodto)>0) {
 			

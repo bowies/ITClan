@@ -104,8 +104,14 @@ background: -webkit-linear-gradient(top, rgba(131,83,47,1) 0%,rgba(131,84,49,1) 
      <c:otherwise>
       <c:choose>
       <c:when test="${sessionScope.grade=='P'}">
-     <li><a href="${pageContext.request.contextPath}/personal/logout">로그아웃</a></li>
-     <li><a href="${pageContext.request.contextPath}/personal/read">나의정보</a></li>     
+      <c:if test="${sessionScope.recnt == 0 }">
+     <li><a href="${pageContext.request.contextPath}/resumeInfo/create">이력서생성</a></li>   
+     </c:if>
+     <c:if test="${sessionScope.recnt == 1 }">
+     <li><a href="${pageContext.request.contextPath}/resumeInfo/read">이력서읽기</a></li>   
+     </c:if>
+     <li><a href="${pageContext.request.contextPath}/personal/read">나의정보</a></li>
+     <li><a href="${pageContext.request.contextPath}/personal/logout">로그아웃</a></li>     
       </c:when>
       <c:otherwise>
      <li id="Admin"><a href="${pageContext.request.contextPath}/admin/list_personal">개인회원목록</a></li>

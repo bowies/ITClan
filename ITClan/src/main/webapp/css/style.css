@@ -1,6 +1,6 @@
 
-/* ╩Ж╪╨ дц╥╞ Ё╩╨н #FFCD9C
-        ©э╨н дц╥╞ #83532F
+/* О©╫О©╫О©╫О©╫ О©╫ц╥О©╫ О©╫О©╫О©╫О©╫ #FFCD9C
+        О©╫э╨О©╫ О©╫ц╥О©╫ #83532F
 */
 
 
@@ -103,6 +103,13 @@ float:right;
 padding-right:10px
 } 
 
+#resumeborder{
+border: 1px solid #83532F;
+background-color: #FFD0A2;
+}
+#resumebackground{
+background-color: #FFD0A2;
+}
 
 
 

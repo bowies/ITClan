@@ -7,20 +7,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-tr,th {
-text-align: left;
-width: 100px;
-}
-table{
-margin: auto;
-width: 960px;
-}
-#resumeborder{
-border: 1px solid #83532F;
-background-color: #FFD0A2;
-}
-</style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script type="text/javascript">
@@ -209,29 +195,29 @@ function licenseCreate(limax){
 		
 			<br>
 			<c:forEach var="externalactivitydto" items="${externalactivitylist }">			
-			<table border="1" style="border-collapse: collapse;" id="activity">
-			<tr id="resumeborder">
+			<table border="1" style="border-collapse: collapse; width: 960px;" id="activity">
+			<tr id="resumebackground">
 			<th colspan="2">대외활동
 			<a style="float: right;" href="javascript:deleteEX('${externalactivitydto.actNum}')">-삭제</a>
 			</th>
 			</tr>
 			
 			<tr>
-			<th id="resumeborder">활동구분</th>
+			<th id="resumebackground">활동구분</th>
 			<td>
 			${externalactivitydto.actSector }
 			</td>
 			</tr>
 			
 			<tr>
-			<th id="resumeborder">활동기간</th>
+			<th id="resumebackground">활동기간</th>
 			<td>
 			${externalactivitydto.actPeriod }
 			</td>
 			</tr>
 			
 			<tr>
-			<th id="resumeborder">활동내용</th>
+			<th id="resumebackground">활동내용</th>
 			<td>
 			${externalactivitydto.actContent }
 			</td>
@@ -252,22 +238,22 @@ function licenseCreate(limax){
 			</div>
 			
  			<c:forEach var="licensedto" items="${licenselist }">
-			<table border="1" style="border-collapse: collapse;">
-			<tr id="resumeborder">
+			<table border="1" style="border-collapse: collapse; width: 960px;">
+			<tr id="resumebackground">
 			<th colspan="2">자격증
 			<a style="float: right;" href="javascript:deleteL('${licensedto.licenseNum}')">-삭제</a>
 			</th>
 			</tr>
 			
 			<tr>
-			<th id="resumeborder">자격증명</th>
+			<th id="resumebackground">자격증명</th>
 			<td>
 			${licensedto.qualification }
 			</td>
 			</tr>
 			
 			<tr>
-			<th id="resumeborder">취득일자</th>
+			<th id="resumebackground">취득일자</th>
 			<td>
 			${licensedto.takeDate }
 			</td>
@@ -290,11 +276,11 @@ function licenseCreate(limax){
 
 	<br>
  	 <c:if test="${pomax>0 }">
-	 	<div id="portdiv">*포토폴리오</div>
+	 	<div id="portdiv">*포토폴리오가 존재합니다.</div>
 	 </c:if>
 	 
 	 <c:if test="${remax>0 }">
-	 	<div id="rediv">*자기소개서</div>
+	 	<div id="rediv">*자기소개서가 존재합니다.</div>
 	 </c:if> 
 
   <div class="tab-content">

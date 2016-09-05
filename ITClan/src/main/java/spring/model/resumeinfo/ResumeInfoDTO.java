@@ -20,13 +20,23 @@ public class ResumeInfoDTO {
     private String major		  ;
     private String termTime		  ;
     private String GPA			  ;
+    private String GRmajor		  ;
     
     private MultipartFile pictureMF;
 
 	private PersonalMemberDTO pmdto;
 	
-    public MultipartFile getPictureMF() {
+	
+	public MultipartFile getPictureMF() {
 		return pictureMF;
+	}
+
+	public String getGRmajor() {
+		return GRmajor;
+	}
+
+	public void setGRmajor(String gRmajor) {
+		GRmajor = gRmajor;
 	}
 
 	public void setPictureMF(MultipartFile pictureMF) {
